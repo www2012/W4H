@@ -8,8 +8,8 @@ This application is developed with the PHP framework symfony2
 Authors
 =======
 
-Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
-Alain MILLE <alain.mille@univ-lyon1.fr>
+ * Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * Alain MILLE <alain.mille@univ-lyon1.fr>
 
 
 Licence
