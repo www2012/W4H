@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new W4H\Bundle\EventTaskBundle\W4HEventTaskBundle(),
             new W4H\Bundle\LocationBundle\W4HLocationBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new W4H\Bundle\UserBundle\W4HUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
