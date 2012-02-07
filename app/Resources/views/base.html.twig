@@ -9,5 +9,8 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+
+        {% render "W4HEventTaskBundle:Default:menu" with {'current': current is defined ? current : ''} %}
+        {% block content %}{% endblock %}
     </body>
 </html>

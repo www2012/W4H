@@ -1,3 +1,13 @@
+W4HLocationBundle:
+    resource: "@W4HLocationBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+W4HEventTaskBundle:
+    resource: "@W4HEventTaskBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
