@@ -6,24 +6,15 @@
 
     <!--
     <parameters>
-        <parameter key="w4_h_user.example.class">W4H\Bundle\UserBundle\Example</parameter>
+        <parameter key="w4_h_calendar.example.class">W4H\Bundle\CalendarBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="w4_h_user.example" class="%w4_h_user.example.class%">
+        <service id="w4_h_calendar.example" class="%w4_h_calendar.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>
         </service>
     </services>
     -->
-    <services>
-
-        <service id="w4h_user.registration.form.type" class="W4H\Bundle\UserBundle\Form\RegistrationFormType">
-            <tag name="form.type" alias="w4h_user_registration" />
-            <argument>%fos_user.model.user.class%</argument>
-        </service>
-
-    </services>
-
 </container>

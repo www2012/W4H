@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new W4H\Bundle\UserBundle\W4HUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new W4H\Bundle\CalendarBundle\W4HCalendarBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

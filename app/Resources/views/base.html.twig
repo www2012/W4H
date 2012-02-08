@@ -3,14 +3,54 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}" />
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <a href="">Person</a>
+              <div class="content">
+                Person
+              </div>
+            </li>
+            <li>
+              <a href="">Role</a>
+              <div class="content">
+                Role
+              </div>
+            </li>
+            <li>
+              <a href="">Event</a>
+              <div class="content">
+                Event
+              </div>
+            </li>
+            <li>
+              <a href="">Location</a>
+              <div class="content">
+                Location
+              </div>
+            </li>
+            <li>
+              <a href="">Activity Type</a>
+              <div class="content">
+                Activity Type
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-        {% render "W4HEventTaskBundle:Default:menu" with {'current': current is defined ? current : ''} %}
+      <div id="main">
         {% block content %}{% endblock %}
+      </div>
+
+      {% block javascripts %}{% endblock %}
     </body>
 </html>
