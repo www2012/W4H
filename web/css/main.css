@@ -45,13 +45,13 @@ header > form
 {
 }
 
-header > form > section
+header > form > div > section
 {
   position: relative;
   margin: 0 4px 4px;
 }
 
-header > form > section > a
+header > form > div > section > a
 {
   color: #F0F0F0;
   background: #7d7e7d; /* Old browsers */
@@ -69,12 +69,12 @@ header > form > section > a
   display: block;
 }
 
-header > form > section:hover > a
+header > form > div > section:hover > a
 {
   color: #FFF;
 }
 
-header > form > section > .content
+header > form > div > section > .content
 {
   display: none;
   color: #000;
@@ -86,12 +86,12 @@ header > form > section > .content
   -webkit-border-radius: 0 0 8px 8px;
 }
 
-header > form > section:hover > .content
+header > form > div > section:hover > .content
 {
   display: block;
 }
 
-header > form > section > .content > .arrow
+header > form > div > section > .content > .arrow
 {
   position: absolute;
   top: -16px;
@@ -100,19 +100,19 @@ header > form > section > .content > .arrow
   background: url('/images/arrow.png') center bottom no-repeat;
 }
 
-header > form > section > .content fieldset
+header > form > div > section > .content fieldset
 {
   padding: 2px 8px;
 }
 
-header > form > section > .content fieldset label
+header > form > div > section > .content fieldset label
 {
   float: left;
   font-size: x-small;
   line-height: 14px;
 }
 
-header > form > section > .content fieldset input
+header > form > div > section > .content fieldset input
 {
   float: left;
   margin: 0 6px 0 0;
