@@ -4,8 +4,18 @@
   <script type="text/javascript" src="{{ asset('js/draggable.js') }}"></script>
 {% endblock %}
 
-{% block content %}
+{% block header %}
+  {% form_theme form 'W4HCalendarBundle:Form:fields.html.twig' %}
+  <form action="{{ path('calendar_filter') }}" method="post">
+    {{ form_widget(form) }}
+    <div class="actions">
+      <input type="submit" value="Apply" />
+      <a href="#">Reset</a>
+    </div>
+  </form>
+{% endblock %}
 
+{% block content %}
 <div id="calendar">
 
   <div class="column times">
