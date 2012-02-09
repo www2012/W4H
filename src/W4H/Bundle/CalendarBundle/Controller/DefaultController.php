@@ -16,8 +16,16 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $schedules = $this->getSchedules();
         $tasks = $this->getDoctrine()->getRepository('W4HEventTaskBundle:Task')->findAll();
-        return array('tasks' => $this->getIndexedTasks($tasks, 15));
+
+        return array(
+          'schedules' => $schedules,
+          'tasks' => $this->getIndexedTasks(
+            $tasks,
+            $this->container->getParameter('w4h_calendar.schedule_step')
+          )
+        );
     }
 
     /**
@@ -56,10 +64,31 @@ class DefaultController extends Controller
         $indexed_tasks = array();
         foreach($tasks as $task)
         {
-            $indexed_tasks[$task->getLocation()->getId()][Calendar::formatScheduleByStep($task->getStartsAt(), $step)] = $task->getId();
+            $indexed_tasks[$task->getLocation()->getId()][Calendar::formatScheduleByStep($task->getStartsAt(), $step)] = $task;
         }
 
-        var_dump($indexed_tasks); die;
-        return array();
+        return $indexed_tasks;
+    }
+
+    /**
+     * @return array schedules
+     */
+    private function getSchedules()
+    {
+        $start = $this->container->getParameter('w4h_calendar.schedule_start');
+        $limit = $this->container->getParameter('w4h_calendar.schedule_limit');
+        $step  = $this->container->getParameter('w4h_calendar.schedule_step');
+
+        $schedules = array();
+        $rows = range($start*60, $limit*60, $step);
+        foreach($rows as $i => $row)
+        {
+            $hour = floor($row/60);
+            $min = $row%60;
+            $schedules[$i]['hour12'] = sprintf('%02d:%02d', $hour < 13 ? $hour : $hour-12, $min);
+            $schedules[$i]['hour24'] = sprintf('%02d:%02d', $hour, $min);
+            $schedules[$i]['is_hour'] = $min == 0;
+        }
+        return $schedules;
     }
 }
