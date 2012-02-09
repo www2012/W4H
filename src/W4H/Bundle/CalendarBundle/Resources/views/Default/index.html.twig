@@ -1,96 +1,161 @@
 {% extends "::base.html.twig" %}
 
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('js/draggable.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
 <div id="calendar">
 
   <div class="column times">
-    <label>Times</label>
+    <label>-- : --</label>
     <ul>
-      <li class="unit"><span>00h00</span></li>
-      <li class="unit"><span>00h15</span></li>
-      <li class="unit"><span>00h30</span></li>
-      <li class="unit"><span>00h45</span></li>
-      <li class="unit"><span>01h00</span></li>
-      <li class="unit"><span>01h15</span></li>
-      <li class="unit"><span>01h30</span></li>
-      <li class="unit"><span>01h45</span></li>
-      <li class="unit"><span>02h00</span></li>
-      <li class="unit"><span>02h15</span></li>
-      <li class="unit"><span>02h30</span></li>
-      <li class="unit"><span>02h45</span></li>
-      <li class="unit"><span>03h00</span></li>
-      <li class="unit"><span>03h15</span></li>
-      <li class="unit"><span>03h30</span></li>
-      <li class="unit"><span>03h45</span></li>
-      <li class="unit"><span>04h00</span></li>
+      <li class="unit hour"><div>00h00</div></li>
+      <li class="unit"><div>00h15</div></li>
+      <li class="unit"><div>00h30</div></li>
+      <li class="unit"><div>00h45</div></li>
+      <li class="unit hour"><div>01h00</div></li>
+      <li class="unit"><div>01h15</div></li>
+      <li class="unit"><div>01h30</div></li>
+      <li class="unit"><div>01h45</div></li>
+      <li class="unit hour"><div>02h00</div></li>
+      <li class="unit"><div>02h15</div></li>
+      <li class="unit"><div>02h30</div></li>
+      <li class="unit"><div>02h45</div></li>
+      <li class="unit hour"><div>03h00</div></li>
+      <li class="unit"><div>03h15</div></li>
+      <li class="unit"><div>03h30</div></li>
+      <li class="unit"><div>03h45</div></li>
+      <li class="unit hour"><div>04h00</div></li>
     </ul>
   </div>
 
-  <div class="column room">
-    <label>Salle X</label>
-    <ul>
-      <li class="unit"><span class="unitx2">A</span></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"><span class="unitx3">B3</span><span class="unitx2">B2</span><span class="unitx5">B5</span></li>
-      <li class="unit"></li>
-      <li class="unit"><span class="unitx6">C</span></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"><span class="unitx2">D</span></li>
-      <li class="unit"></li>
-    </ul>
-  </div>
+  <div class="scrollzone">
+    <div class="columns">
+      <div class="column room">
+        <label>Salle 1</label>
+        <ul>
+          <li class="unit hour">
+            <div id="task_1-A" class="task unitx2" draggable="true">A</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit">
+            <div id="task_1-B3" class="task unitx3" draggable="true">B3</div>
+            <div id="task_1-B2" class="task unitx2" draggable="true">B2</div>
+            <div id="task_1-B5" class="task unitx5" draggable="true">B5</div>
+          </li>
+          <li class="unit hour"></li>
+          <li class="unit">
+            <div id="task_1-C" class="task unitx6" draggable="true">C</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit">
+            <div id="task_1-D" class="task unitx2" draggable="true">D</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+        </ul>
+      </div>
 
-  <div class="column room">
-    <label>Salle X</label>
-    <ul>
-      <li class="unit"><span class="unitx15">A</span></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"><span class="unitx6">B</span></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"><span class="unitx1">C</span></li>
-      <li class="unit"><span class="unitx4">D</span></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-    </ul>
-  </div>
+      <div class="column room">
+        <label>Salle 2</label>
+        <ul>
+          <li class="unit hour">
+            <div id="task_2-A" class="task unitx15" draggable="true">A</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour">
+            <div id="task_2-B" class="task unitx6" draggable="true">B</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit">
+            <div id="task_2-C" class="task unitx1" draggable="true">C</div>
+          </li>
+          <li class="unit hour">
+            <div id="task_2-D" class="task unitx4" draggable="true">D</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+        </ul>
+      </div>
 
-  <div class="column room">
-    <label>Salle X</label>
-    <ul>
-      <li class="unit"><span class="unitx4">A</span></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"><span class="unitx4">B</span></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"><span class="unitx4">C</span></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-      <li class="unit"></li>
-    </ul>
+      <div class="column room">
+        <label>Salle 3</label>
+        <ul>
+          <li class="unit hour">
+            <div id="task_3-A" class="task unitx4" draggable="true">A</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit">
+            <div id="task_3-B" class="task unitx4" draggable="true">B</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit">
+            <div id="task_3-C" class="task unitx4" draggable="true">C</div>
+          </li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+        </ul>
+      </div>
+
+      <div class="column room">
+        <label>Salle 4</label>
+        <ul>
+          <li class="unit hour">
+            <div id="task_4-A" class="task unitx2" draggable="true">A</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit">
+            <div id="task_4-B" class="task unitx8" draggable="true">B</div>
+          </li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit">
+            <div id="task_4-C" class="task unitx5" draggable="true">C</div>
+          </li>
+          <li class="unit hour"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit"></li>
+          <li class="unit hour"></li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 
 </div>
