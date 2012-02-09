@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use W4H\Bundle\CalendarBundle\Model\Calendar;
 
 class DefaultController extends Controller
 {
@@ -15,14 +16,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        //TODO:$tasks = getAll;
-        //TODO:return array('tasks' => $this->getIndexedTasks($tasks));
-        return array();
+        $tasks = $this->getDoctrine()->getRepository('W4HEventTaskBundle:Task')->findAll();
+        return array('tasks' => $this->getIndexedTasks($tasks, 15));
     }
 
     /**
      * @Route("/filter", name="calendar_filter")
-     * @Method("post")
      * @Template("W4HCalendarBundle:Default:calendar.html.twig")
      */
     public function filterAction()
@@ -49,10 +48,18 @@ class DefaultController extends Controller
 
     /**
      * @param DoctrineCollection Task
+     * @param integer Step
      * @return array task indexed by location and schedule
      */
-    private function getIndexedTasks($tasks)
+    private function getIndexedTasks($tasks, $step)
     {
-      return array();
+        $indexed_tasks = array();
+        foreach($tasks as $task)
+        {
+            $indexed_tasks[$task->getLocation()->getId()][Calendar::formatScheduleByStep($task->getStartsAt(), $step)] = $task->getId();
+        }
+
+        var_dump($indexed_tasks); die;
+        return array();
     }
 }
