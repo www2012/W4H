@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use W4H\Bundle\CalendarBundle\Model\Calendar;
+use W4H\Bundle\CalendarBundle\Form\CalendarFilterType;
 
 class DefaultController extends Controller
 {
@@ -17,14 +18,14 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $schedules = $this->getSchedules();
-        $tasks = $this->getDoctrine()->getRepository('W4HEventTaskBundle:Task')->findAll();
+        $locations = $this->getDoctrine()->getRepository('W4HLocationBundle:Location')->findAll();
+        $day = new \DateTime(date("2012-02-16"));
+        $form  = $this->createForm(new CalendarFilterType());
 
         return array(
+          'form'      => $form->createView(),
           'schedules' => $schedules,
-          'tasks' => $this->getIndexedTasks(
-            $tasks,
-            $this->container->getParameter('w4h_calendar.schedule_step')
-          )
+          'tasks'     => $this->getIndexedTasks($day, $locations)
         );
     }
 
@@ -55,25 +56,36 @@ class DefaultController extends Controller
     }
 
     /**
-     * @param DoctrineCollection Task
-     * @param integer Step
+     * @param DateTime $day
+     * @param DoctrineCollection Location $locations
      * @return array task indexed by location and schedule
      */
-    private function getIndexedTasks($tasks, $step)
+    private function getIndexedTasks($day, $locations)
     {
         $indexed_tasks = array();
-        foreach($tasks as $task)
+        // Return array of tasks group by schedule
+        // TODO : $daily_located_tasks = getDailyLocatedTasks($day, $locations, $start = null, $limit = null, $step = null)
+        foreach($locations as $location)
         {
-            $indexed_tasks[$task->getLocation()->getId()][Calendar::formatScheduleByStep($task->getStartsAt(), $step)] = $task;
-        }
+            if(!isset($indexed_tasks[$location->getId()]))
+                $indexed_tasks[$location->getId()] = array();
 
+            foreach($this->getSchedules($day) as $datetime => $schedule)
+            {
+                // if(isset($daily_located_tasks[$datetime]))
+                // $indexed_tasks[$location][$datetime] = $daily_located_tasks[$datetime]
+                //else
+                $indexed_tasks[$location->getId()][$datetime] = null;
+            }
+        }
         return $indexed_tasks;
     }
 
     /**
+     * @param DateTime $day
      * @return array schedules
      */
-    private function getSchedules()
+    private function getSchedules($day = null)
     {
         $start = $this->container->getParameter('w4h_calendar.schedule_start');
         $limit = $this->container->getParameter('w4h_calendar.schedule_limit');
