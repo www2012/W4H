@@ -17,35 +17,35 @@ class CalendarFilterType extends AbstractType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('event', 'entity', array(
+            ->add('events', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:Event',
                 'label'    => 'Context',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('activity_type', 'entity', array(
+            ->add('activity_types', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:ActivityType',
                 'label'    => 'Activity type',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('activity', 'entity', array(
+            ->add('activities', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:Activity',
                 'label'    => 'Activity',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('role', 'entity', array(
+            ->add('roles', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:Role',
                 'label'    => 'Role',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('location', 'entity', array(
+            ->add('locations', 'entity', array(
                 'class'    => 'W4HLocationBundle:Location',
                 'label'    => 'Location',
                 'required' => true,
