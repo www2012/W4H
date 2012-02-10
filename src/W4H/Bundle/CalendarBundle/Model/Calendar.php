@@ -22,7 +22,7 @@ class Calendar
 
         // Time
         $hour   = date('H', $datetime->getTimestamp());
-        $minute = (floor(date('i', $datetime->getTimestamp()) / $step)) * $step;
+        $minute = str_pad(((floor(date('i', $datetime->getTimestamp()) / $step)) * $step), 2, 0);
 
         return sprintf("%s-%s-%s-%s-%s", $year, $month, $day, $hour, $minute);
     }
