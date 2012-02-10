@@ -186,4 +186,16 @@ class Task
     {
         return $this->location;
     }
+
+    /**
+     * Count unit
+     *
+     * @param integer step (in minutes)
+     * @return integer the number of step equal to the task duration
+     */ 
+    public function countUnit($step)
+    {
+        $duration = $this->getEndsAt()->getTimestamp() - $this->getStartsAt()->getTimestamp();
+        return ceil($duration / 60 / $step);
+    }
 }

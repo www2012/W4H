@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/w4hcalendar/css/main.css') }}" />
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+    </head>
+    <body>
+
+      <header>
+        {% block header %}{% endblock %}
+        <nav>
+          {% render "W4HCalendarBundle:Admin:menu" with {'current': current is defined ? current : ''} %}
+        </nav>
+      </header>
+
+      <div id="main">
+        {% block content %}{% endblock %}
+      </div>
+
+    </body>
+</html>

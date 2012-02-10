@@ -13,31 +13,51 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="calendar")
-     * @Template("W4HCalendarBundle:Default:calendar.html.twig")
      */
     public function indexAction()
     {
-        $day = new \DateTime(date("2012-02-10"));
+        $response = $this->forward('W4HCalendarBundle:Default:displayDate', array(
+            'year'  => 2012,
+            'month' => 4,
+            'day'   => 16
+        ));
+
+        return $response;
+    }
+
+    /**
+     * @Route("/calendar/{year}/{month}/{day}", name="calendar_show")
+     * @Template("W4HCalendarBundle:Default:calendar.html.twig")
+     */
+    public function displayDateAction($year, $month, $day)
+    {
+        $date = Calendar::formatedDay($year, $month, $day);
+        $datetime = new \DateTime(date($date));
+
         $schedules = $this->getSchedules();
         $step = $this->container->getParameter('w4h_calendar.schedule_step');
         $form  = $this->createForm(new CalendarFilterType());
 
         return array(
+            'day'       => array('year' => $year, 'month' => $month, 'day' => $day),
             'form'      => $form->createView(),
             'schedules' => $schedules,
-            'tasks'     => $this->getCalendar($day, $step)
+            'calendar'  => $this->getCalendar($datetime, $step),
+            'step'      => $step
         );
     }
 
     /**
-     * @Route("/filter", name="calendar_filter")
+     * @Route("/calendar/{year}/{month}/{day}/filter", name="calendar_filter")
      * @Template("W4HCalendarBundle:Default:calendar.html.twig")
      */
-    public function filterAction()
+    public function displayDateFilterAction($year, $month, $day)
     {
+        $date = Calendar::formatedDay($year, $month, $day);
+        $datetime = new \DateTime(date($date));
+
         $filters = null;
         $schedules = $this->getSchedules();
-        $day = new \DateTime(date("2012-02-10"));
         $step = $this->container->getParameter('w4h_calendar.schedule_step');
 
         $request = $this->getRequest();
@@ -49,9 +69,11 @@ class DefaultController extends Controller
         }
 
         return array(
+            'day'       => array('year' => $year, 'month' => $month, 'day' => $day),
             'form'      => $form->createView(),
             'schedules' => $schedules,
-            'tasks'     => $this->getCalendar($day, $step, $filters)
+            'calendar'  => $this->getCalendar($datetime, $step, $filters),
+            'step'      => $step
         );
     }
 
@@ -63,28 +85,63 @@ class DefaultController extends Controller
      *
      *  ex:
      *  array("location_id1" => array(
-     *      "schedule_start"                 => array() | array(TaskObj, ...),
-     *      "schedule_start + schedule_step" => array() | array(TaskObj, ...),
-     *      "...."                           => array() | array(TaskObj, ...)
-     *      "schedule_limit"                 => array() | array(TaskObj, ...)
+     *    'object' => LocationObj,
+     *    'schedules' => array(
+     *      'schedule_start'                 => array(
+     *        'tasks' => array() | array(TaskObj, ...),
+     *        'is_hour' => true | false
+     *      ),
+     *      'schedule_start + schedule_step' => array(
+     *        'tasks' => array() | array(TaskObj, ...),
+     *        'is_hour' => true | false
+     *      ),
+     *      '....'                           => array(
+     *        'tasks' => array() | array(TaskObj, ...),
+     *        'is_hour' => true | false
+     *      ),
+     *      'schedule_limit'                 => array(
+     *        'tasks' => array() | array(TaskObj, ...),
+     *        'is_hour' => true | false
+     *      )
+     *    )
      *  )
      *
-     * Note : schedule_start format Y-m-d-H-i
+     * Note : schedules format Y-m-d-H-i
      */
     private function getCalendar(\DateTime $day, $step, array $filters = null)
     {
-        //var_dump($filters['location']); die;
         $calendar = array();
         $daily_located_tasks = $this->getDailyTasksByLocations($day, $step, $filters);
-        $locations = $this->getDoctrine()->getRepository('W4HLocationBundle:Location')->findAll();
+
+        $locations = array();
+        if(!empty($filters['locations'][0]))
+        {
+            $location_ids = array();
+            foreach($filters['locations'] as $location)
+                $location_ids[] = $location->getId();
+
+            $locations = $this->getDoctrine()->getRepository('W4HLocationBundle:Location')->findById($location_ids);
+        }
+        else
+        {
+            $locations = $this->getDoctrine()->getRepository('W4HLocationBundle:Location')->findAll();
+        }
+
         foreach($locations as $location)
         {
+            if(!isset($calendar[$location->getId()]))
+                $calendar[$location->getId()] = array('object' => $location, 'schedules' => array());
+
             foreach($this->getSchedules($day) as $date_format => $schedule)
             {
+                $tasks = array();
                 if(isset($daily_located_tasks[$location->getId()][$date_format]))
-                    $calendar[$location->getId()][$date_format] = $daily_located_tasks[$location->getId()][$date_format];
-                else
-                    $calendar[$location->getId()][$date_format] = array();
+                    $tasks = $daily_located_tasks[$location->getId()][$date_format];
+
+                $calendar[$location->getId()]['schedules'][$date_format] = array(
+                    'is_hour' => $schedule['is_hour'],
+                    'tasks' => $tasks
+                );
             }
         }
 

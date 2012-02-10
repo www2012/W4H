@@ -187,14 +187,21 @@ header > form > .actions > a
 
 #main #calendar .column.times > ul > li > div
 {
-  font-size: small;
+  font-size: x-small;
   position: absolute;
-  top: -10px;
+  top: -9px;
   background: #FFF;
   padding: 2px 6px;
   right: 10px;
   width: 80px;
   text-align: right;
+  color: #555;
+}
+
+#main #calendar .column.times > ul > li.hour > div
+{
+  font-weight: bold;
+  color: #000;
 }
 
 #main #calendar .column > label
@@ -250,28 +257,28 @@ header > form > .actions > a
 }
 
 /* Unit */
-#main #calendar .column > ul > li.unit { height: 40px; }
+#main #calendar .column > ul > li.unit { height: 20px; }
 
-#main #calendar .column > ul > li > .unitx1 { height: 35px; }
-#main #calendar .column > ul > li > .unitx2 { height: 76px; }
-#main #calendar .column > ul > li > .unitx3 { height: 117px; }
-#main #calendar .column > ul > li > .unitx4 { height: 158px; }
-#main #calendar .column > ul > li > .unitx5 { height: 199px; }
-#main #calendar .column > ul > li > .unitx6 { height: 240px; }
-#main #calendar .column > ul > li > .unitx7 { height: 281px; }
-#main #calendar .column > ul > li > .unitx8 { height: 322px; }
-#main #calendar .column > ul > li > .unitx9 { height: 363px; }
-#main #calendar .column > ul > li > .unitx10 { height: 404px; }
-#main #calendar .column > ul > li > .unitx11 { height: 445px; }
-#main #calendar .column > ul > li > .unitx12 { height: 486px; }
-#main #calendar .column > ul > li > .unitx13 { height: 527px; }
-#main #calendar .column > ul > li > .unitx14 { height: 568px; }
-#main #calendar .column > ul > li > .unitx15 { height: 609px; }
-#main #calendar .column > ul > li > .unitx16 { height: 650px; }
-#main #calendar .column > ul > li > .unitx17 { height: 691px; }
-#main #calendar .column > ul > li > .unitx18 { height: 732px; }
-#main #calendar .column > ul > li > .unitx19 { height: 773px; }
-#main #calendar .column > ul > li > .unitx20 { height: 814px; }
+#main #calendar .column > ul > li > .unitx1 { height: 15px; }
+#main #calendar .column > ul > li > .unitx2 { height: 36px; }
+#main #calendar .column > ul > li > .unitx3 { height: 57px; }
+#main #calendar .column > ul > li > .unitx4 { height: 78px; }
+#main #calendar .column > ul > li > .unitx5 { height: 99px; }
+#main #calendar .column > ul > li > .unitx6 { height: 120px; }
+#main #calendar .column > ul > li > .unitx7 { height: 141px; }
+#main #calendar .column > ul > li > .unitx8 { height: 162px; }
+#main #calendar .column > ul > li > .unitx9 { height: 183px; }
+#main #calendar .column > ul > li > .unitx10 { height: 204px; }
+#main #calendar .column > ul > li > .unitx11 { height: 225px; }
+#main #calendar .column > ul > li > .unitx12 { height: 246px; }
+#main #calendar .column > ul > li > .unitx13 { height: 267px; }
+#main #calendar .column > ul > li > .unitx14 { height: 288px; }
+#main #calendar .column > ul > li > .unitx15 { height: 309px; }
+#main #calendar .column > ul > li > .unitx16 { height: 330px; }
+#main #calendar .column > ul > li > .unitx17 { height: 351px; }
+#main #calendar .column > ul > li > .unitx18 { height: 372px; }
+#main #calendar .column > ul > li > .unitx19 { height: 393px; }
+#main #calendar .column > ul > li > .unitx20 { height: 414px; }
 
 /* Task */
 #main #calendar .column.room > ul > li .task

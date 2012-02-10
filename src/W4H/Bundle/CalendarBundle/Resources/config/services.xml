@@ -6,8 +6,8 @@
 
     <parameters>
         <parameter key="w4h_calendar.schedule_start">8</parameter>
-        <parameter key="w4h_calendar.schedule_limit">19</parameter>
-        <parameter key="w4h_calendar.schedule_step">30</parameter>
+        <parameter key="w4h_calendar.schedule_limit">18</parameter>
+        <parameter key="w4h_calendar.schedule_step">15</parameter>
     </parameters>
 
     <!--
