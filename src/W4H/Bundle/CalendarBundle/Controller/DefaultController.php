@@ -115,7 +115,7 @@ class DefaultController extends Controller
            ->where($qb->expr()->eq($qb->expr()->substring('task.starts_at', 1, 10), ':starts_at'))
            ->setParameter('starts_at', $starts_at);
 
-        if($filters['locations'])
+        if(!empty($filters['locations'][0]))
         {
             $ids = array();
             foreach($filters['locations'] as $location)
