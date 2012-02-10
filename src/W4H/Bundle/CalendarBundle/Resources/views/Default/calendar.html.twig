@@ -21,114 +21,28 @@
   <div class="column times">
     <label>-- : --</label>
     <ul>
-      {% for schedule in schedules %}
-        <li class="unit{% if schedule.is_hour %} hour{% endif %}"><div>{{ schedule.hour24 }}</div></li>
+      {% for key, schedule in schedules %}
+        <li class="unit{% if schedule.is_hour %} hour{% endif %}"><div>{{ key }}</div></li>
       {% endfor %}
     </ul>
   </div>
 
   <div class="scrollzone">
     <div class="columns">
+      {% for key, schedules in tasks %}
       <div class="column room">
-        <label>Salle 1</label>
+        <label>Location id : {{ key }}</label>
         <ul>
-          {% for schedule in schedules %}
-            <li class="unit{% if schedule.is_hour %} hour{% endif %}">
-              <div id="task_1-{{ schedule.hour24 }}" class="task unitx1" draggable="true">{{ schedule.hour24 }}</div>
+          {% for key, tasks in schedules %}
+            <li class="unit">
+              {% for task in tasks %}
+                <div id="task_{{ task.id }}" class="task unitx1" draggable="true">{{ task.activity.name }}</div>
+              {% endfor %}
             </li>
           {% endfor %}
         </ul>
       </div>
-
-      <div class="column room">
-        <label>Salle 2</label>
-        <ul>
-          <li class="unit hour">
-            <div id="task_2-A" class="task unitx15" draggable="true">A</div>
-          </li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit hour">
-            <div id="task_2-B" class="task unitx6" draggable="true">B</div>
-          </li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit hour"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit">
-            <div id="task_2-C" class="task unitx1" draggable="true">C</div>
-          </li>
-          <li class="unit hour">
-            <div id="task_2-D" class="task unitx4" draggable="true">D</div>
-          </li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit hour"></li>
-        </ul>
-      </div>
-
-      <div class="column room">
-        <label>Salle 3</label>
-        <ul>
-          <li class="unit hour">
-            <div id="task_3-A" class="task unitx4" draggable="true">A</div>
-          </li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit hour"></li>
-          <li class="unit"></li>
-          <li class="unit">
-            <div id="task_3-B" class="task unitx4" draggable="true">B</div>
-          </li>
-          <li class="unit"></li>
-          <li class="unit hour"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit">
-            <div id="task_3-C" class="task unitx4" draggable="true">C</div>
-          </li>
-          <li class="unit hour"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit hour"></li>
-        </ul>
-      </div>
-
-      <div class="column room">
-        <label>Salle 4</label>
-        <ul>
-          <li class="unit hour">
-            <div id="task_4-A" class="task unitx2" draggable="true">A</div>
-          </li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit hour"></li>
-          <li class="unit"></li>
-          <li class="unit">
-            <div id="task_4-B" class="task unitx8" draggable="true">B</div>
-          </li>
-          <li class="unit"></li>
-          <li class="unit hour"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit">
-            <div id="task_4-C" class="task unitx5" draggable="true">C</div>
-          </li>
-          <li class="unit hour"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit"></li>
-          <li class="unit hour"></li>
-        </ul>
-      </div>
-
+      {% endfor %}
     </div>
   </div>
 

@@ -17,15 +17,14 @@ class Calendar
 
         // Date
         $year  = date('Y', $datetime->getTimestamp());
-        $month = date('n', $datetime->getTimestamp());
+        $month = date('m', $datetime->getTimestamp());
         $day   = date('d', $datetime->getTimestamp());
 
         // Time
         $hour   = date('H', $datetime->getTimestamp());
-        $minute = ((int) (date('i', $datetime->getTimestamp()) / $step)) * $step;
-        $second = 0;
+        $minute = (floor(date('i', $datetime->getTimestamp()) / $step)) * $step;
 
-        return sprintf("%s-%s-%s-%s-%s-%s", $year, $month, $day, $hour, $minute, $second);
+        return sprintf("%s-%s-%s-%s-%s", $year, $month, $day, $hour, $minute);
     }
 }
 
