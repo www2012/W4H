@@ -23,9 +23,9 @@ class DefaultController extends Controller
         $form  = $this->createForm(new CalendarFilterType());
 
         return array(
-          'form'      => $form->createView(),
-          'schedules' => $schedules,
-          'tasks'     => $this->getCalendar($day, $step)
+            'form'      => $form->createView(),
+            'schedules' => $schedules,
+            'tasks'     => $this->getCalendar($day, $step)
         );
     }
 
@@ -35,29 +35,30 @@ class DefaultController extends Controller
      */
     public function filterAction()
     {
+        $filters = null;
+        $schedules = $this->getSchedules();
+        $day = new \DateTime(date("2012-02-10"));
+        $step = $this->container->getParameter('w4h_calendar.schedule_step');
+
         $request = $this->getRequest();
-        var_dump($request); die;
         $form    = $this->createForm(new CalendarFilterType());
         $form->bindRequest($request);
         if ($form->isValid())
         {
-            $data  = $form->getData();
-            $tasks = array();
-
-            // TODO : request all tasks matching filter
-            // $tasks = 
-            //TODO:return array('tasks' => $this->getIndexedTasks($tasks));
-            return array();
+            $filters  = $form->getData();
         }
 
-        //TODO:$tasks = getAll;
-        //TODO:return array('tasks' => $this->getIndexedTasks($tasks));
-        return array();
+        return array(
+            'form'      => $form->createView(),
+            'schedules' => $schedules,
+            'tasks'     => $this->getCalendar($day, $step, $filters)
+        );
     }
 
     /**
      * @param DateTime $day
-     * @param integer $step
+     * @param integer  $step
+     * @param array    $filters
      * @return array task indexed by location and schedule
      *
      *  ex:
@@ -70,10 +71,11 @@ class DefaultController extends Controller
      *
      * Note : schedule_start format Y-m-d-H-i
      */
-    private function getCalendar(\DateTime $day, $step)
+    private function getCalendar(\DateTime $day, $step, array $filters = null)
     {
+        //var_dump($filters['location']); die;
         $calendar = array();
-        $daily_located_tasks = $this->getDailyTasksByLocations($day, $step);
+        $daily_located_tasks = $this->getDailyTasksByLocations($day, $step, $filters);
         $locations = $this->getDoctrine()->getRepository('W4HLocationBundle:Location')->findAll();
         foreach($locations as $location)
         {
@@ -91,7 +93,8 @@ class DefaultController extends Controller
 
     /**
      * @param DateTime $day
-     * @param integer $step
+     * @param integer  $step
+     * @param array    $filters
      * @return array tasks indexed by location and schedule
      *
      *  ex:
@@ -100,17 +103,29 @@ class DefaultController extends Controller
      *      "Y-m-d-H-i" => array(TaskObj1, TaskObj2, TaskObj3, ...)
      *  )
      */
-    private function getDailyTasksByLocations(\DateTime $day, $step)
+    private function getDailyTasksByLocations(\DateTime $day, $step, array $filters = null)
     {
         $daily_located_tasks = array();
         $starts_at = date('Y-m-d', $day->getTimestamp());
         // Can be optimized ?
-        $tasks =  $this->getDoctrine()->getEntityManager()
-            ->createQuery('SELECT task FROM W4HEventTaskBundle:Task task WHERE SUBSTRING(task.starts_at, 1, 10) = ?0')
-            ->setParameters(array($starts_at))
-            ->getResult();
+        $em = $this->getDoctrine()->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $query = $qb->select('task')
+           ->from('W4HEventTaskBundle:Task', 'task')
+           ->where($qb->expr()->eq($qb->expr()->substring('task.starts_at', 1, 10), ':starts_at'))
+           ->setParameter('starts_at', $starts_at);
 
-        foreach($tasks as $task)
+        if($filters['locations'])
+        {
+            $ids = array();
+            foreach($filters['locations'] as $location)
+                $ids[] = $location->getId();
+
+            $qb->andWhere($qb->expr()->in('task.location', $ids));
+        }
+
+        $query = $qb->getQuery();
+        foreach($query->getResult() as $task)
         {
             $daily_located_tasks[$task->getLocation()->getId()][Calendar::formatScheduleByStep($task->getStartsAt(), $step)][] = $task;
         }
