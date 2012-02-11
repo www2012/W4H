@@ -18,12 +18,12 @@ class Location
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=64)
      */
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     protected $building;
 
@@ -50,25 +50,25 @@ class Location
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $video_projector;
+    protected $video_projector = false;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $sound;
+    protected $sound = false;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $internet;
+    protected $internet = false;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $other_devices;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     protected $accessibility;
 

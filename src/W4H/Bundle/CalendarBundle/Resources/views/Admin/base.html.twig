@@ -14,9 +14,6 @@
 
       <header>
         {% block header %}{% endblock %}
-        <nav>
-          {% render "W4HCalendarBundle:Admin:menu" with {'current': current is defined ? current : ''} %}
-        </nav>
       </header>
 
       <div id="main">

@@ -24,6 +24,19 @@
             <argument>%fos_user.model.user.class%</argument>
         </service>
 
+<!--
+        <service id="fos.user.admin.user" class="%fos.user.admin.user.class%">
+            <tag name="sonata.admin" manager_type="orm" group="fos_user" />
+            <argument />
+            <argument>%fos.user.admin.user.entity%</argument>
+            <argument />
+
+            <call method="setUserManager">
+                <argument type='service' id='fos_user.user_manager' />
+            </call>
+        </service>
+-->
+
     </services>
 
 </container>

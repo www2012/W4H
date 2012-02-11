@@ -19,55 +19,63 @@ class Person extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     protected $first_name;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     protected $last_name;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     protected $organisation;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     protected $service;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     protected $other_mail;
 
     /**
-     * @ORM\Column(type="string", length=16)
+     * @ORM\Column(type="string", length=16, nullable=true)
      */
     protected $mobile_phone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $website_url;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     protected $freeset;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     protected $twitter_account;
 
     /**
-     * @ORM\Column(type="string", length=4)
+     * @ORM\Column(type="string", length=4, nullable=true)
      */
     protected $country_iso_code;
 
+
+    public function __toString()
+    {
+        return sprintf('%s %s',
+          $this->getFirstName(),
+          $this->getLastName()
+        );
+    }
 
     /**
      * Get id

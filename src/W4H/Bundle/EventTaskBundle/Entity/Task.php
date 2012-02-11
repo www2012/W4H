@@ -48,13 +48,22 @@ class Task
     protected $event;
 
     /**
+     * @ORM\ManyToOne(targetEntity="W4H\Bundle\UserBundle\Entity\Person")
+     */
+    protected $person;
+
+    /**
      * @ORM\ManyToOne(targetEntity="W4H\Bundle\LocationBundle\Entity\Location")
      */
     protected $location;
 
     public function __toString()
     {
-        return sprintf("Tâche %s effectuée par BIBI à %s pour l'évènement %s", $this->getActivity(), $this->getLocation(), $this->getEvent());
+        return sprintf("%s - %s [%s]",
+            $this->getEvent(),
+            $this->getActivity(),
+            $this->getPerson()
+        );
     }
 
     /**
@@ -197,5 +206,25 @@ class Task
     {
         $duration = $this->getEndsAt()->getTimestamp() - $this->getStartsAt()->getTimestamp();
         return ceil($duration / 60 / $step);
+    }
+
+    /**
+     * Set person
+     *
+     * @param W4H\Bundle\UserBundle\Entity\Person $person
+     */
+    public function setPerson(\W4H\Bundle\UserBundle\Entity\Person $person)
+    {
+        $this->person = $person;
+    }
+
+    /**
+     * Get person
+     *
+     * @return W4H\Bundle\UserBundle\Entity\Person 
+     */
+    public function getPerson()
+    {
+        return $this->person;
     }
 }

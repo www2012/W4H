@@ -16,6 +16,7 @@ class TaskType extends AbstractType
             ->add('role')
             ->add('event')
             ->add('location')
+            ->add('person')
         ;
     }
 

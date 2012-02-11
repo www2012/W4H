@@ -17,4 +17,17 @@
         </service>
     </services>
     -->
+
+    <services>
+       <service id="sonata.admin.location" class="W4H\Bundle\LocationBundle\Admin\LocationAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="W4H" label="Where"/>
+          <argument />
+          <argument>W4H\Bundle\LocationBundle\Entity\Location</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <call method="setTranslationDomain">
+              <argument>W4HAdminBundle</argument>
+          </call>
+      </service>
+    </services>
+
 </container>

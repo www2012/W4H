@@ -17,12 +17,16 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new W4H\Bundle\EventTaskBundle\W4HEventTaskBundle(),
-            new W4H\Bundle\LocationBundle\W4HLocationBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new W4H\Bundle\UserBundle\W4HUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new W4H\Bundle\UserBundle\W4HUserBundle(),
             new W4H\Bundle\CalendarBundle\W4HCalendarBundle(),
+            new W4H\Bundle\LocationBundle\W4HLocationBundle(),
+            new W4H\Bundle\EventTaskBundle\W4HEventTaskBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

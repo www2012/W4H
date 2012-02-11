@@ -5,6 +5,7 @@ imports:
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
+    translator:       ~
     secret:          %secret%
     charset:         UTF-8
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
@@ -69,3 +70,21 @@ fos_user:
     registration:
         form:
             type: w4h_user_registration
+
+sonata_admin:
+#    security_handler: sonata.admin.security.handler.noop
+#    sonata.admin.security.handler.acl
+
+    title:      W4H Project
+    title_logo: /bundles/sonataadmin/logo_title.png
+    templates:
+        # default global templates
+        layout:  SonataAdminBundle::standard_layout.html.twig
+        ajax:    SonataAdminBundle::ajax_layout.html.twig
+
+        # default actions templates, should extend a global templates
+        list:    SonataAdminBundle:CRUD:list.html.twig
+        show:    SonataAdminBundle:CRUD:show.html.twig
+        edit:    SonataAdminBundle:CRUD:edit.html.twig
+#    dashboard_groups:
+#        default: ~

@@ -23,12 +23,12 @@ class Event
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=64)
      */
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     protected $website_url;
 
