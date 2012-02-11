@@ -13,6 +13,8 @@ class ActivityAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('description')
+            ->add('activity_type')
         ;
     }
 
@@ -20,6 +22,8 @@ class ActivityAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('description')
+            ->add('activity_type')
         ;
     }
 
@@ -27,6 +31,8 @@ class ActivityAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
+            ->addIdentifier('description')
+            ->addIdentifier('activity_type')
         ;
     }
 

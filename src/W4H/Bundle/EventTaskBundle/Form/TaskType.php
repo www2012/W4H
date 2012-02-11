@@ -11,8 +11,8 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('starts_at')
-            ->add('ends_at')
-            ->add('activity')
+            ->add('ends_at', 'datetime')
+            ->add('activity', 'datetime')
             ->add('role')
             ->add('event')
             ->add('location')

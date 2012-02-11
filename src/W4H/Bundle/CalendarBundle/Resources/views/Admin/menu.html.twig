@@ -1,9 +1,0 @@
-<ul>
-    {% for key, item in menu %}
-    <li class="{{ item['current'] }}">
-        <a href="{{ path(key) }}">
-            <span>{{ item['label'] }}</span>
-        </a>
-    </li>
-    {% endfor %}
-</ul>

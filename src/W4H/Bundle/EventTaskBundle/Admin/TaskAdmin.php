@@ -12,30 +12,50 @@ class TaskAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
+            ->add('starts_at')
+            ->add('ends_at')
+            ->add('activity')
+            ->add('role')
+            ->add('event')
+            //->add('person')
+            ->add('location')
         ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
+            ->add('starts_at')
+            ->add('ends_at')
+            ->add('activity')
+            ->add('role')
+            ->add('event')
+            //->add('person')
+            ->add('location')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
+            ->addIdentifier('starts_at')
+            ->addIdentifier('ends_at')
+            ->addIdentifier('activity')
+            ->addIdentifier('role')
+            ->addIdentifier('event')
+            //->addIdentifier('person')
+            ->addIdentifier('location')
         ;
     }
 
     public function validate(ErrorElement $errorElement, $object)
     {
+        /*
         $errorElement
             ->with('name')
                 ->assertMaxLength(array('limit' => 64))
             ->end()
         ;
+        */
     }
 }

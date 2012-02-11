@@ -13,6 +13,18 @@ class LocationAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('building')
+            ->add('level')
+            ->add('classe_room_places')
+            ->add('conference_room_places')
+            ->add('standing_room_places')
+            ->add('video_projector')
+            ->add('sound')
+            ->add('internet')
+            ->add('other_devices')
+            ->add('accessibility')
+            ->add('latitude')
+            ->add('longitude')
         ;
     }
 
@@ -20,6 +32,18 @@ class LocationAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('building')
+            ->add('level')
+            ->add('classe_room_places')
+            ->add('conference_room_places')
+            ->add('standing_room_places')
+            ->add('video_projector')
+            ->add('sound')
+            ->add('internet')
+            ->add('other_devices')
+            ->add('accessibility')
+            ->add('latitude')
+            ->add('longitude')
         ;
     }
 
@@ -27,13 +51,32 @@ class LocationAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
+            ->addIdentifier('building')
+            ->addIdentifier('level')
+            ->addIdentifier('classe_room_places')
+            ->addIdentifier('conference_room_places')
+            ->addIdentifier('standing_room_places')
+            ->addIdentifier('video_projector')
+            ->addIdentifier('sound')
+            ->addIdentifier('internet')
+            ->addIdentifier('other_devices')
+            ->addIdentifier('accessibility')
+            ->addIdentifier('latitude')
+            ->addIdentifier('longitude')
         ;
     }
 
     public function validate(ErrorElement $errorElement, $object)
     {
+        // TODO !
         $errorElement
             ->with('name')
+                ->assertMaxLength(array('limit' => 64))
+            ->end()
+            ->with('building')
+                ->assertMaxLength(array('limit' => 128))
+            ->end()
+            ->with('level')
                 ->assertMaxLength(array('limit' => 64))
             ->end()
         ;

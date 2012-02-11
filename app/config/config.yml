@@ -66,10 +66,10 @@ jms_security_extra:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: W4H\Bundle\UserBundle\Entity\Person
-    registration:
-        form:
-            type: w4h_user_registration
+#    user_class: W4H\Bundle\UserBundle\Entity\Person
+    user_class:     Application\Sonata\UserBundle\Entity\User
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group
 
 sonata_admin:
 #    security_handler: sonata.admin.security.handler.noop
@@ -88,3 +88,10 @@ sonata_admin:
         edit:    SonataAdminBundle:CRUD:edit.html.twig
 #    dashboard_groups:
 #        default: ~
+
+sonata_user:
+    security_acl:     false
+    class:
+#        user:         W4H\Bundle\UserBundle\Admin\PersonAdmin
+        user:         Application\Sonata\UserBundle\Entity\User
+        group:        Application\Sonata\UserBundle\Entity\Group

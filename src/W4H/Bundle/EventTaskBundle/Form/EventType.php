@@ -11,7 +11,7 @@ class EventType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('website_url')
+            ->add('website_url', 'url')
         ;
     }
 

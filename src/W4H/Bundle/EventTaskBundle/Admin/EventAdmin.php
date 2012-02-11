@@ -13,6 +13,7 @@ class EventAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('website_url')
         ;
     }
 
@@ -20,6 +21,7 @@ class EventAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('website_url')
         ;
     }
 
@@ -27,6 +29,7 @@ class EventAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
+            ->addIdentifier('website_url')
         ;
     }
 
@@ -35,6 +38,9 @@ class EventAdmin extends Admin
         $errorElement
             ->with('name')
                 ->assertMaxLength(array('limit' => 64))
+            ->end()
+            ->with('website_url')
+                ->assertMaxLength(array('limit' => 128))
             ->end()
         ;
     }

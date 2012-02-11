@@ -3,6 +3,7 @@ namespace W4H\Bundle\EventTaskBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * 
@@ -24,11 +25,13 @@ class Task
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime()
      */
     protected $starts_at;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime()
      */
     protected $ends_at;
 
@@ -48,11 +51,6 @@ class Task
     protected $event;
 
     /**
-     * @ORM\ManyToOne(targetEntity="W4H\Bundle\UserBundle\Entity\Person")
-     */
-    protected $person;
-
-    /**
      * @ORM\ManyToOne(targetEntity="W4H\Bundle\LocationBundle\Entity\Location")
      */
     protected $location;
@@ -64,6 +62,18 @@ class Task
             $this->getActivity(),
             $this->getPerson()
         );
+    }
+
+    /**
+     * Count unit
+     *
+     * @param integer step (in minutes)
+     * @return integer the number of step equal to the task duration
+     */ 
+    public function countUnit($step)
+    {
+        $duration = $this->getEndsAt()->getTimestamp() - $this->getStartsAt()->getTimestamp();
+        return ceil($duration / 60 / $step);
     }
 
     /**
@@ -194,37 +204,5 @@ class Task
     public function getLocation()
     {
         return $this->location;
-    }
-
-    /**
-     * Count unit
-     *
-     * @param integer step (in minutes)
-     * @return integer the number of step equal to the task duration
-     */ 
-    public function countUnit($step)
-    {
-        $duration = $this->getEndsAt()->getTimestamp() - $this->getStartsAt()->getTimestamp();
-        return ceil($duration / 60 / $step);
-    }
-
-    /**
-     * Set person
-     *
-     * @param W4H\Bundle\UserBundle\Entity\Person $person
-     */
-    public function setPerson(\W4H\Bundle\UserBundle\Entity\Person $person)
-    {
-        $this->person = $person;
-    }
-
-    /**
-     * Get person
-     *
-     * @return W4H\Bundle\UserBundle\Entity\Person 
-     */
-    public function getPerson()
-    {
-        return $this->person;
     }
 }

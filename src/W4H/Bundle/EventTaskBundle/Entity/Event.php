@@ -3,6 +3,7 @@ namespace W4H\Bundle\EventTaskBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * 
@@ -29,6 +30,7 @@ class Event
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
+     * @Assert\Url()
      */
     protected $website_url;
 
