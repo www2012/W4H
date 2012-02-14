@@ -25,13 +25,14 @@
     </parameters>
 -->
 
+<!--
     <services>
 
         <service id="w4h_user.registration.form.type" class="W4H\Bundle\UserBundle\Form\RegistrationFormType">
             <tag name="form.type" alias="w4h_user_registration" />
             <argument>%fos_user.model.user.class%</argument>
         </service>
-
+-->
 <!--
         <service id="sonata.user.admin.group" class="W4H\Bundle\UserBundle\Form\RegistrationFormType">
             <tag name="form.type" alias="w4h_user_registration" />
@@ -56,6 +57,8 @@
         </service>
 -->
 
+<!--
     </services>
+-->
 
 </container>

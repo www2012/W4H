@@ -51,6 +51,13 @@ doctrine:
         mappings:
             StofDoctrineExtensionsBundle: ~
 
+#        entity_managers:
+#            default:
+#                mappings:
+#                    FOSUserBundle:    ~
+#                    W4HUserBundle:    ~
+#                    SonataUserBundle: ~
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: %mailer_transport%
@@ -66,10 +73,15 @@ jms_security_extra:
 fos_user:
     db_driver: orm
     firewall_name: main
-#    user_class: W4H\Bundle\UserBundle\Entity\Person
-    user_class:     Application\Sonata\UserBundle\Entity\User
+    user_class:       W4H\Bundle\UserBundle\Entity\Person
     group:
-        group_class: Application\Sonata\UserBundle\Entity\Group
+        group_class:  W4H\Bundle\UserBundle\Entity\Group
+
+sonata_user:
+    security_acl:     false
+    class:
+        user:         W4H\Bundle\UserBundle\Entity\Person
+        group:        W4H\Bundle\UserBundle\Entity\Group
 
 sonata_admin:
 #    security_handler: sonata.admin.security.handler.noop
@@ -89,9 +101,3 @@ sonata_admin:
 #    dashboard_groups:
 #        default: ~
 
-sonata_user:
-    security_acl:     false
-    class:
-#        user:         W4H\Bundle\UserBundle\Admin\PersonAdmin
-        user:         Application\Sonata\UserBundle\Entity\User
-        group:        Application\Sonata\UserBundle\Entity\Group
