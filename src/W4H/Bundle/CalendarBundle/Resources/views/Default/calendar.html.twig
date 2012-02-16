@@ -54,7 +54,7 @@
       <div class="column room">
         <div class="header">
           <label>{{ location.object.name }}</label>
-          <div class="infos">
+          <div class="data">
             <div class="map">
               map {{ location.object.latitude }} {{ location.object.longitude }}
             </div>
@@ -81,7 +81,18 @@
           {% for key,schedule in location.schedules %}
             <li class="unit{% if schedule.is_hour %} hour{% endif %}">
               {% for task in schedule.tasks %}
-                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }}" draggable="true">{{ task.activity.name }}</div>
+                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }}" draggable="true">
+                  <div class="data">
+                    <header>
+                      <label>{{ task.activity.name }}</label>
+                      [{{ task.startsAt|date("h:i") }} > {{ task.endsAt|date("h:i") }}]
+                    </header>
+                    <ul>
+                      <li>{{ task.event.name }}</li>
+                      <li>{{ task.activity.description }}</li>
+                    </ul>
+                  </div>
+                </div>
               {% endfor %}
             </li>
           {% endfor %}
