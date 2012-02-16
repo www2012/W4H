@@ -13,7 +13,7 @@ class LocationType extends AbstractType
             ->add('name')
             ->add('building')
             ->add('level')
-            ->add('classe_room_places')
+            ->add('class_room_places')
             ->add('conference_room_places')
             ->add('standing_room_places')
             ->add('video_projector', null, array('required' => false))

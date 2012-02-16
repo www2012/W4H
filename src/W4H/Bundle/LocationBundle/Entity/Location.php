@@ -28,14 +28,14 @@ class Location
     protected $building;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     protected $level;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $classe_room_places;
+    protected $class_room_places;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -140,7 +140,7 @@ class Location
     /**
      * Set level
      *
-     * @param integer $level
+     * @param string $level
      */
     public function setLevel($level)
     {
@@ -150,7 +150,7 @@ class Location
     /**
      * Get level
      *
-     * @return integer 
+     * @return string 
      */
     public function getLevel()
     {
@@ -158,23 +158,23 @@ class Location
     }
 
     /**
-     * Set classe_room_places
+     * Set class_room_places
      *
-     * @param integer $classeRoomPlaces
+     * @param integer $ClassRoomPlaces
      */
-    public function setClasseRoomPlaces($classeRoomPlaces)
+    public function setClassRoomPlaces($ClassRoomPlaces)
     {
-        $this->classe_room_places = $classeRoomPlaces;
+        $this->class_room_places = $ClassRoomPlaces;
     }
 
     /**
-     * Get classe_room_places
+     * Get class_room_places
      *
      * @return integer 
      */
-    public function getClasseRoomPlaces()
+    public function getClassRoomPlaces()
     {
-        return $this->classe_room_places;
+        return $this->class_room_places;
     }
 
     /**

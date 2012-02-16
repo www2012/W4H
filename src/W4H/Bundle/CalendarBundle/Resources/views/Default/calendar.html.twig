@@ -38,7 +38,9 @@
 <div id="calendar">
 
   <div class="column times">
-    <label>hh-mm</label>
+    <div class="header">
+      <label>hh-mm</label>
+    </div>
     <ul>
       {% for key, schedule in schedules %}
         <li class="unit{% if schedule.is_hour %} hour{% endif %}"><div>{{ key }}</div></li>
@@ -50,7 +52,31 @@
     <div class="columns">
       {% for location in calendar %}
       <div class="column room">
-        <label>{{ location.object.name }}</label>
+        <div class="header">
+          <label>{{ location.object.name }}</label>
+          <div class="infos">
+            <div class="map">
+              map {{ location.object.latitude }} {{ location.object.longitude }}
+            </div>
+            <ul>
+              <li class="building">{{ location.object.building }}</li>
+              <li class="level">{{ location.object.level }}</li>
+              <li class="class_room_places">{{ location.object.classRoomPlaces }}</li>
+              <li class="conference_room_places">{{ location.object.conferenceRoomPlaces }}</li>
+              <li class="standing_room_places">{{ location.object.standingRoomPlaces }}</li>
+              <li class="equipement">
+                <strong>Equipements:</strong>
+                <ul>
+                  {% if location.object.videoProjector %}<li class="video_projector">Vidéo Projecteur</li>{% endif %}
+                  {% if location.object.sound %}<li class="sound">Sound</li>{% endif %}
+                  {% if location.object.internet %}<li class="internet">internet</li>{% endif %}
+                  {% if location.object.otherDevices %}<li class="other_devices">{{ location.object.otherDevices }}</li>{% endif %}
+                </ul>
+              </li>
+              <li class="accesibility">{{ location.object.accessibility }}</li>
+            </ul>
+          </div>
+        </div>
         <ul>
           {% for key,schedule in location.schedules %}
             <li class="unit{% if schedule.is_hour %} hour{% endif %}">

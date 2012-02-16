@@ -304,7 +304,7 @@ header > form > .actions > a:hover
 {
   font-size: 10px;
   position: absolute;
-  top: -9px;
+  top: -6px;
   padding: 2px;
   right: 2px;
   width: 80px;
@@ -313,9 +313,8 @@ header > form > .actions > a:hover
   display: none;
 }
 
-#main #calendar .column.times > label
+#main #calendar .column.times > .header > label
 {
-  padding: 3px 6px;
   text-indent: -9999px;
 }
 
@@ -328,15 +327,47 @@ header > form > .actions > a:hover
   text-shadow: 1px 1px 1px #FFF;
 }
 
-#main #calendar .column > label
+#main #calendar .column > .header
 {
   padding: 2px 6px;
-  text-align: center;
-  text-shadow: 1px 1px 1px #FFF;
+  height: 24px;
   color: #555;
-  font-weight: bold;
   display: block;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 69;
+}
+
+#main #calendar .column > .header > label
+{
+  text-shadow: 1px 1px 1px #FFF;
+  text-align: center;
+  font-weight: bold;
+  display: block;
+}
+
+#main #calendar .column > .header > .infos
+{
+  position: absolute;
+  top: 30px;
+  left: -1px;
+  width: 300px;
+  height: auto;
+  border: 1px solid #C3C3C3;
+  background: #CCC;
+  padding: 2px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
+  -o-transition: 0.6s;
+}
+
+#main #calendar .column > .header:hover > .infos
+{
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Room */
@@ -351,20 +382,15 @@ header > form > .actions > a:hover
   background: #FAFAFA;
 }
 
-#main #calendar .column.room > label
+#main #calendar .column.room > .header
 {
   border: 1px solid #C3C3C3;
   background: #DDD;
-  height: 16px;
-  overflow: hidden;
   font-size: 12px;
 }
 
-#main #calendar .column.room:hover > label
-{
-  background: #CCC;
-  color: #000;
-}
+#main #calendar .column.room:hover > .header { background: #CCC; }
+#main #calendar .column.room:hover > .header > label { color: #000; }
 
 #main #calendar .column > ul
 {
@@ -384,7 +410,8 @@ header > form > .actions > a:hover
 }
 
 #main #calendar .column.room > ul > li:hover,
-#main #calendar .column.room > ul > li:focus
+#main #calendar .column.room > ul > li:focus,
+#main #calendar .column > ul > li.unit.over
 {
   outline:0;
   border-color:rgba(82, 168, 236, 0.8);
@@ -401,11 +428,6 @@ header > form > .actions > a:hover
 
 /* Unit */
 #main #calendar .column > ul > li.unit { height: 12px; }
-
-#main #calendar .column > ul > li.unit.over
-{
-  background: #EEE;
-}
 
 /* Task */
 #main #calendar .column.room > ul > li .task
