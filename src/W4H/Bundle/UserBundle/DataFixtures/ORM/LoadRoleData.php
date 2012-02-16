@@ -1,9 +1,9 @@
 <?php
-namespace W4H\Bundle\EventTaskBundle\DataFixtures\ORM;
+namespace W4H\Bundle\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use W4H\Bundle\EventTaskBundle\Entity\Role;
+use W4H\Bundle\UserBundle\Entity\Role;
 
 class LoadRoleData implements FixtureInterface
 {

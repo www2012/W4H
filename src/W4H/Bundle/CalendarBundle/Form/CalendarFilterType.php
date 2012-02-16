@@ -31,6 +31,13 @@ class CalendarFilterType extends AbstractType
                 'expanded' => true,
                 'multiple' => true
             ))
+            ->add('locations', 'entity', array(
+                'class'    => 'W4HLocationBundle:Location',
+                'label'    => 'Location',
+                'required' => true,
+                'expanded' => true,
+                'multiple' => true
+            ))
             ->add('activities', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:Activity',
                 'label'    => 'Activity',
@@ -39,15 +46,8 @@ class CalendarFilterType extends AbstractType
                 'multiple' => true
             ))
             ->add('roles', 'entity', array(
-                'class'    => 'W4HEventTaskBundle:Role',
+                'class'    => 'W4HUserBundle:Role',
                 'label'    => 'Role',
-                'required' => true,
-                'expanded' => true,
-                'multiple' => true
-            ))
-            ->add('locations', 'entity', array(
-                'class'    => 'W4HLocationBundle:Location',
-                'label'    => 'Location',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true

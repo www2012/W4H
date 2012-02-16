@@ -13,7 +13,6 @@ class TaskType extends AbstractType
             ->add('starts_at')
             ->add('ends_at', 'datetime')
             ->add('activity', 'datetime')
-            ->add('role')
             ->add('event')
             ->add('location')
         ;

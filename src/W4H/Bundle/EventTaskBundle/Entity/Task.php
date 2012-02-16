@@ -42,11 +42,6 @@ class Task
     protected $activity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="W4H\Bundle\EventTaskBundle\Entity\Role")
-     */
-    protected $role;
-
-    /**
      * @ORM\ManyToOne(targetEntity="W4H\Bundle\EventTaskBundle\Entity\Event")
      */
     protected $event;
@@ -154,26 +149,6 @@ class Task
     public function getActivity()
     {
         return $this->activity;
-    }
-
-    /**
-     * Set role
-     *
-     * @param W4H\Bundle\EventTaskBundle\Entity\Role $role
-     */
-    public function setRole(\W4H\Bundle\EventTaskBundle\Entity\Role $role)
-    {
-        $this->role = $role;
-    }
-
-    /**
-     * Get role
-     *
-     * @return W4H\Bundle\EventTaskBundle\Entity\Role 
-     */
-    public function getRole()
-    {
-        return $this->role;
     }
 
     /**

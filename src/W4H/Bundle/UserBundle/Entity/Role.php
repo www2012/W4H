@@ -1,5 +1,5 @@
 <?php
-namespace W4H\Bundle\EventTaskBundle\Entity;
+namespace W4H\Bundle\UserBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
@@ -29,6 +29,7 @@ class Role
 
     public function __toString()
     {
+        return 'role';
         return $this->getName();
     }
 

@@ -15,9 +15,7 @@ class TaskAdmin extends Admin
             ->add('starts_at')
             ->add('ends_at')
             ->add('activity')
-            ->add('role')
             ->add('event')
-            //->add('person')
             ->add('location')
         ;
     }
@@ -28,9 +26,7 @@ class TaskAdmin extends Admin
             ->add('starts_at')
             ->add('ends_at')
             ->add('activity')
-            ->add('role')
             ->add('event')
-            //->add('person')
             ->add('location')
         ;
     }
@@ -41,9 +37,7 @@ class TaskAdmin extends Admin
             ->addIdentifier('starts_at')
             ->addIdentifier('ends_at')
             ->addIdentifier('activity')
-            ->addIdentifier('role')
             ->addIdentifier('event')
-            //->addIdentifier('person')
             ->addIdentifier('location')
         ;
     }

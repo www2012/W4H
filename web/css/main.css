@@ -471,8 +471,62 @@ body > header > form > .actions > a:hover
 {
   top: 30px;
   left: -1px;
-  width: 300px;
+  width: 350px;
 }
+
+/* Fla */
+#main #calendar .column > .header > .data > div
+{
+  margin: 5px; 
+  border-bottom: 1px solid #CCC;
+}
+
+#main #calendar .column > .header > .data > div > strong
+{
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+  padding-left: 20px;
+  margin: 8px 0 4px;
+  display: block;
+}
+
+#main #calendar .column > .header > .data > div > ul
+{
+  padding: 4px 10px;
+  overflow: auto;
+}
+
+#main #calendar .column > .header > .data > div > ul > li
+{
+  float: left;
+  line-height: 16px;
+  padding-left: 20px;
+  margin-right: 8px;
+}
+
+#main #calendar .column > .header > .data > div.equipement > ul > li
+{
+  text-indent: -9999px;
+  display: block;
+}
+
+#main #calendar .column > .header > .data > div.location { background: url('/images/location.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.building { background: url('/images/building.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.level { background: url('/images/level.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.accessibility { background: url('/images/accessibility.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.map { background: url('/images/map.png') no-repeat; }
+#main #calendar .column > .header > .data > div.places { background: url('/images/places.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.class_room_places { background: url('/images/class.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.conference_room_places { background: url('/images/conf.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.standing_room_places { background: url('/images/stand.png') no-repeat; }
+#main #calendar .column > .header > .data > div.equipement { background: url('/images/equipment.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.video_projector { background: url('/images/video.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.sound { background: url('/images/sound.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.internet { background: url('/images/internet.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li.other_devices { background: url('/images/other.png') no-repeat; }
+
+/* end fla */
 
 #main #calendar .column.room > ul > li .task .data
 {

@@ -55,26 +55,32 @@
         <div class="header">
           <label>{{ location.object.name }}</label>
           <div class="data">
-            <div class="map">
-              map {{ location.object.latitude }} {{ location.object.longitude }}
+            <div class="location">
+              <strong>Location:</strong>
+              <ul>
+                <li class="building" title="building">{{ location.object.building }}</li>
+                <li class="level" title="level">{{ location.object.level }}</li>
+                <li class="accessibility" title="accesibility">{{ location.object.accessibility }}</li>
+                <li class="map" title="map">map {{ location.object.latitude }} {{ location.object.longitude }}</li>
+              </ul>
             </div>
-            <ul>
-              <li class="building">{{ location.object.building }}</li>
-              <li class="level">{{ location.object.level }}</li>
-              <li class="class_room_places">{{ location.object.classRoomPlaces }}</li>
-              <li class="conference_room_places">{{ location.object.conferenceRoomPlaces }}</li>
-              <li class="standing_room_places">{{ location.object.standingRoomPlaces }}</li>
-              <li class="equipement">
-                <strong>Equipements:</strong>
-                <ul>
-                  {% if location.object.videoProjector %}<li class="video_projector">Vidéo Projecteur</li>{% endif %}
-                  {% if location.object.sound %}<li class="sound">Sound</li>{% endif %}
-                  {% if location.object.internet %}<li class="internet">internet</li>{% endif %}
-                  {% if location.object.otherDevices %}<li class="other_devices">{{ location.object.otherDevices }}</li>{% endif %}
-                </ul>
-              </li>
-              <li class="accesibility">{{ location.object.accessibility }}</li>
-            </ul>
+            <div class="places">
+              <strong>Places:</strong>
+              <ul>
+                <li class="class_room_places" title="class room">{{ location.object.classRoomPlaces }}</li>
+                <li class="conference_room_places" title="conference room">{{ location.object.conferenceRoomPlaces }}</li>
+                <li class="standing_room_places" title="standing room">{{ location.object.standingRoomPlaces }}</li>
+              </ul>
+            </div>
+            <div class="equipement">
+              <strong>Equipements:</strong>
+              <ul>
+                {% if location.object.videoProjector %}<li class="video_projector" title="Video projecteur">Vidéo Projecteur</li>{% endif %}
+                {% if location.object.sound %}<li class="sound" title="Sound">Sound</li>{% endif %}
+                {% if location.object.internet %}<li class="internet" title="Internet">internet</li>{% endif %}
+                {% if location.object.otherDevices %}<li class="other_devices" title="other devices">{{ location.object.otherDevices }}</li>{% endif %}
+              </ul>
+            </div>
           </div>
         </div>
         <ul>
