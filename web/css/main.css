@@ -220,7 +220,7 @@ body > header > form > .actions > a:hover
 {
   position: relative;
   line-height: 42px;
-  width: 184px;
+  width: 144px;
   float: left;
 }
 
@@ -228,9 +228,9 @@ body > header > form > .actions > a:hover
 {
   color: #555;
   text-shadow: 1px 1px #FFF;
-  margin: 0 42px;
+  margin: 0 32px;
   font-weight: bold;
-  width: 100px;
+  width: 80px;
   text-align: center;
 }
 
@@ -249,14 +249,14 @@ body > header > form > .actions > a:hover
 
 #main .topbar .date nav > a.previous
 {
-  background: #00F;
+  background: url('/images/previous.png') no-repeat;
   top: 9px;
   left: 0;
 }
 
 #main .topbar .date nav > a.next
 {
-  background: #F00;
+  background: url('/images/next.png') no-repeat;
   top: 9px;
   right: 0;
 }
@@ -451,7 +451,7 @@ body > header > form > .actions > a:hover
   position: absolute;
   height: auto;
   border: 1px solid #C3C3C3;
-  background: #CCC;
+  background: url('/images/bg_transparent.png');
   padding: 2px;
   visibility: hidden;
   opacity: 0;
