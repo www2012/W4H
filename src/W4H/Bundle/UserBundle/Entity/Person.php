@@ -69,7 +69,6 @@ class Person extends BaseUser
      */
     protected $country_iso_code;
 
-
     public function __toString()
     {
         return sprintf('%s %s',

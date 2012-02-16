@@ -58,6 +58,12 @@ doctrine:
 #                    W4HUserBundle:    ~
 #                    SonataUserBundle: ~
 
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: %mailer_transport%
@@ -101,3 +107,8 @@ sonata_admin:
 #    dashboard_groups:
 #        default: ~
 
+services:
+    twig.extension.slugify:
+        class: W4H\Bundle\CalendarBundle\Extension\SlugifyTwigExtension
+        tags:
+            -  { name: twig.extension }

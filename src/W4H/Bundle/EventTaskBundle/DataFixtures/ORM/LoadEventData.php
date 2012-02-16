@@ -75,7 +75,7 @@ class LoadEventData implements FixtureInterface
         $manager->persist($event);
 
         $event = new Event();
-        $event->setName('www Plenary Keyynotes');
+        $event->setName('www Plenary Keynotes');
         $event->setWebsiteUrl('');
         $manager->persist($event);
 

@@ -81,11 +81,11 @@
           {% for key,schedule in location.schedules %}
             <li class="unit{% if schedule.is_hour %} hour{% endif %}">
               {% for task in schedule.tasks %}
-                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }}" draggable="true">
+                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }}{{ task.getClasses() }}" draggable="true">
                   <div class="data">
                     <header>
                       <label>{{ task.activity.name }}</label>
-                      [{{ task.startsAt|date("h:i") }} > {{ task.endsAt|date("h:i") }}]
+                      [{{ task.startsAt|date("H:i") }} > {{ task.endsAt|date("H:i") }}]
                     </header>
                     <ul>
                       <li>{{ task.event.name }}</li>

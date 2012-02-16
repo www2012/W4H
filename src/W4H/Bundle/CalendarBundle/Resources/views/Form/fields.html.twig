@@ -13,6 +13,19 @@
 {% endspaceless %}
 {% endblock field_row %}
 
+{% block field_label %}
+
+  {% set slug = label|slugify %}
+  {% if not(attr.class is defined) %}
+    {% set attr = attr + {'class': ''} %}
+  {% endif %}
+
+  <label {% for k,v in attr %} {% if k == 'class' %} {% set v = slug ~ ' ' ~ v %} {% endif %} {{ k }}="{{ v }}" {% endfor %}>
+    {{- label -}}
+    <div class="sample"></div>
+  </label>
+{% endblock field_label %}
+
 {% block field_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}

@@ -24,7 +24,7 @@ class Event
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, unique=true)
      */
     protected $name;
 
@@ -37,14 +37,6 @@ class Event
     public function __toString()
     {
         return $this->getName();
-    }
-
-    public function slugify()
-    {
-        return 'Event';
-        die('test');
-        var_dump(Urlizer::urlize($this->getName()));die();
-        return Urlizer::urlize($this->getName());
     }
 
     /**
@@ -95,5 +87,25 @@ class Event
     public function getWebsiteUrl()
     {
         return $this->website_url;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

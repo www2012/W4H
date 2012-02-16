@@ -113,20 +113,34 @@ body > header > form > div > section > .content > .arrow
 
 body > header > form > div > section > .content fieldset
 {
-  padding: 2px 8px;
+  padding-bottom: 8px;
 }
 
 body > header > form > div > section > .content fieldset label
 {
-  float: left;
+  padding: 2px 8px;
   font-size: x-small;
   line-height: 14px;
+  display: block;
+  margin: 1px 0;
+}
+
+body > header > form > div > section > .content fieldset label:hover
+{
+  background: #F0F0F0;
+}
+
+body > header > form > div > section > .content fieldset label > .sample
+{
+  float: right;
+  width: 10px;
+  height: 10px;
 }
 
 body > header > form > div > section > .content fieldset input
 {
   float: left;
-  margin: 0 6px 0 0;
+  margin: 2px 6px;
   clear: both;
 }
 
@@ -341,35 +355,11 @@ body > header > form > .actions > a:hover
   display: block;
 }
 
-#main #calendar .column > .header > .data
-{
-  position: absolute;
-  top: 30px;
-  left: -1px;
-  width: 300px;
-  height: auto;
-  border: 1px solid #C3C3C3;
-  background: #CCC;
-  padding: 2px;
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.6s;
-  -moz-transition: 0.6s;
-  -webkit-transition: 0.6s;
-  -o-transition: 0.6s;
-}
-
-#main #calendar .column > .header:hover > .data
-{
-  visibility: visible;
-  opacity: 1;
-}
-
 /* Room */
 #main #calendar .column.room
 {
   width: 156px;
-  margin: 0 1px;
+  margin: 1px 1px 0;
 }
 
 #main #calendar .column.room:hover
@@ -425,7 +415,7 @@ body > header > form > .actions > a:hover
 #main #calendar .column > ul > li.unit { height: 12px; }
 
 /* Task */
-#main #calendar .column.room > ul > li .task
+.task
 {
   margin: 0 1px;
   padding: 0;
@@ -433,6 +423,7 @@ body > header > form > .actions > a:hover
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
+  border: 1px solid #C3C3C3;
   position: relative;
   float: left;
   z-index: 40;
@@ -440,17 +431,54 @@ body > header > form > .actions > a:hover
   display: block;
 }
 
-#main #calendar .column.room > ul > li > .task:hover
+.task:hover
 {
   background: #BBB;
 }
 
-#main #calendar .column.room > ul > li:hover > .task
+:hover > .task
 {
   z-index: 42;
   box-shadow: 1px 1px 4px #222;
   -moz-box-shadow: 1px 1px 4px #222;
   -webkit-box-shadow: 1px 1px 4px #222;
+}
+
+/* Data box */
+
+#main #calendar .data
+{
+  position: absolute;
+  height: auto;
+  border: 1px solid #C3C3C3;
+  background: #CCC;
+  padding: 2px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
+  -o-transition: 0.6s;
+}
+
+#main #calendar :hover > .data
+{
+  visibility: visible;
+  opacity: 1;
+}
+
+#main #calendar .column > .header > .data
+{
+  top: 30px;
+  left: -1px;
+  width: 300px;
+}
+
+#main #calendar .column.room > ul > li .task .data
+{
+  top: 0;
+  left: 52px;
+  width: 200px;
 }
 
 /* Child task */

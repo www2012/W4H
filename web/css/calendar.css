@@ -1,0 +1,122 @@
+/* Context */
+.task.www2012-conference,
+.www2012-conference > .sample
+{ border: 2px solid #123; }
+
+.task.w4a,
+.w4a > .sample
+{ border: 2px solid #456; }
+
+.task.ciuen,
+.ciuen > .sample
+{ border: 2px solid #789; }
+
+.task.webscience,
+.webscience > .sample
+{ border: 2px solid #ABC; }
+
+.task.w3c,
+.w3c > .sample
+{ border: 2px solid #DEF; }
+
+.task.www-workshops,
+.www-workshops > .sample
+{ border: 2px solid #FDB; }
+
+.task.www-tutorials,
+.www-tutorials > .sample
+{ border: 2px solid #A86; }
+
+.task.www-developpers-track,
+.www-developpers-track > .sample
+{ border: 2px solid #531; }
+
+.task.www-industry-track,
+.www-industry-track > .sample
+{ border: 2px solid #26A; }
+
+.task.www-posters-track,
+.www-posters-track > .sample
+{ border: 2px solid #A5A; }
+
+.task.www-demonstration-track,
+.www-demonstration-track > .sample
+{ border: 2px solid #000; }
+
+.task.www-european-track,
+.www-european-track > .sample
+{ border: 2px solid #5A5; }
+
+.task.www-panels-track,
+.www-panels-track > .sample
+{ border: 2px solid #951; }
+
+.sample
+{
+  border: 2px solid transparent;
+}
+
+.task.www-plenary-keynotes,
+.www-plenary-keynotes > .sample
+{ border: 2px solid #753; }
+
+.task.www-plenary-panel,
+.www-plenary-panel > .sample
+{ border: 2px solid #852; }
+
+.task.global-media-connect,
+.global-media-connect > .sample
+{ border: 2px solid #258; }
+
+.task.claroline,
+.claroline > .sample
+{ border: 2px solid #597; }
+
+/* Activity Type */
+.task.tutorial,
+.tutorial > .sample
+{ background: #000; }
+
+.task.workshop,
+.workshop > .sample
+{ background: #00F; }
+
+.task.panel,
+.panel > .sample
+{ background: #0F0; }
+
+.task.keynote,
+.keynote > .sample
+{ background: #0FF; }
+
+.task.party,
+.party > .sample
+{ background: #F00; }
+
+.task.barcamp,
+.barcamp > .sample
+{ background: #F0F; }
+
+.task.bof,
+.bof > .sample
+{ background: #FF0; }
+
+.task.meeting,
+.meeting > .sample
+{ background: #FFF; }
+
+.task.gathering,
+.gathering > .sample
+{ background: #088; }
+
+.task.press-conference,
+.press-conference > .sample
+{ background: #808; }
+
+.task.conference-session,
+.conference-session > .sample
+{ background: #880; }
+
+.task.transport,
+.transport > .sample
+{ background: #468; }

@@ -4,6 +4,7 @@ namespace W4H\Bundle\EventTaskBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use W4H\Bundle\CalendarBundle\Tool\Utils;
 
 /**
  * 
@@ -68,8 +69,8 @@ class Task
     public function getClasses()
     {
         return sprintf(" %s %s",
-          $this->getEvent()->slugify(),
-          $this->getActivity()->getActivityType()->slugify()
+          Utils::slugify($this->getEvent()->getName()),
+          Utils::slugify($this->getActivity()->getActivityType()->getName())
         );
     }
 
