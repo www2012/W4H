@@ -1,7 +1,7 @@
 {% block field_row %}
 {% spaceless %}
-    <section>
-        <a href="">{{ form_label(form) }}</a>
+    <section id="section_{{ form.get('id') }}">
+        <a href="#section_{{ form.get('id') }}">{{ form_label(form) }}</a>
         {{ form_errors(form) }}
         <div class="content">
             <span class="arrow"></span>

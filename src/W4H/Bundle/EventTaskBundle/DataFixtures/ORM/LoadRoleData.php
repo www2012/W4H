@@ -30,35 +30,11 @@ class LoadRoleData implements FixtureInterface
         $manager->persist($role);
 
         $role = new Role();
-        $role->setName('Accessibiliy co-chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('W3C co-chair');
-        $manager->persist($role);
-
-        $role = new Role();
         $role->setName('Poster co-chair');
         $manager->persist($role);
 
         $role = new Role();
         $role->setName('Demos co-chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('Claroline co-chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('GMC co-chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('W4A Co-Chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('Volunteer Co-Chair');
         $manager->persist($role);
 
         $role = new Role();
@@ -70,63 +46,23 @@ class LoadRoleData implements FixtureInterface
         $manager->persist($role);
 
         $role = new Role();
-        $role->setName('Session Co-Chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('PC Co-Chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('PC track Co-Chair');
-        $manager->persist($role);
-
-        $role = new Role();
         $role->setName('Security Head');
         $manager->persist($role);
 
         $role = new Role();
-        $role->setName('www Copil Member');
+        $role->setName('Member');
         $manager->persist($role);
 
         $role = new Role();
-        $role->setName('www Project Manager');
+        $role->setName('Project Manager');
         $manager->persist($role);
 
         $role = new Role();
-        $role->setName('ciuen Project Manager');
+        $role->setName('Manager');
         $manager->persist($role);
 
         $role = new Role();
-        $role->setName('LWWC Project Manager');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('CCC Manager');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('LOC Member');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('ciuen Copil Member');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('LWWC Copil Member');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('OFF co-chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('Off Event co-chair');
-        $manager->persist($role);
-
-        $role = new Role();
-        $role->setName('Exhibition co-chair');
+        $role->setName('Copil Member');
         $manager->persist($role);
 
         $role = new Role();
@@ -134,7 +70,7 @@ class LoadRoleData implements FixtureInterface
         $manager->persist($role);
 
         $role = new Role();
-        $role->setName('www Opening Responsible');
+        $role->setName('Opening Responsible');
         $manager->persist($role);
 
         $role = new Role();

@@ -26,6 +26,20 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/renderCSS/{step}", name="calendar_render_css")
+     * @Template("W4HCalendarBundle:Default:calendar.css.twig")
+     */
+    public function renderCSSAction($step)
+    {
+        $min = 0;
+        $max = 24;
+
+        $rows  = ($max - $min) * 60 / $step;
+
+        return array('rows' => $rows);
+    }
+
+    /**
      * @Route("/calendar/{year}/{month}/{day}", name="calendar_show")
      * @Template("W4HCalendarBundle:Default:calendar.html.twig")
      */

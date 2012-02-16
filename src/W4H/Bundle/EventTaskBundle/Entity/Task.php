@@ -60,7 +60,16 @@ class Task
         return sprintf("%s - %s [%s]",
             $this->getEvent(),
             $this->getActivity(),
-            $this->getPerson()
+            'TOTO'
+            //$this->getPerson()
+        );
+    }
+
+    public function getClasses()
+    {
+        return sprintf(" %s %s",
+          $this->getEvent()->slugify(),
+          $this->getActivity()->getActivityType()->slugify()
         );
     }
 

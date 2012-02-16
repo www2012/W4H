@@ -39,6 +39,14 @@ class Event
         return $this->getName();
     }
 
+    public function slugify()
+    {
+        return 'Event';
+        die('test');
+        var_dump(Urlizer::urlize($this->getName()));die();
+        return Urlizer::urlize($this->getName());
+    }
+
     /**
      * Get id
      *

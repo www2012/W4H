@@ -4,9 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
 
-        {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}" />
+        {% block stylesheets %}
+          <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+          <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}" />
+        {% endblock %}
+
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

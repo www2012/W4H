@@ -1,12 +1,17 @@
 {% extends "::base.html.twig" %}
 
+{% block stylesheets %}
+  {{ parent() }}
+  {% render "W4HCalendarBundle:default:renderCSS" with {'step': step} %}
+{% endblock %}
+
 {% block javascripts %}
   <script type="text/javascript" src="{{ asset('js/draggable.js') }}"></script>
 {% endblock %}
 
 {% block header %}
   {% form_theme form 'W4HCalendarBundle:Form:fields.html.twig' %}
-  <form action="{{ path('calendar_filter', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" method="post">
+  <form class="accordion" action="{{ path('calendar_filter', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" method="post">
     {{ form_widget(form) }}
     <div class="actions">
       <input type="submit" value="Apply" />
@@ -17,7 +22,17 @@
 
 {% block content %}
 <div class="topbar">
-  <h1>{{ day.year}}-{{ day.month}}-{{ day.day}}</h1>
+  <div class="date">
+    <h1>{{ day.year}}-{{ day.month}}-{{ day.day}}</h1>
+    <nav>
+      <a class="previous" href="{{ path('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day-1 }) }}" title="previous day">
+        Previous day
+      </a>
+      <a class="next" href="{{ path('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day+1 }) }}" title="next day">
+        Next day
+      </a>
+    </nav>
+  </div>
 </div>
 
 <div id="calendar">

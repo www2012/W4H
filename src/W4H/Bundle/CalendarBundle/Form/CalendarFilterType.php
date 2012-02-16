@@ -57,6 +57,6 @@ class CalendarFilterType extends AbstractType
 
     public function getName()
     {
-        return 'store_bundle_adbundle_calendarfiltertype';
+        return 'calendar_filters';
     }
 }
