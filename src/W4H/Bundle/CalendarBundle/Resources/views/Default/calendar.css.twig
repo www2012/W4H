@@ -1,5 +1,8 @@
 <style type="text/css">
+
+  #main #calendar .scrollzone .columns { width: {{ 160*columns }}px; }
+
   {% for i in 1..rows %}
-    #main #calendar .column > ul > li > .unitx{{ i }} { height: {{ i*13 }}px; }
+    #main #calendar .column > ul > li > .unitx{{ i }} { height: {{ i*13 - 4 }}px; }
   {% endfor %}
 </style>

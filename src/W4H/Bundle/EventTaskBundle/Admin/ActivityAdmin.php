@@ -22,7 +22,6 @@ class ActivityAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('description')
             ->add('activity_type')
         ;
     }

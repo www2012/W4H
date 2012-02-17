@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="person")
+ * @ORM\Table(name="fos_user_user")
  */
 class Person extends BaseUser
 {
@@ -60,9 +60,9 @@ class Person extends BaseUser
     protected $freeset;
 
     /**
-     * @ORM\Column(type="string", length=64, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $twitter_account;
+    protected $socials_account;
 
     /**
      * @ORM\Column(type="string", length=4, nullable=true)
@@ -248,23 +248,23 @@ class Person extends BaseUser
     }
 
     /**
-     * Set twitter_account
+     * Set socials_account
      *
-     * @param string $twitterAccount
+     * @param string $socialsAccount
      */
-    public function setTwitterAccount($twitterAccount)
+    public function setSocialsAccount($socialsAccount)
     {
-        $this->twitter_account = $twitterAccount;
+        $this->socials_account = $socialsAccount;
     }
 
     /**
-     * Get twitter_account
+     * Get socials_account
      *
      * @return string 
      */
-    public function getTwitterAccount()
+    public function getSocialsAccount()
     {
-        return $this->twitter_account;
+        return $this->socials_account;
     }
 
     /**

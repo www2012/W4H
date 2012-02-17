@@ -34,7 +34,7 @@ class PersonType extends AbstractType
             ->add('mobile_phone')
             ->add('website_url')
             ->add('freeset')
-            ->add('twitter_account')
+            ->add('socials_account')
             ->add('country_iso_code')
         ;
     }

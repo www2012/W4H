@@ -284,7 +284,6 @@ body > header > form > .actions > a:hover
 
 #main #calendar .scrollzone .columns
 {
-  width: 9999px;
   margin-top: 1px;
 }
 
@@ -427,7 +426,7 @@ body > header > form > .actions > a:hover
   position: relative;
   float: left;
   z-index: 40;
-  width: 50px;
+  width: 24px;
   display: block;
 }
 
@@ -531,8 +530,9 @@ body > header > form > .actions > a:hover
 #main #calendar .column.room > ul > li .task .data
 {
   top: 0;
-  left: 52px;
+  left: 32px;
   width: 200px;
+  height: auto;
 }
 
 /* Child task */

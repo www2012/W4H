@@ -29,14 +29,17 @@ class DefaultController extends Controller
      * @Route("/renderCSS/{step}", name="calendar_render_css")
      * @Template("W4HCalendarBundle:Default:calendar.css.twig")
      */
-    public function renderCSSAction($step)
+    public function renderCSSAction($step, $columns = 20)
     {
         $min = 0;
         $max = 24;
 
         $rows  = ($max - $min) * 60 / $step;
 
-        return array('rows' => $rows);
+        return array(
+          'rows' => $rows,
+          'columns' => $columns
+        );
     }
 
     /**
@@ -48,14 +51,13 @@ class DefaultController extends Controller
         $date = Calendar::formatedDay($year, $month, $day);
         $datetime = new \DateTime(date($date));
 
-        $schedules = $this->getSchedules();
         $step = $this->container->getParameter('w4h_calendar.schedule_step');
         $form  = $this->createForm(new CalendarFilterType());
 
         return array(
             'day'       => array('year' => $year, 'month' => $month, 'day' => $day),
             'form'      => $form->createView(),
-            'schedules' => $schedules,
+            'schedules' => $this->getSchedules(),
             'calendar'  => $this->getCalendar($datetime, $step),
             'step'      => $step
         );

@@ -29,7 +29,6 @@ class Role
 
     public function __toString()
     {
-        return 'role';
         return $this->getName();
     }
 

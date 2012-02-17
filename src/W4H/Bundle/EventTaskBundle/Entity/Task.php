@@ -51,6 +51,11 @@ class Task
      */
     protected $location;
 
+    /**
+     * @ORM\OneToMany(targetEntity="TaskOwner", mappedBy="Task", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
+     */
+    public $owners;
+
     public function __toString()
     {
         return sprintf("%s - %s [%s]",
@@ -189,5 +194,29 @@ class Task
     public function getLocation()
     {
         return $this->location;
+    }
+    public function __construct()
+    {
+        $this->owners = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add owners
+     *
+     * @param W4H\Bundle\EventTaskBundle\Entity\TaskOwner $owners
+     */
+    public function addTaskOwner(\W4H\Bundle\EventTaskBundle\Entity\TaskOwner $owners)
+    {
+        $this->owners[] = $owners;
+    }
+
+    /**
+     * Get owners
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOwners()
+    {
+        return $this->owners;
     }
 }

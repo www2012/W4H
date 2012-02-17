@@ -40,10 +40,7 @@ class LocationAdmin extends Admin
             ->add('video_projector')
             ->add('sound')
             ->add('internet')
-            ->add('other_devices')
             ->add('accessibility')
-            ->add('latitude')
-            ->add('longitude')
         ;
     }
 
