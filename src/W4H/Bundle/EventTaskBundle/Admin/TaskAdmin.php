@@ -17,14 +17,17 @@ class TaskAdmin extends Admin
             ->add('activity')
             ->add('event')
             ->add('location')
+            ->add('owners', 'collection', array(
+                'required' => false,
+                'allow_add' => true,
+                'by_reference' => false
+            ))
         ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('starts_at')
-            ->add('ends_at')
             ->add('activity')
             ->add('event')
             ->add('location')
@@ -44,12 +47,5 @@ class TaskAdmin extends Admin
 
     public function validate(ErrorElement $errorElement, $object)
     {
-        /*
-        $errorElement
-            ->with('name')
-                ->assertMaxLength(array('limit' => 64))
-            ->end()
-        ;
-        */
     }
 }

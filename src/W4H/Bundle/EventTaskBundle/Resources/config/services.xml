@@ -24,36 +24,24 @@
           <argument />
           <argument>W4H\Bundle\EventTaskBundle\Entity\Activity</argument>
           <argument>SonataAdminBundle:CRUD</argument>
-          <call method="setTranslationDomain">
-            <argument>W4HAdminBundle</argument>
-          </call>
         </service>
         <service id="sonata.admin.activitytype" class="W4H\Bundle\EventTaskBundle\Admin\ActivityTypeAdmin">
           <tag name="sonata.admin" manager_type="orm" group="W4H" label="WhatType"/>
           <argument />
           <argument>W4H\Bundle\EventTaskBundle\Entity\ActivityType</argument>
           <argument>SonataAdminBundle:CRUD</argument>
-          <call method="setTranslationDomain">
-            <argument>W4HAdminBundle</argument>
-          </call>
         </service>
         <service id="sonata.admin.task" class="W4H\Bundle\EventTaskBundle\Admin\TaskAdmin">
           <tag name="sonata.admin" manager_type="orm" group="Task" label="Task"/>
           <argument />
           <argument>W4H\Bundle\EventTaskBundle\Entity\Task</argument>
           <argument>SonataAdminBundle:CRUD</argument>
-          <call method="setTranslationDomain">
-            <argument>W4HAdminBundle</argument>
-          </call>
         </service>
         <service id="sonata.admin.event" class="W4H\Bundle\EventTaskBundle\Admin\EventAdmin">
           <tag name="sonata.admin" manager_type="orm" group="Task" label="Context"/>
           <argument />
           <argument>W4H\Bundle\EventTaskBundle\Entity\Event</argument>
           <argument>SonataAdminBundle:CRUD</argument>
-          <call method="setTranslationDomain">
-            <argument>W4HAdminBundle</argument>
-          </call>
         </service>
     </services>
 

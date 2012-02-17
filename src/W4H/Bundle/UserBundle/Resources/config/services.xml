@@ -4,66 +4,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="w4_h_user.example.class">W4H\Bundle\UserBundle\Example</parameter>
-    </parameters>
-
     <services>
-        <service id="w4_h_user.example" class="%w4_h_user.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
 
-<!--
-    <parameters>
-        <parameter key="sonata.user.admin.user.class">W4H\Bundle\UserBundle\Admin\PersonAdmin</parameter>
-        <parameter key="sonata.user.admin.user.entity">W4H\Bundle\UserBundle\Entity\Person</parameter>
-    </parameters>
--->
-
-    <services>
-        <service id="sonata.admin.role" class="W4H\Bundle\UserBundle\Admin\RoleAdmin">
+        <service id="sonata.admin.role" class="W4H\Bundle\UserBundle\Admin\Entity\RoleAdmin">
           <tag name="sonata.admin" manager_type="orm" group="W4H" label="How"/>
           <argument />
           <argument>W4H\Bundle\UserBundle\Entity\Role</argument>
           <argument>SonataAdminBundle:CRUD</argument>
-          <call method="setTranslationDomain">
-            <argument>W4HAdminBundle</argument>
-          </call>
         </service>
-
-<!--
-        <service id="w4h_user.registration.form.type" class="W4H\Bundle\UserBundle\Form\RegistrationFormType">
-            <tag name="form.type" alias="w4h_user_registration" />
-            <argument>%fos_user.model.user.class%</argument>
-        </service>
--->
-<!--
-        <service id="sonata.user.admin.group" class="W4H\Bundle\UserBundle\Form\RegistrationFormType">
-            <tag name="form.type" alias="w4h_user_registration" />
-            <argument>%fos_user.model.user.class%</argument>
-        </service>
-        sonata.user.admin.group:
-          abstract: true
-          public: false
--->
-
-<!--
-        <service id="fos.user.admin.user" class="%fos.user.admin.user.class%">
-            <tag name="sonata.admin" manager_type="orm" group="fos_user" />
-            <argument />
-            <argument>%fos.user.admin.user.entity%</argument>
-            <argument />
-
-            <call method="setUserManager">
-                <argument type='service' id='fos_user.user_manager' />
-            </call>
-        </service>
--->
 
     </services>
 

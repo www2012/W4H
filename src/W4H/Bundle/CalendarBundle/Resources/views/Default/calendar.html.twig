@@ -58,27 +58,27 @@
             <div class="location">
               <strong>Location:</strong>
               <ul>
-                <li class="building" title="building">{{ location.object.building }}</li>
-                <li class="level" title="level">{{ location.object.level }}</li>
-                <li class="accessibility" title="accesibility">{{ location.object.accessibility }}</li>
-                <li class="map" title="map">map {{ location.object.latitude }} {{ location.object.longitude }}</li>
+                <li class="building" title="building"><span></span>{{ location.object.building }}</li>
+                <li class="level" title="level"><span></span>{{ location.object.level }}</li>
+                <li class="accessibility" title="accesibility"><span></span>{{ location.object.accessibility }}</li>
+                <li class="map" title="map"><span></span>map {{ location.object.latitude }} {{ location.object.longitude }}</li>
               </ul>
             </div>
-            <div class="places">
+            <div class="place">
               <strong>Places:</strong>
               <ul>
-                <li class="class_room_places" title="class room">{{ location.object.classRoomPlaces }}</li>
-                <li class="conference_room_places" title="conference room">{{ location.object.conferenceRoomPlaces }}</li>
-                <li class="standing_room_places" title="standing room">{{ location.object.standingRoomPlaces }}</li>
+                <li class="class_room_places" title="class room"><span></span>{{ location.object.classRoomPlaces }}</li>
+                <li class="conference_room_places" title="conference room"><span></span>{{ location.object.conferenceRoomPlaces }}</li>
+                <li class="standing_room_places" title="standing room"><span></span>{{ location.object.standingRoomPlaces }}</li>
               </ul>
             </div>
-            <div class="equipement">
-              <strong>Equipements:</strong>
+            <div class="equipment">
+              <strong>Equipments:</strong>
               <ul>
-                {% if location.object.videoProjector %}<li class="video_projector" title="Video projecteur">Vidéo Projecteur</li>{% endif %}
-                {% if location.object.sound %}<li class="sound" title="Sound">Sound</li>{% endif %}
-                {% if location.object.internet %}<li class="internet" title="Internet">internet</li>{% endif %}
-                {% if location.object.otherDevices %}<li class="other_devices" title="other devices">{{ location.object.otherDevices }}</li>{% endif %}
+                {% if location.object.videoProjector %}<li class="video_projector" title="Video projecteur"><span></span>Vidéo Projecteur</li>{% endif %}
+                {% if location.object.sound %}<li class="sound" title="Sound"><span></span>Sound</li>{% endif %}
+                {% if location.object.internet %}<li class="internet" title="Internet"><span></span>internet</li>{% endif %}
+                {% if location.object.otherDevices %}<li class="other_devices" title="other devices"><span></span>{{ location.object.otherDevices }}</li>{% endif %}
               </ul>
             </div>
           </div>
@@ -87,16 +87,25 @@
           {% for key,schedule in location.schedules %}
             <li class="unit{% if schedule.is_hour %} hour{% endif %}">
               {% for task in schedule.tasks %}
-                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }}{{ task.getClasses() }}" draggable="true">
+                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }} {{ task.getClasses() }}" draggable="true">
                   <div class="data">
                     <header>
+                      <div class="sample {{ task.getClasses() }}"></div>
                       <label>{{ task.activity.name }}</label>
-                      [{{ task.startsAt|date("H:i") }} > {{ task.endsAt|date("H:i") }}]
+                      <p class="starts_at">{{ task.startsAt|date("H:i") }}</p>
+                      <p class="ends_at">{{ task.endsAt|date("H:i") }}</p>
                     </header>
-                    <ul>
-                      <li>{{ task.event.name }}</li>
-                      <li>{{ task.activity.description }}</li>
+                    <p class="description">{{ task.activity.description }}</p>
+                    <ul class="owners">
+                      <li>
+                        USA - Tim BERNERS LEE - Speaker 
+                      </li>
                     </ul>
+                    <footer>
+                      <p>
+                        <a href="{{ task.event.websiteUrl }}" target="_blank" title="{{ task.event.name }}">{{ task.event.name }}</a> - {{ task.activity.activityType.name }}
+                      </p>
+                    </footer>
                   </div>
                 </div>
               {% endfor %}

@@ -24,9 +24,6 @@
           <argument />
           <argument>W4H\Bundle\LocationBundle\Entity\Location</argument>
           <argument>SonataAdminBundle:CRUD</argument>
-          <call method="setTranslationDomain">
-              <argument>W4HAdminBundle</argument>
-          </call>
       </service>
     </services>
 

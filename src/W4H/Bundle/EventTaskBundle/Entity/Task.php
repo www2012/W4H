@@ -58,17 +58,15 @@ class Task
 
     public function __toString()
     {
-        return sprintf("%s - %s [%s]",
+        return sprintf("%s - %s",
             $this->getEvent(),
-            $this->getActivity(),
-            'TOTO'
-            //$this->getPerson()
+            $this->getActivity()
         );
     }
 
     public function getClasses()
     {
-        return sprintf(" %s %s",
+        return sprintf("%s %s",
           Utils::slugify($this->getEvent()->getName()),
           Utils::slugify($this->getActivity()->getActivityType()->getName())
         );

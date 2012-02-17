@@ -37,7 +37,7 @@ body > header
   -o-transition: 0.6s;
   padding: 0;
   z-index: 84;
-  border-right: 1px solid #C3C3C3;
+  border-right: 1px solid #BBB;
   margin-left: -2px;
   overflow-y: auto;
 }
@@ -199,7 +199,7 @@ body > header > form > .actions > a:hover
   line-height: 40px;
   padding: 0 0 0 12px;
   white-space: nowrap;
-  border-bottom: 1px solid #C3C3C3;
+  border-bottom: 1px solid #BBB;
   position: relative;
   z-index: 6;
   -webkit-box-shadow: 0 1px 2px #eaeaea;
@@ -302,7 +302,7 @@ body > header > form > .actions > a:hover
   min-height: 100%;
   background: #DDD;
   margin-right: 1px;
-  border-right: 1px solid #C3C3C3;
+  border-right: 1px solid #BBB;
   box-shadow: 1px 0 2px #EAEAEA;
   -moz-box-shadow: 1px 0 2px #EAEAEA;
   -webkit-box-shadow: 1px 0 2px #EAEAEA;
@@ -368,7 +368,7 @@ body > header > form > .actions > a:hover
 
 #main #calendar .column.room > .header
 {
-  border: 1px solid #C3C3C3;
+  border: 1px solid #BBB;
   background: #DDD;
   font-size: 12px;
 }
@@ -422,7 +422,7 @@ body > header > form > .actions > a:hover
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-  border: 1px solid #C3C3C3;
+  border: 1px solid #BBB;
   position: relative;
   float: left;
   z-index: 40;
@@ -449,8 +449,8 @@ body > header > form > .actions > a:hover
 {
   position: absolute;
   height: auto;
-  border: 1px solid #C3C3C3;
-  background: url('/images/bg_transparent.png');
+  border: 1px solid #BBB;
+  background: #CCC;
   padding: 2px;
   visibility: hidden;
   opacity: 0;
@@ -473,11 +473,16 @@ body > header > form > .actions > a:hover
   width: 350px;
 }
 
-/* Fla */
 #main #calendar .column > .header > .data > div
 {
-  margin: 5px; 
-  border-bottom: 1px solid #CCC;
+  margin: 5px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #BBB;
+}
+
+#main #calendar .column > .header > .data > div:last-child
+{
+  border: none;
 }
 
 #main #calendar .column > .header > .data > div > strong
@@ -485,9 +490,9 @@ body > header > form > .actions > a:hover
   font-size: 12px;
   font-weight: bold;
   line-height: 16px;
-  padding-left: 20px;
-  margin: 8px 0 4px;
   display: block;
+  text-shadow: 1px 1px 1px #FFF;
+  margin: 0 8px 4px 8px;
 }
 
 #main #calendar .column > .header > .data > div > ul
@@ -500,32 +505,49 @@ body > header > form > .actions > a:hover
 {
   float: left;
   line-height: 16px;
-  padding-left: 20px;
-  margin-right: 8px;
+  margin-right: 12px;
+  min-width: 16px;
 }
 
-#main #calendar .column > .header > .data > div.equipement > ul > li
+#main #calendar .column > .header > .data > div.equipment > ul > li
 {
   text-indent: -9999px;
   display: block;
 }
 
-#main #calendar .column > .header > .data > div.location { background: url('/images/location.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.building { background: url('/images/building.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.level { background: url('/images/level.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.accessibility { background: url('/images/accessibility.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.map { background: url('/images/map.png') no-repeat; }
-#main #calendar .column > .header > .data > div.places { background: url('/images/places.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.class_room_places { background: url('/images/class.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.conference_room_places { background: url('/images/conf.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.standing_room_places { background: url('/images/stand.png') no-repeat; }
-#main #calendar .column > .header > .data > div.equipement { background: url('/images/equipment.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.video_projector { background: url('/images/video.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.sound { background: url('/images/sound.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.internet { background: url('/images/internet.png') no-repeat; }
-#main #calendar .column > .header > .data > div > ul > li.other_devices { background: url('/images/other.png') no-repeat; }
+#main #calendar .column > .header > .data > div > ul > li > span
+{
+  float: left;
+  background: url('/images/icons-symbols.png') no-repeat;
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin-right: 4px;
+}
 
-/* end fla */
+.building > span               { background-position: -544px -384px !important; }
+.level > span                  { background-position: -256px -320px !important; }
+.accessibility > span          { background-position: -224px -32px  !important; }
+.map > span                    { background-position: -256px -736px !important; }
+.class_room_places > span      { background-position: -352px -384px !important; }
+.conference_room_places > span { background-position: -512px -384px !important; }
+.standing_room_places > span   { background-position: -192px -384px !important; }
+.video_projector > span        { background-position:  0px   -512px !important; }
+.sound > span                  { background-position: -64px  -992px !important; }
+.internet > span               { background-position: -192px -320px !important; }
+.other_devices > span          { background-position:  0px   -800px !important; }
+
+#main #calendar .column.room > ul > li .task .data 
+{
+}
+
+#main #calendar .column.room > ul > li .task .data > header
+{
+}
+
+#main #calendar .column.room > ul > li .task .data > header
+{
+}
 
 #main #calendar .column.room > ul > li .task .data
 {
