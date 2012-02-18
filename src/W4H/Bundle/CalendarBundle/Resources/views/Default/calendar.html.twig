@@ -6,7 +6,18 @@
 {% endblock %}
 
 {% block javascripts %}
+  {{ parent() }}
   <script type="text/javascript" src="{{ asset('js/draggable.js') }}"></script>
+  <script type="text/javascript">
+    // Prevent link action
+    $(".accordion section a").click(function(event){
+      event.preventDefault();
+      if($(this).parent('section').hasClass('selected'))
+        $(this).parent('section').removeClass('selected');
+      else
+        $(this).parent('section').addClass('selected');
+    });
+  </script>
 {% endblock %}
 
 {% block header %}
@@ -91,21 +102,52 @@
                   <div class="data">
                     <header>
                       <div class="sample {{ task.getClasses() }}"></div>
-                      <label>{{ task.activity.name }}</label>
+                      <label>
+                        {{ task.activity.name }}
+                      </label>
                       <p class="starts_at">{{ task.startsAt|date("H:i") }}</p>
                       <p class="ends_at">{{ task.endsAt|date("H:i") }}</p>
                     </header>
-                    <p class="description">{{ task.activity.description }}</p>
-                    <ul class="owners">
-                      <li>
-                        USA - Tim BERNERS LEE - Speaker 
-                      </li>
-                    </ul>
-                    <footer>
-                      <p>
-                        <a href="{{ task.event.websiteUrl }}" target="_blank" title="{{ task.event.name }}">{{ task.event.name }}</a> - {{ task.activity.activityType.name }}
-                      </p>
-                    </footer>
+                    <div class="description">
+                      <strong><span></span>Description:</strong>
+                      <p>{{ task.activity.description }}</p>
+                    </div>
+                    <div class="owners">
+                      <strong><span></span>With:</strong>
+                      <ul>
+                        <li class="country hl" title="Suisse">
+                          <span></span>
+                          Suisse
+                        </li>
+                        <li class="speaker" title="speaker">
+                          <span></span>
+                          Tim BERNERS LEE
+                        </li>
+                      </ul>
+                      <ul>
+                        <li class="country fr" title="France">
+                          <span></span>
+                          France
+                        </li>
+                        <li class="speaker" title="speaker">
+                          <span></span>
+                          Bernard STIEGLER
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="context">
+                      <strong><span></span>Context:</strong>
+                      <ul>
+                        <li class="context">
+                          <span class="sample {{ task.event.name |slugify }}"></span>
+                          <a href="{{ task.event.websiteUrl }}" target="_blank" title="{{ task.event.name }}">{{ task.event.name }}</a>
+                        </li>
+                        <li class="activity_type">
+                          <span class="sample {{ task.activity.activityType.name |slugify }}"></span>
+                          {{ task.activity.activityType.name }}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               {% endfor %}

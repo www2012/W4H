@@ -1,122 +1,187 @@
-/* Context */
-.task.www2012-conference,
-.www2012-conference > .sample
-{ border: 2px solid #123; }
-
-.task.w4a,
-.w4a > .sample
-{ border: 2px solid #456; }
-
-.task.ciuen,
-.ciuen > .sample
-{ border: 2px solid #789; }
-
-.task.webscience,
-.webscience > .sample
-{ border: 2px solid #ABC; }
-
-.task.w3c,
-.w3c > .sample
-{ border: 2px solid #DEF; }
-
-.task.www-workshops,
-.www-workshops > .sample
-{ border: 2px solid #FDB; }
-
-.task.www-tutorials,
-.www-tutorials > .sample
-{ border: 2px solid #A86; }
-
-.task.www-developpers-track,
-.www-developpers-track > .sample
-{ border: 2px solid #531; }
-
-.task.www-industry-track,
-.www-industry-track > .sample
-{ border: 2px solid #26A; }
-
-.task.www-posters-track,
-.www-posters-track > .sample
-{ border: 2px solid #A5A; }
-
-.task.www-demonstration-track,
-.www-demonstration-track > .sample
-{ border: 2px solid #000; }
-
-.task.www-european-track,
-.www-european-track > .sample
-{ border: 2px solid #5A5; }
-
-.task.www-panels-track,
-.www-panels-track > .sample
-{ border: 2px solid #951; }
+/* Details */
+#section_calendar_filters_events .sample,
+#section_calendar_filters_activity_types .sample,
+.task .sample
+{
+  box-shadow: 0 0 2px #AAA;
+  -webkit-box-shadow: 0 0 2px #AAA;
+  -moz-box-shadow: 0 0 2px #AAA;
+}
 
 .sample
 {
   border: 2px solid transparent;
+  width: 10px;
+  height: 10px;
 }
 
+/* Context */
+.task.www2012-conference,
+.www2012-conference > .sample,
+.sample.www2012-conference
+{ border-radius: 8px; border: 2px solid #123 !important; }
+
+.task.w4a,
+.w4a > .sample,
+.sample.w4a
+{ border-radius: 8px; border: 2px solid #456 !important; }
+
+.task.ciuen,
+.ciuen > .sample,
+.sample.ciuen
+{ border-radius: 8px; border: 2px solid #789 !important; }
+
+.task.webscience,
+.webscience > .sample,
+.sample.webscience
+{ border-radius: 8px; border: 2px solid #ABC !important; }
+
+.task.w3c,
+.w3c > .sample,
+.sample.w3c
+{ border-radius: 8px; border: 2px solid #DEF !important; }
+
+.task.www-workshops,
+.www-workshops > .sample,
+.sample.www-workshops
+{ border-radius: 8px; border: 2px solid #FDB !important; }
+
+.task.www-tutorials,
+.www-tutorials > .sample,
+.sample.www-tutorials
+{ border-radius: 8px; border: 2px solid #A86 !important; }
+
+.task.www-developpers-track,
+.www-developpers-track > .sample,
+.sample.www-developpers-track
+{ border-radius: 8px; border: 2px solid #531 !important; }
+
+.task.www-industry-track,
+.www-industry-track > .sample,
+.sample.www-industry-track
+{ border-radius: 8px; border: 2px solid #26A !important; }
+
+.task.www-posters-track,
+.www-posters-track > .sample,
+.sample.www-posters-track
+{ border-radius: 8px; border: 2px solid #A5A !important; }
+
+.task.www-demonstration-track,
+.www-demonstration-track > .sample,
+.sample.www-demonstration-track
+{ border-radius: 8px; border: 2px solid #000 !important; }
+
+.task.www-european-track,
+.www-european-track > .sample,
+.sample.www-european-track
+{ border-radius: 8px; border: 2px solid #5A5 !important; }
+
+.task.www-panels-track,
+.www-panels-track > .sample,
+.sample.www-panels-track
+{ border-radius: 8px; border: 2px solid #951 !important; }
+
 .task.www-plenary-keynotes,
-.www-plenary-keynotes > .sample
-{ border: 2px solid #753; }
+.www-plenary-keynotes > .sample,
+.sample.www-plenary-keynotes
+{ border-radius: 8px; border: 2px solid #753 !important; }
 
 .task.www-plenary-panel,
-.www-plenary-panel > .sample
-{ border: 2px solid #852; }
+.www-plenary-panel > .sample,
+.sample.www-plenary-pane
+{ border-radius: 8px; border: 2px solid #852 !important; }
 
 .task.global-media-connect,
-.global-media-connect > .sample
-{ border: 2px solid #258; }
+.global-media-connect > .sample,
+.sample.global-media-connect
+{ border-radius: 8px; border: 2px solid #258 !important; }
 
 .task.claroline,
-.claroline > .sample
-{ border: 2px solid #597; }
+.claroline > .sample,
+.sample.claroline
+{ border-radius: 8px; border: 2px solid #597 !important; }
 
 /* Activity Type */
 .task.tutorial,
-.tutorial > .sample
-{ background: #000; }
+.tutorial > .sample,
+.sample.tutorial
+{ background: #000 !important; }
 
 .task.workshop,
-.workshop > .sample
-{ background: #00F; }
+.workshop > .sample,
+.sample.workshop
+{ background: #00F !important; }
 
 .task.panel,
-.panel > .sample
-{ background: #0F0; }
+.panel > .sample,
+.sample.panel
+{ background: #0F0 !important; }
 
 .task.keynote,
-.keynote > .sample
-{ background: #0FF; }
+.keynote > .sample,
+.sample.keynote
+{ background: #0FF !important; }
 
 .task.party,
-.party > .sample
-{ background: #F00; }
+.party > .sample,
+.sample.party
+{ background: #F00 !important; }
 
 .task.barcamp,
-.barcamp > .sample
-{ background: #F0F; }
+.barcamp > .sample,
+.sample.barcamp
+{ background: #F0F !important; }
 
 .task.bof,
-.bof > .sample
-{ background: #FF0; }
+.bof > .sample,
+.sample.bof
+{ background: #FF0 !important; }
 
 .task.meeting,
-.meeting > .sample
-{ background: #FFF; }
+.meeting > .sample,
+.sample.meeting
+{ background: #FFF !important; }
 
 .task.gathering,
-.gathering > .sample
-{ background: #088; }
+.gathering > .sample,
+.sample.gathering
+{ background: #088 !important; }
 
 .task.press-conference,
-.press-conference > .sample
-{ background: #808; }
+.press-conference > .sample,
+.sample.press-conference
+{ background: #808 !important; }
 
 .task.conference-session,
-.conference-session > .sample
-{ background: #880; }
+.conference-session > .sample,
+.sample.conference-session
+{ background: #880 !important; }
 
 .task.transport,
-.transport > .sample
-{ background: #468; }
+.transport > .sample,
+.sample.transport
+{ background: #468 !important; }
+
+/* .data .icons */
+#main #calendar .header .data > div > ul > li > span,
+#main #calendar .task .data > div.owners > ul > li > span
+{
+  background: url('/images/icons-symbols.png') no-repeat;
+  width: 16px;
+  height: 16px;
+}
+
+.data .building > span               { background-position: -544px -384px !important; }
+.data .level > span                  { background-position: -256px -320px !important; }
+.data .accessibility > span          { background-position: -224px -32px  !important; }
+.data .map > span                    { background-position: -256px -736px !important; }
+.data .class_room_places > span      { background-position: -352px -384px !important; }
+.data .conference_room_places > span { background-position: -512px -384px !important; }
+.data .standing_room_places > span   { background-position: -192px -384px !important; }
+.data .video_projector > span        { background-position:  0px   -512px !important; }
+.data .sound > span                  { background-position: -64px  -992px !important; }
+.data .internet > span               { background-position: -192px -320px !important; }
+.data .other_devices > span          { background-position:  0px   -800px !important; }
+.data .country > span                { background-position:  -96px  -736px !important; }
+.data .speaker > span                { background-position: -352px -384px !important; }
+
