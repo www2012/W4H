@@ -1,187 +1,455 @@
-/* Details */
-#section_calendar_filters_events .sample,
-#section_calendar_filters_activity_types .sample,
-.task .sample
-{
-  box-shadow: 0 0 2px #AAA;
-  -webkit-box-shadow: 0 0 2px #AAA;
-  -moz-box-shadow: 0 0 2px #AAA;
-}
-
-.sample
+.symbol
 {
   border: 2px solid transparent;
   width: 10px;
   height: 10px;
+  display: block;
+  float: left;
+  margin-right: 4px;
 }
 
 /* Context */
 .task.www2012-conference,
-.www2012-conference > .sample,
-.sample.www2012-conference
-{ border-radius: 8px; border: 2px solid #123 !important; }
+.www2012-conference > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #123 !important; }
 
 .task.w4a,
-.w4a > .sample,
-.sample.w4a
-{ border-radius: 8px; border: 2px solid #456 !important; }
+.w4a > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #456 !important; }
 
 .task.ciuen,
-.ciuen > .sample,
-.sample.ciuen
-{ border-radius: 8px; border: 2px solid #789 !important; }
+.ciuen > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #789 !important; }
 
 .task.webscience,
-.webscience > .sample,
-.sample.webscience
-{ border-radius: 8px; border: 2px solid #ABC !important; }
+.webscience > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #ABC !important; }
 
 .task.w3c,
-.w3c > .sample,
-.sample.w3c
-{ border-radius: 8px; border: 2px solid #DEF !important; }
+.w3c > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #DEF !important; }
 
 .task.www-workshops,
-.www-workshops > .sample,
-.sample.www-workshops
-{ border-radius: 8px; border: 2px solid #FDB !important; }
+.www-workshops > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #FDB !important; }
 
 .task.www-tutorials,
-.www-tutorials > .sample,
-.sample.www-tutorials
-{ border-radius: 8px; border: 2px solid #A86 !important; }
+.www-tutorials > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #A86 !important; }
 
 .task.www-developpers-track,
-.www-developpers-track > .sample,
-.sample.www-developpers-track
-{ border-radius: 8px; border: 2px solid #531 !important; }
+.www-developpers-track > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #531 !important; }
 
 .task.www-industry-track,
-.www-industry-track > .sample,
-.sample.www-industry-track
-{ border-radius: 8px; border: 2px solid #26A !important; }
+.www-industry-track > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #26A !important; }
 
 .task.www-posters-track,
-.www-posters-track > .sample,
-.sample.www-posters-track
-{ border-radius: 8px; border: 2px solid #A5A !important; }
+.www-posters-track > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #A5A !important; }
 
 .task.www-demonstration-track,
-.www-demonstration-track > .sample,
-.sample.www-demonstration-track
-{ border-radius: 8px; border: 2px solid #000 !important; }
+.www-demonstration-track > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #000 !important; }
 
 .task.www-european-track,
-.www-european-track > .sample,
-.sample.www-european-track
-{ border-radius: 8px; border: 2px solid #5A5 !important; }
+.www-european-track > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #5A5 !important; }
 
 .task.www-panels-track,
-.www-panels-track > .sample,
-.sample.www-panels-track
-{ border-radius: 8px; border: 2px solid #951 !important; }
+.www-panels-track > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #951 !important; }
 
 .task.www-plenary-keynotes,
-.www-plenary-keynotes > .sample,
-.sample.www-plenary-keynotes
-{ border-radius: 8px; border: 2px solid #753 !important; }
+.www-plenary-keynotes > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #753 !important; }
 
 .task.www-plenary-panel,
-.www-plenary-panel > .sample,
-.sample.www-plenary-pane
-{ border-radius: 8px; border: 2px solid #852 !important; }
+.www-plenary-panel > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #852 !important; }
 
 .task.global-media-connect,
-.global-media-connect > .sample,
-.sample.global-media-connect
-{ border-radius: 8px; border: 2px solid #258 !important; }
+.global-media-connect > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #258 !important; }
 
 .task.claroline,
-.claroline > .sample,
-.sample.claroline
-{ border-radius: 8px; border: 2px solid #597 !important; }
+.claroline > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #597 !important; }
 
 /* Activity Type */
 .task.tutorial,
-.tutorial > .sample,
-.sample.tutorial
-{ background: #000 !important; }
+.tutorial > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #000 !important; }
 
 .task.workshop,
-.workshop > .sample,
-.sample.workshop
-{ background: #00F !important; }
+.workshop > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #00F !important; }
 
 .task.panel,
-.panel > .sample,
-.sample.panel
-{ background: #0F0 !important; }
+.panel > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #0F0 !important; }
 
 .task.keynote,
-.keynote > .sample,
-.sample.keynote
-{ background: #0FF !important; }
+.keynote > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #0FF !important; }
 
 .task.party,
-.party > .sample,
-.sample.party
-{ background: #F00 !important; }
+.party > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #F00 !important; }
 
 .task.barcamp,
-.barcamp > .sample,
-.sample.barcamp
-{ background: #F0F !important; }
+.barcamp > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #F0F !important; }
 
 .task.bof,
-.bof > .sample,
-.sample.bof
-{ background: #FF0 !important; }
+.bof > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #FF0 !important; }
 
 .task.meeting,
-.meeting > .sample,
-.sample.meeting
-{ background: #FFF !important; }
+.meeting > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #FFF !important; }
 
 .task.gathering,
-.gathering > .sample,
-.sample.gathering
-{ background: #088 !important; }
+.gathering > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #088 !important; }
 
 .task.press-conference,
-.press-conference > .sample,
-.sample.press-conference
-{ background: #808 !important; }
+.press-conference > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #808 !important; }
 
 .task.conference-session,
-.conference-session > .sample,
-.sample.conference-session
-{ background: #880 !important; }
+.conference-session > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #880 !important; }
 
 .task.transport,
-.transport > .sample,
-.sample.transport
-{ background: #468 !important; }
+.transport > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #468 !important; }
 
-/* .data .icons */
-#main #calendar .header .data > div > ul > li > span,
-#main #calendar .task .data > div.owners > ul > li > span
+/* .icon */
+#main #calendar .header .data .symbol,
+#main #calendar .task .data .owners .symbol,
+#section_calendar_filters_roles .symbol
 {
+  border: 0;
   background: url('/images/icons-symbols.png') no-repeat;
   width: 16px;
   height: 16px;
 }
 
-.data .building > span               { background-position: -544px -384px !important; }
-.data .level > span                  { background-position: -256px -320px !important; }
-.data .accessibility > span          { background-position: -224px -32px  !important; }
-.data .map > span                    { background-position: -256px -736px !important; }
-.data .class_room_places > span      { background-position: -352px -384px !important; }
-.data .conference_room_places > span { background-position: -512px -384px !important; }
-.data .standing_room_places > span   { background-position: -192px -384px !important; }
-.data .video_projector > span        { background-position:  0px   -512px !important; }
-.data .sound > span                  { background-position: -64px  -992px !important; }
-.data .internet > span               { background-position: -192px -320px !important; }
-.data .other_devices > span          { background-position:  0px   -800px !important; }
-.data .country > span                { background-position:  -96px  -736px !important; }
-.data .speaker > span                { background-position: -352px -384px !important; }
+/* Location */
+.building > .symbol               { background-position: -544px -384px !important; }
+.level > .symbol                  { background-position: -256px -320px !important; }
+.accessibility > .symbol          { background-position: -224px -32px  !important; }
+.map > .symbol                    { background-position: -256px -736px !important; }
+.class_room_places > .symbol      { background-position: -352px -384px !important; }
+.conference_room_places > .symbol { background-position: -512px -384px !important; }
+.standing_room_places > .symbol   { background-position: -192px -384px !important; }
+.video_projector > .symbol        { background-position:  0px   -512px !important; }
+.sound > .symbol                  { background-position: -64px  -992px !important; }
+.internet > .symbol               { background-position: -192px -320px !important; }
+.other_devices > .symbol          { background-position:  0px   -800px !important; }
+
+/* Role */
+.speaker > .symbol                { background-position: -352px -384px !important; }
+.security-head > .symbol          { background-position: -320px -32px  !important; }
+.general-co-chair > .symbol       { background-position: -320px -32px  !important; }
+.organization-co-chair > .symbol  { background-position: -320px -32px  !important; }
+.volunteer > .symbol              { background-position: -320px -32px  !important; }
+.assistant-student > .symbol      { background-position: -320px -32px  !important; }
+.sponsoring-manager > .symbol     { background-position: -320px -32px  !important; }
+.poster-co-chair > .symbol        { background-position: -320px -32px  !important; }
+.demos-co-chair > .symbol         { background-position: -320px -32px  !important; }
+.tutorials-co-chair > .symbol     { background-position: -320px -32px  !important; }
+.security-Head > .symbol          { background-position: -320px -32px  !important; }
+.member > .symbol                 { background-position: -320px -32px  !important; }
+.project-manager > .symbol        { background-position: -320px -32px  !important; }
+.manager > .symbol                { background-position: -256px -64px  !important; }
+.copil-member > .symbol           { background-position: -320px -32px  !important; }
+.gala-responsible > .symbol       { background-position: -320px -32px  !important; }
+.opening-responsible > .symbol    { background-position: -320px -32px  !important; }
+.welcome-party-responsible > .symbol { background-position: -320px -32px  !important; }
+.registration-manager > .symbol   { background-position: -320px -32px  !important; }
+.metadata-co-chair >  span     { background-position: -320px -32px  !important; }
+.proceedings-co-chair > .symbol   { background-position: -320px -32px  !important; }
+.industry-co-chair > .symbol      { background-position: -320px -32px  !important; }
+.registration-desk-manager > .symbol { background-position: -320px -32px  !important; }
+.registration-desk-member > .symbol  { background-position: -320px -32px  !important; }
+.welcome-desk-manager > .symbol   { background-position: -320px -32px  !important; }
+.welcome-desk-member > .symbol    { background-position: -320px -32px  !important; }
+.journalist > .symbol             { background-position: -320px -32px  !important; }
+.press-chair > .symbol            { background-position: -320px -32px  !important; }
+.communication-chair > .symbol    { background-position: -320px -32px  !important; }
+.exhibitio-manager > .symbol      { background-position: -320px -32px  !important; }
+.technical-manager > .symbol      { background-position: -320px -32px  !important; }
+
+/* Owners */
+#main #calendar .task .data > div.owners > ul:hover
+{
+  background: #EEE;
+}
+
+/* Country */
+#main #calendar .task .data > div.owners > ul > li.country
+{
+  text-indent: -9999px;
+  float: right;
+}
+
+#main #calendar .task .data > div.owners .country > .symbol
+{
+  background: url('/images/flags.png') no-repeat;
+  width: 16px;
+  height: 11px;
+  margin-top: 3px;
+  float: right;
+  border: 0;
+}
+
+.country.flag-ad > .symbol { background-position: -16px 0 !important; }
+.country.flag-ae > .symbol { background-position: -32px 0 !important; }
+.country.flag-af > .symbol { background-position: -48px 0 !important; }
+.country.flag-ag > .symbol { background-position: -64px 0 !important; }
+.country.flag-ai > .symbol { background-position: -80px 0 !important; }
+.country.flag-al > .symbol { background-position: -96px 0 !important; }
+.country.flag-am > .symbol { background-position: -112px 0 !important; }
+.country.flag-an > .symbol { background-position: -128px 0 !important; }
+.country.flag-ao > .symbol { background-position: -144px 0 !important; }
+.country.flag-ar > .symbol { background-position: -160px 0 !important; }
+.country.flag-as > .symbol { background-position: -176px 0 !important; }
+.country.flag-at > .symbol { background-position: -192px 0 !important; }
+.country.flag-au > .symbol { background-position: -208px 0 !important; }
+.country.flag-aw > .symbol { background-position: -224px 0 !important; }
+.country.flag-az > .symbol { background-position: -240px 0 !important; }
+.country.flag-ba > .symbol { background-position: 0 -11px !important; }
+.country.flag-bb > .symbol { background-position: -16px -11px !important; }
+.country.flag-bd > .symbol { background-position: -32px -11px !important; }
+.country.flag-be > .symbol { background-position: -48px -11px !important; }
+.country.flag-bf > .symbol { background-position: -64px -11px !important; }
+.country.flag-bg > .symbol { background-position: -80px -11px !important; }
+.country.flag-bh > .symbol { background-position: -96px -11px !important; }
+.country.flag-bi > .symbol { background-position: -112px -11px !important; }
+.country.flag-bj > .symbol { background-position: -128px -11px !important; }
+.country.flag-bm > .symbol { background-position: -144px -11px !important; }
+.country.flag-bn > .symbol { background-position: -160px -11px !important; }
+.country.flag-bo > .symbol { background-position: -176px -11px !important; }
+.country.flag-br > .symbol { background-position: -192px -11px !important; }
+.country.flag-bs > .symbol { background-position: -208px -11px !important; }
+.country.flag-bt > .symbol { background-position: -224px -11px !important; }
+.country.flag-bv > .symbol { background-position: -240px -11px !important; }
+.country.flag-bw > .symbol { background-position: 0 -22px !important; }
+.country.flag-by > .symbol { background-position: -16px -22px !important; }
+.country.flag-bz > .symbol { background-position: -32px -22px !important; }
+.country.flag-ca > .symbol { background-position: -48px -22px !important; }
+.country.flag-catalonia > .symbol { background-position: -64px -22px !important; }
+.country.flag-cd > .symbol { background-position: -80px -22px !important; }
+.country.flag-cf > .symbol { background-position: -96px -22px !important; }
+.country.flag-cg > .symbol { background-position: -112px -22px !important; }
+.country.flag-ch > .symbol { background-position: -128px -22px !important; }
+.country.flag-ci > .symbol { background-position: -144px -22px !important; }
+.country.flag-ck > .symbol { background-position: -160px -22px !important; }
+.country.flag-cl > .symbol { background-position: -176px -22px !important; }
+.country.flag-cm > .symbol { background-position: -192px -22px !important; }
+.country.flag-cn > .symbol { background-position: -208px -22px !important; }
+.country.flag-co > .symbol { background-position: -224px -22px !important; }
+.country.flag-cr > .symbol { background-position: -240px -22px !important; }
+.country.flag-cu > .symbol { background-position: 0 -33px !important; }
+.country.flag-cv > .symbol { background-position: -16px -33px !important; }
+.country.flag-cy > .symbol { background-position: -32px -33px !important; }
+.country.flag-cz > .symbol { background-position: -48px -33px !important; }
+.country.flag-de > .symbol { background-position: -64px -33px !important; }
+.country.flag-dj > .symbol { background-position: -80px -33px !important; }
+.country.flag-dk > .symbol { background-position: -96px -33px !important; }
+.country.flag-dm > .symbol { background-position: -112px -33px !important; }
+.country.flag-do > .symbol { background-position: -128px -33px !important; }
+.country.flag-dz > .symbol { background-position: -144px -33px !important; }
+.country.flag-ec > .symbol { background-position: -160px -33px !important; }
+.country.flag-ee > .symbol { background-position: -176px -33px !important; }
+.country.flag-eg > .symbol { background-position: -192px -33px !important; }
+.country.flag-eh > .symbol { background-position: -208px -33px !important; }
+.country.flag-england > .symbol { background-position: -224px -33px !important; }
+.country.flag-er > .symbol { background-position: -240px -33px !important; }
+.country.flag-es > .symbol { background-position: 0 -44px !important; }
+.country.flag-et > .symbol { background-position: -16px -44px !important; }
+.country.flag-eu > .symbol { background-position: -32px -44px !important; }
+.country.flag-fi > .symbol { background-position: -48px -44px !important; }
+.country.flag-fj > .symbol { background-position: -64px -44px !important; }
+.country.flag-fk > .symbol { background-position: -80px -44px !important; }
+.country.flag-fm > .symbol { background-position: -96px -44px !important; }
+.country.flag-fo > .symbol { background-position: -112px -44px !important; }
+.country.flag-fr > .symbol { background-position: -128px -44px !important; }
+.country.flag-ga > .symbol { background-position: -144px -44px !important; }
+.country.flag-gb > .symbol { background-position: -160px -44px !important; }
+.country.flag-gd > .symbol { background-position: -176px -44px !important; }
+.country.flag-ge > .symbol { background-position: -192px -44px !important; }
+.country.flag-gf > .symbol { background-position: -208px -44px !important; }
+.country.flag-gg > .symbol { background-position: -224px -44px !important; }
+.country.flag-gh > .symbol { background-position: -240px -44px !important; }
+.country.flag-gi > .symbol { background-position: 0 -55px !important; }
+.country.flag-gl > .symbol { background-position: -16px -55px !important; }
+.country.flag-gm > .symbol { background-position: -32px -55px !important; }
+.country.flag-gn > .symbol { background-position: -48px -55px !important; }
+.country.flag-gp > .symbol { background-position: -64px -55px !important; }
+.country.flag-gq > .symbol { background-position: -80px -55px !important; }
+.country.flag-gr > .symbol { background-position: -96px -55px !important; }
+.country.flag-gs > .symbol { background-position: -112px -55px !important; }
+.country.flag-gt > .symbol { background-position: -128px -55px !important; }
+.country.flag-gu > .symbol { background-position: -144px -55px !important; }
+.country.flag-gw > .symbol { background-position: -160px -55px !important; }
+.country.flag-gy > .symbol { background-position: -176px -55px !important; }
+.country.flag-hk > .symbol { background-position: -192px -55px !important; }
+.country.flag-hm > .symbol { background-position: -208px -55px !important; }
+.country.flag-hn > .symbol { background-position: -224px -55px !important; }
+.country.flag-hr > .symbol { background-position: -240px -55px !important; }
+.country.flag-ht > .symbol { background-position: 0 -66px !important; }
+.country.flag-hu > .symbol { background-position: -16px -66px !important; }
+.country.flag-id > .symbol { background-position: -32px -66px !important; }
+.country.flag-ie > .symbol { background-position: -48px -66px !important; }
+.country.flag-il > .symbol { background-position: -64px -66px !important; }
+.country.flag-im > .symbol { background-position: -80px -66px !important; }
+.country.flag-in > .symbol { background-position: -96px -66px !important; }
+.country.flag-io > .symbol { background-position: -112px -66px !important; }
+.country.flag-iq > .symbol { background-position: -128px -66px !important; }
+.country.flag-ir > .symbol { background-position: -144px -66px !important; }
+.country.flag-is > .symbol { background-position: -160px -66px !important; }
+.country.flag-it > .symbol { background-position: -176px -66px !important; }
+.country.flag-je > .symbol { background-position: -192px -66px !important; }
+.country.flag-jm > .symbol { background-position: -208px -66px !important; }
+.country.flag-jo > .symbol { background-position: -224px -66px !important; }
+.country.flag-jp > .symbol { background-position: -240px -66px !important; }
+.country.flag-ke > .symbol { background-position: 0 -77px !important; }
+.country.flag-kg > .symbol { background-position: -16px -77px !important; }
+.country.flag-kh > .symbol { background-position: -32px -77px !important; }
+.country.flag-ki > .symbol { background-position: -48px -77px !important; }
+.country.flag-km > .symbol { background-position: -64px -77px !important; }
+.country.flag-kn > .symbol { background-position: -80px -77px !important; }
+.country.flag-kp > .symbol { background-position: -96px -77px !important; }
+.country.flag-kr > .symbol { background-position: -112px -77px !important; }
+.country.flag-kw > .symbol { background-position: -128px -77px !important; }
+.country.flag-ky > .symbol { background-position: -144px -77px !important; }
+.country.flag-kz > .symbol { background-position: -160px -77px !important; }
+.country.flag-la > .symbol { background-position: -176px -77px !important; }
+.country.flag-lb > .symbol { background-position: -192px -77px !important; }
+.country.flag-lc > .symbol { background-position: -208px -77px !important; }
+.country.flag-li > .symbol { background-position: -224px -77px !important; }
+.country.flag-lk > .symbol { background-position: -240px -77px !important; }
+.country.flag-lr > .symbol { background-position: 0 -88px !important; }
+.country.flag-ls > .symbol { background-position: -16px -88px !important; }
+.country.flag-lt > .symbol { background-position: -32px -88px !important; }
+.country.flag-lu > .symbol { background-position: -48px -88px !important; }
+.country.flag-lv > .symbol { background-position: -64px -88px !important; }
+.country.flag-ly > .symbol { background-position: -80px -88px !important; }
+.country.flag-ma > .symbol { background-position: -96px -88px !important; }
+.country.flag-mc > .symbol { background-position: -112px -88px !important; }
+.country.flag-md > .symbol { background-position: -128px -88px !important; }
+.country.flag-me > .symbol { background-position: -144px -88px !important; }
+.country.flag-mg > .symbol { background-position: -160px -88px !important; }
+.country.flag-mh > .symbol { background-position: -176px -88px !important; }
+.country.flag-mk > .symbol { background-position: -192px -88px !important; }
+.country.flag-ml > .symbol { background-position: -208px -88px !important; }
+.country.flag-mm > .symbol { background-position: -224px -88px !important; }
+.country.flag-mn > .symbol { background-position: -240px -88px !important; }
+.country.flag-mo > .symbol { background-position: 0 -99px !important; }
+.country.flag-mp > .symbol { background-position: -16px -99px !important; }
+.country.flag-mq > .symbol { background-position: -32px -99px !important; }
+.country.flag-mr > .symbol { background-position: -48px -99px !important; }
+.country.flag-ms > .symbol { background-position: -64px -99px !important; }
+.country.flag-mt > .symbol { background-position: -80px -99px !important; }
+.country.flag-mu > .symbol { background-position: -96px -99px !important; }
+.country.flag-mv > .symbol { background-position: -112px -99px !important; }
+.country.flag-mw > .symbol { background-position: -128px -99px !important; }
+.country.flag-mx > .symbol { background-position: -144px -99px !important; }
+.country.flag-my > .symbol { background-position: -160px -99px !important; }
+.country.flag-mz > .symbol { background-position: -176px -99px !important; }
+.country.flag-na > .symbol { background-position: -192px -99px !important; }
+.country.flag-nc > .symbol { background-position: -208px -99px !important; }
+.country.flag-ne > .symbol { background-position: -224px -99px !important; }
+.country.flag-nf > .symbol { background-position: -240px -99px !important; }
+.country.flag-ng > .symbol { background-position: 0 -110px !important; }
+.country.flag-ni > .symbol { background-position: -16px -110px !important; }
+.country.flag-nl > .symbol { background-position: -32px -110px !important; }
+.country.flag-no > .symbol { background-position: -48px -110px !important; }
+.country.flag-np > .symbol { background-position: -64px -110px !important; }
+.country.flag-nr > .symbol { background-position: -80px -110px !important; }
+.country.flag-nu > .symbol { background-position: -96px -110px !important; }
+.country.flag-nz > .symbol { background-position: -112px -110px !important; }
+.country.flag-om > .symbol { background-position: -128px -110px !important; }
+.country.flag-pa > .symbol { background-position: -144px -110px !important; }
+.country.flag-pe > .symbol { background-position: -160px -110px !important; }
+.country.flag-pf > .symbol { background-position: -176px -110px !important; }
+.country.flag-pg > .symbol { background-position: -192px -110px !important; }
+.country.flag-ph > .symbol { background-position: -208px -110px !important; }
+.country.flag-pk > .symbol { background-position: -224px -110px !important; }
+.country.flag-pl > .symbol { background-position: -240px -110px !important; }
+.country.flag-pm > .symbol { background-position: 0 -121px !important; }
+.country.flag-pn > .symbol { background-position: -16px -121px !important; }
+.country.flag-pr > .symbol { background-position: -32px -121px !important; }
+.country.flag-ps > .symbol { background-position: -48px -121px !important; }
+.country.flag-pt > .symbol { background-position: -64px -121px !important; }
+.country.flag-pw > .symbol { background-position: -80px -121px !important; }
+.country.flag-py > .symbol { background-position: -96px -121px !important; }
+.country.flag-qa > .symbol { background-position: -112px -121px !important; }
+.country.flag-re > .symbol { background-position: -128px -121px !important; }
+.country.flag-ro > .symbol { background-position: -144px -121px !important; }
+.country.flag-rs > .symbol { background-position: -160px -121px !important; }
+.country.flag-ru > .symbol { background-position: -176px -121px !important; }
+.country.flag-rw > .symbol { background-position: -192px -121px !important; }
+.country.flag-sa > .symbol { background-position: -208px -121px !important; }
+.country.flag-sb > .symbol { background-position: -224px -121px !important; }
+.country.flag-sc > .symbol { background-position: -240px -121px !important; }
+.country.flag-scotland > .symbol { background-position: 0 -132px !important; }
+.country.flag-sd > .symbol { background-position: -16px -132px !important; }
+.country.flag-se > .symbol { background-position: -32px -132px !important; }
+.country.flag-sg > .symbol { background-position: -48px -132px !important; }
+.country.flag-sh > .symbol { background-position: -64px -132px !important; }
+.country.flag-si > .symbol { background-position: -80px -132px !important; }
+.country.flag-sk > .symbol { background-position: -96px -132px !important; }
+.country.flag-sl > .symbol { background-position: -112px -132px !important; }
+.country.flag-sm > .symbol { background-position: -128px -132px !important; }
+.country.flag-sn > .symbol { background-position: -144px -132px !important; }
+.country.flag-so > .symbol { background-position: -160px -132px !important; }
+.country.flag-sr > .symbol { background-position: -176px -132px !important; }
+.country.flag-ss > .symbol { background-position: -192px -132px !important; }
+.country.flag-st > .symbol { background-position: -208px -132px !important; }
+.country.flag-sv > .symbol { background-position: -224px -132px !important; }
+.country.flag-sy > .symbol { background-position: -240px -132px !important; }
+.country.flag-sz > .symbol { background-position: 0 -143px !important; }
+.country.flag-tc > .symbol { background-position: -16px -143px !important; }
+.country.flag-td > .symbol { background-position: -32px -143px !important; }
+.country.flag-tf > .symbol { background-position: -48px -143px !important; }
+.country.flag-tg > .symbol { background-position: -64px -143px !important; }
+.country.flag-th > .symbol { background-position: -80px -143px !important; }
+.country.flag-tj > .symbol { background-position: -96px -143px !important; }
+.country.flag-tk > .symbol { background-position: -112px -143px !important; }
+.country.flag-tl > .symbol { background-position: -128px -143px !important; }
+.country.flag-tm > .symbol { background-position: -144px -143px !important; }
+.country.flag-tn > .symbol { background-position: -160px -143px !important; }
+.country.flag-to > .symbol { background-position: -176px -143px !important; }
+.country.flag-tr > .symbol { background-position: -192px -143px !important; }
+.country.flag-tt > .symbol { background-position: -208px -143px !important; }
+.country.flag-tv > .symbol { background-position: -224px -143px !important; }
+.country.flag-tw > .symbol { background-position: -240px -143px !important; }
+.country.flag-tz > .symbol { background-position: 0 -154px !important; }
+.country.flag-ua > .symbol { background-position: -16px -154px !important; }
+.country.flag-ug > .symbol { background-position: -32px -154px !important; }
+.country.flag-um > .symbol { background-position: -48px -154px !important; }
+.country.flag-us > .symbol { background-position: -64px -154px !important; }
+.country.flag-uy > .symbol { background-position: -80px -154px !important; }
+.country.flag-uz > .symbol { background-position: -96px -154px !important; }
+.country.flag-va > .symbol { background-position: -112px -154px !important; }
+.country.flag-vc > .symbol { background-position: -128px -154px !important; }
+.country.flag-ve > .symbol { background-position: -144px -154px !important; }
+.country.flag-vg > .symbol { background-position: -160px -154px !important; }
+.country.flag-vi > .symbol { background-position: -176px -154px !important; }
+.country.flag-vn > .symbol { background-position: -192px -154px !important; }
+.country.flag-vu > .symbol { background-position: -208px -154px !important; }
+.country.flag-wales > .symbol { background-position: -224px -154px !important; }
+.country.flag-wf > .symbol { background-position: -240px -154px !important; }
+.country.flag-ws > .symbol { background-position: 0 -165px !important; }
+.country.flag-ye > .symbol { background-position: -16px -165px !important; }
+.country.flag-yt > .symbol { background-position: -32px -165px !important; }
+.country.flag-za > .symbol { background-position: -48px -165px !important; }
+.country.flag-zm > .symbol { background-position: -64px -165px !important; }
+.country.flag-zw > .symbol { background-position: -80px -165px !important; }
+
 

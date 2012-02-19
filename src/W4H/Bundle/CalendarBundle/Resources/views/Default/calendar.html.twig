@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
   {{ parent() }}
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/calendar.css') }}" />
   {% render "W4HCalendarBundle:default:renderCSS" with {'step': step} %}
 {% endblock %}
 
@@ -69,27 +70,27 @@
             <div class="location">
               <strong>Location:</strong>
               <ul>
-                <li class="building" title="building"><span></span>{{ location.object.building }}</li>
-                <li class="level" title="level"><span></span>{{ location.object.level }}</li>
-                <li class="accessibility" title="accesibility"><span></span>{{ location.object.accessibility }}</li>
-                <li class="map" title="map"><span></span>map {{ location.object.latitude }} {{ location.object.longitude }}</li>
+                <li class="building" title="building"><span class="symbol"></span>{{ location.object.building }}</li>
+                <li class="level" title="level"><span class="symbol"></span>{{ location.object.level }}</li>
+                <li class="accessibility" title="accesibility"><span class="symbol"></span>{{ location.object.accessibility }}</li>
+                <li class="map" title="map"><span class="symbol"></span>map {{ location.object.latitude }} {{ location.object.longitude }}</li>
               </ul>
             </div>
             <div class="place">
               <strong>Places:</strong>
               <ul>
-                <li class="class_room_places" title="class room"><span></span>{{ location.object.classRoomPlaces }}</li>
-                <li class="conference_room_places" title="conference room"><span></span>{{ location.object.conferenceRoomPlaces }}</li>
-                <li class="standing_room_places" title="standing room"><span></span>{{ location.object.standingRoomPlaces }}</li>
+                <li class="class_room_places" title="class room"><span class="symbol"></span>{{ location.object.classRoomPlaces }}</li>
+                <li class="conference_room_places" title="conference room"><span class="symbol"></span>{{ location.object.conferenceRoomPlaces }}</li>
+                <li class="standing_room_places" title="standing room"><span class="symbol"></span>{{ location.object.standingRoomPlaces }}</li>
               </ul>
             </div>
             <div class="equipment">
               <strong>Equipments:</strong>
               <ul>
-                {% if location.object.videoProjector %}<li class="video_projector" title="Video projecteur"><span></span>Vidéo Projecteur</li>{% endif %}
-                {% if location.object.sound %}<li class="sound" title="Sound"><span></span>Sound</li>{% endif %}
-                {% if location.object.internet %}<li class="internet" title="Internet"><span></span>internet</li>{% endif %}
-                {% if location.object.otherDevices %}<li class="other_devices" title="other devices"><span></span>{{ location.object.otherDevices }}</li>{% endif %}
+                {% if location.object.videoProjector %}<li class="video_projector" title="Video projector"><span class="symbol"></span>Video Projector</li>{% endif %}
+                {% if location.object.sound %}<li class="sound" title="Sound"><span class="symbol"></span>Sound</li>{% endif %}
+                {% if location.object.internet %}<li class="internet" title="Internet"><span class="symbol"></span>internet</li>{% endif %}
+                {% if location.object.otherDevices %}<li class="other_devices" title="other devices"><span class="symbol"></span>{{ location.object.otherDevices }}</li>{% endif %}
               </ul>
             </div>
           </div>
@@ -99,9 +100,9 @@
             <li class="unit{% if schedule.is_hour %} hour{% endif %}">
               {% for task in schedule.tasks %}
                 <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }} {{ task.getClasses() }}" draggable="true">
-                  <div class="data">
-                    <header>
-                      <div class="sample {{ task.getClasses() }}"></div>
+                  <div class="data" draggable="false">
+                    <header class="{{ task.getClasses() }}">
+                      <div class="symbol"></div>
                       <label>
                         {{ task.activity.name }}
                       </label>
@@ -109,41 +110,61 @@
                       <p class="ends_at">{{ task.endsAt|date("H:i") }}</p>
                     </header>
                     <div class="description">
-                      <strong><span></span>Description:</strong>
+                      <strong>Description:</strong>
                       <p>{{ task.activity.description }}</p>
                     </div>
                     <div class="owners">
-                      <strong><span></span>With:</strong>
+                      <strong>With:</strong>
                       <ul>
-                        <li class="country hl" title="Suisse">
-                          <span></span>
-                          Suisse
+                        <li class="{{ 'Security Head'|slugify }}" title="{{ 'Security Head'|slugify }}">
+                          <span class="symbol"></span>
+                          Maud CHARAFF
                         </li>
-                        <li class="speaker" title="speaker">
-                          <span></span>
-                          Tim BERNERS LEE
+                        <li class="country flag-fr" title="France">
+                          <span class="symbol"></span>
+                          France
                         </li>
                       </ul>
                       <ul>
-                        <li class="country fr" title="France">
-                          <span></span>
-                          France
+                        <li class="{{ 'manager'|slugify }}" title="{{ 'manager'|slugify }}">
+                          <span class="symbol"></span>
+                          Alain MILLE
                         </li>
+                        <li class="country flag-us" title="United States">
+                          <span class="symbol"></span>
+                          United States
+                        </li>
+                      </ul>
+                      <ul>
                         <li class="speaker" title="speaker">
-                          <span></span>
+                          <span class="symbol"></span>
+                          Tim BERNERS LEE
+                        </li>
+                        <li class="country flag-ch" title="Switzerland">
+                          <span class="symbol"></span>
+                          Switzerland
+                        </li>
+                      </ul>
+                      <ul>
+                        <li class="speaker" title="speaker">
+                          <span class="symbol"></span>
                           Bernard STIEGLER
+                        </li>
+                        <li class="country flag-fr" title="France">
+                          <span class="symbol"></span>
+                          France
                         </li>
                       </ul>
                     </div>
                     <div class="context">
-                      <strong><span></span>Context:</strong>
+                      <strong>Context:</strong>
                       <ul>
-                        <li class="context">
-                          <span class="sample {{ task.event.name |slugify }}"></span>
+                        <li class="context {{ task.event.name |slugify }}">
+                          <span class="symbol"></span>
                           <a href="{{ task.event.websiteUrl }}" target="_blank" title="{{ task.event.name }}">{{ task.event.name }}</a>
                         </li>
-                        <li class="activity_type">
-                          <span class="sample {{ task.activity.activityType.name |slugify }}"></span>
+                        <li class="activity_type {{ task.activity.activityType.name |slugify }}" title="{{ task.activity.activityType.name }}">
+                          <span class="symbol"></span>
                           {{ task.activity.activityType.name }}
                         </li>
                       </ul>

@@ -22,7 +22,7 @@
 
   <label {% for k,v in attr %} {% if k == 'class' %} {% set v = slug ~ ' ' ~ v %} {% endif %} {{ k }}="{{ v }}" {% endfor %}>
     {{- label -}}
-    <div class="sample"></div>
+    <div class="symbol"></div>
   </label>
 {% endblock field_label %}
 
