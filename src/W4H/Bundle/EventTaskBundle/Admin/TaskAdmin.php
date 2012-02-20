@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
+use W4H\Bundle\EventTaskBundle\Form\TaskOwnerType;
 
 class TaskAdmin extends Admin
 {
@@ -17,11 +18,18 @@ class TaskAdmin extends Admin
             ->add('activity')
             ->add('event')
             ->add('location')
-            ->add('owners', 'collection', array(
-                'required' => false,
-                'allow_add' => true,
-                'by_reference' => false
-            ))
+            ->add('owners', 'sonata_type_collection',
+                array(
+                  'required' => false,
+                  'by_reference' => false
+                ),
+                array(
+                  'edit' => 'inline',
+                  'inline' => 'table',
+                  'sortable'  => 'person',
+                  'targetEntity'=> 'W4H\Bundle\EventTaskBundle\TaskOwner'
+                )
+            )
         ;
     }
 
@@ -47,5 +55,22 @@ class TaskAdmin extends Admin
 
     public function validate(ErrorElement $errorElement, $object)
     {
+    }
+
+    public function preUpdate($object)
+    {
+        foreach($object->getOwners() as $owner)
+        {
+          if(!$owner->getTask())
+            $owner->setTask($object);
+        }
+    }
+
+    public function prePersist($object)
+    {
+        foreach($object->getOwners() as $owner)
+        {
+            $owner->setTask($object);
+        }
     }
 }

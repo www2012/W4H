@@ -37,6 +37,12 @@
           <argument>W4H\Bundle\EventTaskBundle\Entity\Task</argument>
           <argument>SonataAdminBundle:CRUD</argument>
         </service>
+        <service id="sonata.admin.taskowner" class="W4H\Bundle\EventTaskBundle\Admin\TaskOwnerAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Task" label="TaskOwner"/>
+          <argument />
+          <argument>W4H\Bundle\EventTaskBundle\Entity\TaskOwner</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+        </service>
         <service id="sonata.admin.event" class="W4H\Bundle\EventTaskBundle\Admin\EventAdmin">
           <tag name="sonata.admin" manager_type="orm" group="Task" label="Context"/>
           <argument />

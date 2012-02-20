@@ -74,6 +74,16 @@ class Task
     }
 
     /**
+     * Add owners proxy
+     *
+     * @param W4H\Bundle\EventTaskBundle\Entity\TaskOwner $owners
+     */
+    public function addOwners(\W4H\Bundle\EventTaskBundle\Entity\TaskOwner $owners)
+    {
+        $this->addTaskOwner($owners);
+    }
+
+    /**
      * Count unit
      *
      * @param integer step (in minutes)
@@ -198,7 +208,7 @@ class Task
     {
         $this->owners = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add owners
      *

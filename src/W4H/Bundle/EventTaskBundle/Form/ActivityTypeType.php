@@ -16,6 +16,6 @@ class ActivityTypeType extends AbstractType
 
     public function getName()
     {
-        return 'w4h_bundle_eventtaskbundle_activitytypetype';
+        return 'w4h_eventtaskbundle_activitytypetype';
     }
 }

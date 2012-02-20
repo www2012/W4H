@@ -28,6 +28,6 @@ class LocationType extends AbstractType
 
     public function getName()
     {
-        return 'w4h_bundle_locationbundle_locationtype';
+        return 'w4h_locationbundle_locationtype';
     }
 }

@@ -16,8 +16,15 @@ class TaskOwnerType extends AbstractType
         ;
     }
 
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'W4H\Bundle\EventTaskBundle\Entity\TaskOwner',
+        );
+    }
+
     public function getName()
     {
-        return 'w4h_bundle_eventtaskbundle_taskownertype';
+        return 'w4h_eventtaskbundle_taskownertype';
     }
 }

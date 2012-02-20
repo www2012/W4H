@@ -6,7 +6,6 @@ use W4H\Bundle\CalendarBundle\Tool\Utils;
 
 class SlugifyTwigExtension extends \Twig_Extension
 {
-
     public function getFilters()
     {
         return array(
@@ -23,5 +22,4 @@ class SlugifyTwigExtension extends \Twig_Extension
     {
         return 'slugify_twig_extension';
     }
-
 }

@@ -17,6 +17,6 @@ class EventType extends AbstractType
 
     public function getName()
     {
-        return 'w4h_bundle_eventtaskbundle_eventtype';
+        return 'w4h_eventtaskbundle_eventtype';
     }
 }

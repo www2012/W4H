@@ -84,7 +84,7 @@ fos_user:
         group_class:  W4H\Bundle\UserBundle\Entity\Group
 
 sonata_user:
-    security_acl:     false
+    security_acl:     true
     class:
         user:         W4H\Bundle\UserBundle\Entity\Person
         group:        W4H\Bundle\UserBundle\Entity\Group
@@ -110,5 +110,9 @@ sonata_admin:
 services:
     twig.extension.slugify:
         class: W4H\Bundle\CalendarBundle\Extension\SlugifyTwigExtension
+        tags:
+            -  { name: twig.extension }
+    twig.extension.country:
+        class: W4H\Bundle\CalendarBundle\Extension\CountryTwigExtension
         tags:
             -  { name: twig.extension }

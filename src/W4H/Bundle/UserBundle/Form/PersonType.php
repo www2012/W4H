@@ -35,12 +35,12 @@ class PersonType extends AbstractType
             ->add('website_url')
             ->add('freeset')
             ->add('socials_account')
-            ->add('country_iso_code')
+            ->add('country_iso_code', 'country')
         ;
     }
 
     public function getName()
     {
-        return 'w4h_bundle_userbundle_persontype';
+        return 'w4h_userbundle_persontype';
     }
 }

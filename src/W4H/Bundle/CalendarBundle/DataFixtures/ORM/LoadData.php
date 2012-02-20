@@ -464,7 +464,7 @@ class LoadData implements FixtureInterface
         $admin->setFirstName('admin');
         $admin->setLastName('ADMIN');
         $admin->setOrganisation('admin');
-        $admin->setCountryIsoCode('us');
+        $admin->setCountryIsoCode('US');
         $manager->persist($admin);
 
         $person_a = new Person();
@@ -475,7 +475,7 @@ class LoadData implements FixtureInterface
         $person_a->setFirstName('Tim');
         $person_a->setLastName('BERNERS LEE');
         $person_a->setOrganisation('W3C');
-        $person_a->setCountryIsoCode('gb');
+        $person_a->setCountryIsoCode('GB');
         $manager->persist($person_a);
 
         $person_b = new Person();
@@ -486,7 +486,7 @@ class LoadData implements FixtureInterface
         $person_b->setFirstName('Alain');
         $person_b->setLastName('MILLE');
         $person_b->setOrganisation('Université LYON 1');
-        $person_b->setCountryIsoCode('fr');
+        $person_b->setCountryIsoCode('FR');
         $manager->persist($person_b);
 
         $person_c = new Person();
@@ -497,7 +497,7 @@ class LoadData implements FixtureInterface
         $person_c->setFirstName('Bernard');
         $person_c->setLastName('STIEGLER');
         $person_c->setOrganisation('Organisation');
-        $person_c->setCountryIsoCode('fr');
+        $person_c->setCountryIsoCode('FR');
         $manager->persist($person_c);
 
         /**************************************/

@@ -23,7 +23,7 @@ class UserAdmin extends BaseAdmin
                 ->add('website_url')
                 ->add('freeset')
                 ->add('socials_account')
-                ->add('country_iso_code')
+                ->add('country_iso_code', 'country')
             ->end()
         ;
     }

@@ -20,6 +20,6 @@ class TaskType extends AbstractType
 
     public function getName()
     {
-        return 'w4h_bundle_eventtaskbundle_tasktype';
+        return 'w4h_eventtaskbundle_tasktype';
     }
 }
