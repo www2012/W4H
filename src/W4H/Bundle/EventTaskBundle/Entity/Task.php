@@ -53,7 +53,7 @@ class Task
     protected $location;
 
     /**
-     * @ORM\OneToMany(targetEntity="TaskOwner", mappedBy="Task", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="TaskOwner", mappedBy="task", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
      */
     public $owners;
 
