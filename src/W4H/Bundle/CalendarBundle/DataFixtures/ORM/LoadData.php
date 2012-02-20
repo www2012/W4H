@@ -10,7 +10,7 @@ use W4H\Bundle\EventTaskBundle\Entity\Task;
 use W4H\Bundle\EventTaskBundle\Entity\TaskOwner;
 use W4H\Bundle\UserBundle\Entity\Role;
 use W4H\Bundle\LocationBundle\Entity\Location;
-
+use W4H\Bundle\UserBundle\Entity\Person;
 
 class LoadData implements FixtureInterface
 {
@@ -452,47 +452,106 @@ class LoadData implements FixtureInterface
         $manager->flush();
 
         /**************************************/
+        // Person
+        /**************************************/
+        $admin = new Person();
+        $admin->setUsername('admin');
+        $admin->setEmail('admin@w3c.og');
+        $admin->setPlainPassword('admin');
+        $admin->setEnabled(true);
+        $admin->setSuperAdmin(true);
+        $admin->addRole(Person::ROLE_SUPER_ADMIN);
+        $admin->setFirstName('admin');
+        $admin->setLastName('ADMIN');
+        $admin->setOrganisation('admin');
+        $admin->setCountryIsoCode('us');
+        $manager->persist($admin);
+
+        $person_a = new Person();
+        $person_a->setUsername('tim');
+        $person_a->setEmail('tim.bernerslee@w3c.og');
+        $person_a->setPlainPassword('123456');
+        $person_a->addRole(Person::ROLE_DEFAULT);
+        $person_a->setFirstName('Tim');
+        $person_a->setLastName('BERNERS LEE');
+        $person_a->setOrganisation('W3C');
+        $person_a->setCountryIsoCode('gb');
+        $manager->persist($person_a);
+
+        $person_b = new Person();
+        $person_b->setUsername('alain');
+        $person_b->setEmail('alin.mille@univ-lyon1.fr');
+        $person_b->setPlainPassword('123456');
+        $person_b->addRole(Person::ROLE_DEFAULT);
+        $person_b->setFirstName('Alain');
+        $person_b->setLastName('MILLE');
+        $person_b->setOrganisation('Université LYON 1');
+        $person_b->setCountryIsoCode('fr');
+        $manager->persist($person_b);
+
+        $person_c = new Person();
+        $person_c->setUsername('bernard');
+        $person_c->setEmail('bernard.stiegler@mail.fr');
+        $person_c->setPlainPassword('123456');
+        $person_c->addRole(Person::ROLE_DEFAULT);
+        $person_c->setFirstName('Bernard');
+        $person_c->setLastName('STIEGLER');
+        $person_c->setOrganisation('Organisation');
+        $person_c->setCountryIsoCode('fr');
+        $manager->persist($person_c);
+
+        /**************************************/
         // Task
         /**************************************/
-        $task = new Task();
-        $task->setStartsAt(new \DateTime('2012-04-16 8:30'));
-        $task->setEndsAt(new \DateTime('2012-04-16 10:00'));
-        $task->setLocation($locations[1]);
-        $task->setActivity($activities[1]);
-        $task->setEvent($events[1]);
-        $manager->persist($task);
+        $task_a = new Task();
+        $task_a->setStartsAt(new \DateTime('2012-04-16 8:30'));
+        $task_a->setEndsAt(new \DateTime('2012-04-16 10:00'));
+        $task_a->setLocation($locations[1]);
+        $task_a->setActivity($activities[1]);
+        $task_a->setEvent($events[1]);
+        $manager->persist($task_a);
 
-        $task = new Task();
-        $task->setStartsAt(new \DateTime('2012-04-16 11:00'));
-        $task->setEndsAt(new \DateTime('2012-04-16 14:00'));
-        $task->setLocation($locations[0]);
-        $task->setActivity($activities[2]);
-        $task->setEvent($events[3]);
-        $manager->persist($task);
+        $task_b = new Task();
+        $task_b->setStartsAt(new \DateTime('2012-04-16 11:00'));
+        $task_b->setEndsAt(new \DateTime('2012-04-16 14:00'));
+        $task_b->setLocation($locations[0]);
+        $task_b->setActivity($activities[2]);
+        $task_b->setEvent($events[3]);
+        $manager->persist($task_b);
 
-        $task = new Task();
-        $task->setStartsAt(new \DateTime('2012-04-16 15:00'));
-        $task->setEndsAt(new \DateTime('2012-04-16 16:45'));
-        $task->setLocation($locations[1]);
-        $task->setActivity($activities[0]);
-        $task->setEvent($events[5]);
-        $manager->persist($task);
+        $task_c = new Task();
+        $task_c->setStartsAt(new \DateTime('2012-04-16 15:00'));
+        $task_c->setEndsAt(new \DateTime('2012-04-16 16:45'));
+        $task_c->setLocation($locations[1]);
+        $task_c->setActivity($activities[0]);
+        $task_c->setEvent($events[5]);
+        $manager->persist($task_c);
 
-        $task = new Task();
-        $task->setStartsAt(new \DateTime('2012-04-16 8:45'));
-        $task->setEndsAt(new \DateTime('2012-04-16 11:00'));
-        $task->setLocation($locations[3]);
-        $task->setActivity($activities[0]);
-        $task->setEvent($events[2]);
-        $manager->persist($task);
+        $task_d = new Task();
+        $task_d->setStartsAt(new \DateTime('2012-04-16 8:45'));
+        $task_d->setEndsAt(new \DateTime('2012-04-16 11:00'));
+        $task_d->setLocation($locations[3]);
+        $task_d->setActivity($activities[0]);
+        $task_d->setEvent($events[2]);
+        $manager->persist($task_d);
 
-        $task = new Task();
-        $task->setStartsAt(new \DateTime('2012-04-16 16:00'));
-        $task->setEndsAt(new \DateTime('2012-04-16 20:30'));
-        $task->setLocation($locations[4]);
-        $task->setActivity($activities[5]);
-        $task->setEvent($events[6]);
-        $manager->persist($task);
+        $task_e = new Task();
+        $task_e->setStartsAt(new \DateTime('2012-04-16 16:00'));
+        $task_e->setEndsAt(new \DateTime('2012-04-16 20:30'));
+        $task_e->setLocation($locations[4]);
+        $task_e->setActivity($activities[5]);
+        $task_e->setEvent($events[6]);
+        $manager->persist($task_e);
+
+        /**************************************/
+        // TaskOwner
+        /**************************************/
+        $to = new TaskOwner();
+        $to->setPerson($person_a);
+        $to->setRole($roles[8]);
+        $to->setTask($task_a);
+        $manager->persist($to);
+
 
         $manager->flush();
     }

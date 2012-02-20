@@ -40,4 +40,74 @@ class TaskOwner
      * @ORM\ManyToOne(targetEntity="W4H\Bundle\EventTaskBundle\Entity\Task")
      */
     protected $task;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set person
+     *
+     * @param W4H\Bundle\UserBundle\Entity\Person $person
+     */
+    public function setPerson(\W4H\Bundle\UserBundle\Entity\Person $person)
+    {
+        $this->person = $person;
+    }
+
+    /**
+     * Get person
+     *
+     * @return W4H\Bundle\UserBundle\Entity\Person 
+     */
+    public function getPerson()
+    {
+        return $this->person;
+    }
+
+    /**
+     * Set role
+     *
+     * @param W4H\Bundle\UserBundle\Entity\Role $role
+     */
+    public function setRole(\W4H\Bundle\UserBundle\Entity\Role $role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * Get role
+     *
+     * @return W4H\Bundle\UserBundle\Entity\Role 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set task
+     *
+     * @param W4H\Bundle\EventTaskBundle\Entity\Task $task
+     */
+    public function setTask(\W4H\Bundle\EventTaskBundle\Entity\Task $task)
+    {
+        $this->task = $task;
+    }
+
+    /**
+     * Get task
+     *
+     * @return W4H\Bundle\EventTaskBundle\Entity\Task 
+     */
+    public function getTask()
+    {
+        return $this->task;
+    }
 }

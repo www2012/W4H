@@ -14,6 +14,7 @@ use W4H\Bundle\CalendarBundle\Tool\Utils;
  *
  * @ORM\Table(name="task")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="W4H\Bundle\EventTaskBundle\Repository\TaskRepository")
  */
 class Task
 {

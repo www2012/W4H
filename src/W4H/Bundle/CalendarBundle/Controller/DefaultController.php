@@ -182,24 +182,12 @@ class DefaultController extends Controller
         $starts_at = date('Y-m-d', $day->getTimestamp());
         // Can be optimized ?
         $em = $this->getDoctrine()->getEntityManager();
-        $qb = $em->createQueryBuilder();
-        $query = $qb->select('task')
-           ->from('W4HEventTaskBundle:Task', 'task')
-           ->where($qb->expr()->eq($qb->expr()->substring('task.starts_at', 1, 10), ':starts_at'))
-           ->setParameter('starts_at', $starts_at);
+        $tasks = $em->getRepository('W4HEventTaskBundle:Task')
+                    ->withTaskOwners($starts_at, $filters);
 
-        if(!empty($filters['locations'][0]))
+        foreach($tasks as $task)
         {
-            $ids = array();
-            foreach($filters['locations'] as $location)
-                $ids[] = $location->getId();
-
-            $qb->andWhere($qb->expr()->in('task.location', $ids));
-        }
-
-        $query = $qb->getQuery();
-        foreach($query->getResult() as $task)
-        {
+            //var_dump($task->getOwners()); die;
             $daily_located_tasks[$task->getLocation()->getId()][Calendar::formatScheduleByStep($task->getStartsAt(), $step)][] = $task;
         }
 

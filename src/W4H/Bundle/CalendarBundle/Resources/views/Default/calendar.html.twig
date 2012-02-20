@@ -115,46 +115,22 @@
                     </div>
                     <div class="owners">
                       <strong>With:</strong>
-                      <ul>
-                        <li class="{{ 'Security Head'|slugify }}" title="{{ 'Security Head'|slugify }}">
-                          <span class="symbol"></span>
-                          Maud CHARAFF
-                        </li>
-                        <li class="country flag-fr" title="France">
-                          <span class="symbol"></span>
-                          France
-                        </li>
-                      </ul>
-                      <ul>
-                        <li class="{{ 'manager'|slugify }}" title="{{ 'manager'|slugify }}">
-                          <span class="symbol"></span>
-                          Alain MILLE
-                        </li>
-                        <li class="country flag-us" title="United States">
-                          <span class="symbol"></span>
-                          United States
-                        </li>
-                      </ul>
-                      <ul>
-                        <li class="speaker" title="speaker">
-                          <span class="symbol"></span>
-                          Tim BERNERS LEE
-                        </li>
-                        <li class="country flag-ch" title="Switzerland">
-                          <span class="symbol"></span>
-                          Switzerland
-                        </li>
-                      </ul>
-                      <ul>
-                        <li class="speaker" title="speaker">
-                          <span class="symbol"></span>
-                          Bernard STIEGLER
-                        </li>
-                        <li class="country flag-fr" title="France">
-                          <span class="symbol"></span>
-                          France
-                        </li>
-                      </ul>
+
+{#
+                      {% for owner in task.getOwners() %}
+                        <ul>
+                          <li class="{{ owner.role |slugify }}" title="{{ owner.role }}">
+                            <span class="symbol"></span>
+                            {{ owner.person }}
+                          </li>
+                          <li class="country flag-{{ owner.person.countryIsoCode }}" title="{{ owner.person.countryIsoCode }}">
+                            <span class="symbol"></span>
+                            {{ owner.person.countryIsoCode }}
+                          </li>
+                        </ul>
+                      {% endfor %}
+#}
+
                     </div>
                     <div class="context">
                       <strong>Context:</strong>
