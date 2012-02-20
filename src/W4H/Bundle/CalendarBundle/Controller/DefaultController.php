@@ -187,7 +187,6 @@ class DefaultController extends Controller
 
         foreach($tasks as $task)
         {
-            //var_dump($task->getOwners()); die;
             $daily_located_tasks[$task->getLocation()->getId()][Calendar::formatScheduleByStep($task->getStartsAt(), $step)][] = $task;
         }
 

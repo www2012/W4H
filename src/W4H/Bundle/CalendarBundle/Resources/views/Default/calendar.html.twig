@@ -116,8 +116,7 @@
                     <div class="owners">
                       <strong>With:</strong>
 
-{#
-                      {% for owner in task.getOwners() %}
+                      {% for owner in task.owners %}
                         <ul>
                           <li class="{{ owner.role |slugify }}" title="{{ owner.role }}">
                             <span class="symbol"></span>
@@ -129,7 +128,6 @@
                           </li>
                         </ul>
                       {% endfor %}
-#}
 
                     </div>
                     <div class="context">

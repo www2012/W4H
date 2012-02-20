@@ -16,9 +16,11 @@ class TaskRepository extends EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('task')
+        $qb->select(array('task', 'owners', 'person', 'role'))
            ->from('W4HEventTaskBundle:Task', 'task')
-//           ->innerJoin('W4HEventTaskBundle:TaskOwner', 'to')
+           ->leftJoin('task.owners', 'owners')
+           ->leftJoin('owners.person', 'person')
+           ->leftJoin('owners.role', 'role')
            ->where($qb->expr()->eq($qb->expr()->substring('task.starts_at', 1, 10), ':starts_at'))
            ->setParameter('starts_at', $starts_at);
 

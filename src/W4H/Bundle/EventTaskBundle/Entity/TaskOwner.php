@@ -37,7 +37,8 @@ class TaskOwner
     protected $role;
 
     /**
-     * @ORM\ManyToOne(targetEntity="W4H\Bundle\EventTaskBundle\Entity\Task")
+     * @ORM\ManyToOne(targetEntity="W4H\Bundle\EventTaskBundle\Entity\Task", inversedBy="owners")
+     * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
      */
     protected $task;
 
