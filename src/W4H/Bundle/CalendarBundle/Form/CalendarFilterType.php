@@ -52,6 +52,13 @@ class CalendarFilterType extends AbstractType
                 'expanded' => true,
                 'multiple' => true
             ))
+            ->add('persons', 'entity', array(
+                'class'    => 'W4HUserBundle:Person',
+                'label'    => 'Person',
+                'required' => true,
+                'expanded' => true,
+                'multiple' => true
+            ))
         ;
     }
 
