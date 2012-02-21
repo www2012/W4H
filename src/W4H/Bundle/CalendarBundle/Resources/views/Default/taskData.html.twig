@@ -1,0 +1,40 @@
+<header class="{{ task.getClasses() }}">
+  <div class="symbol"></div>
+  <label>
+    {{ task.activity.name }}
+  </label>
+  <p class="starts_at">{{ task.startsAt|date("H:i") }}</p>
+  <p class="ends_at">{{ task.endsAt|date("H:i") }}</p>
+</header>
+<div class="description">
+  <strong>Description:</strong>
+  <p>{{ task.activity.description }}</p>
+</div>
+<div class="owners">
+  <strong>With:</strong>
+  {% for owner in task.owners %}
+    <ul>
+      <li class="{{ owner.role |slugify }}" title="{{ owner.role }}">
+        <span class="symbol"></span>
+        {{ owner.person }}
+      </li>
+      <li class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode| country }}">
+        <span class="symbol"></span>
+        {{ owner.person.countryIsoCode| country }}
+      </li>
+    </ul>
+  {% endfor %}
+</div>
+<div class="context">
+  <strong>Context:</strong>
+  <ul>
+    <li class="context {{ task.event.name |slugify }}">
+      <span class="symbol"></span>
+      <a href="{{ task.event.websiteUrl }}" target="_blank" title="{{ task.event.name }}">{{ task.event.name }}</a>
+    </li>
+    <li class="activity_type {{ task.activity.activityType.name |slugify }}" title="{{ task.activity.activityType.name }}">
+      <span class="symbol"></span>
+      {{ task.activity.activityType.name }}
+    </li>
+  </ul>
+</div>

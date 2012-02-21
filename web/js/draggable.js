@@ -34,6 +34,23 @@ function init(){
 
     var notecard = event.originalEvent.dataTransfer.getData("text/plain");
     event.target.appendChild(document.getElementById(notecard));
+
+    var target = event.target.id.split('#');
+    var location_id = target[0];
+    var starts_at = target[1];
+    var task = $('#'+notecard);
+    var action = task.find('a.move').attr('href');
+
+    url = action+'?'+'location_id='+location_id+'&starts_at='+starts_at;
+
+    $.ajax({
+      url: url,
+      success: function(data){
+        task.find('.data').empty();
+        task.find('.data').append(data);
+      }
+    });
+
     // Turn off the default behaviour
     // without this, FF will try and go to a URL with your id's name
     event.preventDefault();

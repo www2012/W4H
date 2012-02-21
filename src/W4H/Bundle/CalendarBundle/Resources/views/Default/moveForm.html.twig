@@ -1,0 +1,6 @@
+<form action="{{ path('calendar_move_task', { 'task_id': form.data.id }) }}" method="post">
+  {{ form_widget(form) }}
+  <div class="actions">
+    <input type="submit" value="Move" />
+  </div>
+</form>

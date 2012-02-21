@@ -95,6 +95,9 @@ sonata_user:
         user:         W4H\Bundle\UserBundle\Entity\Person
         group:        W4H\Bundle\UserBundle\Entity\Group
 
+parameters:
+    sonata.user.admin.user.class: W4H\Bundle\UserBundle\Admin\Entity\UserAdmin
+
 sonata_admin:
 #    security_handler: sonata.admin.security.handler.noop
 #    sonata.admin.security.handler.acl

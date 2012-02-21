@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use W4H\Bundle\CalendarBundle\Model\Calendar;
 use W4H\Bundle\CalendarBundle\Form\CalendarFilterType;
+use W4H\Bundle\CalendarBundle\Form\CalendarMoveTaskType;
+use W4H\Bundle\EventTaskBundle\Form\TaskType;
 
 /**
  * 
@@ -99,5 +101,55 @@ class DefaultController extends Controller
             'calendar'  => $calendar->getCalendar($datetime, $step, $filters),
             'step'      => $step
         );
+    }
+
+    /**
+     * @Route("/calendar/move-task/{task_id}", name="calendar_move_task")
+     */
+    public function moveTaskAction($task_id)
+    {
+        $request = $this->getRequest();
+        $em = $this->getDoctrine()->getEntityManager();
+        $task = $em->getRepository('W4HEventTaskBundle:Task')->find($task_id);
+
+        // is it an Ajax request?
+        if($request->isXmlHttpRequest())
+        {
+            $starts_at = $request->query->get('starts_at');
+            $location_id = $request->query->get('location_id');
+
+            $new_starts_at = \DateTime::createFromFormat('Y-m-d-H-i', $starts_at);
+            $interval = date_diff($task->getStartsAt(), $task->getEndsAt());
+            $new_ends_at = clone $new_starts_at;
+            $new_ends_at->add($interval);
+
+            $location = $em->getRepository('W4HLocationBundle:Location')->find($location_id);
+            $task->setLocation($location);
+            $task->setStartsAt($new_starts_at);
+            $task->setEndsAt($new_ends_at);
+            $em->persist($task);
+
+            $em->flush();
+
+            return $this->render(
+                'W4HCalendarBundle:Default:taskData.html.twig',
+                array('task' => $task)
+            );
+        }
+        else
+        {
+            if($request->getMethod() == 'POST')
+            {
+                die('save move form');
+            }
+            else
+            {
+                $form = $this->createForm(new CalendarMoveTaskType(), $task);
+                return $this->render(
+                    'W4HCalendarBundle:Default:moveForm.html.twig',
+                    array('form' => $form->createView())
+                );
+            }
+        }
     }
 }
