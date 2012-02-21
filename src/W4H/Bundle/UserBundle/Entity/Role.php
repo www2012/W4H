@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @licence: GPL
  *
  * @ORM\Table(name="role")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="W4H\Bundle\UserBundle\Repository\RoleRepository")
  */
 class Role
 {

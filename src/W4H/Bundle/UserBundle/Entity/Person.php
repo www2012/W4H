@@ -7,8 +7,13 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * 
+ * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @author:  Pierre FERROLLIET <pierre.ferrolliet@idci-consulting.fr>
+ * @licence: GPL
+ *
  * @ORM\Table(name="fos_user_user")
+ * @ORM\Entity(repositoryClass="W4H\Bundle\UserBundle\Repository\UserRepository")
  */
 class Person extends BaseUser
 {

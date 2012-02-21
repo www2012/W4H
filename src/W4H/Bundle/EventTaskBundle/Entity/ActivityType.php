@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @licence: GPL
  *
  * @ORM\Table(name="activity_type")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="W4H\Bundle\EventTaskBundle\Repository\ActivityTypeRepository")
  */
 class ActivityType
 {

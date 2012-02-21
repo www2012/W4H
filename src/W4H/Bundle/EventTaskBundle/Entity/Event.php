@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @licence: GPL
  *
  * @ORM\Table(name="event")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="W4H\Bundle\EventTaskBundle\Repository\EventRepository")
  */
 class Event
 {

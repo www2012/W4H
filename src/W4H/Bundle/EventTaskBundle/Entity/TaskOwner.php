@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author:  Pierre FERROLLIET <pierre.ferrolliet@idci-consulting.fr>
  * @licence: GPL
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="W4H\Bundle\EventTaskBundle\Repository\TaskOwnerRepository")
  * @ORM\Table(
  *   name="task_owner",
  *   uniqueConstraints={@ORM\UniqueConstraint(name="TASK_OWNER_UNIQUE", columns={"person_id", "role_id", "task_id"})}
