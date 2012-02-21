@@ -104,7 +104,7 @@ class Calendar
         }
         else
         {
-            $locations = $this->em->getRepository('W4HLocationBundle:Location')->findAll();
+            $locations = $this->em->getRepository('W4HLocationBundle:Location')->findAllOrderedByName();
         }
 
         foreach($locations as $location)
@@ -144,9 +144,9 @@ class Calendar
     {
         $daily_located_tasks = array();
         $starts_at = date('Y-m-d', $day->getTimestamp());
-        // Can be optimized ?
+
         $tasks = $this->em->getRepository('W4HEventTaskBundle:Task')
-                    ->withTaskOwners($starts_at, $filters);
+            ->findAllFiltered($starts_at, $filters);
 
         foreach($tasks as $task)
         {
