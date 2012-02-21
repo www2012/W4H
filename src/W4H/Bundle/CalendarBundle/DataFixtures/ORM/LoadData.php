@@ -506,7 +506,7 @@ class LoadData implements FixtureInterface
         $task_a = new Task();
         $task_a->setStartsAt(new \DateTime('2012-04-16 8:30'));
         $task_a->setEndsAt(new \DateTime('2012-04-16 10:00'));
-        $task_a->setLocation($locations[1]);
+        $task_a->setLocation($locations[6]);
         $task_a->setActivity($activities[1]);
         $task_a->setEvent($events[1]);
         $manager->persist($task_a);
@@ -514,7 +514,7 @@ class LoadData implements FixtureInterface
         $task_b = new Task();
         $task_b->setStartsAt(new \DateTime('2012-04-16 11:00'));
         $task_b->setEndsAt(new \DateTime('2012-04-16 14:00'));
-        $task_b->setLocation($locations[0]);
+        $task_b->setLocation($locations[5]);
         $task_b->setActivity($activities[2]);
         $task_b->setEvent($events[3]);
         $manager->persist($task_b);
@@ -522,7 +522,7 @@ class LoadData implements FixtureInterface
         $task_c = new Task();
         $task_c->setStartsAt(new \DateTime('2012-04-16 15:00'));
         $task_c->setEndsAt(new \DateTime('2012-04-16 16:45'));
-        $task_c->setLocation($locations[1]);
+        $task_c->setLocation($locations[5]);
         $task_c->setActivity($activities[0]);
         $task_c->setEvent($events[5]);
         $manager->persist($task_c);
@@ -530,7 +530,7 @@ class LoadData implements FixtureInterface
         $task_d = new Task();
         $task_d->setStartsAt(new \DateTime('2012-04-16 8:45'));
         $task_d->setEndsAt(new \DateTime('2012-04-16 11:00'));
-        $task_d->setLocation($locations[3]);
+        $task_d->setLocation($locations[4]);
         $task_d->setActivity($activities[0]);
         $task_d->setEvent($events[2]);
         $manager->persist($task_d);
