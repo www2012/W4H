@@ -8,9 +8,11 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * 
+ * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @author:  Pierre FERROLLIET <pierre.ferrolliet@idci-consulting.fr>
+ * @licence: GPL
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
 class W4HCalendarExtension extends Extension
 {
@@ -19,10 +21,41 @@ class W4HCalendarExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        if (!isset($config['schedule_start'])) {
+            throw new \InvalidArgumentException('The "w4h_calendar.schedule_start" option must be set.');
+        }
+        $container->setParameter('w4h_calendar.schedule_start', $config['schedule_start']);
+
+        if (!isset($config['schedule_limit'])) {
+            throw new \InvalidArgumentException('The "w4h_calendar.schedule_limit" option must be set.');
+        }
+        $container->setParameter('w4h_calendar.schedule_limit', $config['schedule_limit']);
+
+        if (!isset($config['schedule_step'])) {
+            throw new \InvalidArgumentException('The "w4h_calendar.schedule_step" option must be set.');
+        }
+        $container->setParameter('w4h_calendar.schedule_step', $config['schedule_step']);
+
+        if (!is_int($config['schedule_start']) || !is_int($config['schedule_step']) || !is_int($config['schedule_limit'])) {
+            throw new \InvalidArgumentException('The w4h_calendar options must be numbers.');
+        }
+
+    }
+
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__.'/../Resources/config/';
+    }
+
+    public function getNamespace()
+    {
+        return "w4h_calendar";
     }
 }

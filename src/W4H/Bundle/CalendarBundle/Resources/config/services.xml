@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="w4h_calendar.schedule_start">6</parameter>
-        <parameter key="w4h_calendar.schedule_limit">22</parameter>
-        <parameter key="w4h_calendar.schedule_step">15</parameter>
+        <parameter key="w4h_calendar.schedule_start"/>
+        <parameter key="w4h_calendar.schedule_limit"/>
+        <parameter key="w4h_calendar.schedule_step"/>
     </parameters>
 
     <services>

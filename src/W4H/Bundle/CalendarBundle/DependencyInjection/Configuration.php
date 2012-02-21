@@ -6,9 +6,11 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * This is the class that validates and merges configuration from your app/config files
+ * 
+ * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @author:  Pierre FERROLLIET <pierre.ferrolliet@idci-consulting.fr>
+ * @licence: GPL
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
  */
 class Configuration implements ConfigurationInterface
 {
@@ -20,10 +22,13 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('w4h_calendar');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
-
+        $rootNode
+            ->children()
+                ->scalarNode('schedule_start')->defaultValue('6')->end()
+                ->scalarNode('schedule_limit')->defaultValue('22')->end()
+                ->scalarNode('schedule_step')->defaultValue('15')->end()
+            ->end()
+        ;
         return $treeBuilder;
     }
 }

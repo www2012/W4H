@@ -9,6 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use W4H\Bundle\CalendarBundle\Model\Calendar;
 use W4H\Bundle\CalendarBundle\Form\CalendarFilterType;
 
+/**
+ * 
+ * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @author:  Pierre FERROLLIET <pierre.ferrolliet@idci-consulting.fr>
+ * @licence: GPL
+ *
+ */
 class DefaultController extends Controller
 {
     /**
