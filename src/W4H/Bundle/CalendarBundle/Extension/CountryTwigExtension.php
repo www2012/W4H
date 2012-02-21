@@ -4,6 +4,13 @@ namespace W4H\Bundle\CalendarBundle\Extension;
 
 use Symfony\Component\Locale\Locale;
 
+/**
+ * 
+ * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @author:  Pierre FERROLLIET <pierre.ferrolliet@idci-consulting.fr>
+ * @licence: GPL
+ *
+ */
 class CountryTwigExtension extends \Twig_Extension
 {
     public function getFilters()

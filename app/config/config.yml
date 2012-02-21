@@ -17,6 +17,12 @@ framework:
         default_locale: %locale%
         auto_start:     true
 
+# W4H calendar configuration
+w4h_calendar:
+    schedule_start: 4
+    schedule_limit: 22
+    schedule_step: 15
+
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
@@ -114,5 +120,9 @@ services:
             -  { name: twig.extension }
     twig.extension.country:
         class: W4H\Bundle\CalendarBundle\Extension\CountryTwigExtension
+        tags:
+            -  { name: twig.extension }
+    twig.extension.date:
+        class: W4H\Bundle\CalendarBundle\Extension\DateTwigExtension
         tags:
             -  { name: twig.extension }
