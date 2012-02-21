@@ -3,6 +3,7 @@ namespace W4H\Bundle\CalendarBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * 
@@ -17,43 +18,61 @@ class CalendarFilterType extends AbstractType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('events', 'entity', array(
+            ->add('event', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:Event',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->findAllOrderedByNameQueryBuilder();
+                },
                 'label'    => 'Context',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('activity_types', 'entity', array(
+            ->add('activity_type', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:ActivityType',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->findAllOrderedByNameQueryBuilder();
+                },
                 'label'    => 'Activity type',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('locations', 'entity', array(
+            ->add('location', 'entity', array(
                 'class'    => 'W4HLocationBundle:Location',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->findAllOrderedByNameQueryBuilder();
+                },
                 'label'    => 'Location',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('activities', 'entity', array(
+            ->add('activity', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:Activity',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->findAllOrderedByNameQueryBuilder();
+                },
                 'label'    => 'Activity',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('roles', 'entity', array(
+            ->add('role', 'entity', array(
                 'class'    => 'W4HUserBundle:Role',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->findAllOrderedByNameQueryBuilder();
+                },
                 'label'    => 'Role',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true
             ))
-            ->add('persons', 'entity', array(
+            ->add('person', 'entity', array(
                 'class'    => 'W4HUserBundle:Person',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->findAllOrderedByLastNameQueryBuilder();
+                },
                 'label'    => 'Person',
                 'required' => true,
                 'expanded' => true,
