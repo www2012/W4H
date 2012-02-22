@@ -441,6 +441,12 @@ body > header > form > .actions > a:hover
   -webkit-box-shadow: 1px 1px 4px #222;
 }
 
+/* Move link */
+.task .move.hidden
+{
+  display: none;
+}
+
 /* .data box */
 
 #main #calendar .data

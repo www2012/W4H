@@ -1,6 +1,10 @@
 $('document').ready(init);
 
 function init(){
+
+  // Hide move link if js is working
+  $('.task .move').addClass('hidden');
+
   $('.room .unit > .task').bind('dragstart', function(event) {
       event.originalEvent.dataTransfer.setData("text/plain", event.target.getAttribute('id'));
   });
