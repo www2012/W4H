@@ -35,7 +35,14 @@ class DateTwigExtension extends \Twig_Extension
      */
     public function pathPreviousDay($name, array $arguments)
     {
-        return $this->router->generate($name, $arguments);
+        $date = date('Y-m-d', mktime(0, 0, 0, $arguments['month'], $arguments['day'], $arguments['year']));
+        $previous_time =  $this->shiftDate($date, "-1 day");
+
+        return $this->router->generate($name, array(
+            'year'  => $previous_time['year'],
+            'month' => $previous_time['month'],
+            'day'   => $previous_time['day']
+        ));
     }
 
     /**
@@ -47,9 +54,34 @@ class DateTwigExtension extends \Twig_Extension
      */
     public function pathNextDay($name, array $arguments)
     {
-        return $this->router->generate($name, $arguments);
+        $date = date('Y-m-d', mktime(0, 0, 0, $arguments['month'], $arguments['day'], $arguments['year']));
+        $next_time =  $this->shiftDate($date, "+1 day");
+
+        return $this->router->generate($name, array(
+            'year'  => $next_time['year'],
+            'month' => $next_time['month'],
+            'day'   => $next_time['day']
+        ));
     }
 
+    /**
+     * Return an array of day, month, year from a date with an offset
+     * 
+     * @param Date $date
+     * @param string $offset
+     * @return array('day', 'month', 'year')
+     */
+    private function shiftDate($date, $offset)
+    {
+        $new_time      = strtotime($date.$offset);
+        $time['day']   = date('d', $new_time);
+        $time['month'] = date('m', $new_time);
+        $time['year']  = date('Y', $new_time);
+
+        return $time;
+    }
+    
+    
     /**
      * Returns the name of the extension
      *
