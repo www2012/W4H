@@ -35,7 +35,7 @@
 {% block content %}
 <div class="topbar">
   <div class="date">
-    <h1>{{ day.year}}-{{ day.month}}-{{ day.day}}</h1>
+    <h1>{{ day.year }}-{{ day.month }}-{{ day.day }}</h1>
     <nav>
       <a class="previous" href="{{ path_previous_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="previous day">
         Previous day

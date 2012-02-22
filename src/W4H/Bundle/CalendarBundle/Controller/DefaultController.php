@@ -27,8 +27,8 @@ class DefaultController extends Controller
     {
         $response = $this->forward('W4HCalendarBundle:Default:displayDate', array(
             'year'  => 2012,
-            'month' => 4,
-            'day'   => 16
+            'month' => str_pad(04, 2, 0, STR_PAD_LEFT),
+            'day'   => str_pad(16, 2, 0, STR_PAD_LEFT)
         ));
 
         return $response;
@@ -65,7 +65,11 @@ class DefaultController extends Controller
         $form  = $this->createForm(new CalendarFilterType());
 
         return array(
-            'day'       => array('year' => $year, 'month' => $month, 'day' => $day),
+            'day'       => array(
+                'year'  => $year,
+                'month' => str_pad($month, 2, 0, STR_PAD_LEFT),
+                'day'   => str_pad($day, 2, 0, STR_PAD_LEFT)
+            ),
             'form'      => $form->createView(),
             'schedules' => $calendar->getSchedules(),
             'calendar'  => $calendar->getCalendar($datetime, $step),
@@ -95,10 +99,14 @@ class DefaultController extends Controller
         }
 
         return array(
-            'day'       => array('year' => $year, 'month' => $month, 'day' => $day),
+            'day'       => array(
+                'year'  => $year,
+                'month' => str_pad($month, 2, 0, STR_PAD_LEFT),
+                'day'   => str_pad($day, 2, 0, STR_PAD_LEFT)
+            ),
             'form'      => $form->createView(),
             'schedules' => $calendar->getSchedules(),
-            'calendar'  => $calendar->getCalendar($datetime, $step, $filters),
+            'calendar'  => $calendar->getCalendar($datetime, $step),
             'step'      => $step
         );
     }
@@ -128,7 +136,6 @@ class DefaultController extends Controller
             $task->setStartsAt($new_starts_at);
             $task->setEndsAt($new_ends_at);
             $em->persist($task);
-
             $em->flush();
 
             return $this->render(
@@ -140,14 +147,31 @@ class DefaultController extends Controller
         {
             if($request->getMethod() == 'POST')
             {
-                die('save move form');
+                $interval = date_diff($task->getStartsAt(), $task->getEndsAt());
+
+                $form = $this->createForm(new CalendarMoveTaskType(), $task);
+                $form->bindRequest($request);
+                if($form->isValid())
+                {
+                    $new_starts_at = $task->getStartsAt();
+                    $new_ends_at = clone $new_starts_at;
+                    $new_ends_at->add($interval);
+
+                    $task->setEndsAt($new_ends_at);
+                    $em->persist($task);
+                    $em->flush();
+                }
+                return $this->redirect($this->generateUrl('calendar'));
             }
             else
             {
                 $form = $this->createForm(new CalendarMoveTaskType(), $task);
                 return $this->render(
                     'W4HCalendarBundle:Default:moveForm.html.twig',
-                    array('form' => $form->createView())
+                    array(
+                        'form' => $form->createView(),
+                        'task' => $task
+                    )
                 );
             }
         }
