@@ -129,7 +129,7 @@
 /* .icon */
 #main #calendar .header .data .symbol,
 #main #calendar .task .data .owners .symbol,
-#section_calendar_filters_roles .symbol
+#section_calendar_filters_role .symbol
 {
   border: 0;
   background: url('/images/icons-symbols.png') no-repeat;
@@ -153,35 +153,34 @@
 /* Role */
 .speaker > .symbol                { background-position: -352px -384px !important; }
 .security-head > .symbol          { background-position: -320px -32px  !important; }
-.general-co-chair > .symbol       { background-position: -320px -32px  !important; }
-.organization-co-chair > .symbol  { background-position: -320px -32px  !important; }
-.volunteer > .symbol              { background-position: -320px -32px  !important; }
-.assistant-student > .symbol      { background-position: -320px -32px  !important; }
-.sponsoring-manager > .symbol     { background-position: -320px -32px  !important; }
-.poster-co-chair > .symbol        { background-position: -320px -32px  !important; }
-.demos-co-chair > .symbol         { background-position: -320px -32px  !important; }
-.tutorials-co-chair > .symbol     { background-position: -320px -32px  !important; }
-.security-Head > .symbol          { background-position: -320px -32px  !important; }
-.member > .symbol                 { background-position: -320px -32px  !important; }
-.project-manager > .symbol        { background-position: -320px -32px  !important; }
-.manager > .symbol                { background-position: -256px -64px  !important; }
-.copil-member > .symbol           { background-position: -320px -32px  !important; }
-.gala-responsible > .symbol       { background-position: -320px -32px  !important; }
-.opening-responsible > .symbol    { background-position: -320px -32px  !important; }
-.welcome-party-responsible > .symbol { background-position: -320px -32px  !important; }
-.registration-manager > .symbol   { background-position: -320px -32px  !important; }
-.metadata-co-chair >  span     { background-position: -320px -32px  !important; }
-.proceedings-co-chair > .symbol   { background-position: -320px -32px  !important; }
-.industry-co-chair > .symbol      { background-position: -320px -32px  !important; }
-.registration-desk-manager > .symbol { background-position: -320px -32px  !important; }
-.registration-desk-member > .symbol  { background-position: -320px -32px  !important; }
-.welcome-desk-manager > .symbol   { background-position: -320px -32px  !important; }
-.welcome-desk-member > .symbol    { background-position: -320px -32px  !important; }
-.journalist > .symbol             { background-position: -320px -32px  !important; }
-.press-chair > .symbol            { background-position: -320px -32px  !important; }
-.communication-chair > .symbol    { background-position: -320px -32px  !important; }
-.exhibitio-manager > .symbol      { background-position: -320px -32px  !important; }
-.technical-manager > .symbol      { background-position: -320px -32px  !important; }
+.general-co-chair > .symbol       { background-position: -32px -64px  !important; }
+.organization-co-chair > .symbol  { background-position: -290px -800px  !important; }
+.volunteer > .symbol              { background-position: -512px -382px  !important; }
+.assistant-student > .symbol      { background-position: -256px -160px  !important; }
+.sponsoring-manager > .symbol     { background-position: -160px -512px  !important; }
+.poster-co-chair > .symbol        { background-position: -96px -160px  !important; }
+.demos-co-chair > .symbol         { background-position: -96px -512px  !important; }
+.tutorials-co-chair > .symbol     { background-position: -416px -416px  !important; }
+.member > .symbol                 { background-position: -192px -384px  !important; }
+.project-manager > .symbol        { background-position: -192px -898px  !important; }
+.manager > .symbol                { background-position: -96px -384px  !important; }
+.copil-member > .symbol           { background-position: -160px -384px  !important; }
+.gala-responsible > .symbol       { background-position: -512px -640px  !important; }
+.opening-responsible > .symbol    { background-position: -224px -320px  !important; }
+.welcome-party-responsible > .symbol { background-position: -128px -288px  !important; }
+.registration-manager > .symbol   { background-position: -192px -416px  !important; }
+.metadata-co-chair >  .symbol     { background-position: -384px -544px  !important; }
+.proceedings-co-chair > .symbol   { background-position: 0px -320px  !important; }
+.industry-co-chair > .symbol      { background-position: -320px -96px  !important; }
+.registration-desk-manager > .symbol { background-position: -256px -416px  !important; }
+.registration-desk-member > .symbol  { background-position: -226px -416px  !important; }
+.welcome-desk-manager > .symbol   { background-position: -64px -288px  !important; }
+.welcome-desk-member > .symbol    { background-position: 0px -288px  !important; }
+.journalist > .symbol             { background-position: 0px 0px  !important; }
+.press-chair > .symbol            { background-position: -576px -384px  !important; }
+.communication-chair > .symbol    { background-position: 0px -160px  !important; }
+.exhibition-manager > .symbol      { background-position: -448px -448px  !important; }
+.technical-manager > .symbol      { background-position: -96px -608px  !important; }
 
 /* Owners */
 #main #calendar .task .data > div.owners > ul:hover
