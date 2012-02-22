@@ -127,5 +127,8 @@ services:
             -  { name: twig.extension }
     twig.extension.date:
         class: W4H\Bundle\CalendarBundle\Extension\DateTwigExtension
+        arguments:
+#            - @service_container
+            - @router
         tags:
             -  { name: twig.extension }

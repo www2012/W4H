@@ -18,9 +18,9 @@
         <span class="symbol"></span>
         {{ owner.person }}
       </li>
-      <li class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode| country }}">
+      <li class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode|country }}">
         <span class="symbol"></span>
-        {{ owner.person.countryIsoCode| country }}
+        {{ owner.person.countryIsoCode|country }}
       </li>
     </ul>
   {% endfor %}

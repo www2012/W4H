@@ -11,6 +11,13 @@ namespace W4H\Bundle\CalendarBundle\Extension;
  */
 class DateTwigExtension extends \Twig_Extension
 {
+    private $router;
+
+    public function __construct($router)
+    {
+        $this->router = $router;
+    }
+
     public function getFunctions()
     {
         return array(
@@ -28,7 +35,7 @@ class DateTwigExtension extends \Twig_Extension
      */
     public function pathPreviousDay($name, array $arguments)
     {
-        return $this->path($name, $arguments);
+        return $this->router->generate($name, $arguments);
     }
 
     /**
@@ -40,7 +47,7 @@ class DateTwigExtension extends \Twig_Extension
      */
     public function pathNextDay($name, array $arguments)
     {
-        return $this->path($name, $arguments);
+        return $this->router->generate($name, $arguments);
     }
 
     /**

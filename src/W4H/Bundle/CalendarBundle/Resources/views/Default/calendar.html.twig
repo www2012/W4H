@@ -37,10 +37,10 @@
   <div class="date">
     <h1>{{ day.year}}-{{ day.month}}-{{ day.day}}</h1>
     <nav>
-      <a class="previous" href="{{ path('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day-1 }) }}" title="previous day">
+      <a class="previous" href="{{ path_previous_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="previous day">
         Previous day
       </a>
-      <a class="next" href="{{ path('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day+1 }) }}" title="next day">
+      <a class="next" href="{{ path_next_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="next day">
         Next day
       </a>
     </nav>
