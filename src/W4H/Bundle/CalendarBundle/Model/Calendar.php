@@ -94,10 +94,10 @@ class Calendar
         $daily_located_tasks = $this->getDailyTasksByLocations($day, $step, $filters);
 
         $locations = array();
-        if(!empty($filters['locations'][0]))
+        if(count($filters['location']) > 0)
         {
             $location_ids = array();
-            foreach($filters['locations'] as $location)
+            foreach($filters['location'] as $location)
                 $location_ids[] = $location->getId();
 
             $locations = $this->em->getRepository('W4HLocationBundle:Location')->findById($location_ids);
