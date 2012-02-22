@@ -37,10 +37,10 @@
   <div class="date">
     <h1>{{ day.year }}-{{ day.month }}-{{ day.day }}</h1>
     <nav>
-      <a class="previous" href="{{ path_previous_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="previous day">
+      <a class="previous" href="{{ path_previous_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Previous day">
         Previous day
       </a>
-      <a class="next" href="{{ path_next_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="next day">
+      <a class="next" href="{{ path_next_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Next day">
         Next day
       </a>
     </nav>
@@ -100,7 +100,7 @@
             <li class="unit{% if schedule.is_hour %} hour{% endif %}" id="{{ location.object.id }}#{{ key }}">
               {% for task in schedule.tasks %}
                 <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }} {{ task.getClasses() }}" draggable="true">
-                  <a class="move" href="{{ path('calendar_move_task', { 'task_id': task.id }) }}">move</a>
+                  <a class="move" href="{{ path('calendar_move_task', { 'task_id': task.id }) }}" title="Move the task">Move the task</a>
                   <div class="data" draggable="false">
                     {% include 'W4HCalendarBundle:Default:taskData.html.twig' with { 'task': task } %}
                   </div>

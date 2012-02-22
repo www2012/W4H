@@ -447,6 +447,19 @@ body > header > form > .actions > a:hover
   display: none;
 }
 
+.task .move
+{
+  display: block;
+  background: url('/images/move.png') no-repeat;
+  text-indent: -9999px;
+  position: absolute;
+  top: -10px;
+  left: 22px;
+  height: 32px;
+  width: 32px;
+  z-index: 60;
+}
+
 /* .data box */
 
 #main #calendar .data
