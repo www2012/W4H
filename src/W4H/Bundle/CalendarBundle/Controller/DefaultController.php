@@ -123,12 +123,12 @@ class DefaultController extends Controller
         // is it an Ajax request?
         if($request->isXmlHttpRequest())
         {
-            $starts_at = $request->query->get('starts_at');
+            $starts_at   = $request->query->get('starts_at');
             $location_id = $request->query->get('location_id');
 
             $new_starts_at = \DateTime::createFromFormat('Y-m-d-H-i', $starts_at);
-            $interval = date_diff($task->getStartsAt(), $task->getEndsAt());
-            $new_ends_at = clone $new_starts_at;
+            $interval      = date_diff($task->getStartsAt(), $task->getEndsAt());
+            $new_ends_at   = clone $new_starts_at;
             $new_ends_at->add($interval);
 
             $location = $em->getRepository('W4HLocationBundle:Location')->find($location_id);
@@ -154,7 +154,7 @@ class DefaultController extends Controller
                 if($form->isValid())
                 {
                     $new_starts_at = $task->getStartsAt();
-                    $new_ends_at = clone $new_starts_at;
+                    $new_ends_at   = clone $new_starts_at;
                     $new_ends_at->add($interval);
 
                     $task->setEndsAt($new_ends_at);
