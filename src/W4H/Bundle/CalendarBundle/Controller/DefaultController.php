@@ -106,7 +106,7 @@ class DefaultController extends Controller
             ),
             'form'      => $form->createView(),
             'schedules' => $calendar->getSchedules(),
-            'calendar'  => $calendar->getCalendar($datetime, $step),
+            'calendar'  => $calendar->getCalendar($datetime, $step, $filters),
             'step'      => $step
         );
     }
