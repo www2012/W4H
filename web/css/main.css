@@ -465,6 +465,7 @@ body > header > form > .actions > a:hover
 #main #calendar .data
 {
   position: absolute;
+  z-index: 99;
   height: auto;
   border: 1px solid #BBB;
   background: #F5F5F5;
@@ -546,9 +547,9 @@ body > header > form > .actions > a:hover
 /* Task .data box  */
 #main #calendar .column.room .task .data
 {
+  left: 46px;
   top: -2px;
-  left: 48px;
-  width: 280px;
+  width: 320px;
   height: auto;
 }
 

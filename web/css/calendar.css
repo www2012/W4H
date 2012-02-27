@@ -9,122 +9,103 @@
 }
 
 /* Context */
-.task.www2012-conference,
-.www2012-conference > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #123 !important; }
-
-.task.w4a,
-.w4a > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #456 !important; }
-
 .task.ciuen,
 .ciuen > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #789 !important; }
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #E4348B !important; }
 
-.task.webscience,
-.webscience > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #ABC !important; }
-
-.task.w3c,
-.w3c > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #DEF !important; }
-
-.task.www-workshops,
-.www-workshops > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #FDB !important; }
-
-.task.www-tutorials,
-.www-tutorials > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #A86 !important; }
-
-.task.www-developpers-track,
-.www-developpers-track > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #531 !important; }
-
-.task.www-industry-track,
-.www-industry-track > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #26A !important; }
-
-.task.www-posters-track,
-.www-posters-track > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #A5A !important; }
-
-.task.www-demonstration-track,
-.www-demonstration-track > .symbol
+.task.common,
+.common > .symbol
 { box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #000 !important; }
-
-.task.www-european-track,
-.www-european-track > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #5A5 !important; }
-
-.task.www-panels-track,
-.www-panels-track > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #951 !important; }
-
-.task.www-plenary-keynotes,
-.www-plenary-keynotes > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #753 !important; }
-
-.task.www-plenary-panel,
-.www-plenary-panel > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #852 !important; }
 
 .task.global-media-connect,
 .global-media-connect > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #258 !important; }
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #009B3E !important; }
 
-.task.claroline,
-.claroline > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #597 !important; }
+.task.salon-du-numrique,
+.salon-du-numrique > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #FFE700 !important; }
+
+.task.w4a,
+.w4a > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #F28C00 !important; }
+
+.task.www2012,
+.www2012 > .symbol
+{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #009FE3 !important; }
+
 
 /* Activity Type */
-.task.tutorial,
-.tutorial > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #000 !important; }
-
-.task.workshop,
-.workshop > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #00F !important; }
-
-.task.panel,
-.panel > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #0F0 !important; }
-
-.task.keynote,
-.keynote > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #0FF !important; }
-
-.task.party,
-.party > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #F00 !important; }
-
 .task.barcamp,
 .barcamp > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #F0F !important; }
+{ box-shadow: 0 0 2px #AAA; background: #9CD0E5 !important; }
 
 .task.bof,
 .bof > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #FF0 !important; }
-
-.task.meeting,
-.meeting > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #FFF !important; }
-
-.task.gathering,
-.gathering > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #088 !important; }
-
-.task.press-conference,
-.press-conference > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #808 !important; }
+{ box-shadow: 0 0 2px #AAA; background: #D8E8C5 !important; }
 
 .task.conference-session,
 .conference-session > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #880 !important; }
+{ box-shadow: 0 0 2px #AAA; background: #FCE9F3 !important; }
+
+.task.gathering,
+.gathering > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #D6B1D4 !important; }
+
+.task.keynote,
+.keynote > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #ED6EA7 !important; }
+
+.task.meeting,
+.meeting > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #F9B259 !important; }
+
+.task.other,
+.other > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #EFEFEF !important; }
+
+.task.panel,
+.panel > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #C199A0 !important; }
+
+.task.party,
+.party > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #FFE8B6 !important; }
+
+.task.press-conference,
+.press-conference > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #D3FF85 !important; }
 
 .task.transport,
 .transport > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #468 !important; }
+{ box-shadow: 0 0 2px #AAA; background: #FFF688 !important; }
+
+.task.tutorial,
+.tutorial > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #FFA599 !important; }
+
+.task.workshop,
+.workshop > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #A5BECD !important; }
+
+.task.demo-tracks,
+.demo-tracks > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #86FCB6 !important; }
+
+.task.industrial-tracks,
+.industrial-tracks > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #83FFED !important; }
+
+.task.european-tracks,
+.european-tracks > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #AEB6FF !important; }
+
+.task.phd-symp,
+.phd-symp > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #C6C48D !important; }
+
+.task.scientific-tracks,
+.scientific-tracks > .symbol
+{ box-shadow: 0 0 2px #AAA; background: #AAEECC !important; }
 
 /* .icon */
 #main #calendar .header .data .symbol,

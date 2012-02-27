@@ -52,6 +52,11 @@ class Task
     protected $location;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $room_configuration;
+
+    /**
      * @ORM\OneToMany(targetEntity="TaskOwner", mappedBy="task", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
      */
     public $owners;
@@ -62,6 +67,11 @@ class Task
             $this->getEvent(),
             $this->getActivity()
         );
+    }
+
+    public function __construct()
+    {
+        $this->owners = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getClasses()
@@ -203,9 +213,25 @@ class Task
     {
         return $this->location;
     }
-    public function __construct()
+
+    /**
+     * Set Room configuration
+     *
+     * @param string $room_configuration
+     */
+    public function setRoomConfiguration($room_configuration)
     {
-        $this->owners = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->room_configuration = $room_configuration;
+    }
+
+    /**
+     * Get Room configuration
+     *
+     * @return string
+     */
+    public function getRoomConfiguration()
+    {
+        return $this->room_configuration;
     }
 
     /**

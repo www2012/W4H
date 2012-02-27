@@ -20,22 +20,12 @@ class LoadData implements FixtureInterface
         // Event
         /**************************************/
         $rows = array(
-            array('www2012 conference', 'http://www2012.org'),
-            array('W4A', ''),
-            array('CIUEN', ''),
-            array('WebScience', ''),
-            array('W3C', 'http://w3c.org'),
-            array('www WorkShops', ''),
-            array('www Tutorials', ''),
-            array('www Developpers Track', ''),
-            array('www Industry Track', ''),
-            array('www Posters Track', ''),
-            array('www Demonstration Track', ''),
-            array('www European Track', ''),
-            array('www Panels Track', ''),
-            array('www Plenary Keynotes', ''),
-            array('www Plenary Panel', ''),
-            array('Global Media Connect', ''),
+            array('CIUEN', 'http://ciuen2012.org'),
+            array('Common', ''),
+            array('Global Media Connect', 'http://www.global-media-connect.com/www2012'),
+            array('Salon du numérique', 'http://lyon-webcapital.org/salon'),
+            array('W4A', 'http://www.w4a.info/2012'),
+            array('WWW2012', 'http://www2012.org'),
         );
 
         $events = array();
@@ -47,16 +37,16 @@ class LoadData implements FixtureInterface
           $events[$k]->setWebsiteUrl($row[1]);
           $manager->persist($events[$k]);
         }
-
         $manager->flush();
 
         /**************************************/
         // ActivityType
         /**************************************/
         $rows = array(
-          'Tutorial', 'Workshop', 'Panel', 'Keynote', 'Party', 'BarCamp', 'BOF',
-          'Meeting', 'Gathering', 'Press Conference', 'Conference Session',
-          'Transport'
+          'BarCamp', 'BOF', 'Conference Session', 'Demo Tracks', 'European Tracks',
+          'Gathering', 'Industrial Tracks', 'Keynote', 'Meeting', 'Other', 'Panel',
+          'Party', 'PhD Symp', 'Press Conference', 'Scientific Tracks', 'Transport',
+          'Tutorial', 'Workshop'
         );
 
         $activity_types = array();
@@ -67,369 +57,96 @@ class LoadData implements FixtureInterface
           $activity_types[$k]->setName($row);
           $manager->persist($activity_types[$k]);
         }
-
         $manager->flush();
 
         /**************************************/
         // Activity
         /**************************************/
-        $rows = array(
-          array('World Digital Solidarity', 'Web everywhere… how to reduce digital divide'),
-          array('Sociological evolution due to web usage', 'How web changes our world'),
-          array('Web Accessibility initiative', 'Web for all… how to allow people with disabilities to use the web'),
-          array('Web for learning', 'How web can impact pedagogy'),
-          array('Massively Multiplayer Online Games', 'Evolution of digital games'),
-          array('Video on the web', 'From Lumière brothers to the movies of future'),
-          array('Industrial track', 'How web can impact the industry'),
-        );
+        $rows = array();
+        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/activity.csv", "r")) !== FALSE) {
+          while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
+            list($name, $description, $activity_type_key) = $data;
+
+            if(!empty($name) && !empty($description) && !empty($activity_type_key)) {
+              $rows[] = array(
+                'name'              => $name,
+                'description'       => $description,
+                'activity_type_key' => $activity_type_key
+              );
+            } else {
+              var_dump($data);
+            }
+          }
+
+          fclose($handle);
+        }
 
         $activities = array();
-
         foreach($rows as $k => $row)
         {
           $activities[$k] = new Activity();
-          $activities[$k]->setName($row[0]);
-          $activities[$k]->setDescription($row[1]);
-          $activities[$k]->setActivityType($activity_types[$k]);
+          $activities[$k]->setName($row['name']);
+          $activities[$k]->setDescription($row['description']);
+          $activities[$k]->setActivityType($activity_types[$row['activity_type_key']]);
           $manager->persist($activities[$k]);
         }
-
         $manager->flush();
 
         /**************************************/
         // Roles
         /**************************************/
         $rows = array(
-            'General Co-Chair', 'Organization Co-Chair', 'Volunteer',
-            'Assistant Student', 'Sponsoring Manager', 'Poster co-chair',
-            'Demos co-chair', 'Tutorials Co-Chair', 'Speaker', 'Security Head',
-            'Member', 'Project Manager', 'Manager', 'Copil Member', 'Gala Responsible',
-            'Opening Responsible', 'Welcome Party Responsible', 'Registration Manager',
-            'Metadata co-chair', 'Proceedings co-chair', 'Industry co-chair',
-            'Registration Desk Manager', 'Registration Desk Member', 'Welcome Desk Manager',
-            'Welcome Desk Member', 'Journalist', 'Press Chair', 'Communication Chair',
-            'Exhibition manager', 'Technical Manager'
+            'Assistant Student', 'Communication Chair', 'Copil Member', 'Demos co-chair',
+            'Exhibition manager', 'Gala Responsible', 'General Co-Chair', 'Industry co-chair',
+            'Journalist', 'Manager', 'Member', 'Metadata co-chair', 'Opening Responsible',
+            'Organization Co-Chair', 'Poster co-chair', 'Press Chair', 'Proceedings co-chair',
+            'Project Manager', 'Registration Desk Manager', 'Registration Desk Member', 'Registration Manager',
+            'Security Head', 'Speaker', 'Sponsoring Manager', 'Technical Manager', 'Tutorials Co-Chair',
+            'Volunteer', 'Welcome Desk Manager', 'Welcome Desk Member', 'Welcome Party Responsible'
         );
 
         $roles = array();
-
         foreach($rows as $k => $row)
         {
           $roles[$k] = new Role();
           $roles[$k]->setName($row);
           $manager->persist($roles[$k]);
         }
-
         $manager->flush();
 
         /**************************************/
         // Location
         /**************************************/
-        $rows = array(
-          array(
-            'Name' => 'Salle Bellecour 1',
-            'Building' => 'Nouveau',
-            'Level' => 'Accueil Bellecour',
-            'ClassRoomPlaces' => 56,
-            'ConferenceRoomPlaces' => 125,
-            'StandingRoomPlaces' => 130,
-            'VideoProjector' => true,
-            'Sound' => false,
-            'Internet' => false,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Bellecour 2',
-            'Building' => 'Nouveau',
-            'Level' => 'Accueil Bellecour',
-            'ClassRoomPlaces' => 84,
-            'ConferenceRoomPlaces' => 154,
-            'StandingRoomPlaces' => 130,
-            'VideoProjector' => true,
-            'Sound' => false,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Bellecour 3',
-            'Building' => 'Nouveau',
-            'Level' => 'Accueil Bellecour',
-            'ClassRoomPlaces' => 68,
-            'ConferenceRoomPlaces' => 105,
-            'StandingRoomPlaces' => 120,
-            'VideoProjector' => true,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Foyers Forum 4, 5 & 6',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Forum',
-            'ClassRoomPlaces' => 0,
-            'ConferenceRoomPlaces' => 0,
-            'StandingRoomPlaces' => 1300,
-            'VideoProjector' => false,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Forum 4',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Forum',
-            'ClassRoomPlaces' => 768,
-            'ConferenceRoomPlaces' => 1297,
-            'StandingRoomPlaces' => 1150,
-            'VideoProjector' => true,
-            'Sound' => false,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Forum 5',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Forum',
-            'ClassRoomPlaces' => 632,
-            'ConferenceRoomPlaces' => 1082,
-            'StandingRoomPlaces' => 1000,
-            'VideoProjector' => true,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Forum 6',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Forum',
-            'ClassRoomPlaces' => 768,
-            'ConferenceRoomPlaces' => 1190,
-            'StandingRoomPlaces' => 1150,
-            'VideoProjector' => true,
-            'Sound' => false,
-            'Internet' => false,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Tête d\'Or 1',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Tête d\'Or',
-            'ClassRoomPlaces' => 46,
-            'ConferenceRoomPlaces' => 99,
-            'StandingRoomPlaces' => 80,
-            'VideoProjector' => false,
-            'Sound' => false,
-            'Internet' => false,
-            'OtherDevices' => 'test',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Tête d\'Or 2',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Tête d\'Or',
-            'ClassRoomPlaces' => 48,
-            'ConferenceRoomPlaces' => 99,
-            'StandingRoomPlaces' => 90,
-            'VideoProjector' => false,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Tête d\'Or 1+2',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Tête d\'Or',
-            'ClassRoomPlaces' => 116,
-            'ConferenceRoomPlaces' => 192,
-            'StandingRoomPlaces' => 170,
-            'VideoProjector' => true,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salon Tête d\'Organization',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Tête d\'Or',
-            'ClassRoomPlaces' => 88,
-            'ConferenceRoomPlaces' => 180,
-            'StandingRoomPlaces' => 150,
-            'VideoProjector' => true,
-            'Sound' => true,
-            'Internet' => false,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Gratte-Ciel 1',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 38,
-            'ConferenceRoomPlaces' => 100,
-            'StandingRoomPlaces' => 80,
-            'VideoProjector' => false,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Gratte-Ciel 2',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 54,
-            'ConferenceRoomPlaces' => 115,
-            'StandingRoomPlaces' => 90,
-            'VideoProjector' => false,
-            'Sound' => true,
-            'Internet' => false,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Gratte-Ciel 3',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 42,
-            'ConferenceRoomPlaces' => 84,
-            'StandingRoomPlaces' => 80,
-            'VideoProjector' => false,
-            'Sound' => false,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salle Gratte-Ciel 1+2+3',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 180,
-            'ConferenceRoomPlaces' => 330,
-            'StandingRoomPlaces' => 240,
-            'VideoProjector' => true,
-            'Sound' => false,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Foyer Gratte-Ciel Rhône',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 0,
-            'ConferenceRoomPlaces' => 50,
-            'StandingRoomPlaces' => 250,
-            'VideoProjector' => true,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Foyer Gratte-Ciel Parc',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 0,
-            'ConferenceRoomPlaces' => 50,
-            'StandingRoomPlaces' => 250,
-            'VideoProjector' => false,
-            'Sound' => true,
-            'Internet' => false,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Foyer Gratte-Ciel Prestige',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 0,
-            'ConferenceRoomPlaces' => 0,
-            'StandingRoomPlaces' => 0,
-            'VideoProjector' => true,
-            'Sound' => false,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Salon Prestige Gratte-Ciel',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 88,
-            'ConferenceRoomPlaces' => 168,
-            'StandingRoomPlaces' => 150,
-            'VideoProjector' => true,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-          array(
-            'Name' => 'Grand Salon Prestige Gratte-Ciel',
-            'Building' => 'Nouveau',
-            'Level' => 'Niveau Gratte-Ciel',
-            'ClassRoomPlaces' => 154,
-            'ConferenceRoomPlaces' => 288,
-            'StandingRoomPlaces' => 200,
-            'VideoProjector' => true,
-            'Sound' => true,
-            'Internet' => true,
-            'OtherDevices' => '',
-            'Accessibility' => 2,
-            'Latitude' => '',
-            'Longitude' => '',
-          ),
-        );
+        $rows = array();
+        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/location.csv", "r")) !== FALSE) {
+          while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
+            list($name, $building, $level, $ClassRoomPlaces, $ConferenceRoomPlaces, $StandingRoomPlaces, $vp, $s, $i, $od, $accessibility, $lat, $lon) = $data;
+
+            if(!empty($name) && !empty($building)) {
+              $rows[] = array(
+                'Name' => $name,
+                'Building' => $building,
+                'Level' => $level,
+                'ClassRoomPlaces' => $ClassRoomPlaces,
+                'ConferenceRoomPlaces' => $ConferenceRoomPlaces,
+                'StandingRoomPlaces' => $StandingRoomPlaces,
+                'VideoProjector' => $vp,
+                'Sound' => $s,
+                'Internet' => $i,
+                'OtherDevices' => $od,
+                'Accessibility' => $accessibility,
+                'Latitude' => $lat,
+                'Longitude' => $lon
+              );
+            } else {
+              var_dump($data);
+            }
+          }
+
+          fclose($handle);
+        }
 
         $locations = array();
-
         foreach($rows as $k => $row)
         {
           $locations[$k] = new Location();
@@ -448,7 +165,6 @@ class LoadData implements FixtureInterface
           $locations[$k]->setLongitude($row['Longitude']);
           $manager->persist($locations[$k]);
         }
-
         $manager->flush();
 
         /**************************************/
@@ -467,92 +183,109 @@ class LoadData implements FixtureInterface
         $admin->setCountryIsoCode('US');
         $manager->persist($admin);
 
-        $person_a = new Person();
-        $person_a->setUsername('tim');
-        $person_a->setEmail('tim.bernerslee@w3c.og');
-        $person_a->setPlainPassword('123456');
-        $person_a->addRole(Person::ROLE_DEFAULT);
-        $person_a->setFirstName('Tim');
-        $person_a->setLastName('BERNERS LEE');
-        $person_a->setOrganisation('W3C');
-        $person_a->setCountryIsoCode('GB');
-        $manager->persist($person_a);
+        $rows = array();
+        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/person.csv", "r")) !== FALSE) {
+          while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
+            list($firstname, $lastname, $organisation, $mail, $country) = $data;
 
-        $person_b = new Person();
-        $person_b->setUsername('alain');
-        $person_b->setEmail('alin.mille@univ-lyon1.fr');
-        $person_b->setPlainPassword('123456');
-        $person_b->addRole(Person::ROLE_DEFAULT);
-        $person_b->setFirstName('Alain');
-        $person_b->setLastName('MILLE');
-        $person_b->setOrganisation('Université LYON 1');
-        $person_b->setCountryIsoCode('FR');
-        $manager->persist($person_b);
+            if(!empty($firstname) && !empty($lastname) && !empty($mail)) {
+              $username = sprintf('%s.%s',trim($firstname), trim($lastname));
+              $password = '123456';
 
-        $person_c = new Person();
-        $person_c->setUsername('bernard');
-        $person_c->setEmail('bernard.stiegler@mail.fr');
-        $person_c->setPlainPassword('123456');
-        $person_c->addRole(Person::ROLE_DEFAULT);
-        $person_c->setFirstName('Bernard');
-        $person_c->setLastName('STIEGLER');
-        $person_c->setOrganisation('Organisation');
-        $person_c->setCountryIsoCode('FR');
-        $manager->persist($person_c);
+              $rows[] = array(
+                'username'      => $username,
+                'password'      => $password,
+                'firstname'     => trim($firstname),
+                'lastname'      => trim($lastname),
+                'organisation'  => trim($organisation),
+                'email'         => trim($mail),
+                'country'       => trim(strtoupper($country))
+              );
+            } else {
+              var_dump($data);
+            }
+          }
+
+          fclose($handle);
+        }
+
+        $persons = array();
+        foreach($rows as $k => $row)
+        {
+          $persons[$k] = new Person();
+          $persons[$k]->setUsername($row['username']);
+          $persons[$k]->setEmail($row['email']);
+          $persons[$k]->setPlainPassword($row['password']);
+          $persons[$k]->addRole(Person::ROLE_DEFAULT);
+          $persons[$k]->setFirstName($row['firstname']);
+          $persons[$k]->setLastName($row['lastname']);
+          $persons[$k]->setOrganisation($row['organisation']);
+          $persons[$k]->setCountryIsoCode($row['country']);
+          $persons[$k]->setEnabled(true);
+          $manager->persist($persons[$k]);
+
+          /* TODO: Send mail */
+          /*
+          $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('send@example.com')
+            ->setTo('recipient@example.com')
+            ->setBody($this->renderView('HelloBundle:Hello:email.txt.twig', array('name' => $name)))
+          ;
+          $this->get('mailer')->send($message);
+          */
+        }
+        $manager->flush();
 
         /**************************************/
         // Task
         /**************************************/
-        $task_a = new Task();
-        $task_a->setStartsAt(new \DateTime('2012-04-16 8:30'));
-        $task_a->setEndsAt(new \DateTime('2012-04-16 10:00'));
-        $task_a->setLocation($locations[6]);
-        $task_a->setActivity($activities[1]);
-        $task_a->setEvent($events[1]);
-        $manager->persist($task_a);
+        $rows = array();
+        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/task.csv", "r")) !== FALSE) {
+          while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
+            list($starts_at, $ends_at, $location_id, $activity_id, $event_id) = $data;
 
-        $task_b = new Task();
-        $task_b->setStartsAt(new \DateTime('2012-04-16 11:00'));
-        $task_b->setEndsAt(new \DateTime('2012-04-16 14:00'));
-        $task_b->setLocation($locations[5]);
-        $task_b->setActivity($activities[2]);
-        $task_b->setEvent($events[3]);
-        $manager->persist($task_b);
+            if(!empty($starts_at) && !empty($ends_at) && !empty($location_id) && !empty($event_id)) {
+              $rows[] = array(
+                'starts_at'     => $starts_at,
+                'ends_at'       => $ends_at,
+                'location_id'   => $location_id,
+                'activity_id'   => $activity_id,
+                'event_id'      => $event_id,
+              );
+            } else {
+              var_dump($data);
+            }
+          }
 
-        $task_c = new Task();
-        $task_c->setStartsAt(new \DateTime('2012-04-16 15:00'));
-        $task_c->setEndsAt(new \DateTime('2012-04-16 16:45'));
-        $task_c->setLocation($locations[5]);
-        $task_c->setActivity($activities[0]);
-        $task_c->setEvent($events[5]);
-        $manager->persist($task_c);
+          fclose($handle);
+        }
 
-        $task_d = new Task();
-        $task_d->setStartsAt(new \DateTime('2012-04-16 8:45'));
-        $task_d->setEndsAt(new \DateTime('2012-04-16 11:00'));
-        $task_d->setLocation($locations[4]);
-        $task_d->setActivity($activities[0]);
-        $task_d->setEvent($events[2]);
-        $manager->persist($task_d);
-
-        $task_e = new Task();
-        $task_e->setStartsAt(new \DateTime('2012-04-16 16:00'));
-        $task_e->setEndsAt(new \DateTime('2012-04-16 20:30'));
-        $task_e->setLocation($locations[4]);
-        $task_e->setActivity($activities[5]);
-        $task_e->setEvent($events[6]);
-        $manager->persist($task_e);
+        $tasks = array();
+        foreach($rows as $k => $row)
+        {
+          $tasks[$k] = new Task();
+          $tasks[$k]->setStartsAt(new \DateTime($row['starts_at']));
+          $tasks[$k]->setEndsAt(new \DateTime($row['ends_at']));
+          $tasks[$k]->setLocation($locations[$row['location_id']]);
+          $tasks[$k]->setActivity($activities[$row['activity_id']]);
+          $tasks[$k]->setEvent($events[$row['event_id']]);
+          $manager->persist($tasks[$k]);
+        }
+        $manager->flush();
 
         /**************************************/
         // TaskOwner
         /**************************************/
+/*
         $to = new TaskOwner();
-        $to->setPerson($person_a);
+        $to->setPerson($persons[0]);
         $to->setRole($roles[8]);
         $to->setTask($task_a);
         $manager->persist($to);
 
 
         $manager->flush();
+*/
     }
 }

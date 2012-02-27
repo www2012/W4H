@@ -33,6 +33,10 @@ class TaskType extends AbstractType
                 'expanded' => false,
                 'multiple' => false
             ))
+            ->add('room_configuration', 'choice', array(
+                'choices'   => array('class' => 'Class', 'conference' => 'Conference'),
+                'required'  => false
+            ))
         ;
     }
 

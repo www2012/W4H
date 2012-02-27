@@ -38,7 +38,7 @@ class DefaultController extends Controller
      * @Route("/renderCSS/{step}", name="calendar_render_css")
      * @Template("W4HCalendarBundle:Default:calendar.css.twig")
      */
-    public function renderCSSAction($step, $columns = 20)
+    public function renderCSSAction($step, $columns = 62)
     {
         $min = 0;
         $max = 24;

@@ -22,6 +22,9 @@ class CountryTwigExtension extends \Twig_Extension
 
     public static function countryFilter($country)
     {
+        if(empty($country))
+          return 'default';
+
         $countries = Locale::getDisplayCountries(
             \Locale::getDefault()
         );

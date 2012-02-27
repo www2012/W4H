@@ -11,8 +11,10 @@ class TaskOwnerAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $em = $this->modelManager->getEntityManager('W4H\Bundle\UserBundle\Entity\Person');
+        $query = $em->getRepository('W4HUserBundle:Person')->findAllOrderedByLastNameQuery();
         $formMapper
-            ->add('person')
+            ->add('person', 'sonata_type_model', array('query' => $query))
             ->add('role')
         ;
 

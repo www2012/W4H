@@ -18,6 +18,9 @@ class TaskAdmin extends Admin
             ->add('activity')
             ->add('event')
             ->add('location')
+            ->add('room_configuration', 'choice', array(
+                'choices'   => array('class' => 'Class', 'conference' => 'Conference')
+            ))
             ->add('owners', 'sonata_type_collection',
                 array(
                   'required' => false,

@@ -10,6 +10,7 @@ Authors
 
  * Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * Alain MILLE <alain.mille@univ-lyon1.fr>
+ * Maud CHARAF <maud.charaf@universite-lyon.fr>
  * Pierre FERROLLIET <pierrre.ferrolliet@idci-consulting.fr>
  * Flavie LABOURE <flavie.laboure@gmail.com>
 
