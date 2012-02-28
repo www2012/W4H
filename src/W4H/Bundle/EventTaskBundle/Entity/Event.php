@@ -48,11 +48,7 @@ class Event
 
     public function __toString()
     {
-        return sprintf('%s %s - %s',
-          $this->getName(),
-          $this->getStartsOn()->format('Y-m-d'),
-          $this->getEndsOn()->format('Y-m-d')
-        );
+        return $this->getName();
     }
 
     /**

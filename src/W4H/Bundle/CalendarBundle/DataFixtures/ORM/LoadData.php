@@ -225,17 +225,6 @@ class LoadData implements FixtureInterface
           $persons[$k]->setCountryIsoCode($row['country']);
           $persons[$k]->setEnabled(true);
           $manager->persist($persons[$k]);
-
-          /* TODO: Send mail */
-          /*
-          $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
-            ->setFrom('send@example.com')
-            ->setTo('recipient@example.com')
-            ->setBody($this->renderView('HelloBundle:Hello:email.txt.twig', array('name' => $name)))
-          ;
-          $this->get('mailer')->send($message);
-          */
         }
         $manager->flush();
 
@@ -247,7 +236,7 @@ class LoadData implements FixtureInterface
           while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
             list($starts_at, $ends_at, $location_id, $activity_id, $event_id) = $data;
 
-            if(!empty($starts_at) && !empty($ends_at) && !empty($location_id) && !empty($event_id)) {
+            if(!empty($starts_at) && !empty($ends_at) && !empty($location_id)) {
               $rows[] = array(
                 'starts_at'     => $starts_at,
                 'ends_at'       => $ends_at,
@@ -280,13 +269,30 @@ class LoadData implements FixtureInterface
         // TaskOwner
         /**************************************/
 /*
-        $to = new TaskOwner();
-        $to->setPerson($persons[0]);
-        $to->setRole($roles[8]);
-        $to->setTask($task_a);
-        $manager->persist($to);
+        $rows = array();
+        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/task_owner.csv", "r")) !== FALSE) {
+          while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
+            list($id, $person_id, $role_id, $task_id) = $data;
 
+            $rows[] = array(
+              'person_id'     => $person_id-2,
+              'role_id'       => $role_id-1,
+              'task_id'       => $task_id-1,
+            );
+          }
 
+          fclose($handle);
+        }
+
+        $task_owners = array();
+        foreach($rows as $k => $row)
+        {
+          $task_owners[$k] = new TaskOwner();
+          $task_owners[$k]->setPerson($persons[$row['person_id']]);
+          $task_owners[$k]->setRole($roles[$row['role_id']]);
+          $task_owners[$k]->setTask($tasks[$row['task_id']]);
+          $manager->persist($task_owners[$k]);
+        }
         $manager->flush();
 */
     }

@@ -16,7 +16,20 @@
     </head>
     <body>
 
-      <header>
+      <header id="header">
+        <a class="toggle_filters" href="#header"></a>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            // Prevent link action
+            $("#header > .toggle_filters").click(function(event){
+              event.preventDefault();
+              if($(this).parent('header').hasClass('show'))
+                $(this).parent('header').removeClass('show');
+              else
+                $(this).parent('header').addClass('show');
+            });
+          });
+        </script>
         {% block header %}{% endblock %}
       </header>
 

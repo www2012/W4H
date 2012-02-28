@@ -26,26 +26,64 @@ a, a:hover, a:active, a:focus
 /* Header */
 body > header
 {
+  position: relative;
   float: left;
-  width: 20%;
-  min-width: 200px;
   height: 100%;
-  background: #444;
   transition: 0.6s;
   -moz-transition: 0.6s;
   -webkit-transition: 0.6s;
   -o-transition: 0.6s;
-  padding: 0;
-  z-index: 84;
-  border-right: 1px solid #BBB;
-  margin-left: -2px;
-  overflow-y: auto;
+  overflow: visible;
+}
+
+body > header .toggle_filters
+{
+  position: absolute;
+  top: 40%;
+  right: -22px;
+  z-index: 1;
+  background: #444;
+  width: 24px;
+  height: 128px;
+  line-height: 128px;
+  text-align: center;
+  text-decoration: none;
+  color: #DDD;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 0 8px 8px 0;
+  -moz-border-radius: 0 8px 8px 0;
+  -webkit-border-radius: 0 8px 8px 0;
+}
+
+body > header .toggle_filters:before
+{
+  content: ">";
+}
+
+body > header.show .toggle_filters:before
+{
+  content: "<";
 }
 
 /* Header nav */
 body > header > form
 {
+  height: 100%;
+  background: #444;
+  padding: 0;
+  z-index: 84;
+  border-right: 1px solid #BBB;
+  margin-left: -2px;
+  overflow: auto;
+  width: 1px;
 }
+
+body > #header.show > form,
+body > #header:target > form
+{
+  width: 320px;
+}
+
 
 body > header > form > div > section
 {
@@ -356,7 +394,7 @@ body > header > form > .actions > a:hover
 /* Room */
 #main #calendar .column.room
 {
-  width: 156px;
+  width: 100px;
   margin: 1px 1px 0;
 }
 
