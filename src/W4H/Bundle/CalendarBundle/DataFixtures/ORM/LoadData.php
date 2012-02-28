@@ -20,12 +20,12 @@ class LoadData implements FixtureInterface
         // Event
         /**************************************/
         $rows = array(
-            array('CIUEN', 'http://ciuen2012.org'),
-            array('Common', ''),
-            array('Global Media Connect', 'http://www.global-media-connect.com/www2012'),
-            array('Salon du numérique', 'http://lyon-webcapital.org/salon'),
-            array('W4A', 'http://www.w4a.info/2012'),
-            array('WWW2012', 'http://www2012.org'),
+            array('CIUEN', 'http://ciuen2012.org', '2012-04-16', '2012-04-18'),
+            array('Common', '', '2012-04-16', '2012-04-20'),
+            array('Global Media Connect', 'http://www.global-media-connect.com/www2012', '2012-04-19', '2012-04-19'),
+            array('Salon du numérique', 'http://lyon-webcapital.org/salon', '2012-04-16', '2012-04-20'),
+            array('W4A', 'http://www.w4a.info/2012', '2012-04-16', '2012-04-17'),
+            array('WWW2012', 'http://www2012.org', '2012-04-16', '2012-04-20'),
         );
 
         $events = array();
@@ -35,6 +35,8 @@ class LoadData implements FixtureInterface
           $events[$k] = new Event();
           $events[$k]->setName($row[0]);
           $events[$k]->setWebsiteUrl($row[1]);
+          $events[$k]->setStartsOn(new \DateTime($row[2]));
+          $events[$k]->setEndsOn(new \DateTime($row[3]));
           $manager->persist($events[$k]);
         }
         $manager->flush();

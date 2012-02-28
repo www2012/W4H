@@ -12,6 +12,8 @@ class EventType extends AbstractType
         $builder
             ->add('name')
             ->add('website_url', 'url')
+            ->add('starts_on', 'date')
+            ->add('ends_on', 'date')
         ;
     }
 

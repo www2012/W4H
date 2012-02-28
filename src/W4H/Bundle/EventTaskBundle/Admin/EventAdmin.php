@@ -14,6 +14,8 @@ class EventAdmin extends Admin
         $formMapper
             ->add('name')
             ->add('website_url')
+            ->add('starts_on')
+            ->add('ends_on')
         ;
     }
 
@@ -30,6 +32,8 @@ class EventAdmin extends Admin
         $listMapper
             ->addIdentifier('name')
             ->addIdentifier('website_url')
+            ->addIdentifier('starts_on')
+            ->addIdentifier('ends_on')
         ;
     }
 

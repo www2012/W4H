@@ -34,9 +34,25 @@ class Event
      */
     protected $website_url;
 
+    /**
+     * @ORM\Column(type="date")
+     * @Assert\Date()
+     */
+    protected $starts_on;
+
+    /**
+     * @ORM\Column(type="date")
+     * @Assert\Date()
+     */
+    protected $ends_on;
+
     public function __toString()
     {
-        return $this->getName();
+        return sprintf('%s %s - %s',
+          $this->getName(),
+          $this->getStartsOn()->format('Y-m-d'),
+          $this->getEndsOn()->format('Y-m-d')
+        );
     }
 
     /**
@@ -87,6 +103,46 @@ class Event
     public function getWebsiteUrl()
     {
         return $this->website_url;
+    }
+
+    /**
+     * Set starts_on
+     *
+     * @param date $startsOn
+     */
+    public function setStartsOn($startsOn)
+    {
+        $this->starts_on = $startsOn;
+    }
+
+    /**
+     * Get starts_on
+     *
+     * @return date
+     */
+    public function getStartsOn()
+    {
+        return $this->starts_on;
+    }
+
+    /**
+     * Set ends_on
+     *
+     * @param date $endsOn
+     */
+    public function setEndsOn($endsOn)
+    {
+        $this->ends_on = $endsOn;
+    }
+
+    /**
+     * Get ends_on
+     *
+     * @return date
+     */
+    public function getEndsOn()
+    {
+        return $this->ends_on;
     }
 
     /**
