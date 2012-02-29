@@ -101,6 +101,7 @@
             <li class="unit{% if schedule.is_hour %} hour{% endif %}" id="{{ location.object.id }}#{{ key }}">
               {% for task in schedule.tasks %}
                 <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }} {{ task.getClasses() }}" draggable="true">
+                  <p>{{ task.activity.activityType.name }}</p>
                   <a class="move" href="{{ path('calendar_move_task', { 'task_id': task.id }) }}" title="Move the task">Move the task</a>
                   <div class="data" draggable="false">
                     {% include 'W4HCalendarBundle:Default:taskData.html.twig' with { 'task': task } %}
