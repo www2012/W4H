@@ -11,101 +11,105 @@
 /* Context */
 .task.ciuen,
 .ciuen > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #E4348B !important; }
-
-.task.common,
-.common > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #000 !important; }
+{ border-radius: 8px; border: 2px solid #ED1C24 !important; }
 
 .task.global-media-connect,
 .global-media-connect > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #009B3E !important; }
+{ border-radius: 8px; border: 2px solid #009B3E !important; }
+
+.task.lcmw,
+.lcmw > .symbol
+{ border-radius: 8px; border: 2px solid #92278F !important; }
+
+.task.off,
+.off > .symbol
+{ border-radius: 8px; border: 2px solid #000 !important; }
 
 .task.salon-du-numrique,
 .salon-du-numrique > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #FFE700 !important; }
+{ border-radius: 8px; border: 2px solid #FFE700 !important; }
 
 .task.w4a,
 .w4a > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #F28C00 !important; }
+{ border-radius: 8px; border: 2px solid #F28C00 !important; }
 
 .task.www2012,
 .www2012 > .symbol
-{ box-shadow: 0 0 2px #AAA; border-radius: 8px; border: 2px solid #009FE3 !important; }
+{ border-radius: 8px; border: 2px solid #009FE3 !important; }
 
 
 /* Activity Type */
 .task.barcamp,
 .barcamp > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #9CD0E5 !important; }
+{ background: #9CD0E5 !important; }
 
 .task.bof,
 .bof > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #D8E8C5 !important; }
+{ background: #D8E8C5 !important; }
 
 .task.conference-session,
 .conference-session > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #FCE9F3 !important; }
+{ background: #FCE9F3 !important; }
 
 .task.gathering,
 .gathering > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #D6B1D4 !important; }
+{ background: #D6B1D4 !important; }
 
 .task.keynote,
 .keynote > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #ED6EA7 !important; }
+{ background: #ED6EA7 !important; }
 
 .task.meeting,
 .meeting > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #F9B259 !important; }
+{ background: #F9B259 !important; }
 
 .task.other,
 .other > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #EFEFEF !important; }
+{ background: #EFEFEF !important; }
 
 .task.panel,
 .panel > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #C199A0 !important; }
+{ background: #C199A0 !important; }
 
 .task.party,
 .party > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #FFE8B6 !important; }
+{ background: #FFE8B6 !important; }
 
-.task.press-conference,
-.press-conference > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #D3FF85 !important; }
+.task.press,
+.press > .symbol
+{ background: #D3FF85 !important; }
 
 .task.transport,
 .transport > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #FFF688 !important; }
+{ background: #FFF688 !important; }
 
 .task.tutorial,
 .tutorial > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #FFA599 !important; }
+{ background: #FFA599 !important; }
 
 .task.workshop,
 .workshop > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #A5BECD !important; }
+{ background: #A5BECD !important; }
 
 .task.demo-tracks,
 .demo-tracks > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #86FCB6 !important; }
+{ background: #86FCB6 !important; }
 
 .task.industrial-tracks,
 .industrial-tracks > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #83FFED !important; }
+{ background: #83FFED !important; }
 
 .task.european-tracks,
 .european-tracks > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #AEB6FF !important; }
+{ background: #AEB6FF !important; }
 
 .task.phd-symp,
 .phd-symp > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #C6C48D !important; }
+{ background: #C6C48D !important; }
 
 .task.scientific-tracks,
 .scientific-tracks > .symbol
-{ box-shadow: 0 0 2px #AAA; background: #AAEECC !important; }
+{ background: #AAEECC !important; }
 
 /* .icon */
 #main #calendar .header .data .symbol,
