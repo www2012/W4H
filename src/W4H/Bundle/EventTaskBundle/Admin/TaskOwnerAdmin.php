@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class TaskOwnerAdmin extends Admin
 {
+    protected $maxPerPage = 50;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $em = $this->modelManager->getEntityManager('W4H\Bundle\UserBundle\Entity\Person');

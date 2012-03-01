@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class EventAdmin extends Admin
 {
+    protected $maxPerPage = 50;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper

@@ -10,6 +10,8 @@ use W4H\Bundle\EventTaskBundle\Form\TaskOwnerType;
 
 class TaskAdmin extends Admin
 {
+    protected $maxPerPage = 50;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
