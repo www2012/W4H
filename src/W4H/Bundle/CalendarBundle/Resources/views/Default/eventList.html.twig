@@ -1,0 +1,49 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}www2012 program | Event list view{% endblock %}
+
+{% block header %}
+  {% include '::headerNav.html.twig' with { 'current': 'event_list' } %}
+{% endblock %}
+
+{% block content %}
+  <div id="main">
+    <div class="topbar">
+      <ul>
+        {% for event in event_tasks %}
+          <li>
+            <a href="#{{ event.object.name }}">{{ event.object.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div id="calendar">
+      {% for event in event_tasks %}
+        {% set count = 1 %}
+        <div id="{{ event.object.name }}" class="content">
+          {% for day in event.days %}
+            <h2>Day {{ count }} - {{ day.display }}</h2>
+            <ul>
+              {% for hour in day.hours %}
+                <li class="hour">
+                  <p class="time">{{ hour.display }}</p>
+                  <ul>
+                    {% for task in hour.tasks %}
+                      <li>
+                        <p class="activity_type">[{{ task.activity.activityType.name }}]</p>
+                        <p class="name">{{ task.activity.name }}</p>
+                        <p class="location">{{ task.location.name }} ({{ task.location.building }} # {{ task.location.level }})</p>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endfor %}
+            </ul>
+            {% set count = count+1 %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

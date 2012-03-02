@@ -1,5 +1,11 @@
 {% extends "::base.html.twig" %}
 
+{% block title %}www2012 program | Per day view{% endblock %}
+
+{% block header %}
+  {% include '::headerNav.html.twig' with { 'current': 'calendar' } %}
+{% endblock %}
+
 {% block stylesheets %}
   {{ parent() }}
   <link rel="stylesheet" type="text/css" href="{{ asset('css/calendar.css') }}" />
@@ -21,101 +27,116 @@
   </script>
 {% endblock %}
 
-{% block header %}
-  {{ parent() }}
-  {% form_theme form 'W4HCalendarBundle:Form:fields.html.twig' %}
-  <form class="accordion" action="{{ path('calendar_filter', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" method="post">
-    {{ form_widget(form) }}
-    <div class="actions">
-      <input type="submit" value="Apply" />
-      <a href="{{ path('calendar') }}">Reset</a>
-    </div>
-  </form>
-{% endblock %}
-
 {% block content %}
-<div class="topbar">
-  <div class="date">
-    <h1>{{ day.year }}-{{ day.month }}-{{ day.day }}</h1>
-    <nav>
-      <a class="previous" href="{{ path_previous_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Previous day">
-        Previous day
-      </a>
-      <a class="next" href="{{ path_next_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Next day">
-        Next day
-      </a>
-    </nav>
-  </div>
-</div>
+  <aside id="filter">
+    <a class="toggle_filters" href="#filter"></a>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // Prevent link action
+        $("#filter > .toggle_filters").click(function(event){
+          event.preventDefault();
+          if($(this).parent('aside').hasClass('show'))
+            $(this).parent('aside').removeClass('show');
+          else
+            $(this).parent('aside').addClass('show');
+        });
+      });
+    </script>
 
-<div id="calendar">
+    {% form_theme form 'W4HCalendarBundle:Form:fields.html.twig' %}
+    <form class="accordion" action="{{ path('calendar_filter', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" method="post">
+      {{ form_widget(form) }}
+      <div class="actions">
+        <input type="submit" value="Apply" />
+        <a href="{{ path('calendar') }}">Reset</a>
+      </div>
+    </form>
+  </aside>
 
-  <div class="column times">
-    <div class="header">
-      <label>hh-mm</label>
+  <div id="main">
+    <div class="topbar">
+      <div class="date">
+        <h1>{{ day.year }}-{{ day.month }}-{{ day.day }}</h1>
+        <nav>
+          <a class="previous" href="{{ path_previous_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Previous day">
+            Previous day
+          </a>
+          <a class="next" href="{{ path_next_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Next day">
+            Next day
+          </a>
+        </nav>
+      </div>
     </div>
-    <ul>
-      {% for key, schedule in schedules %}
-        <li class="unit{% if schedule.is_hour %} hour{% endif %}"><div>{{ key }}</div></li>
-      {% endfor %}
-    </ul>
-  </div>
 
-  <div class="scrollzone">
-    <div class="columns">
-      {% for location in calendar %}
-      <div class="column room">
+    <div id="calendar">
+
+      <div class="column times">
         <div class="header">
-          <label>{{ location.object.name }}</label>
-          <div class="data">
-            <div class="location">
-              <strong>Location:</strong>
-              <ul>
-                <li class="building" title="building"><span class="symbol"></span>{{ location.object.building }}</li>
-                <li class="level" title="level"><span class="symbol"></span>{{ location.object.level }}</li>
-                <li class="accessibility" title="accesibility"><span class="symbol"></span>{{ location.object.accessibility }}</li>
-                <li class="map" title="map"><span class="symbol"></span>map {{ location.object.latitude }} {{ location.object.longitude }}</li>
-              </ul>
-            </div>
-            <div class="place">
-              <strong>Places:</strong>
-              <ul>
-                <li class="class_room_places" title="class room"><span class="symbol"></span>{{ location.object.classRoomPlaces }}</li>
-                <li class="conference_room_places" title="conference room"><span class="symbol"></span>{{ location.object.conferenceRoomPlaces }}</li>
-                <li class="standing_room_places" title="standing room"><span class="symbol"></span>{{ location.object.standingRoomPlaces }}</li>
-              </ul>
-            </div>
-            <div class="equipment">
-              <strong>Equipments:</strong>
-              <ul>
-                {% if location.object.videoProjector %}<li class="video_projector" title="Video projector"><span class="symbol"></span>Video Projector</li>{% endif %}
-                {% if location.object.sound %}<li class="sound" title="Sound"><span class="symbol"></span>Sound</li>{% endif %}
-                {% if location.object.internet %}<li class="internet" title="Internet"><span class="symbol"></span>internet</li>{% endif %}
-                {% if location.object.otherDevices %}<li class="other_devices" title="other devices"><span class="symbol"></span>{{ location.object.otherDevices }}</li>{% endif %}
-              </ul>
-            </div>
-          </div>
+          <label>hh-mm</label>
         </div>
         <ul>
-          {% for key,schedule in location.schedules %}
-            <li class="unit{% if schedule.is_hour %} hour{% endif %}" id="{{ location.object.id }}#{{ key }}">
-              {% for task in schedule.tasks %}
-                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }} {{ task.getClasses() }}" draggable="true">
-                  <p>{{ task.activity.activityType.name }}</p>
-                  <a class="move" href="{{ path('calendar_move_task', { 'task_id': task.id }) }}" title="Move the task">Move the task</a>
-                  <div class="data" draggable="false">
-                    {% include 'W4HCalendarBundle:Default:taskData.html.twig' with { 'task': task } %}
-                  </div>
-                </div>
-              {% endfor %}
-            </li>
+          {% for key, schedule in schedules %}
+            <li class="unit{% if schedule.is_hour %} hour{% endif %}"><div>{{ key }}</div></li>
           {% endfor %}
         </ul>
       </div>
-      {% endfor %}
+
+      <div class="scrollzone">
+        <div class="columns">
+          {% for location in calendar %}
+          <div class="column room">
+            <div class="header">
+              <label>{{ location.object.name }}</label>
+              <div class="data">
+                <div class="location">
+                  <strong>Location:</strong>
+                  <ul>
+                    <li class="building" title="building"><span class="symbol"></span>{{ location.object.building }}</li>
+                    <li class="level" title="level"><span class="symbol"></span>{{ location.object.level }}</li>
+                    <li class="accessibility" title="accesibility"><span class="symbol"></span>{{ location.object.accessibility }}</li>
+                    <li class="map" title="map"><span class="symbol"></span>map {{ location.object.latitude }} {{ location.object.longitude }}</li>
+                  </ul>
+                </div>
+                <div class="place">
+                  <strong>Places:</strong>
+                  <ul>
+                    <li class="class_room_places" title="class room"><span class="symbol"></span>{{ location.object.classRoomPlaces }}</li>
+                    <li class="conference_room_places" title="conference room"><span class="symbol"></span>{{ location.object.conferenceRoomPlaces }}</li>
+                    <li class="standing_room_places" title="standing room"><span class="symbol"></span>{{ location.object.standingRoomPlaces }}</li>
+                  </ul>
+                </div>
+                <div class="equipment">
+                  <strong>Equipments:</strong>
+                  <ul>
+                    {% if location.object.videoProjector %}<li class="video_projector" title="Video projector"><span class="symbol"></span>Video Projector</li>{% endif %}
+                    {% if location.object.sound %}<li class="sound" title="Sound"><span class="symbol"></span>Sound</li>{% endif %}
+                    {% if location.object.internet %}<li class="internet" title="Internet"><span class="symbol"></span>internet</li>{% endif %}
+                    {% if location.object.otherDevices %}<li class="other_devices" title="other devices"><span class="symbol"></span>{{ location.object.otherDevices }}</li>{% endif %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <ul>
+              {% for key,schedule in location.schedules %}
+                <li class="unit{% if schedule.is_hour %} hour{% endif %}" id="{{ location.object.id }}#{{ key }}">
+                  {% for task in schedule.tasks %}
+                    <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }} {{ task.getClasses() }}" draggable="true">
+                      <p>{{ task.activity.activityType.name }}</p>
+                      <a class="move" href="{{ path('calendar_move_task', { 'task_id': task.id }) }}" title="Move the task">Move the task</a>
+                      <div class="data" draggable="false">
+                        {% include 'W4HCalendarBundle:Default:taskData.html.twig' with { 'task': task } %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
     </div>
   </div>
-
-</div>
 {% endblock %}
 

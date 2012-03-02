@@ -52,7 +52,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/calendar/{year}/{month}/{day}", name="calendar_show")
+     * @Route("/{year}/{month}/{day}", name="calendar_show")
      * @Template("W4HCalendarBundle:Default:calendar.html.twig")
      */
     public function displayDateAction($year, $month, $day)
@@ -78,7 +78,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/calendar/{year}/{month}/{day}/filter", name="calendar_filter")
+     * @Route("/{year}/{month}/{day}/filter", name="calendar_filter")
      * @Template("W4HCalendarBundle:Default:calendar.html.twig")
      */
     public function displayDateFilterAction($year, $month, $day)
@@ -112,66 +112,83 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/calendar/move-task/{task_id}", name="calendar_move_task")
+     * @Route("/event-list", name="event_list")
+     * @Template("W4HCalendarBundle:Default:eventList.html.twig")
+     */
+    public function eventListAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $event_tasks = $em->getRepository('W4HEventTaskBundle:Task')->findAllSortByEvent();
+
+        return array('event_tasks' => $event_tasks);
+    }
+
+    /**
+     * @Route("/move-task/{task_id}", name="calendar_move_task")
      */
     public function moveTaskAction($task_id)
     {
-        $request = $this->getRequest();
-        $em = $this->getDoctrine()->getEntityManager();
-        $task = $em->getRepository('W4HEventTaskBundle:Task')->find($task_id);
-        $interval      = date_diff($task->getStartsAt(), $task->getEndsAt());
-
-        // is it an Ajax request?
-        if($request->isXmlHttpRequest())
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if($user->isSuperAdmin())
         {
-            $starts_at   = $request->query->get('starts_at');
-            $location_id = $request->query->get('location_id');
+            $request = $this->getRequest();
+            $em = $this->getDoctrine()->getEntityManager();
+            $task = $em->getRepository('W4HEventTaskBundle:Task')->find($task_id);
+            $interval      = date_diff($task->getStartsAt(), $task->getEndsAt());
 
-            $new_starts_at = \DateTime::createFromFormat('Y-m-d-H-i', $starts_at);
-            $new_ends_at   = clone $new_starts_at;
-            $new_ends_at->add($interval);
-
-            $location = $em->getRepository('W4HLocationBundle:Location')->find($location_id);
-            $task->setLocation($location);
-            $task->setStartsAt($new_starts_at);
-            $task->setEndsAt($new_ends_at);
-            $em->persist($task);
-            $em->flush();
-
-            return $this->render(
-                'W4HCalendarBundle:Default:taskData.html.twig',
-                array('task' => $task)
-            );
-        }
-        else
-        {
-            if($request->getMethod() == 'POST')
+            // is it an Ajax request?
+            if($request->isXmlHttpRequest())
             {
-                $form = $this->createForm(new CalendarMoveTaskType(), $task);
-                $form->bindRequest($request);
-                if($form->isValid())
-                {
-                    $new_starts_at = $task->getStartsAt();
-                    $new_ends_at   = clone $new_starts_at;
-                    $new_ends_at->add($interval);
+                $starts_at   = $request->query->get('starts_at');
+                $location_id = $request->query->get('location_id');
 
-                    $task->setEndsAt($new_ends_at);
-                    $em->persist($task);
-                    $em->flush();
-                }
-                return $this->redirect($this->generateUrl('calendar'));
+                $new_starts_at = \DateTime::createFromFormat('Y-m-d-H-i', $starts_at);
+                $new_ends_at   = clone $new_starts_at;
+                $new_ends_at->add($interval);
+
+                $location = $em->getRepository('W4HLocationBundle:Location')->find($location_id);
+                $task->setLocation($location);
+                $task->setStartsAt($new_starts_at);
+                $task->setEndsAt($new_ends_at);
+                $em->persist($task);
+                $em->flush();
+
+                return $this->render(
+                    'W4HCalendarBundle:Default:taskData.html.twig',
+                    array('task' => $task)
+                );
             }
             else
             {
-                $form = $this->createForm(new CalendarMoveTaskType(), $task);
-                return $this->render(
-                    'W4HCalendarBundle:Default:moveForm.html.twig',
-                    array(
-                        'form' => $form->createView(),
-                        'task' => $task
-                    )
-                );
+                if($request->getMethod() == 'POST')
+                {
+                    $form = $this->createForm(new CalendarMoveTaskType(), $task);
+                    $form->bindRequest($request);
+                    if($form->isValid())
+                    {
+                        $new_starts_at = $task->getStartsAt();
+                        $new_ends_at   = clone $new_starts_at;
+                        $new_ends_at->add($interval);
+
+                        $task->setEndsAt($new_ends_at);
+                        $em->persist($task);
+                        $em->flush();
+                    }
+                    return $this->redirect($this->generateUrl('calendar'));
+                }
+                else
+                {
+                    $form = $this->createForm(new CalendarMoveTaskType(), $task);
+                    return $this->render(
+                        'W4HCalendarBundle:Default:moveForm.html.twig',
+                        array(
+                            'form' => $form->createView(),
+                            'task' => $task
+                        )
+                    );
+                }
             }
         }
     }
 }
+
