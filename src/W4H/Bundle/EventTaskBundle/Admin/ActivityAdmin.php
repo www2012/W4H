@@ -41,7 +41,7 @@ class ActivityAdmin extends Admin
     {
         $errorElement
             ->with('name')
-                ->assertMaxLength(array('limit' => 64))
+                ->assertMaxLength(array('limit' => 128))
             ->end()
         ;
     }
