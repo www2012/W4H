@@ -52,7 +52,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/{year}/{month}/{day}", name="calendar_show")
+     * @Route("/calendar/{year}/{month}/{day}", name="calendar_show")
      * @Template("W4HCalendarBundle:Default:calendar.html.twig")
      */
     public function displayDateAction($year, $month, $day)
@@ -78,7 +78,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/{year}/{month}/{day}/filter", name="calendar_filter")
+     * @Route("/calendar/{year}/{month}/{day}/filter", name="calendar_filter")
      * @Template("W4HCalendarBundle:Default:calendar.html.twig")
      */
     public function displayDateFilterAction($year, $month, $day)
@@ -124,7 +124,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/move-task/{task_id}", name="calendar_move_task")
+     * @Route("/calendar/move-task/{task_id}", name="calendar_move_task")
      */
     public function moveTaskAction($task_id)
     {
