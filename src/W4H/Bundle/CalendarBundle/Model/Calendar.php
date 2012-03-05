@@ -88,7 +88,7 @@ class Calendar
      *
      * Note : schedules format Y-m-d-H-i
      */
-    public function getCalendar(\DateTime $day, $step, array $filters = null)
+    public function getCalendar(\DateTime $day, $step, $filters = array())
     {
         $calendar = array();
         $daily_located_tasks = $this->getDailyTasksByLocations($day, $step, $filters);
@@ -140,7 +140,7 @@ class Calendar
      *      "Y-m-d-H-i" => array(TaskObj1, TaskObj2, TaskObj3, ...)
      *  ))
      */
-    public function getDailyTasksByLocations(\DateTime $day, $step, array $filters = null)
+    public function getDailyTasksByLocations(\DateTime $day, $step, $filters = array())
     {
         $daily_located_tasks = array();
         $starts_at = date('Y-m-d', $day->getTimestamp());

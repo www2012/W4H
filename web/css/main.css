@@ -479,7 +479,6 @@ body > aside > form > .actions > a:hover
 /* Room */
 #main #calendar .column.room
 {
-  width: 100px;
   margin: 1px 1px 0;
 }
 
@@ -496,10 +495,6 @@ body > aside > form > .actions > a:hover
 
 #main #calendar .column.room:hover > .header { background: #CCC; }
 #main #calendar .column.room:hover > .header > label { color: #000; }
-
-#main #calendar .column > ul
-{
-}
 
 #main #calendar .column > ul > li
 {
@@ -531,9 +526,6 @@ body > aside > form > .actions > a:hover
   border-right: none;
 }
 
-/* Unit */
-#main #calendar .column > ul > li.unit { height: 12px; }
-
 /* Task */
 .task
 {
@@ -547,7 +539,6 @@ body > aside > form > .actions > a:hover
   position: relative;
   float: left;
   z-index: 40;
-  width: 92px;
   display: block;
   opacity: 0.8;
 }

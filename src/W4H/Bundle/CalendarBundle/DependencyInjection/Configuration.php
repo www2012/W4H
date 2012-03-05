@@ -27,6 +27,11 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('schedule_start')->defaultValue('6')->end()
                 ->scalarNode('schedule_limit')->defaultValue('22')->end()
                 ->scalarNode('schedule_step')->defaultValue('15')->end()
+                ->scalarNode('schedule_default_year')->end()
+                ->scalarNode('schedule_default_month')->end()
+                ->scalarNode('schedule_default_day')->end()
+                ->scalarNode('schedule_row_height')->defaultValue('12')->end()
+                ->scalarNode('schedule_column_width')->defaultValue('100')->end()
             ->end()
         ;
         return $treeBuilder;

@@ -47,7 +47,7 @@ class TaskRepository extends EntityRepository
      *
      * @return DoctrineQueryBuilder
      */
-    public function findAllFilteredQueryBuilder($starts_at, $filters = null)
+    public function findAllFilteredQueryBuilder($starts_at, $filters = array())
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
@@ -87,7 +87,7 @@ class TaskRepository extends EntityRepository
      *
      * @return DoctrineQuery
      */
-    public function findAllFilteredQuery($starts_at, $filters = null)
+    public function findAllFilteredQuery($starts_at, $filters = array())
     {
         return $this->findAllFilteredQueryBuilder($starts_at, $filters)->getQuery();
     }
@@ -97,7 +97,7 @@ class TaskRepository extends EntityRepository
      *
      * @return Collection Task
      */
-    public function findAllFiltered($starts_at, $filters = null)
+    public function findAllFiltered($starts_at, $filters = array())
     {
         return $this->findAllFilteredQuery($starts_at, $filters)->getResult();
     }

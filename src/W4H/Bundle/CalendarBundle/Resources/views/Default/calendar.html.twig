@@ -3,13 +3,13 @@
 {% block title %}www2012 program | Per day view{% endblock %}
 
 {% block header %}
-  {% include '::headerNav.html.twig' with { 'current': 'calendar' } %}
+  {% include '::headerNav.html.twig' with { 'current': form_action } %}
 {% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
   <link rel="stylesheet" type="text/css" href="{{ asset('css/calendar.css') }}" />
-  {% render "W4HCalendarBundle:Default:renderCSS" with {'step': step} %}
+  {% render "W4HCalendarBundle:Default:renderCSS" with {'step': step, 'columns': calendar|length } %}
 {% endblock %}
 
 {% block javascripts %}

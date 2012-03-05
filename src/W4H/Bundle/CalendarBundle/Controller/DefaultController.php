@@ -27,11 +27,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $filters     = $this->getIndexFilters();
-        $form        = $this->createForm(new UserCalendarFilterType());
-        $form_action = "calendar_filters";
-
-        return $this->renderCalendar(2012, 04, 16, $form, $form_action, $filters);
+        return $this->forward('W4HCalendarBundle:Default:indexFilter', array(
+            'year'  => $this->container->getParameter('w4h_calendar.schedule_default_year'),
+            'month' => $this->container->getParameter('w4h_calendar.schedule_default_month'),
+            'day'   => $this->container->getParameter('w4h_calendar.schedule_default_day'),
+        ));
     }
 
     /**
@@ -39,11 +39,10 @@ class DefaultController extends Controller
      */
     public function indexFilterAction($year, $month, $day)
     {
-        $filters     = $this->getIndexFilters();
-        $form        = $this->createForm(new UserCalendarFilterType());
-        $form_action = "calendar_filters";
+        $filters          = $this->getIndexFilters();
+        $form_action      = 'calendar_filters';
 
-        return $this->renderCalendarFilters($year, $month, $day, $form, $form_action, $filters);
+        return $this->renderCalendar($year, $month, $day, $form_action, $filters);
     }
 
     /**
@@ -65,11 +64,11 @@ class DefaultController extends Controller
      */
     public function myCalendarAction()
     {
-        $filters     = $this->getMyCalendarFilters(); 
-        $form        = $this->createForm(new UserCalendarFilterType());
-        $form_action = "calendar_user_filters";
-
-        return $this->renderCalendar(2012, 04, 16, $form, $form_action, $filters);
+        return $this->forward('W4HCalendarBundle:Default:myCalendarFilter', array(
+            'year'  => $this->container->getParameter('w4h_calendar.schedule_default_year'),
+            'month' => $this->container->getParameter('w4h_calendar.schedule_default_month'),
+            'day'   => $this->container->getParameter('w4h_calendar.schedule_default_day'),
+        ));
     }
 
     /**
@@ -77,11 +76,10 @@ class DefaultController extends Controller
      */
     public function myCalendarFilterAction($year, $month, $day)
     {
-        $filters  = $this->getMyCalendarFilters(); 
-        $form     = $this->createForm(new UserCalendarFilterType());
-        $form_action = "calendar_user_filters";
+        $filters          = $this->getMyCalendarFilters(); 
+        $form_action      = 'calendar_user_filters';
 
-        return $this->renderCalendarFilters($year, $month, $day, $form, $form_action, $filters);
+        return $this->renderCalendar($year, $month, $day, $form_action, $filters);
     }
 
     /**
@@ -102,10 +100,11 @@ class DefaultController extends Controller
      */
     public function adminCalendarAction()
     {
-        $form        = $this->createForm(new CalendarFilterType());
-        $form_action = "calendar_admin_filters";
-
-        return $this->renderCalendar(2012, 04, 16, $form, $form_action);
+        return $this->forward('W4HCalendarBundle:Default:adminCalendarFilter', array(
+            'year'  => $this->container->getParameter('w4h_calendar.schedule_default_year'),
+            'month' => $this->container->getParameter('w4h_calendar.schedule_default_month'),
+            'day'   => $this->container->getParameter('w4h_calendar.schedule_default_day'),
+        ));
     }
 
     /**
@@ -114,17 +113,16 @@ class DefaultController extends Controller
      */
     public function adminCalendarFilterAction($year, $month, $day)
     {
-        $form        = $this->createForm(new CalendarFilterType());
-        $form_action = "calendar_admin_filters";
+        $form_action      = 'calendar_admin_filters';
 
-        return $this->renderCalendarFilters($year, $month, $day, $form, $form_action);
+        return $this->renderCalendar($year, $month, $day, $form_action);
     }
 
     /**
      * @Route("/renderCSS/{step}", name="calendar_render_css")
      * @Template("W4HCalendarBundle:Default:calendar.css.twig")
      */
-    public function renderCSSAction($step, $columns = 62)
+    public function renderCSSAction($step, $columns)
     {
         $min = 0;
         $max = 24;
@@ -132,8 +130,10 @@ class DefaultController extends Controller
         $rows  = ($max - $min) * 60 / $step;
 
         return array(
-          'rows' => $rows,
-          'columns' => $columns
+          'rows'        => $rows,
+          'rowHeight'   => $this->container->getParameter('w4h_calendar.schedule_row_height'),
+          'columns'     => $columns,
+          'columnWidth' => $this->container->getParameter('w4h_calendar.schedule_column_width'),
         );
     }
 
@@ -217,9 +217,19 @@ class DefaultController extends Controller
         }
     }
 
-    public function renderCalendar($year, $month, $day, $form, $form_action, $filters = null)
+    public function renderCalendar($year, $month, $day, $form_action, $filters = array())
     {
-        $filters  = is_null($filters) ? array() : $filters;
+        $form = $this->createForm(new UserCalendarFilterType());
+        $request = $this->getRequest();
+        if($request->getMethod() == 'POST')
+        {
+            $form->bindRequest($request);
+            if ($form->isValid())
+            {
+                $filters = array_merge($filters, $form->getData());
+            }
+        }
+
         $calendar = $this->container->get('w4h_calendar.calendar');
         $step     = $this->container->getParameter('w4h_calendar.schedule_step');
         $date     = Calendar::formatedDay($year, $month, $day);
@@ -235,24 +245,8 @@ class DefaultController extends Controller
             'schedules'   => $calendar->getSchedules(),
             'calendar'    => $calendar->getCalendar($datetime, $step, $filters),
             'step'        => $step,
-            'form_action' => $form_action
+            'form_action' => $form_action,
         ));
-    }
-
-    public function renderCalendarFilters($year, $month, $day, $form, $form_action, $filters = null)
-    {
-        $filters = is_null($filters) ? array() : $filters;
-        $request = $this->getRequest();
-        if($request->getMethod() == 'POST')
-        {
-            $form->bindRequest($request);
-            if ($form->isValid())
-            {
-                $filters = array_merge($filters, $form->getData());
-            }
-        }
-
-        return $this->renderCalendar($year, $month, $day, $form, $form_action, $filters);
     }
 }
 

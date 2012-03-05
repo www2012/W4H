@@ -1,8 +1,16 @@
 <style type="text/css">
 
-  #main #calendar .scrollzone .columns { width: {{ 160*columns }}px; }
+  /* Column */
+  #main #calendar .column.room { width: {{ columnWidth }}px; }
+  #main #calendar .scrollzone .columns { width: {{ columns*columnWidth + columnWidth + 340 }}px; }
+
+  /* Task */
+  .task { width: {{ columnWidth-8 }}px; }
+
+  /* Unit */
+  #main #calendar .column > ul > li.unit { height: {{ rowHeight }}px; }
 
   {% for i in 1..rows %}
-    #main #calendar .column > ul > li > .unitx{{ i }} { height: {{ i*13 - 4 }}px; }
+    #main #calendar .column > ul > li > .unitx{{ i }} { height: {{ i*(rowHeight+1) - 4 }}px; }
   {% endfor %}
 </style>
