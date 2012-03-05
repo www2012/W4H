@@ -44,7 +44,7 @@
     </script>
 
     {% form_theme form 'W4HCalendarBundle:Form:fields.html.twig' %}
-    <form class="accordion" action="{{ path('calendar_filter', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" method="post">
+    <form class="accordion" action="{{ path(form_action, { 'year': day.year, 'month': day.month, 'day': day.day }) }}" method="post">
       {{ form_widget(form) }}
       <div class="actions">
         <input type="submit" value="Apply" />
@@ -58,10 +58,10 @@
       <div class="date">
         <h1>{{ day.year }}-{{ day.month }}-{{ day.day }}</h1>
         <nav>
-          <a class="previous" href="{{ path_previous_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Previous day">
+          <a class="previous" href="{{ path_previous_day(form_action, { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Previous day">
             Previous day
           </a>
-          <a class="next" href="{{ path_next_day('calendar_show', { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Next day">
+          <a class="next" href="{{ path_next_day(form_action, { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Next day">
             Next day
           </a>
         </nav>

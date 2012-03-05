@@ -94,7 +94,7 @@ class Calendar
         $daily_located_tasks = $this->getDailyTasksByLocations($day, $step, $filters);
 
         $locations = array();
-        if(count($filters['location']) > 0)
+        if(!empty($filters['location'][0]))
         {
             $location_ids = array();
             foreach($filters['location'] as $location)
