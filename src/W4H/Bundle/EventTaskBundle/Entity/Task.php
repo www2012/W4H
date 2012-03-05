@@ -38,16 +38,19 @@ class Task
 
     /**
      * @ORM\ManyToOne(targetEntity="W4H\Bundle\EventTaskBundle\Entity\Activity")
+     * @ORM\JoinColumn(name="activity_id", referencedColumnName="id", onDelete="Cascade")
      */
     protected $activity;
 
     /**
      * @ORM\ManyToOne(targetEntity="W4H\Bundle\EventTaskBundle\Entity\Event")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="Cascade")
      */
     protected $event;
 
     /**
      * @ORM\ManyToOne(targetEntity="W4H\Bundle\LocationBundle\Entity\Location")
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="Cascade")
      */
     protected $location;
 
