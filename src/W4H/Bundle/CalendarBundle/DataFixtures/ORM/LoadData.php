@@ -65,7 +65,7 @@ class LoadData implements FixtureInterface
         // Activity
         /**************************************/
         $rows = array();
-        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/activity.csv", "r")) !== FALSE) {
+        if (($handle = fopen("src/W4H/Bundle/CalendarBundle/DataFixtures/Data/activity.csv", "r")) !== FALSE) {
           while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
             list($name, $description, $activity_type_key) = $data;
 
@@ -120,7 +120,7 @@ class LoadData implements FixtureInterface
         // Location
         /**************************************/
         $rows = array();
-        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/location.csv", "r")) !== FALSE) {
+        if (($handle = fopen("src/W4H/Bundle/CalendarBundle/DataFixtures/Data/location.csv", "r")) !== FALSE) {
           while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
             list($name, $building, $level, $ClassRoomPlaces, $ConferenceRoomPlaces, $StandingRoomPlaces, $vp, $s, $i, $od, $accessibility, $lat, $lon) = $data;
 
@@ -186,7 +186,7 @@ class LoadData implements FixtureInterface
         $manager->persist($admin);
 
         $rows = array();
-        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/person.csv", "r")) !== FALSE) {
+        if (($handle = fopen("src/W4H/Bundle/CalendarBundle/DataFixtures/Data/person.csv", "r")) !== FALSE) {
           while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
             list($firstname, $lastname, $organisation, $mail, $country) = $data;
 
@@ -232,7 +232,7 @@ class LoadData implements FixtureInterface
         // Task
         /**************************************/
         $rows = array();
-        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/task.csv", "r")) !== FALSE) {
+        if (($handle = fopen("src/W4H/Bundle/CalendarBundle/DataFixtures/Data/task.csv", "r")) !== FALSE) {
           while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
             list($starts_at, $ends_at, $location_id, $activity_id, $event_id) = $data;
 
