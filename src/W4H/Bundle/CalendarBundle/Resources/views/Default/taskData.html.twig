@@ -8,7 +8,11 @@
 </header>
 <div class="description">
   <strong>Description:</strong>
-  <p>{{ task.activity.description }}</p>
+  <div>
+  {% autoescape false %}
+    {{ task.activity.description }}
+  {% endautoescape %}
+  </div>
 </div>
 <div class="owners">
   <strong>With:</strong>
