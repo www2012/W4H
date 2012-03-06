@@ -9,6 +9,8 @@ use Sonata\UserBundle\Admin\Entity\UserAdmin as BaseAdmin;
 
 class UserAdmin extends BaseAdmin
 {
+    protected $maxPerPage = 50;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);

@@ -109,6 +109,10 @@
     git=http://github.com/sonata-project/SonataCacheBundle.git
     target=/bundles/Sonata/CacheBundle
 
+[Exporter]
+    git=http://github.com/sonata-project/exporter.git
+    target=/exporter
+
 [doctrine-fixtures]
     git=http://github.com/doctrine/data-fixtures.git
 
