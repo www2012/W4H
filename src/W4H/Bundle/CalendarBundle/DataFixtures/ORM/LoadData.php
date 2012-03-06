@@ -191,12 +191,10 @@ class LoadData implements FixtureInterface
             list($firstname, $lastname, $organisation, $mail, $country) = $data;
 
             if(!empty($firstname) && !empty($lastname) && !empty($mail)) {
-              $username = sprintf('%s.%s',trim($firstname), trim($lastname));
-              $password = '123456';
+              $username = strtolower(sprintf('%s.%s',trim($firstname), trim($lastname)));
 
               $rows[] = array(
                 'username'      => $username,
-                'password'      => $password,
                 'firstname'     => trim($firstname),
                 'lastname'      => trim($lastname),
                 'organisation'  => trim($organisation),
@@ -217,8 +215,7 @@ class LoadData implements FixtureInterface
           $persons[$k] = new Person();
           $persons[$k]->setUsername($row['username']);
           $persons[$k]->setEmail($row['email']);
-          $persons[$k]->setPlainPassword($row['password']);
-          $persons[$k]->addRole(Person::ROLE_DEFAULT);
+          $persons[$k]->addRole(Person::ROLE_USER);
           $persons[$k]->setFirstName($row['firstname']);
           $persons[$k]->setLastName($row['lastname']);
           $persons[$k]->setOrganisation($row['organisation']);
