@@ -37,6 +37,7 @@ class TaskOwnerAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('id')
             ->addIdentifier('person')
             ->addIdentifier('role')
             ->addIdentifier('task')

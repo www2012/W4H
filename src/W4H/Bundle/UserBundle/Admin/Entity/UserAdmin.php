@@ -13,9 +13,10 @@ class UserAdmin extends BaseAdmin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
-        parent::configureFormFields($formMapper);
         $formMapper
             ->with('General')
+                ->add('username')
+                ->add('email')
                 ->add('first_name')
                 ->add('last_name')
                 ->add('organisation')
@@ -27,36 +28,72 @@ class UserAdmin extends BaseAdmin
                 ->add('socials_account')
                 ->add('country_iso_code', 'country')
             ->end()
+            ->with('Management')
+                ->add('roles', 'sonata_security_roles', array( 'multiple' => true, 'required' => false))
+                ->add('locked', null, array('required' => false))
+                ->add('expired', null, array('required' => false))
+                ->add('enabled', null, array('required' => false))
+                ->add('credentialsExpired', null, array('required' => false))
+            ->end()
         ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        parent::configureDatagridFilters($datagridMapper);
         $datagridMapper
+            ->add('username')
+            ->add('email')
             ->add('first_name')
             ->add('last_name')
             ->add('organisation')
             ->add('country_iso_code')
+            ->add('locked')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        parent::configureListFields($listMapper);
         $listMapper
-            ->addIdentifier('first_name')
-            ->addIdentifier('last_name')
-            ->addIdentifier('organisation')
-            ->addIdentifier('mobile_phone')
-            ->addIdentifier('freeset')
-            ->addIdentifier('country_iso_code')
+            ->addIdentifier('username')
+            ->add('email')
+            ->add('first_name')
+            ->add('last_name')
+            ->add('organisation')
+            ->add('mobile_phone')
+            ->add('freeset')
+            ->add('country_iso_code')
+            ->add('enabled')
+            ->add('locked')
+            ->add('createdAt')
         ;
+
+        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
+            $listMapper
+                ->add('impersonating', 'string', array('template' => 'SonataUserBundle:Admin:Field/impersonating.html.twig'))
+            ;
+        }
+    }
+
+    public function getExportFields()
+    {
+        return array(
+          'username',
+          'email',
+          'first_name',
+          'last_name',
+          'organisation',
+          'service',
+          'other_mail',
+          'mobile_phone',
+          'website_url',
+          'freeset',
+          'socials_account',
+          'country_iso_code'
+        );
     }
 
     public function validate(ErrorElement $errorElement, $object)
     {
-        parent::validate($errorElement, $object);
         $errorElement
             ->with('first_name')
                 ->assertMaxLength(array('limit' => 64))

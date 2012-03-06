@@ -83,6 +83,32 @@ class Person extends BaseUser
     }
 
     /**
+     * @return void
+     */
+    public function prePersist()
+    {
+        parent::prePersist();
+
+        // Generate a default password if this field is empty
+        if(!isset($this->plainPassword))
+            $this->setPlainPassword(self::generatePassword());
+    }
+
+    public static function generatePassword()
+    {
+        $chars = ":-+&#!abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $password = '';
+
+        for($i = 0; $i < 8; $i++) {
+            $random_index = mt_rand(0,strlen($chars)-1);
+            $random_char = substr($chars, $random_index, 1);
+            $password = $password.$random_char;
+        }
+
+        return $password;
+    }
+
+    /**
      * Get id
      *
      * @return integer 

@@ -111,7 +111,7 @@ sonata_admin:
 #    sonata.admin.security.handler.acl
 
     title:      W4H Project
-    title_logo: /bundles/sonataadmin/logo_title.png
+    title_logo: /images/logo.png
     templates:
         # default global templates
         layout:  SonataAdminBundle::standard_layout.html.twig

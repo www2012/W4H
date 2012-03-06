@@ -41,6 +41,8 @@ class TaskAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            //->add('starts_at')
+            //->add('ends_at')
             ->add('activity')
             ->add('event')
             ->add('location')
@@ -50,8 +52,9 @@ class TaskAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('starts_at')
-            ->addIdentifier('ends_at')
+            ->addIdentifier('id')
+            ->add('starts_at')
+            ->add('ends_at')
             ->addIdentifier('activity')
             ->addIdentifier('event')
             ->addIdentifier('location')

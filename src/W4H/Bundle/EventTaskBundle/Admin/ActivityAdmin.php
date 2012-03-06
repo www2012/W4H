@@ -32,7 +32,7 @@ class ActivityAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
-            ->addIdentifier('description')
+            ->add('description')
             ->addIdentifier('activity_type')
         ;
     }

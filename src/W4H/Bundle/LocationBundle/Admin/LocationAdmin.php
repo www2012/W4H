@@ -50,18 +50,18 @@ class LocationAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
-            ->addIdentifier('building')
-            ->addIdentifier('level')
-            ->addIdentifier('class_room_places')
-            ->addIdentifier('conference_room_places')
-            ->addIdentifier('standing_room_places')
-            ->addIdentifier('video_projector')
-            ->addIdentifier('sound')
-            ->addIdentifier('internet')
-            ->addIdentifier('other_devices')
-            ->addIdentifier('accessibility')
-            ->addIdentifier('latitude')
-            ->addIdentifier('longitude')
+            ->add('building')
+            ->add('level')
+            ->add('class_room_places')
+            ->add('conference_room_places')
+            ->add('standing_room_places')
+            ->add('video_projector')
+            ->add('sound')
+            ->add('internet')
+            ->add('other_devices')
+            ->add('accessibility')
+            ->add('latitude')
+            ->add('longitude')
         ;
     }
 
