@@ -93,6 +93,9 @@ fos_user:
     user_class:       W4H\Bundle\UserBundle\Entity\Person
     group:
         group_class:  W4H\Bundle\UserBundle\Entity\Group
+    registration:
+        form:
+            type: w4h_user_profile
 
 sonata_user:
     security_acl:     true

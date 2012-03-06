@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}www2012 program | Logged in{% endblock %}
+
+{% block header %}
+  {% include '::headerNav.html.twig' with { 'current': 'logged_in' } %}
+{% endblock %}
+
+{% block content %}
+  {% block fos_user_content %}
+  <div id="main">
+    <div class="topbar"></div>
+    <div class="user_form">
+      <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+        {{ form_widget(form) }}
+        <p><input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" /></p>
+      </form>
+    </div>
+  </div>
+  {% endblock fos_user_content %}
+{% endblock %}

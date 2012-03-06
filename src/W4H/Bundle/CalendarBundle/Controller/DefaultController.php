@@ -39,10 +39,11 @@ class DefaultController extends Controller
      */
     public function indexFilterAction($year, $month, $day)
     {
-        $filters          = $this->getIndexFilters();
-        $form_action      = 'calendar_filters';
+        $filters     = $this->getIndexFilters();
+        $form_action = 'calendar_filters';
+        $form        = $this->createForm(new UserCalendarFilterType());
 
-        return $this->renderCalendar($year, $month, $day, $form_action, $filters);
+        return $this->renderCalendar($year, $month, $day, $form, $form_action, $filters);
     }
 
     /**
@@ -76,10 +77,11 @@ class DefaultController extends Controller
      */
     public function myCalendarFilterAction($year, $month, $day)
     {
-        $filters          = $this->getMyCalendarFilters(); 
-        $form_action      = 'calendar_user_filters';
+        $filters     = $this->getMyCalendarFilters(); 
+        $form_action = 'calendar_user_filters';
+        $form        = $this->createForm(new UserCalendarFilterType());
 
-        return $this->renderCalendar($year, $month, $day, $form_action, $filters);
+        return $this->renderCalendar($year, $month, $day, $form, $form_action, $filters);
     }
 
     /**
@@ -113,9 +115,10 @@ class DefaultController extends Controller
      */
     public function adminCalendarFilterAction($year, $month, $day)
     {
-        $form_action      = 'calendar_admin_filters';
+        $form_action = 'calendar_admin_filters';
+        $form        = $this->createForm(new CalendarFilterType());
 
-        return $this->renderCalendar($year, $month, $day, $form_action);
+        return $this->renderCalendar($year, $month, $day, $form, $form_action);
     }
 
     /**
@@ -217,9 +220,8 @@ class DefaultController extends Controller
         }
     }
 
-    public function renderCalendar($year, $month, $day, $form_action, $filters = array())
+    public function renderCalendar($year, $month, $day, $form, $form_action, $filters = array())
     {
-        $form = $this->createForm(new UserCalendarFilterType());
         $request = $this->getRequest();
         if($request->getMethod() == 'POST')
         {
