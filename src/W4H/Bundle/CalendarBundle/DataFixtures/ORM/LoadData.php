@@ -2,6 +2,8 @@
 namespace W4H\Bundle\CalendarBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use W4H\Bundle\EventTaskBundle\Entity\Event;
 use W4H\Bundle\EventTaskBundle\Entity\ActivityType;
@@ -12,8 +14,15 @@ use W4H\Bundle\UserBundle\Entity\Role;
 use W4H\Bundle\LocationBundle\Entity\Location;
 use W4H\Bundle\UserBundle\Entity\Person;
 
-class LoadData implements FixtureInterface
+class LoadData implements FixtureInterface, ContainerAwareInterface
 {
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     public function load(ObjectManager $manager)
     {
         /**************************************/
@@ -215,13 +224,15 @@ class LoadData implements FixtureInterface
           $persons[$k] = new Person();
           $persons[$k]->setUsername($row['username']);
           $persons[$k]->setEmail($row['email']);
-          $persons[$k]->addRole(Person::ROLE_USER);
+          $persons[$k]->addRole(Person::ROLE_DEFAULT);
           $persons[$k]->setFirstName($row['firstname']);
           $persons[$k]->setLastName($row['lastname']);
           $persons[$k]->setOrganisation($row['organisation']);
           $persons[$k]->setCountryIsoCode($row['country']);
           $persons[$k]->setEnabled(true);
           $manager->persist($persons[$k]);
+          // Uncomment the following line to send mail
+          //$this->container->get('fos_user.mailer')->sendConfirmationEmailMessage($persons[$k]);
         }
         $manager->flush();
 
