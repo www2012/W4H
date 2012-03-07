@@ -7,27 +7,25 @@ use W4H\Bundle\UserBundle\Entity\Person;
 
 class SendEmailListener
 {
-    protected $twig;
-    protected $mailer;
-    public function __construct($twig, $mailer)
+    protected $container;
+
+    public function __construct($container)
     {
-        $this->twig = $twig;
-        $this->mailer = $mailer;
+        $this->container = $container;
     }
 
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
         if ($entity instanceof Person) {
+            $template = $this->container->get('twig')->loadTemplate('W4HUserBundle:Registration:email.txt.twig');
             $message = \Swift_Message::newInstance()
                 ->setSubject('www2012 - New password')
                 ->setFrom('pierre@pierre.com')
                 ->setTo('pierre.ferrolliet@gmail.com')
-                ->setBody($this->twig->renderView('W4HUserBundle:Registration:email.txt.twig', array(
-                    'user' => $entity
-                )))
+                ->setBody($template->render(array('user' => $entity)))
             ;
-            $this->mailer->send($message);
+            $this->container->get('mailer')->send($message);
         }
     }
 }
