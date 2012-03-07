@@ -118,7 +118,7 @@ class DefaultController extends Controller
         $form_action = 'calendar_admin_filters';
         $form        = $this->createForm(new CalendarFilterType());
 
-        return $this->renderCalendar($year, $month, $day, $form, $form_action);
+        return $this->renderCalendar($year, $month, $day, $form, $form_action, array(), true);
     }
 
     /**
@@ -220,7 +220,7 @@ class DefaultController extends Controller
         }
     }
 
-    public function renderCalendar($year, $month, $day, $form, $form_action, $filters = array())
+    public function renderCalendar($year, $month, $day, $form, $form_action, $filters = array(), $display_empty_location = false)
     {
         $request = $this->getRequest();
         if($request->getMethod() == 'POST')
@@ -245,7 +245,7 @@ class DefaultController extends Controller
             ),
             'form'        => $form->createView(),
             'schedules'   => $calendar->getSchedules(),
-            'calendar'    => $calendar->getCalendar($datetime, $step, $filters),
+            'calendar'    => $calendar->getCalendar($datetime, $step, $filters, $display_empty_location),
             'step'        => $step,
             'form_action' => $form_action,
         ));

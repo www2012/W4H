@@ -61,6 +61,8 @@ class Calendar
      * @param DateTime $day
      * @param integer  $step
      * @param array    $filters
+     * @param boolean  $display_empty_location
+     *
      * @return array task indexed by location and schedule
      *
      *  ex:
@@ -88,7 +90,7 @@ class Calendar
      *
      * Note : schedules format Y-m-d-H-i
      */
-    public function getCalendar(\DateTime $day, $step, $filters = array())
+    public function getCalendar(\DateTime $day, $step, $filters = array(), $display_empty_location = false)
     {
         $calendar = array();
         $daily_located_tasks = $this->getDailyTasksByLocations($day, $step, $filters);
@@ -109,19 +111,22 @@ class Calendar
 
         foreach($locations as $location)
         {
-            if(!isset($calendar[$location->getId()]))
-                $calendar[$location->getId()] = array('object' => $location, 'schedules' => array());
-
-            foreach($this->getSchedules($day) as $date => $schedule)
+            if($display_empty_location || isset($daily_located_tasks[$location->getId()]))
             {
-                $tasks = array();
-                if(isset($daily_located_tasks[$location->getId()][$date]))
-                    $tasks = $daily_located_tasks[$location->getId()][$date];
+                if(!isset($calendar[$location->getId()]))
+                    $calendar[$location->getId()] = array('object' => $location, 'schedules' => array());
 
-                $calendar[$location->getId()]['schedules'][$date] = array(
-                    'is_hour' => $schedule['is_hour'],
-                    'tasks'   => $tasks
-                );
+                foreach($this->getSchedules($day) as $date => $schedule)
+                {
+                    $tasks = array();
+                    if(isset($daily_located_tasks[$location->getId()][$date]))
+                        $tasks = $daily_located_tasks[$location->getId()][$date];
+
+                    $calendar[$location->getId()]['schedules'][$date] = array(
+                        'is_hour' => $schedule['is_hour'],
+                        'tasks'   => $tasks
+                    );
+                }
             }
         }
 
