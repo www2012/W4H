@@ -74,6 +74,8 @@ class Person extends BaseUser
      */
     protected $country_iso_code;
 
+    protected $mail_password;
+
     public function __toString()
     {
         return sprintf('%s %s',
@@ -106,6 +108,31 @@ class Person extends BaseUser
         }
 
         return $password;
+    }
+
+    /**
+     * Save temporary email plain password in order to send it to user
+     */
+    public function eraseCredentials()
+    {
+        $this->mail_password = $this->getPlainPassword();
+        parent::eraseCredentials();
+    }
+
+    /**
+     * Remove the email plain password
+     */
+    public function cleanMailPassword()
+    {
+        $this->mail_password = null;
+    }
+
+    /**
+     * Get plain password for email sending
+     */
+    public function getMailPassword()
+    {
+        return $this->mail_password;
     }
 
     /**

@@ -21,11 +21,14 @@ class SendEmailListener
             $template = $this->container->get('twig')->loadTemplate('W4HUserBundle:Registration:email.txt.twig');
             $message = \Swift_Message::newInstance()
                 ->setSubject('www2012 - New password')
-                ->setFrom('pierre@pierre.com')
-                ->setTo('pierre.ferrolliet@gmail.com')
-                ->setBody($template->render(array('user' => $entity)))
+                ->setFrom($this->container->getParameter('swift_email_from'))
+                ->setTo($entity->getEmail())
+                ->setBody($template->render(array(
+                    'user' => $entity
+                )))
             ;
             $this->container->get('mailer')->send($message);
+            $entity->cleanMailPassword();
         }
     }
 }
