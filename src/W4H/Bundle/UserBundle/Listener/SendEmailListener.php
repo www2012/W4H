@@ -3,15 +3,16 @@
 namespace W4H\Bundle\UserBundle\Listener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Acme\StoreBundle\Entity\Product;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use W4H\Bundle\UserBundle\Entity\Person;
 
 class SendEmailListener
 {
-    protected $container;
-    public function __construct(ContainerInterface $container)
+    protected $twig;
+    protected $mailer;
+    public function __construct($twig, $mailer)
     {
-        $this->container = $container;
+        $this->twig = $twig;
+        $this->mailer = $mailer;
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -22,11 +23,11 @@ class SendEmailListener
                 ->setSubject('www2012 - New password')
                 ->setFrom('pierre@pierre.com')
                 ->setTo('pierre.ferrolliet@gmail.com')
-                ->setBody($twig->renderView('HelloBundle:Hello:email.txt.twig', array(
+                ->setBody($this->twig->renderView('W4HUserBundle:Registration:email.txt.twig', array(
                     'user' => $entity
                 )))
             ;
-            $mailer->send($message);
+            $this->mailer->send($message);
         }
     }
 }
