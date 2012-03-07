@@ -14,15 +14,8 @@ use W4H\Bundle\UserBundle\Entity\Role;
 use W4H\Bundle\LocationBundle\Entity\Location;
 use W4H\Bundle\UserBundle\Entity\Person;
 
-class LoadData implements FixtureInterface, ContainerAwareInterface
+class LoadData implements FixtureInterface
 {
-    private $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function load(ObjectManager $manager)
     {
         /**************************************/
@@ -177,131 +170,5 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
           $manager->persist($locations[$k]);
         }
         $manager->flush();
-
-        /**************************************/
-        // Person
-        /**************************************/
-        $admin = new Person();
-        $admin->setUsername('admin');
-        $admin->setEmail('admin@w3c.og');
-        $admin->setPlainPassword('admin');
-        $admin->setEnabled(true);
-        $admin->setSuperAdmin(true);
-        $admin->addRole(Person::ROLE_SUPER_ADMIN);
-        $admin->setFirstName('admin');
-        $admin->setLastName('ADMIN');
-        $admin->setOrganisation('admin');
-        $admin->setCountryIsoCode('US');
-        $manager->persist($admin);
-
-        $rows = array();
-        if (($handle = fopen("src/W4H/Bundle/CalendarBundle/DataFixtures/Data/person.csv", "r")) !== FALSE) {
-          while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
-            list($firstname, $lastname, $organisation, $mail, $country) = $data;
-
-            if(!empty($firstname) && !empty($lastname) && !empty($mail)) {
-              $username = strtolower(sprintf('%s.%s',trim($firstname), trim($lastname)));
-
-              $rows[] = array(
-                'username'      => $username,
-                'firstname'     => trim($firstname),
-                'lastname'      => trim($lastname),
-                'organisation'  => trim($organisation),
-                'email'         => trim($mail),
-                'country'       => trim(strtoupper($country))
-              );
-            } else {
-              var_dump($data);
-            }
-          }
-
-          fclose($handle);
-        }
-
-        $persons = array();
-        foreach($rows as $k => $row)
-        {
-          $persons[$k] = new Person();
-          $persons[$k]->setUsername($row['username']);
-          $persons[$k]->setEmail($row['email']);
-          $persons[$k]->addRole(Person::ROLE_DEFAULT);
-          $persons[$k]->setFirstName($row['firstname']);
-          $persons[$k]->setLastName($row['lastname']);
-          $persons[$k]->setOrganisation($row['organisation']);
-          $persons[$k]->setCountryIsoCode($row['country']);
-          $persons[$k]->setEnabled(true);
-          $manager->persist($persons[$k]);
-          // Uncomment the following line to send mail
-          //$this->container->get('fos_user.mailer')->sendConfirmationEmailMessage($persons[$k]);
-        }
-        $manager->flush();
-
-        /**************************************/
-        // Task
-        /**************************************/
-        $rows = array();
-        if (($handle = fopen("src/W4H/Bundle/CalendarBundle/DataFixtures/Data/task.csv", "r")) !== FALSE) {
-          while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
-            list($starts_at, $ends_at, $location_id, $activity_id, $event_id) = $data;
-
-            if(!empty($starts_at) && !empty($ends_at) && !empty($location_id)) {
-              $rows[] = array(
-                'starts_at'     => $starts_at,
-                'ends_at'       => $ends_at,
-                'location_id'   => $location_id,
-                'activity_id'   => $activity_id,
-                'event_id'      => $event_id,
-              );
-            } else {
-              var_dump($data);
-            }
-          }
-
-          fclose($handle);
-        }
-
-        $tasks = array();
-        foreach($rows as $k => $row)
-        {
-          $tasks[$k] = new Task();
-          $tasks[$k]->setStartsAt(new \DateTime($row['starts_at']));
-          $tasks[$k]->setEndsAt(new \DateTime($row['ends_at']));
-          $tasks[$k]->setLocation($locations[$row['location_id']]);
-          $tasks[$k]->setActivity($activities[$row['activity_id']]);
-          $tasks[$k]->setEvent($events[$row['event_id']]);
-          $manager->persist($tasks[$k]);
-        }
-        $manager->flush();
-
-        /**************************************/
-        // TaskOwner
-        /**************************************/
-/*
-        $rows = array();
-        if (($handle = fopen("/home/gabriel/workspace/w4h/src/W4H/Bundle/CalendarBundle/DataFixtures/Data/task_owner.csv", "r")) !== FALSE) {
-          while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
-            list($id, $person_id, $role_id, $task_id) = $data;
-
-            $rows[] = array(
-              'person_id'     => $person_id-2,
-              'role_id'       => $role_id-1,
-              'task_id'       => $task_id-1,
-            );
-          }
-
-          fclose($handle);
-        }
-
-        $task_owners = array();
-        foreach($rows as $k => $row)
-        {
-          $task_owners[$k] = new TaskOwner();
-          $task_owners[$k]->setPerson($persons[$row['person_id']]);
-          $task_owners[$k]->setRole($roles[$row['role_id']]);
-          $task_owners[$k]->setTask($tasks[$row['task_id']]);
-          $manager->persist($task_owners[$k]);
-        }
-        $manager->flush();
-*/
     }
 }
