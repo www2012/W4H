@@ -545,7 +545,7 @@ body > aside > form > .actions > a:hover
 
 #main > .user_form > form label
 {
-  width: 110px;
+  width: 130px;
   display: inline-block;
 }
 
@@ -635,7 +635,7 @@ body > aside > form > .actions > a:hover
   margin: 0 8px 4px 8px;
 }
 
-#main #calendar .data > div > p
+#main #calendar .data > div.description > div
 {
   font-size: 11px;
   border: 1px inset #BBB;
