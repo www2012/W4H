@@ -98,7 +98,7 @@ fos_user:
     user_class:       W4H\Bundle\UserBundle\Entity\Person
     group:
         group_class:  W4H\Bundle\UserBundle\Entity\Group
-    registration:
+    profile:
         form:
             type: w4h_user_profile
 
@@ -110,6 +110,7 @@ sonata_user:
 
 parameters:
     sonata.user.admin.user.class: W4H\Bundle\UserBundle\Admin\Entity\UserAdmin
+    swift_email_from: no-reply@idci-consulting.fr
 
 sonata_admin:
 #    security_handler: sonata.admin.security.handler.noop
