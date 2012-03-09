@@ -60,9 +60,14 @@ class Task
     protected $room_configuration;
 
     /**
-     * @ORM\OneToMany(targetEntity="TaskOwner", mappedBy="task", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="W4H\Bundle\EventTaskBundle\Entity\TaskOwner", mappedBy="task", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
      */
     public $owners;
+
+    /**
+     * @ORM\OneToMany(targetEntity="W4H\Bundle\PaperBundle\Entity\PaperPresenter", mappedBy="task", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
+     */
+    public $paper_presenters;
 
     public function __toString()
     {
@@ -93,6 +98,16 @@ class Task
     public function addOwners(\W4H\Bundle\EventTaskBundle\Entity\TaskOwner $owners)
     {
         $this->addTaskOwner($owners);
+    }
+
+    /**
+     * Add paper_presenters proxy
+     *
+     * @param W4H\Bundle\PaperBundle\Entity\PaperPresenter $paperPresenters
+     */
+    public function addPaperPresenters(\W4H\Bundle\PaperBundle\Entity\PaperPresenter $paperPresenters)
+    {
+        $this->addPaperPresenter($paperPresenters);
     }
 
     /**
@@ -255,5 +270,25 @@ class Task
     public function getOwners()
     {
         return $this->owners;
+    }
+
+    /**
+     * Add paper_presenters
+     *
+     * @param W4H\Bundle\PaperBundle\Entity\PaperPresenter $paperPresenters
+     */
+    public function addPaperPresenter(\W4H\Bundle\PaperBundle\Entity\PaperPresenter $paperPresenters)
+    {
+        $this->paper_presenters[] = $paperPresenters;
+    }
+
+    /**
+     * Get paper_presenters
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPaperPresenters()
+    {
+        return $this->paper_presenters;
     }
 }

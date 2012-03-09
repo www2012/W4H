@@ -65,6 +65,7 @@ class LoadData implements FixtureInterface
           $persons[$k]->setEnabled(true);
           $manager->persist($persons[$k]);
         }
+
         $manager->flush();
     }
 }

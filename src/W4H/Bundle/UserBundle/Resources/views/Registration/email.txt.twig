@@ -1,13 +1,19 @@
 Dear {{ user.firstName }} {{ user.lastName }}
 
 In order to make easier the program management, we created a database with main information about any speaker, co-chair, responsible, etc. 
-We put a first information (coming from what we already have) about you in the data base.
-Please could you go and check/complete this information by using the form available at http://local.w4h/app_dev.php/user/profile/edit.
+We put a first information (coming from what we already have) about you in the database.
+Please could you go and check/complete this information by using the form available at:
 
-You will have to login with the email we used to send this message {{ user.username }} and with the generated password [{{ user.mailPassword }}]
-you can change through the same form.
+http://program.www2012.org/user/profile/edit.
 
-You will be able to login on the program application web site with the same login/passwd for having a personalized view of the program (when, where, for what, and how you are planned in the conference).
+You will have to login with the following information:
+
+Username: {{ user.username }}
+Password: {{ user.mailPassword }}
+
+
+You will be able to login on the program application web site with the same username/password for having a personalized view of the program
+(when, where, for what, and how you are planned in the conference).
 
 Thank you for your help and see you in Lyon!
 

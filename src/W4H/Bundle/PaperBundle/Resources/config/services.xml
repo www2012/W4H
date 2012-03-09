@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sonata.admin.paper" class="W4H\Bundle\PaperBundle\Admin\PaperAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Task" label="Paper"/>
+          <argument />
+          <argument>W4H\Bundle\PaperBundle\Entity\Paper</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+        <service id="sonata.admin.paperpresenter" class="W4H\Bundle\PaperBundle\Admin\PaperPresenterAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Task" label="PaperPresenter"/>
+          <argument />
+          <argument>W4H\Bundle\PaperBundle\Entity\PaperPresenter</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+    </services>
+
+</container>

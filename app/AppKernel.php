@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new W4H\Bundle\CalendarBundle\W4HCalendarBundle(),
             new W4H\Bundle\LocationBundle\W4HLocationBundle(),
             new W4H\Bundle\EventTaskBundle\W4HEventTaskBundle(),
+            new W4H\Bundle\PaperBundle\W4HPaperBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),

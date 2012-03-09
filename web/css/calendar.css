@@ -26,7 +26,9 @@
 { border-radius: 8px; border: 2px solid #000 !important; }
 
 .task.salon-du-numrique,
-.salon-du-numrique > .symbol
+.salon-du-numrique > .symbol,
+.task.salon-du-numerique,
+.salon-du-numerique > .symbol
 { border-radius: 8px; border: 2px solid #FFE700 !important; }
 
 .task.w4a,
@@ -51,9 +53,21 @@
 .conference-session > .symbol
 { background: #FCE9F3 !important; }
 
+.task.demo-tracks,
+.demo-tracks > .symbol
+{ background: #86FCB6 !important; }
+
+.task.european-tracks,
+.european-tracks > .symbol
+{ background: #AEB6FF !important; }
+
 .task.gathering,
 .gathering > .symbol
 { background: #D6B1D4 !important; }
+
+.task.industrial-track,
+.industrial-track > .symbol
+{ background: #83FFED !important; }
 
 .task.keynote,
 .keynote > .symbol
@@ -75,6 +89,10 @@
 .party > .symbol
 { background: #FFE8B6 !important; }
 
+.task.phd-symp,
+.phd-symp > .symbol
+{ background: #C6C48D !important; }
+
 .task.press,
 .press > .symbol
 { background: #D3FF85 !important; }
@@ -90,22 +108,6 @@
 .task.workshop,
 .workshop > .symbol
 { background: #A5BECD !important; }
-
-.task.demo-tracks,
-.demo-tracks > .symbol
-{ background: #86FCB6 !important; }
-
-.task.industrial-tracks,
-.industrial-tracks > .symbol
-{ background: #83FFED !important; }
-
-.task.european-tracks,
-.european-tracks > .symbol
-{ background: #AEB6FF !important; }
-
-.task.phd-symp,
-.phd-symp > .symbol
-{ background: #C6C48D !important; }
 
 .task.scientific-tracks,
 .scientific-tracks > .symbol

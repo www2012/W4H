@@ -19,6 +19,7 @@ class SendEmailListener
         $entity = $args->getEntity();
         if ($entity instanceof Person) {
             $template = $this->container->get('twig')->loadTemplate('W4HUserBundle:Registration:email.txt.twig');
+            $this->container->get('mailer');
             $message = \Swift_Message::newInstance()
                 ->setSubject('www2012 - New password')
                 ->setFrom($this->container->getParameter('swift_email_from'))

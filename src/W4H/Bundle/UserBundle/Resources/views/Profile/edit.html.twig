@@ -9,12 +9,12 @@
 {% block content %}
   {% block fos_user_content %}
   <div id="main">
-    <div class="topbar"></div>
+    <div class="topbar">Edit</div>
     <div class="user_form">
       <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
         {{ form_widget(form) }}
-        <p><input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" /></p>
-        <p><a href="{{ path('fos_user_change_password') }}">Change my password</a></p>
+        <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+        <a href="{{ path('fos_user_change_password') }}">Change my password</a>
       </form>
     </div>
   </div>

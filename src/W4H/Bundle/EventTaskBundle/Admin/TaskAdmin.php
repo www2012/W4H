@@ -32,7 +32,19 @@ class TaskAdmin extends Admin
                   'edit' => 'inline',
                   'inline' => 'table',
                   'sortable'  => 'person',
-                  'targetEntity'=> 'W4H\Bundle\EventTaskBundle\TaskOwner'
+                  'targetEntity'=> 'W4H\Bundle\EventTaskBundle\Entity\TaskOwner'
+                )
+            )
+            ->add('paper_presenters', 'sonata_type_collection',
+                array(
+                  'required' => false,
+                  'by_reference' => false
+                ),
+                array(
+                  'edit' => 'inline',
+                  'inline' => 'table',
+                  'sortable'  => 'person',
+                  'targetEntity'=> 'W4H\Bundle\PaperBundle\Entity\PaperPresenter'
                 )
             )
         ;
@@ -72,6 +84,12 @@ class TaskAdmin extends Admin
           if(!$owner->getTask())
             $owner->setTask($object);
         }
+
+        foreach($object->getPaperPresenters() as $paperPresenter)
+        {
+          if(!$paperPresenter->getTask())
+            $paperPresenter->setTask($object);
+        }
     }
 
     public function prePersist($object)
@@ -79,6 +97,11 @@ class TaskAdmin extends Admin
         foreach($object->getOwners() as $owner)
         {
             $owner->setTask($object);
+        }
+
+        foreach($object->getPaperPresenters() as $paperPresenter)
+        {
+            $paperPresenter->setTask($object);
         }
     }
 }

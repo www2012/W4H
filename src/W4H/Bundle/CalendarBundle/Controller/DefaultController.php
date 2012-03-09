@@ -52,12 +52,24 @@ class DefaultController extends Controller
     public function getIndexFilters()
     {
         $em    = $this->getDoctrine()->getEntityManager();
-        $roles = $em->getRepository('W4HUserBundle:Role')->findByName(array(
-            "Journalist",
-            "Speaker"
+        $activity_type = $em->getRepository('W4HEventTaskBundle:ActivityType')->findByName(array(
+          'BarCamp',
+          'BOF',
+          'Conference Session',
+          'Demo Tracks',
+          'European Tracks',
+          'Industrial Tracks',
+          'Keynote',
+          'Panel',
+          'Party',
+          'PhD Symp',
+          'Scientific Tracks',
+          'Transport',
+          'Tutorial',
+          'Workshop'
         ));
 
-        return array('role' => $roles);
+        return array('activity_type' => $activity_type);
     }
 
     /**

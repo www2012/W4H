@@ -78,9 +78,10 @@ class Person extends BaseUser
 
     public function __toString()
     {
-        return sprintf('%s %s',
+        return sprintf('%s %s <%s>',
           $this->getLastName(),
-          $this->getFirstName()
+          $this->getFirstName(),
+          $this->getEmail()
         );
     }
 

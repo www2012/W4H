@@ -1,5 +1,5 @@
 <?php
-namespace W4H\Bundle\EventTaskBundle\Admin;
+namespace W4H\Bundle\PaperBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -7,40 +7,32 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class TaskOwnerAdmin extends Admin
+class PaperAdmin extends Admin
 {
     protected $maxPerPage = 50;
 
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $em = $this->modelManager->getEntityManager('W4H\Bundle\UserBundle\Entity\Person');
-        $query = $em->getRepository('W4HUserBundle:Person')->findAllOrderedByLastNameQuery();
         $formMapper
-            ->add('person', 'sonata_type_model', array('query' => $query))
-            ->add('role')
+            ->add('paper_number')
+            ->add('title')
+            ->add('authors')
         ;
-
-        if ($this->hasSubject()) {
-            $formMapper->add('task');
-        }
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('person')
-            ->add('role')
-            ->add('task')
+            ->add('paper_number')
+            ->add('authors')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->addIdentifier('person')
-            ->addIdentifier('role')
-            ->addIdentifier('task')
+            ->addIdentifier('paper_number')
+            ->add('authors')
         ;
     }
 

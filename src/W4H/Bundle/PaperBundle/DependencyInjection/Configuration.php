@@ -1,6 +1,6 @@
 <?php
 
-namespace W4H\Bundle\UserBundle\DependencyInjection;
+namespace W4H\Bundle\PaperBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('w4h_user');
+        $rootNode = $treeBuilder->root('w4h_paper');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

@@ -1,5 +1,5 @@
 <?php
-namespace W4H\Bundle\EventTaskBundle\Admin;
+namespace W4H\Bundle\PaperBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class TaskOwnerAdmin extends Admin
+class PaperPresenterAdmin extends Admin
 {
     protected $maxPerPage = 50;
 
@@ -17,7 +17,7 @@ class TaskOwnerAdmin extends Admin
         $query = $em->getRepository('W4HUserBundle:Person')->findAllOrderedByLastNameQuery();
         $formMapper
             ->add('person', 'sonata_type_model', array('query' => $query))
-            ->add('role')
+            ->add('paper')
         ;
 
         if ($this->hasSubject()) {
@@ -29,7 +29,7 @@ class TaskOwnerAdmin extends Admin
     {
         $datagridMapper
             ->add('person')
-            ->add('role')
+            ->add('paper')
             ->add('task')
         ;
     }
@@ -39,7 +39,7 @@ class TaskOwnerAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->addIdentifier('person')
-            ->addIdentifier('role')
+            ->addIdentifier('paper')
             ->addIdentifier('task')
         ;
     }
