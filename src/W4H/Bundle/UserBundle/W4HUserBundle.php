@@ -12,13 +12,5 @@ class W4HUserBundle extends Bundle
     {
         return 'FOSUserBundle';
     }
-
-    public function boot()
-    {
-        $em = $this->container->get('doctrine.orm.entity_manager');
-        $evm = $em->getEventManager();
-
-        $evm->addEventListener(array(Events::prePersist), new SendEmailListener($this->container));
-    }
 }
 

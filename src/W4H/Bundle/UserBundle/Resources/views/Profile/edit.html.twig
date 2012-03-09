@@ -14,7 +14,6 @@
       <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
         {{ form_widget(form) }}
         <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
-        <a href="{{ path('fos_user_change_password') }}">Change my password</a>
       </form>
     </div>
   </div>
