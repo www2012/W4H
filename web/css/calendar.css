@@ -116,7 +116,7 @@
 /* .icon */
 #main #calendar .header .data .symbol,
 #main #calendar .task .data .owners .symbol,
-#section_calendar_filters_role .symbol
+#section_task_filter_form_role .symbol
 {
   border: 0;
   background: url('/images/icons-symbols.png') no-repeat;

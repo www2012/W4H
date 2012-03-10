@@ -2,6 +2,7 @@
 
 namespace W4H\Bundle\CalendarBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,7 +12,13 @@ use W4H\Bundle\CalendarBundle\Model\Calendar;
 use W4H\Bundle\CalendarBundle\Form\CalendarFilterType;
 use W4H\Bundle\CalendarBundle\Form\UserCalendarFilterType;
 use W4H\Bundle\CalendarBundle\Form\CalendarMoveTaskType;
+use W4H\Bundle\CalendarBundle\Form\TaskFilterType;
 use W4H\Bundle\EventTaskBundle\Form\TaskType;
+use W4H\Bundle\CalendarBundle\Filter\PublicCalendarTaskFilterManager;
+use W4H\Bundle\CalendarBundle\Filter\PersonalCalendarTaskFilterManager;
+use W4H\Bundle\CalendarBundle\Filter\CalendarTaskFilterManager;
+use W4H\Bundle\CalendarBundle\Filter\EventListTaskFilterManager;
+
 
 /**
  * 
@@ -25,31 +32,30 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="calendar")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->forward('W4HCalendarBundle:Default:indexFilter', array(
-            'year'  => $this->container->getParameter('w4h_calendar.schedule_default_year'),
-            'month' => $this->container->getParameter('w4h_calendar.schedule_default_month'),
-            'day'   => $this->container->getParameter('w4h_calendar.schedule_default_day'),
-        ));
+        $form_action = 'calendar';
+
+        $publicCalendar = new PublicCalendarTaskFilterManager($this->container);
+        $form = $publicCalendar->createForm();
+        $filters = $publicCalendar->getData();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if (!$form->isValid()) {
+                die('todo');
+            }
+            $filters = $form->getData();
+            //var_dump($filters); die;
+        }
+
+        return $this->renderCalendar($filters, $form, $form_action);
     }
 
     /**
-     * @Route("/calendar/{year}/{month}/{day}/filters", name="calendar_filters")
+     * Return calendar filters
      */
-    public function indexFilterAction($year, $month, $day)
-    {
-        $filters     = $this->getIndexFilters();
-        $form_action = 'calendar_filters';
-        $form        = $this->createForm(new UserCalendarFilterType());
-
-        return $this->renderCalendar($year, $month, $day, $form, $form_action, $filters);
-    }
-
-    /**
-     * Return all filters matching a collection of Role
-     */
-    public function getIndexFilters()
+    /*public function getCalendarFilters()
     {
         $em    = $this->getDoctrine()->getEntityManager();
         $activity_type = $em->getRepository('W4HEventTaskBundle:ActivityType')->findByName(array(
@@ -70,43 +76,40 @@ class DefaultController extends Controller
         ));
 
         return array('activity_type' => $activity_type);
-    }
+    }*/
 
     /**
      * @Route("/calendar/me", name="calendar_user")
      */
     public function myCalendarAction()
     {
-        return $this->forward('W4HCalendarBundle:Default:myCalendarFilter', array(
-            'year'  => $this->container->getParameter('w4h_calendar.schedule_default_year'),
-            'month' => $this->container->getParameter('w4h_calendar.schedule_default_month'),
-            'day'   => $this->container->getParameter('w4h_calendar.schedule_default_day'),
-        ));
-    }
+        $form_action = 'calendar_user';
 
-    /**
-     * @Route("/calendar/me/{year}/{month}/{day}/filters", name="calendar_user_filters")
-     */
-    public function myCalendarFilterAction($year, $month, $day)
-    {
-        $filters     = $this->getMyCalendarFilters(); 
-        $form_action = 'calendar_user_filters';
-        $form        = $this->createForm(new UserCalendarFilterType());
+        $personalCalendar = new PersonalCalendarTaskFilterManager($this->container);
+        $form   = $personalCalendar->createForm();
 
-        return $this->renderCalendar($year, $month, $day, $form, $form_action, $filters);
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if (!$form->isValid()) {
+                die('todo');
+            }
+        }
+
+        $filters = $personalCalendar->getData();
+        return $this->renderCalendar($filters, $form, $form_action);
     }
 
     /**
      * Return all filters matching a logged user
      */
-    public function getMyCalendarFilters()
+    /*public function getMyCalendarFilters()
     {
         $em     = $this->getDoctrine()->getEntityManager();
         $user   = $this->container->get('security.context')->getToken()->getUser();
         $person = $em->getRepository('W4HUserBundle:Person')->find($user->getId());
 
         return array('person' => array($person));
-    }
+    }*/
 
     /**
      * @Route("/calendar/all", name="calendar_admin")
@@ -114,23 +117,20 @@ class DefaultController extends Controller
      */
     public function adminCalendarAction()
     {
-        return $this->forward('W4HCalendarBundle:Default:adminCalendarFilter', array(
-            'year'  => $this->container->getParameter('w4h_calendar.schedule_default_year'),
-            'month' => $this->container->getParameter('w4h_calendar.schedule_default_month'),
-            'day'   => $this->container->getParameter('w4h_calendar.schedule_default_day'),
-        ));
-    }
+        $form_action = 'calendar_admin';
 
-    /**
-     * @Route("/calendar/all/{year}/{month}/{day}/filters", name="calendar_admin_filters")
-     * @Secure(roles="ROLE_ADMIN")
-     */
-    public function adminCalendarFilterAction($year, $month, $day)
-    {
-        $form_action = 'calendar_admin_filters';
-        $form        = $this->createForm(new CalendarFilterType());
+        $calendar = new CalendarTaskFilterManager($this->container);
+        $form   = $calendar->createForm();
 
-        return $this->renderCalendar($year, $month, $day, $form, $form_action, array(), true);
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if (!$form->isValid()) {
+                die('todo');
+            }
+        }
+
+        $filters = $calendar->getData();
+        return $this->renderCalendar($form, $form_action, true);
     }
 
     /**
@@ -154,14 +154,23 @@ class DefaultController extends Controller
 
     /**
      * @Route("/event-list", name="event_list")
-     * @Template("W4HCalendarBundle:Default:eventList.html.twig")
      */
-    public function eventListAction()
+    public function eventListAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $event_tasks = $em->getRepository('W4HEventTaskBundle:Task')->findAllSortByEvent();
+        $form_action = 'event_list';
 
-        return array('event_tasks' => $event_tasks);
+        $eventListManager = new EventListTaskFilterManager($this->container);
+        $form   = $eventListManager->createForm();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if (!$form->isValid()) {
+                die('todo');
+            }
+        }
+
+        $filters = $eventListManager->getData();
+        return $this->renderEventList($filters, $form, $form_action);
     }
 
     /**
@@ -232,9 +241,13 @@ class DefaultController extends Controller
         }
     }
 
-    public function renderCalendar($year, $month, $day, $form, $form_action, $filters = array(), $display_empty_location = false)
+    public function renderCalendar($filters, $form, $form_action, $display_empty_location = false)
     {
-        $request = $this->getRequest();
+        $year   = $this->container->getParameter('w4h_calendar.schedule_default_year');
+        $month  = $this->container->getParameter('w4h_calendar.schedule_default_month');
+        $day    = $this->container->getParameter('w4h_calendar.schedule_default_day');
+
+        /*$request = $this->getRequest();
         if($request->getMethod() == 'POST')
         {
             $form->bindRequest($request);
@@ -242,7 +255,7 @@ class DefaultController extends Controller
             {
                 $filters = array_merge($filters, $form->getData());
             }
-        }
+        }*/
 
         $calendar = $this->container->get('w4h_calendar.calendar');
         $step     = $this->container->getParameter('w4h_calendar.schedule_step');
@@ -255,10 +268,26 @@ class DefaultController extends Controller
                 'month'   => str_pad($month, 2, 0, STR_PAD_LEFT),
                 'day'     => str_pad($day, 2, 0, STR_PAD_LEFT)
             ),
-            'form'        => $form->createView(),
+            'step'        => $step,
             'schedules'   => $calendar->getSchedules(),
             'calendar'    => $calendar->getCalendar($datetime, $step, $filters, $display_empty_location),
-            'step'        => $step,
+            'form'        => $form->createView(),
+            'form_action' => $form_action,
+        ));
+    }
+
+    public function renderEventList($filters, $form, $form_action)
+    {
+        $calendar = $this->container->get('w4h_calendar.calendar');
+
+        return $this->render('W4HCalendarBundle:Default:eventList.html.twig', array(
+            'day'       => array(
+                'year'    => 2012,
+                'month'   => 04,
+                'day'     => 16	
+            ),
+            'event_tasks' => $calendar->getEventTasks($filters),
+            'form'        => $form->createView(),
             'form_action' => $form_action,
         ));
     }

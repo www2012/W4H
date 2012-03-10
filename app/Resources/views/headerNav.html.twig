@@ -1,8 +1,8 @@
 <nav>
   <ul>
-    <li class="{{ current == 'calendar_filters' ? 'current' : '' }}"><a href="{{ path('calendar') }}">Per day view</a></li>
+    <li class="{{ current == 'calendar' ? 'current' : '' }}"><a href="{{ path('calendar') }}">Per day view</a></li>
     <li class="{{ current == 'event_list' ? 'current' : '' }}"><a href="{{ path('event_list') }}">Event list view</a></li>
-    <li class="{{ current == 'calendar_user_filters' ? 'current' : '' }}"><a href="{{ path('calendar_user') }}">My view</a></li>
+    <li class="{{ current == 'calendar_user' ? 'current' : '' }}"><a href="{{ path('calendar_user') }}">My view</a></li>
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {% if is_granted('ROLE_ADMIN') %}
           <li class="{{ current == 'calendar_admin_filters' ? 'current' : '' }}">

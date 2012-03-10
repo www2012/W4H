@@ -4,6 +4,7 @@ namespace W4H\Bundle\CalendarBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 use Doctrine\ORM\EntityRepository;
+use W4H\Bundle\EventTaskBundle\Form\TaskType;
 
 /**
  * 
@@ -18,42 +19,12 @@ class CalendarFilterType extends AbstractType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('event', 'entity', array(
-                'class'    => 'W4HEventTaskBundle:Event',
-                'query_builder' => function(EntityRepository $repository) {
-                    return $repository->findAllOrderedByNameQueryBuilder();
-                },
-                'label'    => 'Context',
-                'required' => true,
-                'expanded' => true,
-                'multiple' => true
-            ))
             ->add('activity_type', 'entity', array(
                 'class'    => 'W4HEventTaskBundle:ActivityType',
                 'query_builder' => function(EntityRepository $repository) {
                     return $repository->findAllOrderedByNameQueryBuilder();
                 },
                 'label'    => 'Activity type',
-                'required' => true,
-                'expanded' => true,
-                'multiple' => true
-            ))
-            ->add('location', 'entity', array(
-                'class'    => 'W4HLocationBundle:Location',
-                'query_builder' => function(EntityRepository $repository) {
-                    return $repository->findAllOrderedByNameQueryBuilder();
-                },
-                'label'    => 'Location',
-                'required' => true,
-                'expanded' => true,
-                'multiple' => true
-            ))
-            ->add('activity', 'entity', array(
-                'class'    => 'W4HEventTaskBundle:Activity',
-                'query_builder' => function(EntityRepository $repository) {
-                    return $repository->findAllOrderedByNameQueryBuilder();
-                },
-                'label'    => 'Activity',
                 'required' => true,
                 'expanded' => true,
                 'multiple' => true

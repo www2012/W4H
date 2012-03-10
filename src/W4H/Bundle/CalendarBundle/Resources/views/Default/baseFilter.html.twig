@@ -1,0 +1,61 @@
+{% extends "::base.html.twig" %}
+
+{% block header %}
+  {% include '::headerNav.html.twig' with { 'current': form_action } %}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    // Prevent link action
+    $(".accordion section a").click(function(event){
+      event.preventDefault();
+      if($(this).parent('section').hasClass('selected'))
+        $(this).parent('section').removeClass('selected');
+      else
+        $(this).parent('section').addClass('selected');
+    });
+  </script>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/calendar.css') }}" />
+{% endblock %}
+
+{% block content %}
+  <aside id="filter">
+    <a class="toggle_filters" href="#filter"></a>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // Prevent link action
+        $("#filter > .toggle_filters").click(function(event){
+          event.preventDefault();
+          if($(this).parent('aside').hasClass('show'))
+            $(this).parent('aside').removeClass('show');
+          else
+            $(this).parent('aside').addClass('show');
+        });
+      });
+    </script>
+
+    {% form_theme form 'W4HCalendarBundle:Form:fields.html.twig' %}
+    <form class="accordion" action="{{ path(form_action, { 'year': day.year, 'month': day.month, 'day': day.day }) }}" method="post">
+      {{ form_widget(form) }}
+      <div class="actions">
+        <input type="submit" value="Apply" />
+        <a href="{{ path('calendar') }}">Reset</a>
+      </div>
+    </form>
+  </aside>
+
+  <div id="main">
+    <div class="topbar">
+      {% block topbar %}{% endblock %}
+    </div>
+
+    <div id="calendar">
+      {% block calendar %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

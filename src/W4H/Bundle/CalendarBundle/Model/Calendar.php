@@ -208,4 +208,52 @@ class Calendar
 
         return $schedules;
     }
+
+    /**
+     * Find all tasks sort by Event
+     *
+     * @param array    $filters
+     * @return array of Task
+     *
+     * array(
+     *   '20120416' => array(
+     *     'display' => 'April 16, 2012'
+     *     'hours'   => array(
+     *     '0900AM' => array(
+     *       'display' => '09:00 AM'
+     *         'tasks'   => TaskCollection,
+     *       )
+     *     )
+     *   )
+     * );
+     */
+    public function getEventTasks($filters = array())
+    {
+        $ret = array();
+        $tasks = $this->em->getRepository('W4HEventTaskBundle:Task')
+            ->findAllFilteredOrderByDate($filters);
+
+        foreach($tasks as $task)
+        {
+            if(!isset($ret[$task->getStartsAt()->format('Ymd')]))
+            {
+              $ret[$task->getStartsAt()->format('Ymd')] = array(
+                  'display' => $task->getStartsAt()->format('F d, Y'),
+                  'hours'   => array(),
+              );
+            }
+
+            if(!isset($ret[$task->getStartsAt()->format('Ymd')]['hours'][$task->getStartsAt()->format('HiA')]))
+            {
+              $ret[$task->getStartsAt()->format('Ymd')]['hours'][$task->getStartsAt()->format('HiA')] = array(
+                  'display' => $task->getStartsAt()->format('H:i A'),
+                  'tasks'   => array(),
+              );
+            }
+
+            $ret[$task->getStartsAt()->format('Ymd')]['hours'][$task->getStartsAt()->format('HiA')]['tasks'][] = $task;
+        }
+
+        return $ret;
+    }
 }

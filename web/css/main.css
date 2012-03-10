@@ -354,31 +354,6 @@ body > aside > form > .actions > a:hover
   right: 0;
 }
 
-/* Even list */
-#main .topbar > ul
-{
-  overflow: auto;
-}
-
-#main .topbar > ul > li
-{
-  float: left;
-}
-
-#main .topbar > ul > li > a
-{
-  color: #000;
-  text-decoration: none;
-  display: block;
-  padding: 1px 8px;
-}
-
-#main #calendar > ul > li:target > a
-{
-  background: #FFF;
-  padding-bottom: 4px;
-}
-
 /* Calendar */
 #main #calendar
 {
@@ -776,17 +751,9 @@ body > aside > form > .actions > a:hover
 /* Event list task */
 #main #calendar .content
 {
-  visibility: hidden;
   height: 94%;
-  display: none;
   padding: 1% 4%;
   margin: 0;
-}
-
-#main #calendar .content:target
-{
-  display: block;
-  visibility: visible;
 }
 
 #main #calendar .content h2
@@ -806,13 +773,15 @@ body > aside > form > .actions > a:hover
 
 #main #calendar .content .hour > ul > li
 {
-  margin: 5px 0 8px 16px;
+  margin: 8px 16px;
+  overflow: auto;
+  clear: both;
 }
 
 #main #calendar .content .time
 {
   color: #DE1981;
-  color: #DE1981;
+  font-weight: bold;
 }
 
 #main #calendar .content p
@@ -821,6 +790,7 @@ body > aside > form > .actions > a:hover
   font-size: 12px;
 }
 
+#main #calendar .content .event,
 #main #calendar .content .activity_type
 {
   float: left;
@@ -837,6 +807,12 @@ body > aside > form > .actions > a:hover
 {
   color: #444;
   font-style:italic;
+}
+
+#main #calendar .content .event,
+#main #calendar .content .location
+{
+  margin-left: 18px;
 }
 
 /* Accordion effect */

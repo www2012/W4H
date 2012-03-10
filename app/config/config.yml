@@ -19,8 +19,8 @@ framework:
 
 # W4H calendar configuration
 w4h_calendar:
-    schedule_start: 7
-    schedule_limit: 22
+    schedule_start: 8
+    schedule_limit: 21
     schedule_step: 15
     schedule_default_year: 2012
     schedule_default_month: 4
