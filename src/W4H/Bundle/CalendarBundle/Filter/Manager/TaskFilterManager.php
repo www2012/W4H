@@ -1,11 +1,12 @@
 <?php
-namespace W4H\Bundle\CalendarBundle\Filter;
+namespace W4H\Bundle\CalendarBundle\Filter\Manager;
 
 use W4H\Bundle\CalendarBundle\Filter\TaskFilter;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilder;
 
-/* Default Filters */
+/* Default Task Filters */
+use W4H\Bundle\CalendarBundle\Filter\DateTaskFilter;
 use W4H\Bundle\CalendarBundle\Filter\EventTaskFilter;
 use W4H\Bundle\CalendarBundle\Filter\ActivityTypeTaskFilter;
 use W4H\Bundle\CalendarBundle\Filter\ActivityTaskFilter;
@@ -38,12 +39,20 @@ class TaskFilterManager
 
     public function buildFilters()
     {
-        $this->addFilter(new EventTaskFilter($this->getContainer()))
-             ->addFilter(new ActivityTypeTaskFilter($this->getContainer()))
-             ->addFilter(new ActivityTaskFilter($this->getContainer()))
-             ->addFilter(new LocationTaskFilter($this->getContainer()))
-             ->addFilter(new RoleTaskFilter($this->getContainer()))
-             ->addFilter(new PersonTaskFilter($this->getContainer()))
+        $this->addFilter(new DateTaskFilter($this->getContainer(), array(
+                'filter_name' => 'from',
+                'filter_form_label' => 'From'
+            )))
+            ->addFilter(new DateTaskFilter($this->getContainer(), array(
+                'filter_name' => 'to',
+                'filter_form_label' => 'To'
+            )))
+            ->addFilter(new EventTaskFilter($this->getContainer()))
+            ->addFilter(new ActivityTypeTaskFilter($this->getContainer()))
+            ->addFilter(new ActivityTaskFilter($this->getContainer()))
+            ->addFilter(new LocationTaskFilter($this->getContainer()))
+            ->addFilter(new RoleTaskFilter($this->getContainer()))
+            ->addFilter(new PersonTaskFilter($this->getContainer()))
         ;
     }
 
@@ -107,12 +116,14 @@ class TaskFilterManager
     public function removeFilter($name)
     {
         if(!$this->hasFilter($name))
-            throw new \Exception(sprintf('%s: Can\'t remove the missing filter %s',
+            throw new \Exception(sprintf('%s: Can\'t remove a missing filter %s',
               get_class($this),
               $name
             ));
 
         unset($this->filters[$name]);
+
+        return $this;
     }
 
     /**
@@ -141,12 +152,13 @@ class TaskFilterManager
      *
      * @return array
      */
-    public function getData()
+    public function getFilteredData()
     {
         $datas = array();
         foreach($this->getFilters() as $k => $filter)
         {
-            $datas[$k] = $filter->getData();
+            if(!in_array($k, array('role', 'person')))
+                $datas[$k] = $filter->getFilteredData();
         }
 
         return $datas;

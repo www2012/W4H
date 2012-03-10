@@ -37,5 +37,5 @@ abstract class TaskFilter
     public abstract function getFilterName();
     public abstract function getFilterFormType();
     public abstract function getFilterFormOptions();
-    public abstract function getData();
+    public abstract function getFilteredData();
 }

@@ -58,9 +58,8 @@ class Calendar
     }
 
     /**
-     * @param DateTime $day
      * @param integer  $step
-     * @param array    $filters
+     * @param array    $filteredData
      * @param boolean  $display_empty_location
      *
      * @return array task indexed by location and schedule
@@ -90,16 +89,16 @@ class Calendar
      *
      * Note : schedules format Y-m-d-H-i
      */
-    public function getCalendar(\DateTime $day, $step, $filters = array(), $display_empty_location = false)
+    public function getCalendar($step, $filteredData = array(), $display_empty_location = false)
     {
         $calendar = array();
-        $daily_located_tasks = $this->getDailyTasksByLocations($day, $step, $filters);
+        $daily_located_tasks = $this->getDailyTasksByLocations($step, $filteredData);
 
         $locations = array();
-        if(!empty($filters['location'][0]))
+        if(!empty($filteredData['location'][0]))
         {
             $location_ids = array();
-            foreach($filters['location'] as $location)
+            foreach($filteredData['location'] as $location)
                 $location_ids[] = $location->getId();
 
             $locations = $this->em->getRepository('W4HLocationBundle:Location')->findById($location_ids);
@@ -109,6 +108,7 @@ class Calendar
             $locations = $this->em->getRepository('W4HLocationBundle:Location')->findAllOrderedByName();
         }
 
+        // TODO Loop on filtered Days
         foreach($locations as $location)
         {
             if($display_empty_location || isset($daily_located_tasks[$location->getId()]))
@@ -116,7 +116,8 @@ class Calendar
                 if(!isset($calendar[$location->getId()]))
                     $calendar[$location->getId()] = array('object' => $location, 'schedules' => array());
 
-                foreach($this->getSchedules($day) as $date => $schedule)
+                //foreach($this->getSchedules($day) as $date => $schedule)
+                foreach($this->getSchedules(new \DateTime('2012-04-16')) as $date => $schedule)
                 {
                     $tasks = array();
                     if(isset($daily_located_tasks[$location->getId()][$date]))
@@ -134,9 +135,8 @@ class Calendar
     }
 
     /**
-     * @param DateTime $day
      * @param integer  $step
-     * @param array    $filters
+     * @param array    $filteredData
      * @return array tasks indexed by location and schedule
      *
      *  ex:
@@ -145,13 +145,11 @@ class Calendar
      *      "Y-m-d-H-i" => array(TaskObj1, TaskObj2, TaskObj3, ...)
      *  ))
      */
-    public function getDailyTasksByLocations(\DateTime $day, $step, $filters = array())
+    public function getDailyTasksByLocations($step, $filteredData = array())
     {
         $daily_located_tasks = array();
-        $starts_at = date('Y-m-d', $day->getTimestamp());
-
         $tasks = $this->em->getRepository('W4HEventTaskBundle:Task')
-            ->findAllFiltered($starts_at, $filters);
+            ->findAllFiltered($filteredData);
 
         foreach($tasks as $task)
         {
@@ -212,7 +210,7 @@ class Calendar
     /**
      * Find all tasks sort by Event
      *
-     * @param array    $filters
+     * @param array $filteredData
      * @return array of Task
      *
      * array(
@@ -227,11 +225,11 @@ class Calendar
      *   )
      * );
      */
-    public function getEventTasks($filters = array())
+    public function getEventTasks($filteredData = array())
     {
         $ret = array();
         $tasks = $this->em->getRepository('W4HEventTaskBundle:Task')
-            ->findAllFilteredOrderByDate($filters);
+            ->findAllFiltered($filteredData);
 
         foreach($tasks as $task)
         {

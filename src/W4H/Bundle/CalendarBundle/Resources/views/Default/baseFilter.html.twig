@@ -40,7 +40,7 @@
     </script>
 
     {% form_theme form 'W4HCalendarBundle:Form:fields.html.twig' %}
-    <form class="accordion" action="{{ path(form_action, { 'year': day.year, 'month': day.month, 'day': day.day }) }}" method="post">
+    <form class="accordion" action="{{ path(form_action) }}" method="post">
       {{ form_widget(form) }}
       <div class="actions">
         <input type="submit" value="Apply" />

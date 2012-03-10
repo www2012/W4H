@@ -5,7 +5,7 @@
     <li class="{{ current == 'calendar_user' ? 'current' : '' }}"><a href="{{ path('calendar_user') }}">My view</a></li>
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {% if is_granted('ROLE_ADMIN') %}
-          <li class="{{ current == 'calendar_admin_filters' ? 'current' : '' }}">
+          <li class="{{ current == 'calendar_admin' ? 'current' : '' }}">
             <a href="{{ path('calendar_admin') }}">Admin view</a>
           </li>
         {% endif %}

@@ -1,7 +1,5 @@
 <?php
-namespace W4H\Bundle\CalendarBundle\Filter;
-
-use W4H\Bundle\CalendarBundle\Filter\CalendarTaskFilterManager;
+namespace W4H\Bundle\CalendarBundle\Filter\Manager;
 
 /**
  * 

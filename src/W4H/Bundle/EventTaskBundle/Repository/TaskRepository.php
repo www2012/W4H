@@ -45,9 +45,10 @@ class TaskRepository extends EntityRepository
     /**
      * Get all tasks matching filters
      *
+     * @param array $filteredData
      * @return DoctrineQueryBuilder
      */
-    public function findAllFilteredQueryBuilder($starts_at, $filters = array())
+    public function findAllFilteredQueryBuilder($filteredData = array())
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
@@ -60,82 +61,40 @@ class TaskRepository extends EntityRepository
            ->leftJoin('task.owners', 'owners')
            ->leftJoin('owners.person', 'person')
            ->leftJoin('owners.role', 'role')
-           ->where($qb->expr()->eq($qb->expr()->substring('task.starts_at', 1, 10), ':starts_at'))
-           ->setParameter('starts_at', $starts_at);
-
-        if(count($filters) > 0)
-        {
-            foreach($filters as $field => $filter)
-            {
-                if($field != 'date' && count($filter) > 0)
-                {
-                    $ids = array();
-                    foreach($filter as $selected_object)
-                        $ids[] = $selected_object->getId();
-
-                    $column = sprintf('%s.id', $field);
-                    $qb->andWhere($qb->expr()->in($column, $ids));
-                 }
-            }
-        }
-
-        return $qb;
-    }
-
-    /**
-     * Get all tasks matching filters
-     *
-     * @return DoctrineQuery
-     */
-    public function findAllFilteredQuery($starts_at, $filters = array())
-    {
-        return $this->findAllFilteredQueryBuilder($starts_at, $filters)->getQuery();
-    }
-
-    /**
-     * Get all tasks matching filters
-     *
-     * @return Collection Task
-     */
-    public function findAllFiltered($starts_at, $filters = array())
-    {
-        return $this->findAllFilteredQuery($starts_at, $filters)->getResult();
-    }
-
-    /**
-     * Get all tasks matching filters order by date
-     *
-     * @return DoctrineQueryBuilder
-     */
-    public function findAllFilteredOrderByDateQueryBuilder($filters = array())
-    {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-
-        $qb->select(array('task', 'event', 'location', 'activity'))
-           ->from('W4HEventTaskBundle:Task', 'task')
-           ->leftJoin('task.activity', 'activity')
-           ->leftJoin('task.event', 'event')
-           ->leftJoin('task.location', 'location')
-           ->leftJoin('activity.activity_type', 'activity_type')
-           ->leftJoin('task.owners', 'owners')
-           ->leftJoin('owners.person', 'person')
-           ->leftJoin('owners.role', 'role')
            ->orderBy('task.starts_at');
 
-
-        if(count($filters) > 0)
+        if(count($filteredData) > 0)
         {
-            foreach($filters as $field => $filter)
+            foreach($filteredData as $field => $data)
             {
-                if(count($filter) > 0)
+                if(count($data) > 0)
                 {
-                    $ids = array();
-                    foreach($filter as $selected_object)
-                        $ids[] = $selected_object->getId();
+                    if($field == 'day')
+                    {
+                        $qb->where($qb->expr()->eq($qb->expr()->substring('task.starts_at', 1, 10), ':date_day'))
+                           ->setParameter('date_day', $data->format('Y-m-d'));
+                    }
+                    elseif($field == 'from')
+                    {
+                        $qb->andWhere('task.starts_at >= :date_from')
+                           ->setParameter('date_from', $data->format('Y-m-d'));
+                    }
+                    elseif($field == 'to')
+                    {
+                        $data->modify("+1 day");
+                        $qb->andWhere('task.ends_at <= :date_to')
+                           ->setParameter('date_to', $data->format('Y-m-d'));
+                    }
+                    else
+                    {
+                        $ids = array();
+                        foreach($data as $object)
+                            $ids[] = $object->getId();
 
-                    $column = sprintf('%s.id', $field);
-                    $qb->andWhere($qb->expr()->in($column, $ids));
-                 }
+                        $column = sprintf('%s.id', $field);
+                        $qb->andWhere($qb->expr()->in($column, $ids));
+                     }
+                }
             }
         }
 
@@ -143,22 +102,24 @@ class TaskRepository extends EntityRepository
     }
 
     /**
-     * Get all tasks matching filters order by date
+     * Get all tasks matching filters
      *
+     * @param array $filteredData
      * @return DoctrineQuery
      */
-    public function findAllFilteredOrderByDateQuery($filters = array())
+    public function findAllFilteredQuery($filteredData = array())
     {
-        return $this->findAllFilteredOrderByDateQueryBuilder($filters)->getQuery();
+        return $this->findAllFilteredQueryBuilder($filteredData)->getQuery();
     }
 
     /**
-     * Get all tasks matching filters order by date
+     * Get all tasks matching filters
      *
+     * @param array $filteredData
      * @return Collection Task
      */
-    public function findAllFilteredOrderByDate($filters = array())
+    public function findAllFiltered($filteredData = array())
     {
-        return $this->findAllFilteredOrderByDateQuery($filters)->getResult();
+        return $this->findAllFilteredQuery($filteredData)->getResult();
     }
 }

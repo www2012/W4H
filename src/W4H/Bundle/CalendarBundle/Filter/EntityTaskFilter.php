@@ -28,7 +28,7 @@ abstract class EntityTaskFilter extends TaskFilter
         );
     }
 
-    public function getData()
+    public function getFilteredData()
     {
         $em = $this->getContainer()->get("doctrine.orm.entity_manager");
         $repository = $em->getRepository($this->getEntityClass());

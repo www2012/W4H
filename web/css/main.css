@@ -325,33 +325,10 @@ body > aside > form > .actions > a:hover
 {
   color: #555;
   text-shadow: 1px 1px #FFF;
-  margin: 0 32px;
+  margin: 0 10px;
   font-weight: bold;
   width: 80px;
   text-align: center;
-}
-
-#main .topbar .date nav > a
-{
-  width: 24px;
-  height: 24px;
-  text-indent: -9999px;
-  display: block;
-  position: absolute;
-}
-
-#main .topbar .date nav > a.previous
-{
-  background: url('/images/previous.png') no-repeat;
-  top: 9px;
-  left: 0;
-}
-
-#main .topbar .date nav > a.next
-{
-  background: url('/images/next.png') no-repeat;
-  top: 9px;
-  right: 0;
 }
 
 /* Calendar */

@@ -15,15 +15,7 @@
 
 {% block topbar %}
   <div class="date">
-    <h1>{{ day.year }}-{{ day.month }}-{{ day.day }}</h1>
-    <nav>
-      <a class="previous" href="{{ path_previous_day(form_action, { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Previous day">
-        Previous day
-      </a>
-      <a class="next" href="{{ path_next_day(form_action, { 'year': day.year, 'month': day.month, 'day': day.day }) }}" title="Next day">
-        Next day
-      </a>
-    </nav>
+    <h1>{{ day|date("Y-m-d") }}</h1>
   </div>
 {% endblock %}
 
