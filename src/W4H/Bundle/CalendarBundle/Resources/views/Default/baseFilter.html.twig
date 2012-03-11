@@ -21,6 +21,7 @@
 {% block stylesheets %}
   {{ parent() }}
   <link rel="stylesheet" type="text/css" href="{{ asset('css/calendar.css') }}" />
+  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/redmond/jquery-ui.css" />
 {% endblock %}
 
 {% block content %}
@@ -47,6 +48,19 @@
         <a href="{{ path('calendar') }}">Reset</a>
       </div>
     </form>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#task_filter_form_day').datepicker({
+          dateFormat: "yy-mm-dd"
+        });
+        $('#task_filter_form_from').datepicker({
+          dateFormat: "yy-mm-dd"
+        });
+        $('#task_filter_form_to').datepicker({
+          dateFormat: "yy-mm-dd"
+        });
+      });
+    </script>
   </aside>
 
   <div id="main">
