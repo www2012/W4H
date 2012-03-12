@@ -57,7 +57,7 @@ class TaskFilterManager extends AbstractFilterManager
         $datas = array();
         foreach($this->getFilters() as $k => $filter)
         {
-            if(isset($filteredData[$k]))
+            if(isset($filteredData[$k]) && count($filteredData[$k]) > 0)
                 $datas[$k] = $filteredData[$k];
             elseif(!in_array($k, array('role', 'person')))
                 $datas[$k] = $filter->getFilteredData();

@@ -71,7 +71,7 @@ class TaskRepository extends EntityRepository
                 {
                     if($field == 'day')
                     {
-                        $qb->where($qb->expr()->eq($qb->expr()->substring('task.starts_at', 1, 10), ':date_day'))
+                        $qb->andWhere($qb->expr()->eq($qb->expr()->substring('task.starts_at', 1, 10), ':date_day'))
                            ->setParameter('date_day', $data->format('Y-m-d'));
                     }
                     elseif($field == 'from')
@@ -81,9 +81,10 @@ class TaskRepository extends EntityRepository
                     }
                     elseif($field == 'to')
                     {
-                        $data->modify("+1 day");
+                        $to = clone $data;
+                        $to->modify("+1 day");
                         $qb->andWhere('task.ends_at <= :date_to')
-                           ->setParameter('date_to', $data->format('Y-m-d'));
+                           ->setParameter('date_to', $to->format('Y-m-d'));
                     }
                     else
                     {

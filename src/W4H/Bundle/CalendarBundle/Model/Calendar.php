@@ -108,7 +108,6 @@ class Calendar
             $locations = $this->em->getRepository('W4HLocationBundle:Location')->findAllOrderedByName();
         }
 
-        // TODO Loop on filtered Days
         foreach($locations as $location)
         {
             if($display_empty_location || isset($daily_located_tasks[$location->getId()]))
@@ -116,8 +115,7 @@ class Calendar
                 if(!isset($calendar[$location->getId()]))
                     $calendar[$location->getId()] = array('object' => $location, 'schedules' => array());
 
-                //foreach($this->getSchedules($day) as $date => $schedule)
-                foreach($this->getSchedules(new \DateTime('2012-04-16')) as $date => $schedule)
+                foreach($this->getSchedules($filteredData['day']) as $date => $schedule)
                 {
                     $tasks = array();
                     if(isset($daily_located_tasks[$location->getId()][$date]))
