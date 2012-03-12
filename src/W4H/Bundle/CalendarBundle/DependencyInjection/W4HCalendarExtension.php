@@ -40,9 +40,6 @@ class W4HCalendarExtension extends Extension
             throw new \InvalidArgumentException('The "w4h_calendar.schedule_step" option must be set.');
         $container->setParameter('w4h_calendar.schedule_step', $config['schedule_step']);
 
-        if (!is_int($config['schedule_start']) || !is_int($config['schedule_step']) || !is_int($config['schedule_limit']))
-            throw new \InvalidArgumentException('The w4h_calendar options must be numbers.');
-
         $container->setParameter('w4h_calendar.schedule_default_year', isset($config['schedule_default_year']) ? $config['schedule_default_year'] : date('Y'));
         $container->setParameter('w4h_calendar.schedule_default_month', isset($config['schedule_default_month']) ? $config['schedule_default_month'] : date('m'));
         $container->setParameter('w4h_calendar.schedule_default_day', isset($config['schedule_default_day']) ? $config['schedule_default_day'] : date('d'));

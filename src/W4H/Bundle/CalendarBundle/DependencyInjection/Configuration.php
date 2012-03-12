@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('schedule_start')->defaultValue('6')->end()
+                ->scalarNode('schedule_start')->defaultValue('8')->end()
                 ->scalarNode('schedule_limit')->defaultValue('22')->end()
                 ->scalarNode('schedule_step')->defaultValue('15')->end()
                 ->scalarNode('schedule_default_year')->end()

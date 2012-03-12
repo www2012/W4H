@@ -19,14 +19,14 @@ framework:
 
 # W4H calendar configuration
 w4h_calendar:
-    schedule_start: 8
-    schedule_limit: 21
-    schedule_step: 15
-    schedule_default_year: 2012
-    schedule_default_month: 4
-    schedule_default_day: 16
-    schedule_row_height: 12
-    schedule_column_width: 100
+    schedule_start:         %w4h_calendar_schedule_start%
+    schedule_limit:         %w4h_calendar_schedule_limit%
+    schedule_step:          %w4h_calendar_schedule_step%
+    schedule_default_year:  %w4h_calendar_default_year%
+    schedule_default_month: %w4h_calendar_default_month%
+    schedule_default_day:   %w4h_calendar_default_day%
+    schedule_row_height:    %w4h_calendar_row_height%
+    schedule_column_width:  %w4h_calendar_column_width%
 
 # Twig Configuration
 twig:

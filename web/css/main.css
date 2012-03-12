@@ -244,11 +244,10 @@ body > aside > form > div > section > .content fieldset input
 
 body > aside > form > div > section > .content fieldset input[type="text"]
 {
-  float: none;
-  margin: 0 auto;
   display: block;
-  width: 68px;
-  padding: 0 4px;
+  font-size: 1em;
+  padding: 2px 15px;
+  width: 17em;
 }
 
 body > aside > form > .actions
