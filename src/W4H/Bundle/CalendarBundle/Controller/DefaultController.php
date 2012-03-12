@@ -43,7 +43,7 @@ class DefaultController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if (!$form->isValid()) {
-                die('todo');
+                return $this->renderCalendar($filteredData, $form, $form_action);
             }
             $filteredData = $form->getData();
         }
@@ -65,7 +65,7 @@ class DefaultController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if (!$form->isValid()) {
-                die('todo');
+                return $this->renderCalendar($filteredData, $form, $form_action);
             }
             $filteredData = $form->getData();
         }
@@ -89,7 +89,7 @@ class DefaultController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if (!$form->isValid()) {
-                die('todo');
+                return $this->renderCalendar($filteredData, $form, $form_action);
             }
             $filteredData = $form->getData();
         }
@@ -112,7 +112,7 @@ class DefaultController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if (!$form->isValid()) {
-                die('todo');
+                return $this->renderCalendar($filteredData, $form, $form_action);
             }
             $filteredData = $form->getData();
         }

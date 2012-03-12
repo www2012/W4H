@@ -2,8 +2,8 @@
 {% spaceless %}
     <section id="section_{{ form.get('id') }}">
         <a href="#section_{{ form.get('id') }}">{{ form_label(form) }}</a>
-        {{ form_errors(form) }}
         <div class="content">
+            {{ form_errors(form) }}
             <span class="arrow"></span>
             <fieldset>
                 {{ form_widget(form) }}
