@@ -10,9 +10,9 @@ namespace W4H\Bundle\CalendarBundle\Filter\Manager;
  */
 class PersonalCalendarTaskFilterManager extends CalendarTaskFilterManager
 {
-    public function buildFilters()
+    public function buildFilters($filterOptions = array())
     {
-        parent::buildFilters();
+        parent::buildFilters($filterOptions);
         $this->removeFilter('person');
         $this->removeFilter('role');
     }

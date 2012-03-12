@@ -1,8 +1,6 @@
 <?php
 namespace W4H\Bundle\CalendarBundle\Filter;
 
-use W4H\Bundle\CalendarBundle\Filter\TaskFilter;
-
 /**
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
@@ -10,19 +8,11 @@ use W4H\Bundle\CalendarBundle\Filter\TaskFilter;
  * @licence: GPL
  *
  */
-class DateTaskFilter extends TaskFilter
+class DateFilter extends AbstractFilter
 {
     public function getFilterName()      { return $this->getOption('filter_name') ? $this->getOption('filter_name') : 'date'; }
     public function getFilterFormType()  { return 'date'; }
-
-    public function getDefaultDay()
-    {
-        $year  = $this->getContainer()->getParameter('w4h_calendar.schedule_default_year');
-        $month = $this->getContainer()->getParameter('w4h_calendar.schedule_default_month');
-        $day   = $this->getContainer()->getParameter('w4h_calendar.schedule_default_day');
-
-        return new \DateTime(sprintf('%s-%s-%s', $year, $month, $day));
-    }
+    public function getDefaultDay()      { return $this->getOption('default_day') ? $this->getOption('default_day') : new \DateTime('now'); }
 
     public function getFilterFormOptions()
     {

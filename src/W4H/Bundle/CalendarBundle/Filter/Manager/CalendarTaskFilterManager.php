@@ -1,9 +1,7 @@
 <?php
 namespace W4H\Bundle\CalendarBundle\Filter\Manager;
 
-use W4H\Bundle\CalendarBundle\Filter\Manager\TaskFilterManager;
-
-use W4H\Bundle\CalendarBundle\Filter\DateTaskFilter;
+use W4H\Bundle\CalendarBundle\Filter\DateFilter;
 
 /**
  * 
@@ -14,13 +12,16 @@ use W4H\Bundle\CalendarBundle\Filter\DateTaskFilter;
  */
 class CalendarTaskFilterManager extends TaskFilterManager
 {
-    public function buildFilters()
+    public function buildFilters($filterOptions = array())
     {
-        $this->addFilter(new DateTaskFilter($this->getContainer(), array(
-            'filter_name' => 'day',
-            'filter_form_label' => 'Day'
+        $default_day = isset($filterOptions['default_day']) ? $filterOptions['default_day'] : false;
+
+        $this->addFilter(new DateFilter($this->getContainer(), array(
+            'filter_name'       => 'day',
+            'filter_form_label' => 'Day',
+            'default_day'       => $default_day
         )));
-        parent::buildFilters();
+        parent::buildFilters($filterOptions);
         $this->removeFilter('from')
              ->removeFilter('to')
         ;

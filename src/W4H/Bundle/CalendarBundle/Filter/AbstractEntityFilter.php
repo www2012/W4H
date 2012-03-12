@@ -1,8 +1,6 @@
 <?php
 namespace W4H\Bundle\CalendarBundle\Filter;
 
-use W4H\Bundle\CalendarBundle\Filter\ActivityTypeTaskFilter;
-
 /**
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
@@ -10,21 +8,28 @@ use W4H\Bundle\CalendarBundle\Filter\ActivityTypeTaskFilter;
  * @licence: GPL
  *
  */
-class PublicActivityTypeTaskFilter extends ActivityTypeTaskFilter
+abstract class AbstractEntityFilter extends AbstractFilter
 {
+    public function getFilterFormType()  { return 'entity'; }
+
     public function getFilterFormOptions()
     {
-        $em = $this->getContainer()->get("doctrine.orm.entity_manager");
-        $repository = $em->getRepository($this->getEntityClass());
-
         return array(
             'class'    => $this->getEntityClass(),
             'label'    => $this->getFilterFormLabel(),
-            'query_builder' => $repository->createQueryBuilder('at')
-               ->where('at.name NOT IN (\'Other\', \'Press\')'),
             'required' => true,
             'expanded' => true,
             'multiple' => true
         );
     }
+
+    public function getFilteredData()
+    {
+        $em = $this->getContainer()->get("doctrine.orm.entity_manager");
+        $repository = $em->getRepository($this->getEntityClass());
+        return $repository->findAll();
+    }
+
+    abstract public function getEntityClass();
+    abstract public function getFilterFormLabel();
 }

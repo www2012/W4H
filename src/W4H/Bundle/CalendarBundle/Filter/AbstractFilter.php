@@ -8,7 +8,7 @@ namespace W4H\Bundle\CalendarBundle\Filter;
  * @licence: GPL
  *
  */
-abstract class TaskFilter
+abstract class AbstractFilter
 {
     protected $container;
     protected $options;
@@ -34,8 +34,8 @@ abstract class TaskFilter
         return isset($this->options[$name]) ? $this->options[$name] : false;
     }
 
-    public abstract function getFilterName();
-    public abstract function getFilterFormType();
-    public abstract function getFilterFormOptions();
-    public abstract function getFilteredData();
+    abstract public function getFilterName();
+    abstract public function getFilterFormType();
+    abstract public function getFilterFormOptions();
+    abstract public function getFilteredData();
 }

@@ -1,8 +1,6 @@
 <?php
 namespace W4H\Bundle\CalendarBundle\Filter;
 
-use W4H\Bundle\CalendarBundle\Filter\EntityTaskFilter;
-
 /**
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
@@ -10,7 +8,7 @@ use W4H\Bundle\CalendarBundle\Filter\EntityTaskFilter;
  * @licence: GPL
  *
  */
-class EventTaskFilter extends EntityTaskFilter
+class EventFilter extends AbstractEntityFilter
 {
     public function getFilterName()      { return 'event'; }
     public function getEntityClass()     { return 'W4HEventTaskBundle:Event'; }

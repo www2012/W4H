@@ -1,18 +1,17 @@
 <?php
 namespace W4H\Bundle\CalendarBundle\Filter\Manager;
 
-use W4H\Bundle\CalendarBundle\Filter\TaskFilter;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilder;
 
 /* Default Task Filters */
-use W4H\Bundle\CalendarBundle\Filter\DateTaskFilter;
-use W4H\Bundle\CalendarBundle\Filter\EventTaskFilter;
-use W4H\Bundle\CalendarBundle\Filter\ActivityTypeTaskFilter;
-use W4H\Bundle\CalendarBundle\Filter\ActivityTaskFilter;
-use W4H\Bundle\CalendarBundle\Filter\LocationTaskFilter;
-use W4H\Bundle\CalendarBundle\Filter\RoleTaskFilter;
-use W4H\Bundle\CalendarBundle\Filter\PersonTaskFilter;
+use W4H\Bundle\CalendarBundle\Filter\DateFilter;
+use W4H\Bundle\CalendarBundle\Filter\EventFilter;
+use W4H\Bundle\CalendarBundle\Filter\ActivityTypeFilter;
+use W4H\Bundle\CalendarBundle\Filter\ActivityFilter;
+use W4H\Bundle\CalendarBundle\Filter\LocationFilter;
+use W4H\Bundle\CalendarBundle\Filter\RoleFilter;
+use W4H\Bundle\CalendarBundle\Filter\PersonFilter;
 
 /**
  * 
@@ -21,143 +20,46 @@ use W4H\Bundle\CalendarBundle\Filter\PersonTaskFilter;
  * @licence: GPL
  *
  */
-class TaskFilterManager
+class TaskFilterManager extends AbstractFilterManager
 {
-    protected $filters = array();
-    protected $container;
-
-    public function __construct($container)
+    public function buildFilters($filterOptions = array())
     {
-        $this->container = $container;
-        $this->buildFilters();
-    }
+        $from_day = isset($filterOptions['from_day']) ? $filterOptions['from_day'] : false;
+        $to_day = isset($filterOptions['to_day']) ? $filterOptions['to_day'] : false;
 
-    public function getContainer()
-    {
-        return $this->container;
-    }
-
-    public function buildFilters()
-    {
-        $this->addFilter(new DateTaskFilter($this->getContainer(), array(
-                'filter_name' => 'from',
-                'filter_form_label' => 'From'
+        $this->addFilter(new DateFilter($this->getContainer(), array(
+                'filter_name'       => 'from',
+                'filter_form_label' => 'From',
+                'default_day'       => $from_day
             )))
-            ->addFilter(new DateTaskFilter($this->getContainer(), array(
-                'filter_name' => 'to',
-                'filter_form_label' => 'To'
+            ->addFilter(new DateFilter($this->getContainer(), array(
+                'filter_name'       => 'to',
+                'filter_form_label' => 'To',
+                'default_day'       => $to_day
             )))
-            ->addFilter(new EventTaskFilter($this->getContainer()))
-            ->addFilter(new ActivityTypeTaskFilter($this->getContainer()))
-            ->addFilter(new ActivityTaskFilter($this->getContainer()))
-            ->addFilter(new LocationTaskFilter($this->getContainer()))
-            ->addFilter(new RoleTaskFilter($this->getContainer()))
-            ->addFilter(new PersonTaskFilter($this->getContainer()))
+            ->addFilter(new EventFilter($this->getContainer()))
+            ->addFilter(new ActivityTypeFilter($this->getContainer()))
+            ->addFilter(new ActivityFilter($this->getContainer()))
+            ->addFilter(new LocationFilter($this->getContainer()))
+            ->addFilter(new RoleFilter($this->getContainer()))
+            ->addFilter(new PersonFilter($this->getContainer()))
         ;
     }
 
     /**
-     * hasFilter
-     *
-     * @param string $name
-     * @return boolean
-     */
-    public function hasFilter($name)
-    {
-        return isset($this->filters[$name]);
-    }
-
-    /**
-     * getFilter
-     *
-     * @param string $name
-     * @return TaskFilter
-     */
-    public function getFilter($name)
-    {
-        return $this->filters[$name];
-    }
-
-    /**
-     * getFilters
-     *
-     * @return array
-     */
-    public function getFilters()
-    {
-        return $this->filters;
-    }
-
-    /**
-     * addFilter
-     *
-     * @param TaskFilter $filter
-     * @param boolea $replace
-     * @return TaskFilter The current filter
-     */
-    public function addFilter(TaskFilter $filter, $replace = false)
-    {
-        if($this->hasFilter($filter->getFilterName()) && !$replace)
-            throw new \Exception(sprintf('%s: The filter %s is already present',
-              get_class($this),
-              $filter->getFilterName()
-            ));
-
-        $this->filters[$filter->getFilterName()] = $filter;
-
-        return $this;
-    }
-
-    /**
-     * removeFilter
-     *
-     * @param string $name
-     */
-    public function removeFilter($name)
-    {
-        if(!$this->hasFilter($name))
-            throw new \Exception(sprintf('%s: Can\'t remove a missing filter %s',
-              get_class($this),
-              $name
-            ));
-
-        unset($this->filters[$name]);
-
-        return $this;
-    }
-
-    /**
-     * createForm
-     *
-     * @return Form
-     */
-    public function createForm()
-    {
-        $builder = $this->container->get('form.factory')->createNamedBuilder('form', 'task_filter_form');
-        foreach($this->getFilters() as $filter)
-        {
-            $builder->add(
-                $filter->getFilterName(),
-                $filter->getFilterFormType(),
-                $filter->getFilterFormOptions()
-            );
-        }
-
-        return $builder->getForm();
-    }
-
-
-    /**
      * getData
      *
+     * @param array $filteredData
      * @return array
      */
-    public function getFilteredData()
+    public function getFilteredData($filteredData = array())
     {
         $datas = array();
         foreach($this->getFilters() as $k => $filter)
         {
-            if(!in_array($k, array('role', 'person')))
+            if(isset($filteredData[$k]))
+                $datas[$k] = $filteredData[$k];
+            elseif(!in_array($k, array('role', 'person')))
                 $datas[$k] = $filter->getFilteredData();
         }
 

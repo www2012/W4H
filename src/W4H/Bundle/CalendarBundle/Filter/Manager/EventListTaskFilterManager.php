@@ -10,8 +10,8 @@ namespace W4H\Bundle\CalendarBundle\Filter\Manager;
  */
 class EventListTaskFilterManager extends TaskFilterManager
 {
-    public function buildFilters()
+    public function buildFilters($filterOptions = array())
     {
-        parent::buildFilters();
+        parent::buildFilters($filterOptions);
     }
 }

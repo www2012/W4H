@@ -19,7 +19,6 @@ use W4H\Bundle\CalendarBundle\Filter\Manager\PersonalCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\CalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\EventListTaskFilterManager;
 
-
 /**
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
@@ -36,9 +35,11 @@ class DefaultController extends Controller
     {
         $form_action = 'calendar';
 
-        $publicCalendar = new PublicCalendarTaskFilterManager($this->container);
-        $form = $publicCalendar->createForm();
-        $filteredData = $publicCalendar->getFilteredData();
+        $filterManager = new PublicCalendarTaskFilterManager($this->container, array(
+            'default_day' => $this->getScheduleDefaultDateTime()
+        ));
+        $form = $filterManager->createForm();
+        $filteredData = array();
 
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
@@ -48,7 +49,7 @@ class DefaultController extends Controller
             $filteredData = $form->getData();
         }
 
-        return $this->renderCalendar($filteredData, $form, $form_action);
+        return $this->renderCalendar($filterManager->getFilteredData($filteredData), $form, $form_action);
     }
 
     /**
@@ -58,9 +59,11 @@ class DefaultController extends Controller
     {
         $form_action = 'calendar_user';
 
-        $personalCalendar = new PersonalCalendarTaskFilterManager($this->container);
-        $form = $personalCalendar->createForm();
-        $filteredData = $personalCalendar->getFilteredData();
+        $filterManager = new PersonalCalendarTaskFilterManager($this->container, array(
+            'default_day' => $this->getScheduleDefaultDateTime()
+        ));
+        $form = $filterManager->createForm();
+        $filteredData = array();
 
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
@@ -70,8 +73,7 @@ class DefaultController extends Controller
             $filteredData = $form->getData();
         }
 
-
-        return $this->renderCalendar($filteredData, $form, $form_action);
+        return $this->renderCalendar($filterManager->getFilteredData($filteredData), $form, $form_action);
     }
 
     /**
@@ -82,20 +84,21 @@ class DefaultController extends Controller
     {
         $form_action = 'calendar_admin';
 
-        $calendar = new CalendarTaskFilterManager($this->container);
-        $form = $calendar->createForm();
-        $filteredData = $calendar->getFilteredData();
+        $filterManager = new CalendarTaskFilterManager($this->container, array(
+            'default_day' => $this->getScheduleDefaultDateTime()
+        ));
+        $form = $filterManager->createForm();
+        $filteredData = array();
 
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if (!$form->isValid()) {
-                return $this->renderCalendar($filteredData, $form, $form_action);
+                return $this->renderCalendar($filteredData, $form, $form_action, true);
             }
             $filteredData = $form->getData();
         }
 
-
-        return $this->renderCalendar($filteredData, $form, $form_action, true);
+        return $this->renderCalendar($filterManager->getFilteredData($filteredData), $form, $form_action, true);
     }
 
     /**
@@ -104,21 +107,36 @@ class DefaultController extends Controller
     public function eventListAction(Request $request)
     {
         $form_action = 'event_list';
+        $from_day = $this->getScheduleDefaultDateTime();
+        $to_day   = $this->getScheduleDefaultDateTime();
+        $to_day->modify('+4 day');
 
-        $eventListManager = new EventListTaskFilterManager($this->container);
-        $form = $eventListManager->createForm();
-        $filteredData = $eventListManager->getFilteredData();
+        $filterManager = new EventListTaskFilterManager($this->container, array(
+            'from_day' => $from_day,
+            'to_day' => $to_day
+        ));
+
+        $form = $filterManager->createForm();
+        $filteredData = array();
 
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if (!$form->isValid()) {
-                return $this->renderCalendar($filteredData, $form, $form_action);
+                return $this->renderEventList($filteredData, $form, $form_action);
             }
             $filteredData = $form->getData();
         }
 
+        return $this->renderEventList($filterManager->getFilteredData($filteredData), $form, $form_action);
+    }
 
-        return $this->renderEventList($filteredData, $form, $form_action);
+    protected function getScheduleDefaultDateTime()
+    {
+        $year  = $this->container->getParameter('w4h_calendar.schedule_default_year');
+        $month = $this->container->getParameter('w4h_calendar.schedule_default_month');
+        $day   = $this->container->getParameter('w4h_calendar.schedule_default_day');
+
+        return new \DateTime(sprintf('%d-%d-%d', $year, $month, $day));
     }
 
     /**
@@ -148,10 +166,10 @@ class DefaultController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUser();
         if($user->isSuperAdmin())
         {
-            $request = $this->getRequest();
-            $em = $this->getDoctrine()->getEntityManager();
-            $task = $em->getRepository('W4HEventTaskBundle:Task')->find($task_id);
-            $interval      = date_diff($task->getStartsAt(), $task->getEndsAt());
+            $request  = $this->getRequest();
+            $em       = $this->getDoctrine()->getEntityManager();
+            $task     = $em->getRepository('W4HEventTaskBundle:Task')->find($task_id);
+            $interval = date_diff($task->getStartsAt(), $task->getEndsAt());
 
             // is it an Ajax request?
             if($request->isXmlHttpRequest())

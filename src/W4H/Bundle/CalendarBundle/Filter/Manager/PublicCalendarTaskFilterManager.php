@@ -1,7 +1,7 @@
 <?php
 namespace W4H\Bundle\CalendarBundle\Filter\Manager;
 
-use W4H\Bundle\CalendarBundle\Filter\PublicActivityTypeTaskFilter;
+use W4H\Bundle\CalendarBundle\Filter\PublicActivityTypeFilter;
 
 /**
  * 
@@ -12,11 +12,11 @@ use W4H\Bundle\CalendarBundle\Filter\PublicActivityTypeTaskFilter;
  */
 class PublicCalendarTaskFilterManager extends CalendarTaskFilterManager
 {
-    public function buildFilters()
+    public function buildFilters($filterOptions = array())
     {
-        parent::buildFilters();
+        parent::buildFilters($filterOptions);
         $this->removeFilter('person');
         $this->removeFilter('role');
-        $this->addFilter(new PublicActivityTypeTaskFilter($this->getContainer()), true);
+        $this->addFilter(new PublicActivityTypeFilter($this->getContainer()), true);
     }
 }
