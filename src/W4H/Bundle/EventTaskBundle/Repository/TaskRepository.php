@@ -56,6 +56,9 @@ class TaskRepository extends EntityRepository
                         $qb->andWhere('task.ends_at <= :date_to')
                            ->setParameter('date_to', $to->format('Y-m-d'));
                     }
+                    elseif($field == 'hidden_data')
+                    {
+                    }
                     else
                     {
                         $ids = array();

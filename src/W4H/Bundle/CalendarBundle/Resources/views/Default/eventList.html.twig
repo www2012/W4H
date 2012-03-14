@@ -19,11 +19,21 @@
             <ul>
               {% for task in hour.tasks %}
                 <li class="{{ task.getClasses() }}">
+                  {% if 'symbols' not in hidden_data %}
                   <div class="symbol"></div>
+                  {% endif %}
+                  {% if 'activity_name' not in hidden_data %}
                   <p class="name">{{ task.activity.name }}</p>
+                  {% endif %}
+                  {% if 'location' not in hidden_data %}
                   <p class="location">{{ task.location.name }} ({{ task.location.building }} # {{ task.location.level }})</p>
+                  {% endif %}
+                  {% if 'event' not in hidden_data %}
                   <p class="event">{{ task.event.name }}</p>
+                  {% endif %}
+                  {% if 'activity_type' not in hidden_data %}
                   <p class="activity_type">{{ task.activity.activityType.name }}</p>
+                  {% endif %}
                 </li>
               {% endfor %}
             </ul>

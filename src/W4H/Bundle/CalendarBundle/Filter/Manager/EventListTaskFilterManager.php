@@ -1,6 +1,9 @@
 <?php
 namespace W4H\Bundle\CalendarBundle\Filter\Manager;
 
+use W4H\Bundle\CalendarBundle\Filter\PublicActivityTypeFilter;
+use W4H\Bundle\CalendarBundle\Filter\HideDataFilter;
+
 /**
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
@@ -13,5 +16,9 @@ class EventListTaskFilterManager extends TaskFilterManager
     public function buildFilters($filterOptions = array())
     {
         parent::buildFilters($filterOptions);
+        $this->removeFilter('person');
+        $this->removeFilter('role');
+        $this->addFilter(new PublicActivityTypeFilter($this->getContainer()), true)
+             ->addFilter(new HideDataFilter($this->getContainer()));
     }
 }

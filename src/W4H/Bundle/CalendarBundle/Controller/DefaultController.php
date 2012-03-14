@@ -251,6 +251,7 @@ class DefaultController extends Controller
             'event_tasks' => $calendar->getEventTasks($filteredData),
             'form'        => $form->createView(),
             'form_action' => $form_action,
+            'hidden_data' => $filteredData['hidden_data']
         ));
     }
 }
