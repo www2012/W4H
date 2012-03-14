@@ -39,8 +39,7 @@ class Paper
 
     public function __toString()
     {
-        return sprintf('%s - %s (%s)',
-          $this->getPaperNumber(),
+        return sprintf('%s (%s)',
           $this->getTitle(),
           $this->getAuthors()
         );
