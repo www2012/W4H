@@ -84,6 +84,14 @@ class Person extends BaseUser
         );
     }
 
+    public function getName()
+    {
+        return sprintf('%s %s',
+          $this->getLastName(),
+          $this->getFirstName()
+        );
+    }
+
     /**
      * @return void
      */

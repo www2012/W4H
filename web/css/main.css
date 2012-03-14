@@ -631,6 +631,26 @@ body > aside > form > .actions > a:hover
   background: #FFF;
 }
 
+#main #calendar .data > div.description > div b
+{
+  font-weight: bold;
+}
+
+#main #calendar .data > div.description > div i
+{
+  font-style: italic;
+}
+
+#main #calendar .data > div.description > div u
+{
+  text-decoration: underline;
+}
+
+#main #calendar .data > div.description > div p
+{
+  margin: 4px 0;
+}
+
 #main #calendar .data > div:last-child
 {
   border: none;
