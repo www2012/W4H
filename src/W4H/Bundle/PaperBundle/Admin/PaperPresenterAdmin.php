@@ -14,10 +14,13 @@ class PaperPresenterAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $em = $this->modelManager->getEntityManager('W4H\Bundle\UserBundle\Entity\Person');
-        $query = $em->getRepository('W4HUserBundle:Person')->findAllOrderedByLastNameQuery();
+        $person_query = $em->getRepository('W4HUserBundle:Person')->findAllOrderedByLastNameQuery();
+        $em = $this->modelManager->getEntityManager('W4H\Bundle\PaperBundle\Entity\Paper');
+        $paper_query = $em->getRepository('W4HPaperBundle:Paper')->findAllOrderedByTitleQuery();
+
         $formMapper
-            ->add('person', 'sonata_type_model', array('query' => $query))
-            ->add('paper')
+            ->add('person', 'sonata_type_model', array('query' => $person_query))
+            ->add('paper', 'sonata_type_model', array('query' => $paper_query))
         ;
 
         if ($this->hasSubject()) {

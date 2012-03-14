@@ -12,4 +12,33 @@ use Doctrine\ORM\EntityRepository;
  */
 class PaperRepository extends EntityRepository
 {
+    /**
+     * Get all papers ordered by title ASC query builder
+     *
+     * @return DoctrineQueryBuilder
+     */
+    public function findAllOrderedByTitleQueryBuilder()
+    {
+        return $this->createQueryBuilder('p')->orderBy('p.title', 'ASC');
+    }
+
+    /**
+     * Get all papers ordered by title ASC query
+     *
+     * @return DoctrineQuery
+     */
+    public function findAllOrderedByTitleQuery()
+    {
+        return $this->findAllOrderedByTitleQueryBuilder()->getQuery();
+    }
+
+    /**
+     * Get all papers ordered by title ASC
+     *
+     * @return Collection User
+     */
+    public function findAllOrderedByTitle()
+    {
+        return $this->findAllOrderedByTitleQuery()->getResult();
+    }
 }
