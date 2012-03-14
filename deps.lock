@@ -1,6 +1,6 @@
-symfony v2.0.10
-twig v1.6.0
-monolog 1.0.2
+symfony v2.0.11
+twig v1.6.1
+monolog 1.0.3
 doctrine-common 2.1.4
 doctrine-dbal 2.1.6
 doctrine 2.1.6
