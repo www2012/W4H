@@ -19,7 +19,7 @@ class EventRepository extends EntityRepository
      */
     public function findAllOrderedByNameQueryBuilder()
     {
-        return $this->createQueryBuilder('p')->orderBy('p.name', 'ASC');
+        return $this->createQueryBuilder('e')->orderBy('e.name', 'ASC');
     }
 
     /**

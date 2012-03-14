@@ -12,33 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class TaskOwnerRepository extends EntityRepository
 {
-    /**
-     * Get all task owners ordered by name ASC query builder
-     *
-     * @return DoctrineQueryBuilder
-     */
-    public function findAllOrderedByNameQueryBuilder()
-    {
-        return $this->createQueryBuilder('p')->orderBy('p.name', 'ASC');
-    }
-
-    /**
-     * Get all task owners ordered by name ASC query
-     *
-     * @return DoctrineQuery
-     */
-    public function findAllOrderedByNameQuery()
-    {
-        return $this->findAllOrderedByNameQueryBuilder()->getQuery();
-    }
-
-    /**
-     * Get all task owners ordered by name ASC
-     *
-     * @return Collection Location
-     */
-    public function findAllOrderedByName()
-    {
-        return $this->findAllOrderedByNameQuery()->getResult();
-    }
 }

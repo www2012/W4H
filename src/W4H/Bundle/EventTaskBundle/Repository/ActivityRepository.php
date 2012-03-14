@@ -19,7 +19,7 @@ class ActivityRepository extends EntityRepository
      */
     public function findAllOrderedByNameQueryBuilder()
     {
-        return $this->createQueryBuilder('p')->orderBy('p.name', 'ASC');
+        return $this->createQueryBuilder('a')->orderBy('a.name', 'ASC');
     }
 
     /**

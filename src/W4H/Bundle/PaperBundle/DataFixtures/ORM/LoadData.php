@@ -20,7 +20,7 @@ class LoadData implements FixtureInterface
           while (($data = fgetcsv($handle, 5000, ",", '"')) !== FALSE) {
             list($session, $paper_number, $title, $subtitle, $number_of_page, $abstract, $author_first_name, $author_middle_name, $author_last_name, $author_mail, $affiliations, $affiliation_location) = $data;
 
-            $author = sprintf('%s %s <%s>', $author_first_name, $author_last_name, $author_mail);
+            $author = sprintf('%s %s', $author_first_name, $author_last_name);
 
             if(empty($session) && empty($paper_number) && empty($title) && empty($subtitle) && empty($number_of_page) && empty($abstract)) {
               printf("\tNew author: %s\n", $author);

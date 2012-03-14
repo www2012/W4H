@@ -15,19 +15,25 @@ abstract class AbstractEntityFilter extends AbstractFilter
     public function getFilterFormOptions()
     {
         return array(
-            'class'    => $this->getEntityClass(),
-            'label'    => $this->getFilterFormLabel(),
-            'required' => true,
-            'expanded' => true,
-            'multiple' => true
+            'label'         => $this->getFilterFormLabel(),
+            'class'         => $this->getEntityClass(),
+            'query_builder' => $this->getQueryBuilder(),
+            'required'      => true,
+            'expanded'      => true,
+            'multiple'      => true
         );
     }
 
     public function getFilteredData()
     {
+        return $this->getQueryBuilder()->getQuery()->getResult();
+    }
+
+    public function getQueryBuilder()
+    {
         $em = $this->getContainer()->get("doctrine.orm.entity_manager");
         $repository = $em->getRepository($this->getEntityClass());
-        return $repository->findAll();
+        return $repository->createQueryBuilder('qb');
     }
 
     abstract public function getEntityClass();

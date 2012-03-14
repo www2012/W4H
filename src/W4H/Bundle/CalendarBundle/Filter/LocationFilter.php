@@ -14,10 +14,10 @@ class LocationFilter extends AbstractEntityFilter
     public function getEntityClass()     { return 'W4HLocationBundle:Location'; }
     public function getFilterFormLabel() { return 'Location'; }
 
-    public function getFilteredData()
+    public function getQueryBuilder()
     {
         $em = $this->getContainer()->get("doctrine.orm.entity_manager");
         $repository = $em->getRepository($this->getEntityClass());
-        return $repository->findAllOrderedByName();
+        return $repository->findAllOrderedByNameQueryBuilder();
     }
 }

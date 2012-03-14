@@ -19,7 +19,7 @@ class LocationRepository extends EntityRepository
      */
     public function findAllOrderedByNameQueryBuilder()
     {
-        return $this->createQueryBuilder('p')->orderBy('p.name', 'ASC');
+        return $this->createQueryBuilder('l')->orderBy('l.name', 'ASC');
     }
 
     /**
@@ -41,4 +41,20 @@ class LocationRepository extends EntityRepository
     {
         return $this->findAllOrderedByNameQuery()->getResult();
     }
+
+    /**
+     * Get specified locations ordered by name ASC
+     *
+     * @return Collection Location
+     */
+    public function findByIds($ids)
+    {
+        $qb = $this->findAllOrderedByNameQueryBuilder();
+
+        $qb->where('l.id IN (:ids)')
+           ->setParameter('ids', $ids);
+
+        return $qb->getQuery()->getResult();
+    }
 }
+

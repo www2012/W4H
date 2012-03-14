@@ -13,36 +13,6 @@ use Doctrine\ORM\EntityRepository;
 class TaskRepository extends EntityRepository
 {
     /**
-     * Get all tasks ordered by name ASC
-     *
-     * @return DoctrineQueryBuilder
-     */
-    public function findAllOrderedByNameQueryBuilder()
-    {
-        return $this->createQueryBuilder('p')->orderBy('p.name', 'ASC');
-    }
-
-    /**
-     * Get all tasks ordered by name ASC
-     *
-     * @return DoctrineQuery
-     */
-    public function findAllOrderedByNameQuery()
-    {
-        return $this->findAllOrderedByNameQueryBuilder()->getQuery();
-    }
-
-    /**
-     * Get all tasks ordered by name ASC
-     *
-     * @return Collection Task
-     */
-    public function findAllOrderedByName()
-    {
-        return $this->findAllOrderedByNameQuery()->getResult();
-    }
-
-    /**
      * Get all tasks matching filters
      *
      * @param array $filteredData

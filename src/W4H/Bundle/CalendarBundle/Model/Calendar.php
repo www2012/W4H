@@ -101,7 +101,7 @@ class Calendar
             foreach($filteredData['location'] as $location)
                 $location_ids[] = $location->getId();
 
-            $locations = $this->em->getRepository('W4HLocationBundle:Location')->findById($location_ids);
+            $locations = $this->em->getRepository('W4HLocationBundle:Location')->findByIds($location_ids);
         }
         else
         {
