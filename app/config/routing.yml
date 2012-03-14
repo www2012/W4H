@@ -3,6 +3,11 @@ W4HCalendarBundle:
     type:     annotation
     prefix:   /
 
+W4HUserBundle:
+    resource: "@W4HUserBundle/Controller/"
+    type:     annotation
+#    prefix:   /user
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
