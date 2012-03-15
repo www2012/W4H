@@ -22,7 +22,7 @@ class TaskRepository extends EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select(array('task', 'owners', 'person', 'role'))
+        $qb->select(array('task', 'owners', 'person', 'role', 'paper_presenters', 'paper'))
            ->from('W4HEventTaskBundle:Task', 'task')
            ->leftJoin('task.activity', 'activity')
            ->leftJoin('task.event', 'event')
@@ -31,6 +31,9 @@ class TaskRepository extends EntityRepository
            ->leftJoin('task.owners', 'owners')
            ->leftJoin('owners.person', 'person')
            ->leftJoin('owners.role', 'role')
+           ->leftJoin('task.paper_presenters', 'paper_presenters')
+           ->leftJoin('paper_presenters.person', 'paper_person')
+           ->leftJoin('paper_presenters.paper', 'paper')
            ->orderBy('task.starts_at');
 
         if(count($filteredData) > 0)
@@ -56,7 +59,7 @@ class TaskRepository extends EntityRepository
                         $qb->andWhere('task.ends_at <= :date_to')
                            ->setParameter('date_to', $to->format('Y-m-d'));
                     }
-                    elseif($field == 'hidden_data')
+                    elseif($field == 'hide_data')
                     {
                     }
                     else

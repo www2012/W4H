@@ -16,7 +16,7 @@ use W4H\Bundle\CalendarBundle\Form\TaskFilterType;
 use W4H\Bundle\EventTaskBundle\Form\TaskType;
 use W4H\Bundle\CalendarBundle\Filter\Manager\PublicCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\PersonalCalendarTaskFilterManager;
-use W4H\Bundle\CalendarBundle\Filter\Manager\CalendarTaskFilterManager;
+use W4H\Bundle\CalendarBundle\Filter\Manager\AdminCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\EventListTaskFilterManager;
 
 /**
@@ -59,8 +59,11 @@ class DefaultController extends Controller
     {
         $form_action = 'calendar_user';
 
+        $user   = $this->container->get('security.context')->getToken()->getUser();
+
         $filterManager = new PersonalCalendarTaskFilterManager($this->container, array(
-            'default_day' => $this->getScheduleDefaultDateTime()
+            'default_day' => $this->getScheduleDefaultDateTime(),
+            'user_id'     => $user->getId()
         ));
         $form = $filterManager->createForm();
         $filteredData = array();
@@ -84,7 +87,7 @@ class DefaultController extends Controller
     {
         $form_action = 'calendar_admin';
 
-        $filterManager = new CalendarTaskFilterManager($this->container, array(
+        $filterManager = new AdminCalendarTaskFilterManager($this->container, array(
             'default_day' => $this->getScheduleDefaultDateTime()
         ));
         $form = $filterManager->createForm();
@@ -109,7 +112,7 @@ class DefaultController extends Controller
         $form_action = 'event_list';
         $from_day = $this->getScheduleDefaultDateTime();
         $to_day   = $this->getScheduleDefaultDateTime();
-        $to_day->modify('+4 day');
+        $to_day->modify('+5 day');
 
         $filterManager = new EventListTaskFilterManager($this->container, array(
             'from_day' => $from_day,
@@ -251,7 +254,7 @@ class DefaultController extends Controller
             'event_tasks' => $calendar->getEventTasks($filteredData),
             'form'        => $form->createView(),
             'form_action' => $form_action,
-            'hidden_data' => $filteredData['hidden_data']
+            'hidden_data' => $filteredData['hide_data']
         ));
     }
 }

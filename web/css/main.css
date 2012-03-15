@@ -631,21 +631,6 @@ body > aside > form > .actions > a:hover
   background: #FFF;
 }
 
-#main #calendar .data > div.description > div b
-{
-  font-weight: bold;
-}
-
-#main #calendar .data > div.description > div i
-{
-  font-style: italic;
-}
-
-#main #calendar .data > div.description > div u
-{
-  text-decoration: underline;
-}
-
 #main #calendar .data > div.description > div p
 {
   margin: 4px 0;
@@ -787,6 +772,7 @@ body > aside > form > .actions > a:hover
   font-size: 20px;
   margin-top: 16px;
   font-weight: bold;
+  padding: 3px 0;
 }
 
 #main #calendar .content .hour
@@ -809,7 +795,7 @@ body > aside > form > .actions > a:hover
   font-weight: bold;
 }
 
-#main #calendar .content p
+#main #calendar .content > *
 {
   line-height: 14px;
   font-size: 12px;
@@ -819,7 +805,7 @@ body > aside > form > .actions > a:hover
 #main #calendar .content .activity_type
 {
   float: left;
-  margin-right: 6px;
+  margin: 4px 0 0 6px;
 }
 
 #main #calendar .content .name
@@ -835,9 +821,34 @@ body > aside > form > .actions > a:hover
 }
 
 #main #calendar .content .event,
-#main #calendar .content .location
+#main #calendar .content .location,
+#main #calendar .content .description,
+#main #calendar .content .presentation,
+#main #calendar .content .owners
 {
-  margin-left: 18px;
+  margin: 4px 0 0 18px;
+}
+
+#main #calendar .content .presentation > ul > li,
+#main #calendar .content .owners > ul > li
+{
+  margin: 0 0 0 4px;
+}
+
+/* Description styles */
+.description b
+{
+  font-weight: bold;
+}
+
+.description i
+{
+  font-style: italic;
+}
+
+.description  u
+{
+  text-decoration: underline;
 }
 
 /* Accordion effect */

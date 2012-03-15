@@ -10,12 +10,13 @@ namespace W4H\Bundle\CalendarBundle\Filter;
  */
 class HideDataFilter extends AbstractFilter
 {
-    public function getFilterName()      { return 'hidden_data'; }
+    public function getFilterName()      { return 'hide_data'; }
     public function getFilterFormType()  { return 'choice'; }
 
     public function getFilterFormOptions()
     {
         return array(
+          'label'     => 'Hide Data',
           'choices'   => array(
             'symbols'              => 'Symbols',
             'activity_name'        => 'Activity Name',
