@@ -97,7 +97,7 @@ class PaperPresenter
      *
      * @param W4H\Bundle\EventTaskBundle\Entity\Task $task
      */
-    public function setTask(\W4H\Bundle\EventTaskBundle\Entity\Task $task)
+    public function setTask($task)
     {
         $this->task = $task;
     }
