@@ -3,17 +3,18 @@
 {% block title %}www2012 program | Logged in{% endblock %}
 
 {% block header %}
-  {% include '::headerNav.html.twig' with { 'current': 'logged_in' } %}
+  {% include '::headerNav.html.twig' with { 'current': 'profile_edit' } %}
 {% endblock %}
 
 {% block content %}
+  {{ parent() }}
   {% block fos_user_content %}
   <div id="main">
-    <div class="topbar">Edit</div>
+    <div class="topbar">Edit my profile</div>
     <div class="user_form">
       <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
         {{ form_widget(form) }}
-        <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+        <input type="submit" value="Save" />
       </form>
     </div>
   </div>

@@ -21,7 +21,15 @@
         {% block header %}{% endblock %}
       </header>
 
-      {% block content %}{% endblock %}
+      {% block content %}
+        <ul class="flashes">
+          {% for key, message in app.session.getFlashes() %}
+            <li class="{{ key }}">
+                {{ message }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endblock %}
 
       {% block javascripts %}{% endblock %}
     </body>

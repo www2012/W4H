@@ -3,10 +3,11 @@
 {% block title %}www2012 program | Logged in{% endblock %}
 
 {% block header %}
-  {% include '::headerNav.html.twig' with { 'current': 'logged_in' } %}
+  {% include '::headerNav.html.twig' with { 'current': 'loggin' } %}
 {% endblock %}
 
 {% block content %}
+  {{ parent() }}
   {% block fos_user_content %}
   <div id="main">
     <div class="topbar"></div>

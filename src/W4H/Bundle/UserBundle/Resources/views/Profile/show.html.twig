@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}www2012 program | Logged in{% endblock %}
+
+{% block header %}
+  {% include '::headerNav.html.twig' with { 'current': 'profile_show' } %}
+{% endblock %}
+
+{% block content %}
+  {{ parent() }}
+  {% block fos_user_content %}
+  <div id="main">
+    <div class="topbar">Show my profile</div>
+    <div class="user_form">
+      <p>{{ user.username }}</p>
+      <p>{{ user.email }}</p>
+    </div>
+  </div>
+  {% endblock fos_user_content %}
+{% endblock %}
