@@ -19,27 +19,35 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/admin/user/data.{_format}", name="user_data")
+     * @Route("/user/data.{_format}", name="user_data")
      */
     public function getDataAction(Request $request)
     {
-        $format   = $request->getRequestFormat();
-        $username = $request->query->get('username'); //$request->request->get
-        $password = $request->query->get('password'); //$request->request->get
+        $data = array('authentified' => false);
+        $format = $request->getRequestFormat();
 
-        $userManager = $this->get('fos_user.user_manager');
-        $person = $userManager->findUserByUsername($username);
-        $passwordValidator = $this->get('fos_user.validator.password');
-        $person->setPlainPassword($password);
+        if ($request->getMethod() == 'POST') {
+            $username = $request->request->get('username');
+            $password = $request->request->get('password');
 
-        $data = array(
-            'authentified' => 'true',
-            'account'      => array(
-                'firstname' => $person->getFirstName(),
-                'lastname'  => $person->getLastName(),
-                'email'     => $person->getEmail()
-            )
-        );
+            $userManager = $this->get('fos_user.user_manager');
+            $person = $userManager->findUserByUsername($username);
+
+            if($person) {
+                $factory = $this->get('security.encoder_factory');
+                $encoder = $factory->getEncoder($person);
+                $encodedPassword = $encoder->encodePassword($password, $person->getSalt());
+
+                if($person->getPassword() == $encodedPassword) {
+                    $data['authentified'] = true;
+                    $data['account'] = array(
+                        'firstname' => $person->getFirstName(),
+                        'lastname'  => $person->getLastName(),
+                        'email'     => $person->getEmail()
+                    );
+                }
+            }
+        }
 
         if($format == 'json') {
             $response = new Response(json_encode($data));
