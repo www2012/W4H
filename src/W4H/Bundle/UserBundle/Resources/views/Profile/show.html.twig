@@ -12,8 +12,43 @@
   <div id="main">
     <div class="topbar">Show my profile</div>
     <div class="user_form">
-      <p>{{ user.username }}</p>
-      <p>{{ user.email }}</p>
+      <div>
+        <label>Username</label>
+        <p>{{ user.username }}</p>
+      </div>
+      <div>
+        <label>Email</label>
+        <p>{{ user.email }}</p>
+      </div>
+      <div>
+        <label>Organisation</label>
+        <p>{{ user.organisation }}</p>
+      </div>
+      <div>
+        <label>Service</label>
+        <p>{{ user.service }}</p>
+      </div>
+      <div>
+        <label>Other mail</label>
+        <p>{{ user.otherMail }}</p>
+      </div>
+      <div>
+        <label>Mobile phone</label>
+        <p>{{ user.mobilePhone }}</p>
+      </div>
+      <div>
+        <label>Website url</label>
+        <p>{{ user.websiteUrl }}</p>
+      </div>
+      <div>
+        <label>Country</label>
+        <p>{{ user.countryIsoCode|country }}</p>
+      </div>
+      <hr/>
+      <div>
+        <label>Last login</label>
+        <p>{{ user.lastLogin|date('l d F') }} at {{ user.lastLogin|date('H:i') }}</p>
+      </div>
     </div>
   </div>
   {% endblock fos_user_content %}

@@ -508,10 +508,11 @@ body > aside > form > .actions > a:hover
 /* User form */
 #main > .user_form
 {
-  width: 400px;
+  width: 470px;
   margin: 30px auto;
   border: 1px solid #BBB;
   padding: 20px;
+  overflow: auto;
   background: -moz-linear-gradient(top,#FEFEFE 0,#F0F3F4 100%);
   background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#FEFEFE),color-stop(100%,#F0F3F4));
   background: -webkit-linear-gradient(top,#FEFEFE 0,#F0F3F4 100%);
@@ -530,10 +531,26 @@ body > aside > form > .actions > a:hover
   margin: 5px 0;
 }
 
-#main > .user_form > form label
+#main > .user_form label
 {
   width: 130px;
-  display: inline-block;
+  float: left;
+  font-weight: bold;
+}
+
+#main > .user_form > *
+{
+  line-height: 22px;
+}
+
+#main > .user_form div
+{
+  clear: both;
+}
+
+#main > .user_form > p
+{
+  float: left;
 }
 
 /* Task */

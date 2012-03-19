@@ -17,9 +17,10 @@ class ProfileFormType extends BaseType
                 ->add('other_mail')
                 ->add('mobile_phone')
                 ->add('website_url')
-                ->add('freeset')
-                ->add('socials_account')
-                ->add('country_iso_code');
+                ->add('freeset', 'hidden')
+                ->add('socials_account', 'hidden')
+                ->add('country_iso_code', 'country', array('label' => 'Country'))
+        ;
     }
 
     public function getName()
