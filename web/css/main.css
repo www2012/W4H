@@ -810,6 +810,8 @@ body > aside > form > .actions > a:hover
 {
   color: #DE1981;
   font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
 }
 
 #main #calendar .content > *
@@ -829,6 +831,7 @@ body > aside > form > .actions > a:hover
 {
   text-shadow: 1px 1px 1px #888;
   margin-bottom: 2px;
+  font-size: 16px;
 }
 
 #main #calendar .content .location
@@ -849,8 +852,30 @@ body > aside > form > .actions > a:hover
 #main #calendar .content .presentation > ul > li,
 #main #calendar .content .owners > ul > li
 {
-  margin: 0 0 0 4px;
+  margin: 0 0 0 8px;
 }
+
+#main #calendar .content .presentation .presenter
+{
+  font-weight: bold;
+  font-style: italic;
+}
+
+#main #calendar .content .presentation .paper_number
+{
+  color: #888;
+}
+
+#main #calendar .content .presentation .paper_title
+{
+  font-weight: bold;
+}
+
+#main #calendar .content .presentation .paper_authors
+{
+  font-style: italic;
+}
+
 
 /* Description styles */
 .description b

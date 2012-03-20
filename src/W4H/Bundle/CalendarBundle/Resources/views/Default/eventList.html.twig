@@ -32,12 +32,12 @@
                   {% endif %}
                   {% if ('presentation' not in hidden_data) and (task.paperPresenters.count > 0) %}
                     <div class="presentation">
-                      <strong>Presentation:</strong>
+                      <strong>Presentation(s):</strong>
                       <ul>
                         {% for paperPresenter in task.paperPresenters %}
                           <li>
                             <span class="presenter">{{ paperPresenter.person.name }}</span>
-                            <span class="paper_number">{{ paperPresenter.paper.paperNumber }}</span>
+                            <span class="paper_number">({{ paperPresenter.paper.paperNumber }})</span>
                             <span class="paper_title">{{ paperPresenter.paper.title }}</span>
                             <span class="paper_authors">{{ paperPresenter.paper.authors }}</span>
                           </li>
