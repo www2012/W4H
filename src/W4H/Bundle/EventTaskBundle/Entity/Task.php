@@ -71,7 +71,8 @@ class Task
 
     public function __toString()
     {
-        return sprintf("%s - %s",
+        return sprintf("%d] %s - %s",
+            $this->getId(),
             $this->getEvent(),
             $this->getActivity()
         );
@@ -290,5 +291,57 @@ class Task
     public function getPaperPresenters()
     {
         return $this->paper_presenters;
+    }
+
+    public function getVcal()
+    {
+      $version      = '2.0';
+      $prodid       = '//W4H//Free Web Application//EN';
+      $category     = sprintf('%s - %s',
+        $this->getEvent()->getName(),
+        $this->getActivity()->getActivityType()->getName()
+      );
+      $dtstart      = $this->getStartsAt()->format("Ymd\THis\Z");
+      $dtend        = $this->getEndsAt()->format("Ymd\THis\Z");
+      $summary      = sprintf('%s - %s - %s',
+        $this->getEvent()->getName(),
+        $this->getActivity()->getActivityType()->getName(),
+        $this->getActivity()->getName()
+      );
+      $description  = strip_tags($this->getActivity()->getDescription());
+      $location     = sprintf('%s - %s',
+        $this->getLocation()->getName(),
+        $this->getLocation()->getBuilding()
+      );
+
+      return sprintf('BEGIN:VCALENDAR
+VERSION:%s
+PRODID:%s
+BEGIN:VTIMEZONE
+TZID:Europe/Paris
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+DTSTART:19810329T020000
+TZNAME:GMT+02:00
+TZOFFSETTO:+0200
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+DTSTART:19961027T030000
+TZNAME:GMT+01:00
+TZOFFSETTO:+0100
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+CATEGORIES:%s
+DTSTART;TZID=Europe/Paris:%s
+DTEND;TZID=Europe/Paris:%s
+SUMMARY:%s
+DESCRIPTION:%s
+LOCATION:%s
+END:VEVENT
+END:VCALENDAR', $version, $prodid, $category, $dtstart, $dtend, $summary, $description, $location);
     }
 }

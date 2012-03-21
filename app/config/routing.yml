@@ -7,6 +7,10 @@ W4HUserBundle:
     resource: "@W4HUserBundle/Controller/"
     type:     annotation
 
+W4HEventTaskBundle:
+    resource: "@W4HEventTaskBundle/Controller/"
+    type:     annotation
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin

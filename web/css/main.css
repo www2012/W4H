@@ -64,7 +64,9 @@ body > header > nav > ul > li.current
   border-color: #E3D8A0
 }
 
-body > header > nav > ul > li > a
+body > header > nav > ul > li > a,
+body > header > nav > ul > li > a:active,
+body > header > nav > ul > li > a:focus
 {
   color: #DDD;
   font-weight: bold;
@@ -516,6 +518,36 @@ body > aside > form > .actions > a:hover
   border-right: none;
 }
 
+/* Location .data box  */
+#main #calendar .column > .header > .data
+{
+  top: 30px;
+  left: -1px;
+  width: 350px;
+}
+
+#main #calendar .column > .header > .data > div
+{
+  margin: 5px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #EEE;
+}
+
+#main #calendar .column > .header > .data > div:last-child
+{
+  border: none;
+}
+
+#main #calendar .column > .header > .data > div > strong
+{
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+  display: block;
+  text-shadow: 1px 1px 1px #FFF;
+  margin: 0 8px 4px 8px;
+}
+
 /* User form */
 #main > .user_form
 {
@@ -610,7 +642,6 @@ body > aside > form > .actions > a:hover
 }
 
 /* .data box */
-
 #main #calendar .data
 {
   position: absolute;
@@ -633,14 +664,20 @@ body > aside > form > .actions > a:hover
   opacity: 1;
 }
 
-#main #calendar .data > div
+#main #calendar .data > .wrapper
+{
+  max-height: 240px;
+  overflow: auto;
+}
+
+#main #calendar .data > .wrapper > div
 {
   margin: 5px 0;
   padding-bottom: 5px;
   border-bottom: 1px solid #EEE;
 }
 
-#main #calendar .data > div > strong
+#main #calendar .data > .wrapper > div > strong
 {
   font-size: 12px;
   font-weight: bold;
@@ -650,7 +687,7 @@ body > aside > form > .actions > a:hover
   margin: 0 8px 4px 8px;
 }
 
-#main #calendar .data > div.description > div
+#main #calendar .data > .wrapper > div.description > div
 {
   font-size: 11px;
   border: 1px inset #BBB;
@@ -659,23 +696,23 @@ body > aside > form > .actions > a:hover
   background: #FFF;
 }
 
-#main #calendar .data > div.description > div p
+#main #calendar .data > .wrapper > div.description > div p
 {
   margin: 4px 0;
 }
 
-#main #calendar .data > div:last-child
+#main #calendar .data > .wrapper > div:last-child
 {
   border: none;
 }
 
-#main #calendar .data > div > ul
+#main #calendar .data ul
 {
   padding: 4px 10px;
   overflow: auto;
 }
 
-#main #calendar .data > div > ul > li
+#main #calendar .data ul > li
 {
   float: left;
   line-height: 11px;
@@ -683,12 +720,9 @@ body > aside > form > .actions > a:hover
   min-width: 16px;
 }
 
-/* Location .data box  */
-#main #calendar .column > .header > .data
+#main #calendar .data ul > li.country
 {
-  top: 30px;
-  left: -1px;
-  width: 350px;
+  float: right;
 }
 
 #main #calendar .column > .header > .data > div.equipment > ul > li
@@ -714,10 +748,15 @@ body > aside > form > .actions > a:hover
   height: auto;
 }
 
+#main #calendar .column.room .task .data > header,
+#main #calendar .column.room .task .data > .context
+{
+  background: #CCC;
+}
+
 #main #calendar .column.room .task .data > header
 {
   border-bottom: 1px solid #BBB;
-  background: #CCC;
   height: 50px;
   position: relative;
 }
@@ -758,6 +797,12 @@ body > aside > form > .actions > a:hover
 {
   bottom: 0;
   right: 0;
+}
+
+#main #calendar .column.room .task .data > .context
+{
+  border-top: 1px solid #BBB;
+  padding: 4px;
 }
 
 #main #calendar .column.room .task .data > .context  span
@@ -835,7 +880,7 @@ body > aside > form > .actions > a:hover
 #main #calendar .content .activity_type
 {
   float: left;
-  margin: 4px 0 0 6px;
+  margin: 4px 6px;
 }
 
 #main #calendar .content .name
@@ -860,7 +905,7 @@ body > aside > form > .actions > a:hover
   margin: 4px 0 0 18px;
 }
 
-#main #calendar .content .presentation > ul > li,
+#main #calendar .presentation > ul > li,
 #main #calendar .content .owners > ul > li
 {
   margin: 3px 8px;
@@ -871,27 +916,45 @@ body > aside > form > .actions > a:hover
   margin-left: 20px;
 }
 
-#main #calendar .content .presentation .presenter
+/* Presentations */
+#main #calendar .presentation .presenter
 {
   font-weight: bold;
   font-style: italic;
 }
 
-#main #calendar .content .presentation .paper_number
+#main #calendar .presentation .paper_number
 {
   color: #888;
 }
 
-#main #calendar .content .presentation .paper_title
+#main #calendar .presentation .paper_title
 {
   font-weight: bold;
 }
 
-#main #calendar .content .presentation .paper_authors
+#main #calendar .presentation .paper_authors
 {
   font-style: italic;
 }
 
+/* vCal icon */
+.vcal,
+li.vcal > a
+{
+  border: 0;
+  background: url('/images/icons-symbols.png') -32px -576px no-repeat;
+  width: 16px;
+  height: 16px;
+  display: block;
+  text-indent: -9999px;
+}
+
+li > a.vcal
+{
+  float: left;
+  margin: 2px;
+}
 
 /* Description styles */
 .description b

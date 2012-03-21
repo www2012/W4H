@@ -6,48 +6,49 @@
   <p class="starts_at">{{ task.startsAt|date("H:i") }}</p>
   <p class="ends_at">{{ task.endsAt|date("H:i") }}</p>
 </header>
-<div class="description">
-  <strong>Description:</strong>
-  <div>
-    {% autoescape false %}
-      {{ task.activity.description }}
-    {% endautoescape %}
+<div class="wrapper">
+  <div class="description">
+    <strong>Description:</strong>
+    <div>
+      {% autoescape false %}
+        {{ task.activity.description }}
+      {% endautoescape %}
+    </div>
   </div>
-</div>
-{% if task.paperPresenters.count > 0 %}
-<div class="presentation">
-  <strong>Presentation:</strong>
-  <ul>
-    {% for paperPresenter in task.paperPresenters %}
-        <li>
-          <span class="presenter">{{ paperPresenter.person.name }}</span>
-          <span class="paper_number">{{ paperPresenter.paper.paperNumber }}</span>
-          <span class="paper_title">{{ paperPresenter.paper.title }}</span>
-          <span class="paper_authors">{{ paperPresenter.paper.authors }}</span>
-        </li>
-    {% endfor %}
-  </ul>
-</div>
-{% endif %}
-{% if task.owners.count > 0 %}
-<div class="owners">
-  <strong>With:</strong>
-  {% for owner in task.owners %}
+  {% if task.paperPresenters.count > 0 %}
+  <div class="presentation">
+    <strong>Presentation:</strong>
     <ul>
-      <li class="{{ owner.role |slugify }}" title="{{ owner.role }}">
-        <span class="symbol"></span>
-        <a href="mailto:{{ owner.person.email }}">{{ owner.person.name }}</a>
-      </li>
-      <li class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode|country }}">
-        <span class="symbol"></span>
-        {{ owner.person.countryIsoCode|country }}
-      </li>
+      {% for paperPresenter in task.paperPresenters %}
+          <li>
+            <span class="presenter">{{ paperPresenter.person.name }}</span>
+            <span class="paper_number">{{ paperPresenter.paper.paperNumber }}</span>
+            <span class="paper_title">{{ paperPresenter.paper.title }}</span>
+            <span class="paper_authors">{{ paperPresenter.paper.authors }}</span>
+          </li>
+      {% endfor %}
     </ul>
-  {% endfor %}
+  </div>
+  {% endif %}
+  {% if task.owners.count > 0 %}
+  <div class="owners">
+    <strong>With:</strong>
+    {% for owner in task.owners %}
+      <ul>
+        <li class="{{ owner.role |slugify }}" title="{{ owner.role }}">
+          <span class="symbol"></span>
+          <a href="mailto:{{ owner.person.email }}">{{ owner.person.name }}</a>
+        </li>
+        <li class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode|country }}">
+          <span class="symbol"></span>
+          {{ owner.person.countryIsoCode|country }}
+        </li>
+      </ul>
+    {% endfor %}
+  </div>
+  {% endif %}
 </div>
-{% endif %}
 <div class="context">
-  <strong>Context:</strong>
   <ul>
     <li class="context {{ task.event.name |slugify }}">
       <span class="symbol"></span>
@@ -56,6 +57,9 @@
     <li class="activity_type {{ task.activity.activityType.name |slugify }}" title="{{ task.activity.activityType.name }}">
       <span class="symbol"></span>
       {{ task.activity.activityType.name }}
+    </li>
+    <li class="vcal">
+      <a href="{{ path('task_vcal', { 'task_id': task.id }) }}" title="Get vCal format">Get vCal</a>
     </li>
   </ul>
 </div>

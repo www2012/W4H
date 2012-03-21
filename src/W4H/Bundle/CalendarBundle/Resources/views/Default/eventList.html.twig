@@ -72,6 +72,7 @@
                   {% if 'activity_type' not in hidden_data %}
                     <p class="activity_type">{{ task.activity.activityType.name }}</p>
                   {% endif %}
+                  <a class="vcal" href="{{ path('task_vcal', { 'task_id': task.id }) }}" title="Get vCal format">Get vCal</a>
                 </li>
               {% endfor %}
             </ul>
