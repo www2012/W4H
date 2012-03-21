@@ -131,4 +131,18 @@ class PaperPresenter
     {
         return $this->paper;
     }
+
+    /* Export Getters */
+    public function getPersonEmail() { return $this->getPerson()->getEmail(); }
+    public function getPersonFirstName() { return $this->getPerson()->getFirstName(); }
+    public function getPersonLastName() { return $this->getPerson()->getLastName(); }
+    public function getPersonMobilePhone() { return $this->getPerson()->getMobilePhone(); }
+    public function getPersonWebsiteUrl() { return $this->getPerson()->getWebsiteUrl(); }
+    public function getPersonCountryIsoCode() { return $this->getPerson()->getCountryIsoCode(); }
+    public function getPaperNumber() { return $this->getPaper()->getPaperNumber(); }
+    public function getPaperTitle() { return $this->getPaper()->getTitle(); }
+    public function getPaperAuthors() { return $this->getPaper()->getAuthors(); }
+    public function getTaskId() { return $this->getTask()->getId(); }
+    public function getTaskStartsAt() { return $this->getTask()->getStartsAt(); }
+    public function getTaskName() { return $this->getTask()->getActivity()->getName(); }
 }

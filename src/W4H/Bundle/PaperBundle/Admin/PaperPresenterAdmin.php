@@ -47,6 +47,24 @@ class PaperPresenterAdmin extends Admin
         ;
     }
 
+    public function getExportFields()
+    {
+        return array(
+          'person_email',
+          'person_first_name',
+          'person_last_name',
+          'person_mobile_phone',
+          'person_website_url',
+          'person_country_iso_code',
+          'paper_number',
+          'paper_title',
+          'paper_authors',
+          'task_id',
+          'task_starts_at',
+          'task_name'
+        );
+    }
+
     public function validate(ErrorElement $errorElement, $object)
     {
     }

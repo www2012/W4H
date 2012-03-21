@@ -111,4 +111,16 @@ class TaskOwner
     {
         return $this->task;
     }
+
+    /* Export Getters */
+    public function getPersonEmail() { return $this->getPerson()->getEmail(); }
+    public function getPersonFirstName() { return $this->getPerson()->getFirstName(); }
+    public function getPersonLastName() { return $this->getPerson()->getLastName(); }
+    public function getPersonMobilePhone() { return $this->getPerson()->getMobilePhone(); }
+    public function getPersonWebsiteUrl() { return $this->getPerson()->getWebsiteUrl(); }
+    public function getPersonCountryIsoCode() { return $this->getPerson()->getCountryIsoCode(); }
+    public function getRoleName() { return $this->getRole()->getName(); }
+    public function getTaskId() { return $this->getTask()->getId(); }
+    public function getTaskStartsAt() { return $this->getTask()->getStartsAt(); }
+    public function getTaskName() { return $this->getTask()->getActivity()->getName(); }
 }

@@ -44,6 +44,22 @@ class TaskOwnerAdmin extends Admin
         ;
     }
 
+    public function getExportFields()
+    {
+        return array(
+          'person_email',
+          'person_first_name',
+          'person_last_name',
+          'person_mobile_phone',
+          'person_website_url',
+          'person_country_iso_code',
+          'role_name',
+          'task_id',
+          'task_starts_at',
+          'task_name'
+        );
+    }
+
     public function validate(ErrorElement $errorElement, $object)
     {
     }
