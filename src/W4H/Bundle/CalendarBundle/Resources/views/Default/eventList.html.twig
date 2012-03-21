@@ -36,7 +36,7 @@
                       <ul>
                         {% for paperPresenter in task.paperPresenters %}
                           <li>
-                            <span class="presenter">{{ paperPresenter.person.name }}</span>
+                            <span class="presenter"><a href="mailto:{{ paperPresenter.person.email }}">{{ paperPresenter.person.name }}</a></span>
                             <span class="paper_number">({{ paperPresenter.paper.paperNumber }})</span>
                             <span class="paper_title">{{ paperPresenter.paper.title }}</span>
                             <span class="paper_authors">{{ paperPresenter.paper.authors }}</span>
@@ -51,10 +51,12 @@
                     <ul>
                     {% for owner in task.owners %}
                       <li>
-                        <span class="{{ owner.role |slugify }}" title="{{ owner.role }}">{{ owner.person }}</span>
                         <span class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode|country }}">
                           {% if 'symbols' not in hidden_data %}<span class="symbol"></span>{% endif %}
                           {{ owner.person.countryIsoCode|country }}
+                        </span>
+                        <span class="{{ owner.role |slugify }}" title="{{ owner.role }}">
+                          <a href="mailto:{{ owner.person.email }}">{{ owner.person.name }}</a>
                         </span>
                       </li>
                     {% endfor %}
