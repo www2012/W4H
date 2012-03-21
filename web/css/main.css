@@ -667,7 +667,7 @@ body > aside > form > .actions > a:hover
 #main #calendar .data > div > ul > li
 {
   float: left;
-  line-height: 16px;
+  line-height: 11px;
   margin-right: 8px;
   min-width: 16px;
 }
@@ -853,6 +853,11 @@ body > aside > form > .actions > a:hover
 #main #calendar .content .owners > ul > li
 {
   margin: 0 0 0 8px;
+}
+
+#main #calendar .content .owners > ul > li > span.speaker
+{
+  margin-left: 20px;
 }
 
 #main #calendar .content .presentation .presenter

@@ -114,8 +114,8 @@
 { background: #AAEECC !important; }
 
 /* .icon */
-#main #calendar .header .data .symbol,
-#main #calendar .task .data .owners .symbol,
+#main #calendar .symbol,
+#main #calendar:not('.context') .symbol,
 #section_task_filter_form_role .symbol
 {
   border: 0;
@@ -170,25 +170,30 @@
 .technical-manager > .symbol      { background-position: -96px -608px  !important; }
 
 /* Owners */
-#main #calendar .task .data > div.owners > ul:hover
+#main #calendar .task .data > .owners > ul:hover
 {
   background: #EEE;
 }
 
 /* Country */
-#main #calendar .task .data > div.owners > ul > li.country
+#main #calendar .task .data > .owners > ul > .country
 {
-  text-indent: -9999px;
   float: right;
 }
 
-#main #calendar .task .data > div.owners .country > .symbol
+#main #calendar .country
+{
+  display: block;
+  text-indent: -9999px;
+  float: left;
+}
+
+#main #calendar .country > .symbol
 {
   background: url('/images/flags.png') no-repeat;
   width: 16px;
   height: 11px;
-  margin-top: 3px;
-  float: right;
+  margin-top: 1px;
   border: 0;
 }
 

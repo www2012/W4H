@@ -53,6 +53,7 @@
                       <li>
                         <span class="{{ owner.role |slugify }}" title="{{ owner.role }}">{{ owner.person }}</span>
                         <span class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode|country }}">
+                          {% if 'symbols' not in hidden_data %}<span class="symbol"></span>{% endif %}
                           {{ owner.person.countryIsoCode|country }}
                         </span>
                       </li>
