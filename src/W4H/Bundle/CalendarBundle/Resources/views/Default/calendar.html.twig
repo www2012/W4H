@@ -70,10 +70,12 @@
           {% for key,schedule in location.schedules %}
             <li class="unit{% if schedule.is_hour %} hour{% endif %}" id="{{ location.object.id }}#{{ key }}">
               {% for task in schedule.tasks %}
-                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }} {{ task.getClasses() }}" draggable="true">
+                <div id="task_{{ task.id }}" class="task unitx{{ task.countUnit(step) }} {{ task.getClasses() }}"{% if is_granted('ROLE_ADMIN') %} draggable="true"{% endif %}>
                   <p>{{ task.activity.name }}</p>
-                  <a class="move" href="{{ path('calendar_move_task', { 'task_id': task.id }) }}" title="Move the task">Move the task</a>
-                  <div class="data" draggable="false">
+                  {% if is_granted('ROLE_ADMIN') %} 
+                    <a class="move" href="{{ path('calendar_move_task', { 'task_id': task.id }) }}" title="Move the task">Move the task</a>
+                  {% endif %}
+                  <div class="data">
                     {% include 'W4HCalendarBundle:Default:taskData.html.twig' with { 'task': task } %}
                   </div>
                 </div>

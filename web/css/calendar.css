@@ -61,6 +61,10 @@
 .european-tracks > .symbol
 { background: #AEB6FF !important; }
 
+.task.exhibition,
+.exhibition > .symbol
+{ background: #D8D234 !important; }
+
 .task.gathering,
 .gathering > .symbol
 { background: #D6B1D4 !important; }
@@ -93,9 +97,17 @@
 .phd-symp > .symbol
 { background: #C6C48D !important; }
 
+.task.posters,
+.posters > .symbol
+{ background: #B38F55 !important; }
+
 .task.press,
 .press > .symbol
 { background: #D3FF85 !important; }
+
+.task.scientific-tracks,
+.scientific-tracks > .symbol
+{ background: #AAEECC !important; }
 
 .task.transport,
 .transport > .symbol
@@ -105,17 +117,17 @@
 .tutorial > .symbol
 { background: #FFA599 !important; }
 
+.task.w3c-track,
+.w3c-track > .symbol
+{ background: #00AB8B !important; }
+
 .task.workshop,
 .workshop > .symbol
 { background: #A5BECD !important; }
 
-.task.scientific-tracks,
-.scientific-tracks > .symbol
-{ background: #AAEECC !important; }
-
 /* .icon */
-#main #calendar .symbol,
-#main #calendar:not('.context') .symbol,
+#main #calendar .column .header .symbol,
+#main #calendar .owners .symbol,
 #section_task_filter_form_role .symbol
 {
   border: 0;
