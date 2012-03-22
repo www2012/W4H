@@ -2,15 +2,15 @@
 
   /* Column */
   #main #calendar .column.room { width: {{ columnWidth }}px; }
-  #main #calendar .scrollzone .columns { width: {{ columns*columnWidth + columnWidth + 340 }}px; }
+  #main #calendar .scrollzone .columns { width: {{ columns*columnWidth + columnWidth + 380 }}px; }
 
   /* Task */
-  .task { width: {{ columnWidth-8 }}px; }
+  .task { width: {{ columnWidth-12 }}px; }
 
   /* Unit */
   #main #calendar .column > ul > li.unit { height: {{ rowHeight }}px; }
 
   {% for i in 1..rows %}
-    #main #calendar .column > ul > li > .unitx{{ i }} { height: {{ i*(rowHeight+1) - 4 }}px; }
+    #main #calendar .column > ul > li > .unitx{{ i }} { height: {{ i*(rowHeight+1) - 12 }}px; }
   {% endfor %}
 </style>

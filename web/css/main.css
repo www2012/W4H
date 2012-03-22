@@ -600,7 +600,7 @@ body > aside > form > .actions > a:hover
 .task
 {
   margin: 0 1px;
-  padding: 0;
+  padding: 4px;
   background: #DDD;
   border-radius: 8px;
   -moz-border-radius: 8px;
@@ -690,7 +690,7 @@ body > aside > form > .actions > a:hover
 #main #calendar .data > .wrapper > div.description > div
 {
   font-size: 11px;
-  border: 1px inset #BBB;
+  border: 1px solid #CCC;
   padding: 4px;
   margin: 0 8px;
   background: #FFF;
@@ -715,7 +715,7 @@ body > aside > form > .actions > a:hover
 #main #calendar .data ul > li
 {
   float: left;
-  line-height: 11px;
+  line-height: 12px;
   margin-right: 8px;
   min-width: 16px;
 }
@@ -734,9 +734,11 @@ body > aside > form > .actions > a:hover
 
 #main #calendar .column.room .task > p
 {
-  padding: 4px;
+  padding: 0;
   font-size: x-small;
   text-align: center;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* Task .data box  */
@@ -757,7 +759,7 @@ body > aside > form > .actions > a:hover
 #main #calendar .column.room .task .data > header
 {
   border-bottom: 1px solid #BBB;
-  height: 50px;
+  height: 48px;
   position: relative;
 }
 
@@ -772,7 +774,7 @@ body > aside > form > .actions > a:hover
   display: block;
   font-size: 13px;
   font-weight: bold;
-  width: 80%;
+  width: 328px;
   padding: 4px;
   line-height: 14px;
 }
@@ -784,7 +786,7 @@ body > aside > form > .actions > a:hover
   line-height: 16px;
   display: block;
   font-size: 10px;
-  padding: 4px;
+  padding: 4px 8px;
 }
 
 #main #calendar .column.room .task .data > header > p.starts_at
@@ -797,6 +799,14 @@ body > aside > form > .actions > a:hover
 {
   bottom: 0;
   right: 0;
+}
+
+#main #calendar .column.room .task .data > header > p.starts_at,
+#main #calendar .column.room .task .data > header > p.ends_at
+{
+  background: #888;
+  color: #FFF;
+  border-left: 1px solid #BBB;
 }
 
 #main #calendar .column.room .task .data > .context
