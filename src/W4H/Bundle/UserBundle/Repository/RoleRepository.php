@@ -19,7 +19,7 @@ class RoleRepository extends EntityRepository
      */
     public function findAllOrderedByNameQueryBuilder()
     {
-        return $this->createQueryBuilder('p')->orderBy('p.name', 'ASC');
+        return $this->createQueryBuilder('r')->orderBy('r.name', 'ASC');
     }
 
     /**
