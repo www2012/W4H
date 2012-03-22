@@ -807,6 +807,7 @@ body > aside > form > .actions > a:hover
   background: #888;
   color: #FFF;
   border-left: 1px solid #BBB;
+  font-weight: bold;
 }
 
 #main #calendar .column.room .task .data > .context
@@ -920,15 +921,21 @@ body > aside > form > .actions > a:hover
 {
   margin: 3px 8px;
   padding: 2px 0;
-  line-height: 11px;
+  line-height: 16px;
   clear: both;
   overflow: hidden;
 }
 
-#main #calendar .content .owners > ul > li > span.person
+#main #calendar .content .owners > ul > li > span.person,
+#main #calendar .content .owners > ul > li > span.role
 {
   margin-left: 8px;
   float: left;
+}
+
+#main #calendar .content .owners > ul > li > span.country > .symbol
+{
+  margin-top: 3px;
 }
 
 /* Presentations */

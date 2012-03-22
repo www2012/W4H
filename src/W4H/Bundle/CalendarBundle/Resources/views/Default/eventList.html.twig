@@ -55,7 +55,11 @@
                           {% if 'symbols' not in hidden_data %}<span class="symbol"></span>{% endif %}
                           {{ owner.person.countryIsoCode|country }}
                         </span>
-                        <span class="person {{ owner.role |slugify }}" title="{{ owner.role }}">
+                        <span class="role {{ owner.role |slugify }}" title="{{ owner.role }}">
+                          {% if 'symbols' not in hidden_data %}<span class="symbol"></span>{% endif %}
+                          {{ owner.role }}
+                        </span>
+                        <span class="person {{ owner.role |slugify }}" title="{{ owner.person.name }}">
                           <a href="mailto:{{ owner.person.email }}">{{ owner.person.name }}</a>
                         </span>
                       </li>

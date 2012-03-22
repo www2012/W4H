@@ -57,6 +57,10 @@
 .demo-tracks > .symbol
 { background: #86FCB6 !important; }
 
+.task.developers-track,
+.developers-track > .symbol
+{ background: #62A7C3 !important; }
+
 .task.european-tracks,
 .european-tracks > .symbol
 { background: #AEB6FF !important; }
@@ -108,6 +112,10 @@
 .task.scientific-tracks,
 .scientific-tracks > .symbol
 { background: #AAEECC !important; }
+
+.task.social,
+.social > .symbol
+{ background: #B189E0 !important; }
 
 .task.transport,
 .transport > .symbol
@@ -193,7 +201,8 @@
   float: right;
 }
 
-#main #calendar .country
+#main #calendar .country,
+#main #calendar .role
 {
   display: block;
   text-indent: -9999px;
