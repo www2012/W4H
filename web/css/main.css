@@ -909,11 +909,16 @@ body > aside > form > .actions > a:hover
 #main #calendar .content .owners > ul > li
 {
   margin: 3px 8px;
+  padding: 2px 0;
+  line-height: 11px;
+  clear: both;
+  overflow: hidden;
 }
 
 #main #calendar .content .owners > ul > li > span.person
 {
-  margin-left: 20px;
+  margin-left: 8px;
+  float: left;
 }
 
 /* Presentations */
