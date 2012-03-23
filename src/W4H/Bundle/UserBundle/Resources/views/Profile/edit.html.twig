@@ -13,7 +13,33 @@
     <div class="topbar">Edit my profile</div>
     <div class="user_form">
       <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-        {{ form_widget(form) }}
+
+        {{ form_errors(form) }}
+
+        <div id="fos_user_profile_form">
+
+          {{ form_row(form.user.username) }}
+          {{ form_row(form.user.email) }}
+          {{ form_row(form.user.organisation) }}
+          {{ form_row(form.user.service) }}
+          {{ form_row(form.user.other_mail) }}
+          {{ form_row(form.user.mobile_phone) }}
+          {{ form_row(form.user.website_url) }}
+          {{ form_row(form.user.country_iso_code) }}
+          {{ form_row(form.user.freeset) }}
+          {{ form_row(form.user.socials_account) }}
+
+          <hr />
+
+          <label class="required" for="fos_user_profile_form_current">Password</label>
+          {{ form_errors(form.current) }}
+          {{ form_widget(form.current) }}
+
+          {{ form_rest(form) }}
+
+        </div>
+
+          {{ form_row(form._token) }}
         <input type="submit" value="Save" />
       </form>
     </div>
