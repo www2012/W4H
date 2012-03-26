@@ -39,6 +39,13 @@
 .www2012 > .symbol
 { border-radius: 8px; border: 2px solid #009FE3 !important; }
 
+.task.claroline,
+.claroline > .symbol
+{ border-radius: 8px; border: 2px solid #633b01 !important; }
+
+.task.paris-web,
+.paris-web > .symbol
+{ border-radius: 8px; border: 2px solid #ab0873 !important; }
 
 /* Activity Type */
 .task.barcamp,
@@ -128,6 +135,10 @@
 .task.w3c-track,
 .w3c-track > .symbol
 { background: #00AB8B !important; }
+
+.task.web-science-track,
+.web-science-track > .symbol
+{ background: #B8C2A1 !important; }
 
 .task.workshop,
 .workshop > .symbol
