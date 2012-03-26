@@ -14,6 +14,7 @@ class LoadData implements FixtureInterface
         /**************************************/
         // Person
         /**************************************/
+/*
         $admin = new Person();
         $admin->setUsername('admin');
         $admin->setEmail('admin@w3c.og');
@@ -26,23 +27,33 @@ class LoadData implements FixtureInterface
         $admin->setOrganisation('admin');
         $admin->setCountryIsoCode('US');
         $manager->persist($admin);
+*/
+        $rows = $check_double = $double = array();
+        if (($handle = fopen("src/W4H/Bundle/UserBundle/DataFixtures/Data/persons_20120323.csv", "r")) !== FALSE) {
 
-        $rows = array();
-        if (($handle = fopen("src/W4H/Bundle/UserBundle/DataFixtures/Data/person.csv", "r")) !== FALSE) {
           while (($data = fgetcsv($handle, 5000, ";", '"')) !== FALSE) {
             list($firstname, $lastname, $organisation, $mail, $country) = $data;
 
             if(!empty($firstname) && !empty($lastname) && !empty($mail)) {
               $username = strtolower(sprintf('%s.%s',trim($firstname), trim($lastname)));
 
-              $rows[] = array(
-                'username'      => $username,
-                'firstname'     => trim($firstname),
-                'lastname'      => trim($lastname),
-                'organisation'  => trim($organisation),
-                'email'         => trim($mail),
-                'country'       => trim(strtoupper($country))
-              );
+              if(!empty($username) && $user = $manager->getRepository('W4HUserBundle:Person')->findOneBy(array('email' => $mail))) {
+                printf("User exist: %s\n", $username);
+              } else {
+                if(!isset($check_double[$username])) {
+                  $check_double[$username] = $mail;
+                  $rows[] = array(
+                    'username'      => $username,
+                    'firstname'     => trim($firstname),
+                    'lastname'      => trim($lastname),
+                    'organisation'  => trim($organisation),
+                    'email'         => trim($mail),
+                    'country'       => trim(strtoupper($country))
+                  );
+                } else {
+                  $double[$username] = $mail;
+                }
+              }
             } else {
               var_dump($data);
             }
@@ -50,7 +61,8 @@ class LoadData implements FixtureInterface
 
           fclose($handle);
         }
-
+        var_dump($double);
+/*
         $persons = array();
         foreach($rows as $k => $row)
         {
@@ -64,8 +76,9 @@ class LoadData implements FixtureInterface
           $persons[$k]->setCountryIsoCode($row['country']);
           $persons[$k]->setEnabled(true);
           $manager->persist($persons[$k]);
+          printf("Done: %s\n", $row['username']);
         }
 
-        $manager->flush();
+        $manager->flush();*/
     }
 }
