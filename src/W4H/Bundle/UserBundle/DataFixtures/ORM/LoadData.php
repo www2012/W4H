@@ -35,13 +35,16 @@ class LoadData implements FixtureInterface
             list($firstname, $lastname, $organisation, $mail, $country) = $data;
 
             if(!empty($firstname) && !empty($lastname) && !empty($mail)) {
-              $username = strtolower(sprintf('%s.%s',trim($firstname), trim($lastname)));
+              $username = str_replace(' ', '-', strtolower(sprintf('%s.%s',trim($firstname), trim($lastname))));
 
+              $mail = trim($mail);
               if(!empty($username) && $user = $manager->getRepository('W4HUserBundle:Person')->findOneBy(array('email' => $mail))) {
-                printf("User exist: %s\n", $username);
+                printf("User exist: %s\n", $mail);
+              } elseif($homonyme = $manager->getRepository('W4HUserBundle:Person')->findOneBy(array('username' => $username))) {
+                printf("Homonyme in Database: %s\n", $username);
               } else {
-                if(!isset($check_double[$username])) {
-                  $check_double[$username] = $mail;
+                if(!isset($check_double[$mail])) {
+                  $check_double[$mail] = $username;
                   $rows[] = array(
                     'username'      => $username,
                     'firstname'     => trim($firstname),
@@ -51,7 +54,7 @@ class LoadData implements FixtureInterface
                     'country'       => trim(strtoupper($country))
                   );
                 } else {
-                  $double[$username] = $mail;
+                  $double[$mail] = $username;
                 }
               }
             } else {
@@ -61,8 +64,7 @@ class LoadData implements FixtureInterface
 
           fclose($handle);
         }
-        var_dump($double);
-/*
+
         $persons = array();
         foreach($rows as $k => $row)
         {
@@ -79,6 +81,7 @@ class LoadData implements FixtureInterface
           printf("Done: %s\n", $row['username']);
         }
 
-        $manager->flush();*/
+        printf("%d person(s) imported\n", count($rows));
+        $manager->flush();
     }
 }
