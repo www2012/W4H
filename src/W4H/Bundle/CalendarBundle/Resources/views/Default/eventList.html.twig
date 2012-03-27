@@ -71,7 +71,9 @@
                     <p class="location">{{ task.location.name }} ({{ task.location.building }} # {{ task.location.level }})</p>
                   {% endif %}
                   {% if 'event' not in hidden_data %}
-                    <p class="event">{{ task.event.name }}</p>
+                    <p class="event">
+                      <a href="{{ task.event.websiteUrl }}" target="_blank" title="{{ task.event.name }}">{{ task.event.name }}</a>
+                    </p>
                   {% endif %}
                   {% if 'activity_type' not in hidden_data %}
                     <p class="activity_type">{{ task.activity.activityType.name }}</p>
