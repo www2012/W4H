@@ -70,6 +70,9 @@
                   {% if 'location' not in hidden_data %}
                     <p class="location">{{ task.location.name }} ({{ task.location.building }} # {{ task.location.level }})</p>
                   {% endif %}
+                  {% if 'ends_at' not in hidden_data %}
+                    <p class="ends_at">Ends at: {{ task.endsAt|date("H:i") }}</p>
+                  {% endif %}
                   {% if 'event' not in hidden_data %}
                     <p class="event">
                       <a href="{{ task.event.websiteUrl }}" target="_blank" title="{{ task.event.name }}">{{ task.event.name }}</a>

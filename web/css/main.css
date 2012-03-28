@@ -909,6 +909,7 @@ body > aside > form > .actions > a:hover
 
 #main #calendar .content .event,
 #main #calendar .content .location,
+#main #calendar .content .ends_at,
 #main #calendar .content .description,
 #main #calendar .content .presentation,
 #main #calendar .content .owners

@@ -23,6 +23,7 @@ class HideDataFilter extends AbstractFilter
             'activity_type'        => 'Activity Type',
             'activity_description' => 'Activity Description',
             'location'             => 'Location',
+            'ends_at'              => 'Ends At',
             'event'                => 'Event',
             'presentation'         => 'Presentation',
             'owners'               => 'Owners'
