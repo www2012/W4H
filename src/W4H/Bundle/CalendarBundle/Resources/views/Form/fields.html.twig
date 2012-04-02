@@ -1,7 +1,7 @@
 {% block field_row %}
 {% spaceless %}
     <section id="section_{{ form.get('id') }}">
-        <a href="#section_{{ form.get('id') }}">{{ form_label(form) }}</a>
+        <a href="#section_{{ form.get('id') }}">{{ form_label(form, label|default(null)) }}</a>
         <div class="content">
             {{ form_errors(form) }}
             <span class="arrow"></span>
@@ -17,11 +17,11 @@
 
   {% set slug = label|slugify %}
   {% if not(attr.class is defined) %}
-    {% set attr = attr + {'class': ''} %}
+    {% set attr = attr + {'class': ''}|merge({'for': id}) %}
   {% endif %}
 
   <label {% for k,v in attr %} {% if k == 'class' %} {% set v = slug ~ ' ' ~ v %} {% endif %} {{ k }}="{{ v }}" {% endfor %}>
-    {{- label -}}
+    {{ label|trans }}
     <div class="symbol"></div>
   </label>
 {% endblock field_label %}
