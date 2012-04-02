@@ -60,7 +60,7 @@
                           {{ owner.role }}
                         </span>
                         <span class="person {{ owner.role |slugify }}" title="{{ owner.person.name }}">
-                          <a href="mailto:{{ owner.person.email }}">{{ owner.person.name }}</a>
+                          {{ owner.person.displayContact|raw }}
                         </span>
                       </li>
                     {% endfor %}

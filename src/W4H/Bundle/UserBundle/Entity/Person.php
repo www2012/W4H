@@ -73,6 +73,11 @@ class Person extends BaseUser
      */
     protected $country_iso_code;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $has_private_data = false;
+
     protected $mail_password;
 
     public function __toString()
@@ -89,6 +94,17 @@ class Person extends BaseUser
         return sprintf('%s %s',
           $this->getLastName(),
           $this->getFirstName()
+        );
+    }
+
+    public function displayContact()
+    {
+        if($this->hasPrivateData())
+            return $this->getName();
+
+        return sprintf('<a href="mailto:%s">%s</a>',
+            $this->getEmail(),
+            $this->getName()
         );
     }
 
@@ -351,5 +367,30 @@ class Person extends BaseUser
     public function getCountryIsoCode()
     {
         return $this->country_iso_code;
+    }
+
+    /**
+     * Set has_private_data
+     *
+     * @param string $hasPrivateData
+     */
+    public function setHasPrivateData($hasPrivateData)
+    {
+        $this->has_private_data = $hasPrivateData;
+    }
+
+    /**
+     * Get has_private_data
+     *
+     * @return string 
+     */
+    public function getHasPrivateData()
+    {
+        return $this->has_private_data;
+    }
+
+    public function hasPrivateData()
+    {
+        return $this->getHasPrivateData();
     }
 }

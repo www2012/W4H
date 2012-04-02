@@ -37,7 +37,7 @@
       <ul>
         <li class="{{ owner.role |slugify }}" title="{{ owner.role }}">
           <span class="symbol"></span>
-          <a href="mailto:{{ owner.person.email }}">{{ owner.person.name }}</a>
+          {{ owner.person.displayContact|raw }}
         </li>
         <li class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode|country }}">
           <span class="symbol"></span>

@@ -20,6 +20,7 @@ class ProfileFormType extends BaseType
                 ->add('freeset', 'hidden')
                 ->add('socials_account', 'hidden')
                 ->add('country_iso_code', 'country', array('label' => 'Country'))
+                ->add('has_private_data')
         ;
     }
 

@@ -27,6 +27,7 @@ class UserAdmin extends BaseAdmin
                 ->add('freeset')
                 ->add('socials_account')
                 ->add('country_iso_code', 'country')
+                ->add('has_private_data')
             ->end()
             ->with('Management')
                 ->add('roles', 'sonata_security_roles', array( 'multiple' => true, 'required' => false))
@@ -62,6 +63,7 @@ class UserAdmin extends BaseAdmin
             ->add('mobile_phone')
             ->add('freeset')
             ->add('country_iso_code')
+            ->add('has_private_data')
             ->add('enabled')
             ->add('locked')
             ->add('createdAt')
@@ -88,7 +90,8 @@ class UserAdmin extends BaseAdmin
           'website_url',
           'freeset',
           'socials_account',
-          'country_iso_code'
+          'country_iso_code',
+          'has_private_data'
         );
     }
 
