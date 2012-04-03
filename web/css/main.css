@@ -107,11 +107,10 @@ body > aside .toggle_filters
 {
   position: absolute;
   top: 40%;
-  right: -37px;
+  right: -40px;
   background: #444;
   width: 30px;
-  height: 165px;
-  padding: 10px 0 0 7px;
+  padding: 10px 5px;
   line-height: 22px;
   text-align: center;
   text-decoration: none;
@@ -120,9 +119,6 @@ body > aside .toggle_filters
   border-radius: 0 8px 8px 0;
   -moz-border-radius: 0 8px 8px 0;
   -webkit-border-radius: 0 8px 8px 0;
-   box-shadow: 3px 2px 3px #888;
-  -moz-box-shadow: 3px 2px 3px #888;
-  -webkit-box-shadow: 3px 2px 3px #888;
 }
 
 /* aside form */
@@ -135,9 +131,12 @@ body > aside > form
   margin-left: -2px;
   overflow: auto;
   width: 1px;
-  box-shadow: 3px 0 3px #888;
-  -moz-box-shadow: 3px 0 3px #888;
-  -webkit-box-shadow: 3px 0 3px #888;
+  visibility: hidden;
+}
+
+body > aside.show > form
+{
+  visibility: visible;
 }
 
 body > #filter.show > form,
@@ -267,9 +266,9 @@ body > aside > form > div > section > .content fieldset input
 body > aside > form > div > section > .content fieldset input[type="text"]
 {
   display: block;
-  font-size: 1em;
+  font-size: 14px;
   padding: 2px 15px;
-  width: 17em;
+  width: 274px;
 }
 
 body > aside > form > .actions
@@ -278,7 +277,7 @@ body > aside > form > .actions
   text-align: center;
   position: absolute;
   bottom: 0;
-  left: 50px;
+  width: 100%;
 }
 
 body > aside > form > .actions > input,
