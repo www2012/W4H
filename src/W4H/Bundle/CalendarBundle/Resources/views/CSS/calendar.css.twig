@@ -15,12 +15,11 @@
   {% endfor %}
 
   {% for slug, bg in events %}
-
-    body .task.{{ slug  }},
+    body .task.{{ slug }},
     body .{{ slug }} > .symbol
     {
         border-radius: 8px !important;
-        border: 2px solid #{{ bg }} !important; 
+        border: 2px solid {{ bg }} !important; 
     }
   {% endfor %}
 
@@ -28,7 +27,8 @@
     .task.{{ slug }},
     .{{ slug }} > .symbol
     {
-        background: #{{ bg }} !important;
+        background: {{ bg }} !important;
     }
   {% endfor %}
+
 </style>

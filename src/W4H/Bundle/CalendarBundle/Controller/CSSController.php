@@ -21,7 +21,7 @@ class CSSController extends Controller
 {
     /**
      * @Route("/renderCSS/{step}", name="calendar_render_css")
-     * @Template("W4HCalendarBundle:Default:calendar.css.twig")
+     * @Template("W4HCalendarBundle:CSS:calendar.css.twig")
      */
     public function renderAction($step, $columns)
     {
@@ -29,7 +29,7 @@ class CSSController extends Controller
         $max = 24;
 
         $rows  = ($max - $min) * 60 / $step;
-        
+
         return array(
           'rows'            => $rows,
           'rowHeight'       => $this->container->getParameter('w4h_calendar.schedule_row_height'),
@@ -39,61 +39,57 @@ class CSSController extends Controller
           'activity_types'  => $this->getActivityTypesBG()
         );
     }
-    
+
     public function getEventsBG()
     {
         $em = $this->getDoctrine()->getEntityManager();
         $events = $em->getRepository('W4HEventTaskBundle:Event')->findAll();
         $eventsBG = array();
-        foreach($events as $event)
-        {
-            $eventsBG[Utils::slugify($event->getName())] = self::generateColorFromString(Utils::slugify($event->getName()), 0, 3);
-        }
+
+        $colors = self::makeColorGradient(0.6, 0.6, 0.6, 0, 2, 4, count($events), 100, 60);
+        foreach($events as $k => $event)
+            $eventsBG[Utils::slugify($event->getName())] = $colors[$k];
+
         return $eventsBG;
     }
-    
+
     public function getActivityTypesBG()
     {
+
         $em = $this->getDoctrine()->getEntityManager();
         $types = $em->getRepository('W4HEventTaskBundle:ActivityType')->findAll();
         $typesBG = array();
-        foreach($types as $type)
-        {
-            $typesBG[Utils::slugify($type->getName())] = self::generateColorFromString(Utils::slugify($type->getName()));
-        }
+
+        $freq = pi()*2/(count($types)+1);
+        $colors = self::makeColorGradient($freq, $freq, $freq, 0, 2, 4, count($types), 200, 40);
+        foreach($types as $k => $type)
+            $typesBG[Utils::slugify($type->getName())] = $colors[$k];
+
         return $typesBG;
     }
-    
-    /*
-     * Outputs a color (#000000) based on a string
-     * 
-     * $string = String
-     * $min_brightness = Integer
-     * $spec = Integer (determines how unique each color will be)
-     */
-    function generateColorFromString($string, $min_brightness = 100, $spec = 10)
-    {	
-        $hash = md5($string);
+
+    public static function makeColorGradient($freq1, $freq2, $freq3, $phase1, $phase2, $phase3, $len = 10, $center = 128, $width = 127)
+    {
         $colors = array();
+        $red = $grn = $blu = 0;
 
-        // convert hash into 3 decimal values between 0 and 255
-        for($i = 0; $i < 3; $i++)
-            $colors[$i] = max(array(round(((hexdec(substr($hash,$spec*$i,$spec)))/hexdec(str_pad('',$spec,'F')))*255),$min_brightness));
-
-        if($min_brightness > 0)
+        for ($i = 0; $i < $len; $i++)
         {
-            // loop until brightness is above or equal to min_brightness
-            while(array_sum($colors)/3 < $min_brightness )
-            {
-                for($i = 0; $i < 3; $i++)
-                    $colors[$i] += 10;	// increase each color by 10
-            }
+           $red = sin($freq1 * $i + $phase1) * $width + $center;
+           $grn = sin($freq2 * $i + $phase2) * $width + $center;
+           $blu = sin($freq3 * $i + $phase3) * $width + $center;
+           $colors[$i] = self::RGB2Color($red, $grn, $blu);
         }
- 
-        $output = '';
-        for($i = 0; $i < 3; $i++)
-            $output .= str_pad(dechex($colors[$i]),2,0,STR_PAD_LEFT);  // convert each color to hex and append to output
 
-        return $output;
+        return $colors;
+    }
+
+    public static function RGB2Color($r, $g, $b)
+    {
+        return sprintf('#%s%s%s',
+            str_pad(dechex($r), '2', '0'),
+            str_pad(dechex($g), '2', '0'),
+            str_pad(dechex($b), '2', '0')
+        );
     }
 }
