@@ -20,10 +20,10 @@ use W4H\Bundle\CalendarBundle\Tool\Utils;
 class CSSController extends Controller
 {
     /**
-     * @Route("/renderCSS/{step}", name="calendar_render_css")
-     * @Template("W4HCalendarBundle:CSS:calendar.css.twig")
+     * @Route("/css/grid-{step}.css", name="css_render_grid")
+     * @Template("W4HCalendarBundle:CSS:grid.css.twig")
      */
-    public function renderAction($step, $columns)
+    public function renderGridAction($step, $columns)
     {
         $min = 0;
         $max = 24;
@@ -35,6 +35,18 @@ class CSSController extends Controller
           'rowHeight'       => $this->container->getParameter('w4h_calendar.schedule_row_height'),
           'columns'         => $columns,
           'columnWidth'     => $this->container->getParameter('w4h_calendar.schedule_column_width'),
+          'events'          => $this->getEventsBG(),
+          'activity_types'  => $this->getActivityTypesBG()
+        );
+    }
+
+    /**
+     * @Route("/css/symbol.css", name="css_render_symbol")
+     * @Template("W4HCalendarBundle:CSS:symbol.css.twig")
+     */
+    public function renderSymbolAction()
+    {
+        return array(
           'events'          => $this->getEventsBG(),
           'activity_types'  => $this->getActivityTypesBG()
         );
@@ -55,7 +67,6 @@ class CSSController extends Controller
 
     public function getActivityTypesBG()
     {
-
         $em = $this->getDoctrine()->getEntityManager();
         $types = $em->getRepository('W4HEventTaskBundle:ActivityType')->findAll();
         $typesBG = array();

@@ -2,6 +2,11 @@
 
 {% block title %}www2012 program | Event list view{% endblock %}
 
+{% block stylesheets %}
+  {{ parent() }}
+  {% render "W4HCalendarBundle:CSS:renderSymbol" %}
+{% endblock %}
+
 {% block topbar %}
   <div class="date">
     <h1>From {{ from|date("F d, Y") }} to {{ to|date("F d, Y") }}</h1>

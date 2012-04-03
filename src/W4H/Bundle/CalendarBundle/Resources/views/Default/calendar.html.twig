@@ -2,10 +2,10 @@
 
 {% block title %}www2012 program | Per day view{% endblock %}
 
-
 {% block stylesheets %}
   {{ parent() }}
-  {% render "W4HCalendarBundle:CSS:render" with {'step': step, 'columns': calendar|length } %}
+  {% render "W4HCalendarBundle:CSS:renderSymbol" %}
+  {% render "W4HCalendarBundle:CSS:renderGrid" with {'step': step, 'columns': calendar|length } %}
 {% endblock %}
 
 {% block javascripts %}
