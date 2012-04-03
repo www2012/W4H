@@ -18,6 +18,7 @@ use W4H\Bundle\CalendarBundle\Filter\Manager\PublicCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\PersonalCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\AdminCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\EventListTaskFilterManager;
+use W4H\Bundle\CalendarBundle\Tool\Utils;
 
 /**
  * 
@@ -140,25 +141,6 @@ class DefaultController extends Controller
         $day   = $this->container->getParameter('w4h_calendar.schedule_default_day');
 
         return new \DateTime(sprintf('%d-%d-%d', $year, $month, $day));
-    }
-
-    /**
-     * @Route("/renderCSS/{step}", name="calendar_render_css")
-     * @Template("W4HCalendarBundle:Default:calendar.css.twig")
-     */
-    public function renderCSSAction($step, $columns)
-    {
-        $min = 0;
-        $max = 24;
-
-        $rows  = ($max - $min) * 60 / $step;
-
-        return array(
-          'rows'        => $rows,
-          'rowHeight'   => $this->container->getParameter('w4h_calendar.schedule_row_height'),
-          'columns'     => $columns,
-          'columnWidth' => $this->container->getParameter('w4h_calendar.schedule_column_width'),
-        );
     }
 
     /**
