@@ -122,7 +122,13 @@ abstract class AbstractFilterManager
      */
     public function createForm()
     {
-        $builder = $this->container->get('form.factory')->createNamedBuilder('form', 'task_filter_form');
+        $builder = $this->container->get('form.factory')->createNamedBuilder(
+            'form',
+            'task_filter_form',
+            null,
+            array('csrf_protection' => false)
+        );
+
         foreach($this->getFilters() as $filter)
         {
             $builder->add(
