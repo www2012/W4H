@@ -18,6 +18,7 @@ use W4H\Bundle\CalendarBundle\Filter\Manager\PublicCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\PersonalCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\AdminCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\EventListTaskFilterManager;
+use W4H\Bundle\CalendarBundle\Filter\Manager\MailingFilterManager;
 use W4H\Bundle\CalendarBundle\Tool\Utils;
 
 /**
@@ -134,6 +135,30 @@ class DefaultController extends Controller
         return $this->renderEventList($filterManager->getFilteredData($filteredData), $form, $form_action);
     }
 
+    /**
+     * @Route("/mailing", name="mailing")
+     */
+    public function mailingAction(Request $request)
+    {
+        $form_action = 'mailing';
+
+        $filterManager = new MailingFilterManager($this->container, array(
+            'default_day' => $this->getScheduleDefaultDateTime()
+        ));
+        $form = $filterManager->createForm();
+        $filteredData = array();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if (!$form->isValid()) {
+                return $this->renderMailing($filteredData, $form, $form_action);
+            }
+            $filteredData = $form->getData();
+        }
+
+        return $this->renderMailing($filterManager->getFilteredData($filteredData), $form, $form_action);
+    }
+
     protected function getScheduleDefaultDateTime()
     {
         $year  = $this->container->getParameter('w4h_calendar.schedule_default_year');
@@ -237,6 +262,17 @@ class DefaultController extends Controller
             'form'        => $form->createView(),
             'form_action' => $form_action,
             'hidden_data' => $filteredData['hide_data']
+        ));
+    }
+
+    public function renderMailing($filteredData, $form, $form_action)
+    {
+        //$mailing = $this->container->get('w4h_calendar.calendar');
+
+        return $this->render('W4HCalendarBundle:Default:mailing.html.twig', array(
+        //    'tasks'       => $mailing->getEventTasks($filteredData),
+            'form'        => $form->createView(),
+            'form_action' => $form_action
         ));
     }
 }
