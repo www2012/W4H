@@ -74,7 +74,7 @@ class Person extends BaseUser
     protected $country_iso_code;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $has_private_data = false;
 
