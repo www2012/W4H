@@ -8,6 +8,9 @@
           <li class="{{ current == 'calendar_admin' ? 'current' : '' }}">
             <a href="{{ path('calendar_admin') }}">Admin view</a>
           </li>
+          <li class="{{ current == 'mailing' ? 'current' : '' }}">
+            <a href="{{ path('mailing') }}">Mailing view</a>
+          </li>
         {% endif %}
         <li class="user">
           <a href="{{ path('fos_user_security_logout') }}">(Logout)</a>
