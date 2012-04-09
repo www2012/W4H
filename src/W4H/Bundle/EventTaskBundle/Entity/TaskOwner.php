@@ -27,7 +27,8 @@ class TaskOwner
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="W4H\Bundle\UserBundle\Entity\Person")
+     * @ORM\ManyToOne(targetEntity="W4H\Bundle\UserBundle\Entity\Person", inversedBy="owners")
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
     protected $person;
 

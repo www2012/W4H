@@ -89,6 +89,8 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /me, role: [ROLE_USER, ROLE_ADMIN] }
+        - { path: /calendar/all, role: [ROLE_ADMIN] }
+        - { path: /mailing, role: [ROLE_ADMIN] }
 
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.

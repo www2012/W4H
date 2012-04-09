@@ -8,7 +8,7 @@ namespace W4H\Bundle\CalendarBundle\Filter\Manager;
  * @licence: GPL
  *
  */
-class MailingFilterManager extends AdminCalendarTaskFilterManager
+class MailingFilterManager extends TaskFilterManager
 {
     public function buildFilters($filterOptions = array())
     {

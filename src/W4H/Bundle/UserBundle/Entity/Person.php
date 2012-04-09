@@ -78,7 +78,18 @@ class Person extends BaseUser
      */
     protected $has_private_data = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity="W4H\Bundle\EventTaskBundle\Entity\TaskOwner", mappedBy="person")
+     */
+    public $owners;
+
     protected $mail_password;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->owners = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -392,5 +403,25 @@ class Person extends BaseUser
     public function hasPrivateData()
     {
         return $this->getHasPrivateData();
+    }
+
+    /**
+     * Add owners
+     *
+     * @param W4H\Bundle\EventTaskBundle\Entity\TaskOwner $owners
+     */
+    public function addTaskOwner(\W4H\Bundle\EventTaskBundle\Entity\TaskOwner $owners)
+    {
+        $this->owners[] = $owners;
+    }
+
+    /**
+     * Get owners
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOwners()
+    {
+        return $this->owners;
     }
 }

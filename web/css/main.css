@@ -932,6 +932,67 @@ body > aside > form > .actions > a:hover
   margin-top: 3px;
 }
 
+/* Mailing */
+form.mailing
+{
+  height: 100%;
+}
+
+form.mailing > div > div > label
+{
+  font-weight: bold;
+  font-size: 16px;
+  margin: 5px 0;
+  display: block;
+}
+
+form.mailing .list
+{
+  float: left;
+  width: 420px;
+  padding: 10px 20px;
+  height: 100%;
+}
+
+form.mailing .list > div
+{
+  height: 100%;
+}
+
+form.mailing .list #mailing_to
+{
+  height: 90%;
+  overflow: auto;
+}
+
+form.mailing .list #mailing_to input
+{
+  clear: both;
+}
+
+form.mailing .list #mailing_to input,
+form.mailing .list #mailing_to label
+{
+  float: left;
+}
+
+form.mailing .text
+{
+  display: block;
+  padding: 10px;
+}
+
+form.mailing .text input,
+form.mailing .text textarea
+{
+  width: 350px;
+}
+
+form.mailing .text textarea
+{
+  height: 200px;
+}
+
 /* Presentations */
 #main #calendar .presentation .presenter
 {

@@ -13,3 +13,23 @@
   </div>
 {% endblock %}
 
+{% block calendar %}
+  <div class="content">
+    <form class="mailing" action="{{ path('mailing_send') }}" method="post" {{ form_enctype(mailing_form) }}>
+        {{ form_errors(form) }}
+
+        <div class="list">
+          {{ form_row(mailing_form.to) }}
+        </div>
+
+        <div class="text">
+          {{ form_row(mailing_form.subject) }}
+          {{ form_row(mailing_form.message) }}
+        </div>
+
+        {{ form_rest(form) }}
+      <input type="submit" />
+    </form>
+  </div>
+{% endblock %}
+

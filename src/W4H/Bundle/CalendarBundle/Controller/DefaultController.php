@@ -9,10 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use W4H\Bundle\CalendarBundle\Model\Calendar;
-use W4H\Bundle\CalendarBundle\Form\CalendarFilterType;
-use W4H\Bundle\CalendarBundle\Form\UserCalendarFilterType;
+use W4H\Bundle\CalendarBundle\Model\Mailing;
 use W4H\Bundle\CalendarBundle\Form\CalendarMoveTaskType;
 use W4H\Bundle\CalendarBundle\Form\TaskFilterType;
+use W4H\Bundle\CalendarBundle\Form\MailingType;
 use W4H\Bundle\EventTaskBundle\Form\TaskType;
 use W4H\Bundle\CalendarBundle\Filter\Manager\PublicCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\PersonalCalendarTaskFilterManager;
@@ -141,9 +141,13 @@ class DefaultController extends Controller
     public function mailingAction(Request $request)
     {
         $form_action = 'mailing';
+        $from_day = $this->getScheduleDefaultDateTime();
+        $to_day   = $this->getScheduleDefaultDateTime();
+        $to_day->modify('+5 day');
 
         $filterManager = new MailingFilterManager($this->container, array(
-            'default_day' => $this->getScheduleDefaultDateTime()
+            'from_day' => $from_day,
+            'to_day' => $to_day
         ));
         $form = $filterManager->createForm();
         $filteredData = array();
@@ -157,6 +161,30 @@ class DefaultController extends Controller
         }
 
         return $this->renderMailing($filterManager->getFilteredData($filteredData), $form, $form_action);
+    }
+
+    /**
+     * @Route("/mailing/send", name="mailing_send")
+     */
+    public function sendMailAction(Request $request)
+    {
+        $mailing_form = $this->createForm(
+            new MailingType(),
+            new Mailing(
+                $this->getDoctrine()->getEntityManager(),
+                json_decode($this->get('request')->request->get('filtered_data')
+            )
+        ));
+
+        if ($request->getMethod() == 'POST') {
+            $mailing_form->bindRequest($request);
+
+            if (!$mailing_form->isValid()) {
+                //die('error');
+            }
+
+            var_dump($mailing_form->getData()->getTo()); die;
+        }
     }
 
     protected function getScheduleDefaultDateTime()
@@ -267,12 +295,18 @@ class DefaultController extends Controller
 
     public function renderMailing($filteredData, $form, $form_action)
     {
-        //$mailing = $this->container->get('w4h_calendar.calendar');
+        $mailing_form = $this->createForm(
+            new MailingType(),
+            new Mailing(
+                $this->getDoctrine()->getEntityManager(),
+                $filteredData
+            )
+        );
 
         return $this->render('W4HCalendarBundle:Default:mailing.html.twig', array(
-        //    'tasks'       => $mailing->getEventTasks($filteredData),
-            'form'        => $form->createView(),
-            'form_action' => $form_action
+            'mailing_form'  => $mailing_form->createView(),
+            'form'          => $form->createView(),
+            'form_action'   => $form_action
         ));
     }
 }
