@@ -74,6 +74,9 @@ stof_doctrine_extensions:
         default:
             sluggable: true
 
+ewz_search:
+    analyzer: Zend\Search\Lucene\Analysis\Analyzer\Common\TextNum\CaseInsensitive
+    path:     %kernel.root_dir%/lucene_index/%kernel.environment%
 
 # Swiftmailer Configuration
 swiftmailer:
