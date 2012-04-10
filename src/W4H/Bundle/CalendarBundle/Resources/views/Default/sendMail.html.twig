@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block header %}
+  {% include '::headerNav.html.twig' with { 'current': form_action } %}
+{% endblock %}
+
+{% block content %}
+  <div id="main">
+    <div class="topbar">
+      {% block topbar %}
+        <h1>{{ count }} mail(s) generated</h1>
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}

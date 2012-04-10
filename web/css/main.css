@@ -142,9 +142,8 @@ body > aside.show > form
 body > #filter.show > form,
 body > #filter:target > form
 {
-  width: 320px;
+  width: 380px;
 }
-
 
 body > aside > form > div > section
 {
@@ -280,36 +279,11 @@ body > aside > form > .actions
   width: 100%;
 }
 
-body > aside > form > .actions > input,
-body > aside > form > .actions > a
+body > aside > form > .actions > .button
 {
   padding: 10px 16px;
-  border: 1px solid #555;
-  background: #DDD; /* Old browsers */
-  background: -moz-linear-gradient(top, #dddddd 0%, #888888 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#888888)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #dddddd 0%,#888888 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #dddddd 0%,#888888 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #dddddd 0%,#888888 100%); /* IE10+ */
-  background: linear-gradient(top, #dddddd 0%,#888888 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#888888',GradientType=0 ); /* IE6-9 */
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  color: #000;
-  text-decoration: none;
   font-size: 16px;
-  font-weight: bold;
   line-height: 20px;
-  display: inline;
-  letter-spacing: 2px;
-}
-
-body > aside > form > .actions > input:hover,
-body > aside > form > .actions > a:hover
-{
-  background: #DDD;
-  cursor: pointer;
 }
 
 /* Main */
@@ -982,6 +956,11 @@ form.mailing .text
   padding: 10px;
 }
 
+form.mailing .text > div
+{
+  margin-bottom: 15px;
+}
+
 form.mailing .text input,
 form.mailing .text textarea
 {
@@ -991,6 +970,17 @@ form.mailing .text textarea
 form.mailing .text textarea
 {
   height: 200px;
+}
+
+form.mailing .text .merge_tags strong
+{
+  font-weight: bold;
+}
+
+form.mailing .button
+{
+  font-size: 12px;
+  padding: 2px 5px;
 }
 
 /* Presentations */
@@ -1069,4 +1059,31 @@ li > a.vcal
 {
   height: auto;
   overflow: visible;
+}
+
+/* Button */
+.button
+{
+  border: 1px solid #555;
+  background: #DDD; /* Old browsers */
+  background: -moz-linear-gradient(top, #dddddd 0%, #888888 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#888888)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #dddddd 0%,#888888 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #dddddd 0%,#888888 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #dddddd 0%,#888888 100%); /* IE10+ */
+  background: linear-gradient(top, #dddddd 0%,#888888 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#888888',GradientType=0 ); /* IE6-9 */
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  color: #000;
+  text-decoration: none !important;
+  font-weight: bold;
+  display: inline;
+}
+
+.button:hover
+{
+  background: #DDD;
+  cursor: pointer;
 }

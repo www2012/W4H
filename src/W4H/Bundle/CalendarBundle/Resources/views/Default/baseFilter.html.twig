@@ -47,8 +47,8 @@
     <form class="accordion" action="{{ path(form_action) }}" method="post">
       {{ form_widget(form) }}
       <div class="actions">
-        <input type="submit" value="Apply" />
-        <a href="{{ path('calendar') }}">Reset</a>
+        <input class="button" type="submit" value="Apply" />
+        <a class="button" href="{{ path('calendar') }}">Reset</a>
       </div>
     </form>
     <script type="text/javascript">

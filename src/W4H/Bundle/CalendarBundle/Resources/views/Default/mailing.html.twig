@@ -19,17 +19,49 @@
         {{ form_errors(form) }}
 
         <div class="list">
-          {{ form_row(mailing_form.to) }}
+          <div>
+            <label>
+              To
+              <a class="button" id="mailing_to_checkall">check all</a>
+              <a class="button" id="mailing_to_uncheckall">uncheck all</a>
+              <a class="button" id="mailing_to_invertselection">Invert selection</a>
+            </label>
+            {{ form_errors(mailing_form.to) }}
+            {{ form_widget(mailing_form.to) }}
+          </div>
         </div>
 
         <div class="text">
           {{ form_row(mailing_form.subject) }}
           {{ form_row(mailing_form.message) }}
+          <ul class="merge_tags">
+              <li>First Name: <strong>%first_name%</strong></li>
+              <li>Last Name: <strong>%last_name%</strong></li>
+              <li>Country: <strong>%country%</strong></li>
+          </ul>
         </div>
 
-        {{ form_rest(form) }}
+        {{ form_rest(mailing_form) }}
       <input type="submit" />
     </form>
+
+    <script type="text/javascript">
+      $("#mailing_to_checkall").click(function(event){
+        $("#mailing_to input[type='checkbox']").attr('checked', 'checked');
+      });
+      $("#mailing_to_uncheckall").click(function(event){
+        $("#mailing_to input[type='checkbox']").removeAttr('checked');
+      });
+      $("#mailing_to_invertselection").click(function(event){
+        $("#mailing_to input[type='checkbox']").each(function(){
+          if($(this).is(':checked'))
+            $(this).removeAttr('checked');
+          else
+            $(this).attr('checked', 'checked');
+        });
+      });
+    </script>
+
   </div>
 {% endblock %}
 

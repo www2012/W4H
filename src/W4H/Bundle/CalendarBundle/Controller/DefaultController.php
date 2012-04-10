@@ -137,6 +137,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/mailing", name="mailing")
+     * @Secure(roles="ROLE_ADMIN")
      */
     public function mailingAction(Request $request)
     {
@@ -165,26 +166,34 @@ class DefaultController extends Controller
 
     /**
      * @Route("/mailing/send", name="mailing_send")
+     * @Secure(roles="ROLE_ADMIN")
      */
     public function sendMailAction(Request $request)
     {
         $mailing_form = $this->createForm(
             new MailingType(),
             new Mailing(
-                $this->getDoctrine()->getEntityManager(),
+                $this->container,
                 json_decode($this->get('request')->request->get('filtered_data')
             )
         ));
+
+        $count = 0;
 
         if ($request->getMethod() == 'POST') {
             $mailing_form->bindRequest($request);
 
             if (!$mailing_form->isValid()) {
-                //die('error');
+                die('error');
             }
 
-            var_dump($mailing_form->getData()->getTo()); die;
+            $count = $mailing_form->getData()->send();
         }
+
+        return $this->render('W4HCalendarBundle:Default:sendMail.html.twig', array(
+            'form_action' => 'mailing',
+            'count' => $count
+        ));
     }
 
     protected function getScheduleDefaultDateTime()
@@ -298,7 +307,7 @@ class DefaultController extends Controller
         $mailing_form = $this->createForm(
             new MailingType(),
             new Mailing(
-                $this->getDoctrine()->getEntityManager(),
+                $this->container,
                 $filteredData
             )
         );

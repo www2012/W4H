@@ -60,7 +60,8 @@ class UserRepository extends EntityRepository
            ->leftJoin('task.location', 'location')
            ->leftJoin('task.activity', 'activity')
            ->leftJoin('task.event', 'event')
-           ->leftJoin('activity.activity_type', 'activity_type');
+           ->leftJoin('activity.activity_type', 'activity_type')
+           ->orderBy('person.last_name');
 
         if(count($filteredData) > 0)
         {
