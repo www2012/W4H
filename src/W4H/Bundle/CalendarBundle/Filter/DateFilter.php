@@ -24,8 +24,11 @@ class DateFilter extends AbstractFilter
         );
     }
 
-    public function getFilteredData()
+    public function getFilteredData($filteredData = null)
     {
+        if($filteredData != null)
+            return parent::getFilteredData($filteredData);
+
         return $this->getDefaultDay();
     }
 }

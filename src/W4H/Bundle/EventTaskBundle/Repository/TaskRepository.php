@@ -62,6 +62,11 @@ class TaskRepository extends EntityRepository
                     elseif($field == 'hide_data')
                     {
                     }
+                    elseif($field == 'lucene_query')
+                    {
+                        if(!empty($data))
+                            $qb->andWhere($qb->expr()->in('task.id', $data));
+                    }
                     else
                     {
                         $ids = array();

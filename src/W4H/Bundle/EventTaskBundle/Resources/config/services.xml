@@ -19,6 +19,15 @@
     -->
 
     <services>
+        <service id="w4h.indexer.task" class="W4H\Bundle\EventTaskBundle\Indexer\IndexerTask">
+            <argument type="service" id="service_container" />
+        </service>
+        <service id="w4h.index_manager.listener" class="W4H\Bundle\EventTaskBundle\Listener\IndexManagerListener">
+            <argument type="service" id="service_container" />
+            <tag name="doctrine.event_listener" event="postPersist"/>
+            <tag name="doctrine.event_listener" event="postUpdate"/>
+            <tag name="doctrine.event_listener" event="preRemove"/>
+        </service>
         <service id="sonata.admin.activity" class="W4H\Bundle\EventTaskBundle\Admin\ActivityAdmin">
           <tag name="sonata.admin" manager_type="orm" group="W4H" label="What"/>
           <argument />
