@@ -119,3 +119,11 @@
 [DoctrineFixturesBundle]
     git=http://github.com/symfony/DoctrineFixturesBundle.git
     target=/bundles/Symfony/Bundle/DoctrineFixturesBundle
+
+[EWZSearchBundle]
+    git=http://github.com/excelwebzone/EWZSearchBundle.git
+    target=/bundles/EWZ/Bundle/SearchBundle
+
+[Search]
+    git=http://github.com/excelwebzone/zend-search.git
+    target=/zend-search

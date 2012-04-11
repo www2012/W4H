@@ -83,6 +83,11 @@ class Person extends BaseUser
      */
     public $owners;
 
+    /**
+     * @ORM\OneToMany(targetEntity="W4H\Bundle\PaperBundle\Entity\PaperPresenter", mappedBy="person")
+     */
+    public $paper_presenters;
+
     protected $mail_password;
 
     public function __construct()
@@ -423,5 +428,15 @@ class Person extends BaseUser
     public function getOwners()
     {
         return $this->owners;
+    }
+
+    /**
+     * Get paper_presenters
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPaperPresenters()
+    {
+        return $this->paper_presenters;
     }
 }

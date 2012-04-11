@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new EWZ\Bundle\SearchBundle\EWZSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

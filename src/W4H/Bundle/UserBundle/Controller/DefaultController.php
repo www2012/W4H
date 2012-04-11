@@ -64,6 +64,41 @@ class DefaultController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/user/{username}/papers.{_format}", name="user_papers")
+     */
+    public function getPapersAction(Request $request, $username)
+    {
+        $data = array();
+
+        $format = $request->getRequestFormat();
+
+        $userManager = $this->get('fos_user.user_manager');
+        $person = $userManager->findUserByUsername($username);
+
+        if($person) {
+            foreach($person->getPaperPresenters() as $paper_presenter)
+            {
+                $paper = $paper_presenter->getPaper();
+                $data[sprintf('p_%d', $paper->getId())] = $paper->getPaperNumber();
+            }
+        }
+
+        if($format == 'json') {
+            $response = new Response(json_encode($data));
+            $response->headers->set('Content-Type', 'application/json');
+        }
+
+        if($format == 'xml') {
+            $xml = new \SimpleXMLElement('<?xml version="1.0"?><papers></papers>');
+            self::arrayToXml($data, $xml);
+            $response = new Response($xml->asXML());
+            $response->headers->set('Content-Type', 'application/xml');
+        }
+
+        return $response;
+    }
+
     public static function arrayToXml($data, &$xml)
     {
         foreach($data as $key => $value) {
