@@ -301,8 +301,8 @@ class Task
         $this->getEvent()->getName(),
         $this->getActivity()->getActivityType()->getName()
       );
-      $dtstart      = $this->getStartsAt()->format("Ymd\THis\Z");
-      $dtend        = $this->getEndsAt()->format("Ymd\THis\Z");
+      $dtstart      = $this->getStartsAt()->format("Ymd\THis");
+      $dtend        = $this->getEndsAt()->format("Ymd\THis");
       $summary      = sprintf('%s - %s - %s',
         $this->getEvent()->getName(),
         $this->getActivity()->getActivityType()->getName(),
