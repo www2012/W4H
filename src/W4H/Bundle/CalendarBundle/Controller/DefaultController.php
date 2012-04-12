@@ -19,6 +19,7 @@ use W4H\Bundle\CalendarBundle\Filter\Manager\PersonalCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\AdminCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\EventListTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\MailingFilterManager;
+use W4H\Bundle\CalendarBundle\Filter\Manager\ScheduleTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Tool\Utils;
 
 /**
@@ -118,7 +119,7 @@ class DefaultController extends Controller
 
         $filterManager = new EventListTaskFilterManager($this->container, array(
             'from_day' => $from_day,
-            'to_day' => $to_day
+            'to_day'   => $to_day
         ));
 
         $form = $filterManager->createForm();
@@ -133,6 +134,40 @@ class DefaultController extends Controller
         }
 
         return $this->renderEventList($filterManager->getFilteredData($filteredData), $form, $form_action);
+    }
+
+    /**
+     * @Route("/event-list/schedule", name="event_list_by_schedule")
+     */
+    public function eventListByScheduleAction(Request $request)
+    {
+        $form_action = 'event_list_by_schedule';
+
+        $year = $request->query->get('year');
+        $month = $request->query->get('month');
+        $day = $request->query->get('day');
+        $hour = $request->query->get('hour');
+        $minute = $request->query->get('minute');
+        $schedule = new \DateTime();
+        if(!in_array(null, array($year, $month, $day, $hour, $minute)))
+            $schedule = new \DateTime(sprintf('%s-%s-%s %s:%s', $year, $month, $day, $hour, $minute));
+
+        $filterManager = new ScheduleTaskFilterManager($this->container, array(
+            'schedule' => $schedule
+        ));
+
+        $form = $filterManager->createForm();
+        $filteredData = array();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if (!$form->isValid()) {
+                return $this->renderEventListSchedule($filteredData, $form, $form_action);
+            }
+            $filteredData = $form->getData();
+        }
+
+        return $this->renderEventListSchedule($filterManager->getFilteredData($filteredData), $form, $form_action);
     }
 
     /**
@@ -295,6 +330,19 @@ class DefaultController extends Controller
         return $this->render('W4HCalendarBundle:Default:eventList.html.twig', array(
             'from'        => $filteredData['from'],
             'to'          => $filteredData['to'],
+            'event_tasks' => $calendar->getEventTasks($filteredData),
+            'form'        => $form->createView(),
+            'form_action' => $form_action,
+            'hidden_data' => $filteredData['hide_data']
+        ));
+    }
+
+    public function renderEventListSchedule($filteredData, $form, $form_action)
+    {
+        $calendar = $this->container->get('w4h_calendar.calendar');
+
+        return $this->render('W4HCalendarBundle:Default:eventListSchedule.html.twig', array(
+            'schedule'    => $filteredData['schedule'],
             'event_tasks' => $calendar->getEventTasks($filteredData),
             'form'        => $form->createView(),
             'form_action' => $form_action,

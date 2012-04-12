@@ -33,11 +33,5 @@ class HideDataFilter extends AbstractFilter
         );
     }
 
-    public function getFilteredData($filteredData = null)
-    {
-        if($filteredData != null)
-            return parent::getFilteredData($filteredData);
-
-        return array();
-    }
+    public function getDefaultFilteredData() { return array(); }
 }

@@ -37,8 +37,13 @@ abstract class AbstractFilter
     public function getFilteredData($filteredData = null)
     {
         if(isset($filteredData) && count($filteredData) > 0)
-            return $filteredData;
+            return $this->filter($filteredData);
+
+        return $this->getDefaultFilteredData();
     }
+
+    public function filter($filteredData) { return $filteredData; }
+    public function getDefaultFilteredData() { return null; }
 
     abstract public function getFilterName();
     abstract public function getFilterFormType();

@@ -10,7 +10,7 @@ namespace W4H\Bundle\CalendarBundle\Filter;
  */
 class LuceneSearchFilter extends AbstractFilter
 {
-    public function getFilterName()      { return $this->getOption('filter_name') ? $this->getOption('filter_name') : 'lucene_query'; }
+    public function getFilterName()      { return $this->getOption('filter_name') ? $this->getOption('filter_name') : 'lucene_search'; }
     public function getFilterFormType()  { return 'text'; }
 
     public function getFilterFormOptions()
@@ -21,22 +21,19 @@ class LuceneSearchFilter extends AbstractFilter
         );
     }
 
-    public function getFilteredData($filteredData = null)
+    public function filter($filteredData)
     {
-        if($filteredData != null)
+        $search = $this->getContainer()->get('ewz_search.lucene');
+        $hits = $search->find($filteredData);
+        $ids = array();
+        if($hits)
         {
-            $search = $this->getContainer()->get('ewz_search.lucene');
-            $hits = $search->find($filteredData);
-            $ids = array();
-            if($hits)
-            {
-                foreach ($hits as $hit)
-                    $ids[] = $hit->key;
-            }
-
-            return $ids;
+            foreach ($hits as $hit)
+                $ids[] = $hit->key;
         }
 
-        return array();
+        return $ids;
     }
+
+    public function getDefaultFilteredData() { return array(); }
 }

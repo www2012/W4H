@@ -24,13 +24,7 @@ abstract class AbstractEntityFilter extends AbstractFilter
         );
     }
 
-    public function getFilteredData($filteredData = null)
-    {
-        if($filteredData != null)
-            return parent::getFilteredData($filteredData);
-
-        return $this->getQueryBuilder()->getQuery()->getResult();
-    }
+    public function getDefaultFilteredData() { return $this->getQueryBuilder()->getQuery()->getResult(); }
 
     public function getQueryBuilder()
     {

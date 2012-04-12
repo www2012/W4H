@@ -59,14 +59,23 @@ class TaskRepository extends EntityRepository
                         $qb->andWhere('task.ends_at <= :date_to')
                            ->setParameter('date_to', $to->format('Y-m-d'));
                     }
-                    elseif($field == 'hide_data')
-                    {
-                    }
-                    elseif($field == 'lucene_query')
+                    elseif($field == 'lucene_search')
                     {
                         if(!empty($data))
                             $qb->andWhere($qb->expr()->in('task.id', $data));
                     }
+                    elseif($field == 'schedule')
+                    {
+                        $qb->andWhere('task.starts_at <= :schedule')
+                           ->setParameter('schedule', $data->format('Y-m-d H:i'))
+                           ->andWhere('task.ends_at >= :schedule')
+                           ->setParameter('schedule', $data->format('Y-m-d H:i'))
+                        ;
+                    }
+                    elseif($field == 'hide_data')
+                    {
+                    }
+                    // Use for entity filters
                     else
                     {
                         $ids = array();
