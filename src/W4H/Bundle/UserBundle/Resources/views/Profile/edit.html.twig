@@ -20,6 +20,8 @@
 
           {{ form_row(form.user.username) }}
           {{ form_row(form.user.email) }}
+          {{ form_row(form.user.first_name) }}
+          {{ form_row(form.user.last_name) }}
           {{ form_row(form.user.organisation) }}
           {{ form_row(form.user.service) }}
           {{ form_row(form.user.other_mail) }}
@@ -28,12 +30,14 @@
           {{ form_row(form.user.country_iso_code) }}
           {{ form_row(form.user.freeset) }}
           {{ form_row(form.user.socials_account) }}
+          {{ form_row(form.user.has_private_data) }}
 
           <hr />
 
           <label class="required" for="fos_user_profile_form_current">Password</label>
           {{ form_errors(form.current) }}
           {{ form_widget(form.current) }}
+
 
           {{ form_rest(form) }}
 

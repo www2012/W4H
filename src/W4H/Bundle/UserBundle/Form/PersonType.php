@@ -36,7 +36,7 @@ class PersonType extends AbstractType
             ->add('freeset')
             ->add('socials_account')
             ->add('country_iso_code', 'country')
-            ->add('has_private_data', array('label' => 'Hide my contact data'))
+            ->add('has_private_data', null, array('label' => 'Hide contact data'))
         ;
     }
 

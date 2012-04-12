@@ -12,6 +12,8 @@ class ProfileFormType extends BaseType
         parent::buildUserForm($builder, $options);
         $builder->add('username')
                 ->add('email')
+                ->add('first_name')
+                ->add('last_name')
                 ->add('organisation')
                 ->add('service')
                 ->add('other_mail')
@@ -20,7 +22,7 @@ class ProfileFormType extends BaseType
                 ->add('freeset', 'hidden')
                 ->add('socials_account', 'hidden')
                 ->add('country_iso_code', 'country', array('label' => 'Country'))
-                ->add('has_private_data')
+                ->add('has_private_data', null, array('label' => 'Hide contact data'))
         ;
     }
 
