@@ -15,7 +15,7 @@ class PublicActivityTypeFilter extends ActivityTypeFilter
         $em = $this->getContainer()->get("doctrine.orm.entity_manager");
         $repository = $em->getRepository($this->getEntityClass());
         $qb = $repository->createQueryBuilder('at')
-               ->where('at.name NOT IN (\'Other\', \'Press\')');
+               ->where('at.name NOT IN (\'Other\', \'Press\', \'Organization\')');
 
         return $qb;
     }
