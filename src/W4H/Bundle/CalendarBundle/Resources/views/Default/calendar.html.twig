@@ -15,7 +15,15 @@
 
 {% block topbar %}
   <div class="date">
+    <form action="{{ path('calendar') }}" method="post" class="previous">
+      <input type="hidden" name="task_filter_form[day]" value="{{ previous_day(day)|date("Y-m-d") }}">
+      <input class="button" type="submit" value="Previous">
+    </form>
     <h1>{{ day|date("F d, Y") }}</h1>
+    <form action="{{ path('calendar') }}" method="post" class="next">
+      <input type="hidden" name="task_filter_form[day]" value="{{ next_day(day)|date("Y-m-d") }}">
+      <input class="button" type="submit" value="Next">
+  </form>
   </div>
 {% endblock %}
 

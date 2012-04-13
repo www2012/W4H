@@ -22,7 +22,9 @@ class DateTwigExtension extends \Twig_Extension
     {
         return array(
             'path_previous_day' => new \Twig_Function_Method($this, 'pathPreviousDay'),
-            'path_next_day'     => new \Twig_Function_Method($this, 'pathNextDay')
+            'path_next_day'     => new \Twig_Function_Method($this, 'pathNextDay'),
+            'previous_day'      => new \Twig_Function_Method($this, 'getPreviousDay'),
+            'next_day'      => new \Twig_Function_Method($this, 'getNextDay'),
         );
     }
 
@@ -62,6 +64,28 @@ class DateTwigExtension extends \Twig_Extension
             'month' => $next_time['month'],
             'day'   => $next_time['day']
         ));
+    }
+
+    /**
+     * Return previous day for calendar
+     * 
+     * @param datetime $day
+     * @return previous day
+     */
+    public function getPreviousDay($day)
+    {
+        return strtotime(date('Y-m-d', $day->getTimestamp())."-1 day");
+    }
+
+    /**
+     * Return next day for calendar
+     * 
+     * @param datetime $day
+     * @return next day
+     */
+    public function getNextDay($day)
+    {
+        return strtotime(date('Y-m-d', $day->getTimestamp())."+1 day");
     }
 
     /**

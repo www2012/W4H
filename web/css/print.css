@@ -52,6 +52,8 @@ header, aside, #main #calendar .country, #main #calendar .role { display: none !
   float: left;
 }
 
+#main .topbar .date form { display: none; }
+
 #main .topbar .date h1
 {
   color: #555;

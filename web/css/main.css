@@ -323,9 +323,10 @@ body > aside > form > .actions > .button
 {
   position: relative;
   line-height: 42px;
-  width: 144px;
+  width: 300px;
   float: left;
 }
+#main .topbar .date > * { float: left;}
 
 #main .topbar .date h1
 {
@@ -333,7 +334,7 @@ body > aside > form > .actions > .button
   text-shadow: 1px 1px #FFF;
   margin: 0 10px;
   font-weight: bold;
-  width: 80px;
+  width: 110px;
   text-align: center;
 }
 
