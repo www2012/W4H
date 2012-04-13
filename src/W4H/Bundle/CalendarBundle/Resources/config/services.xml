@@ -15,10 +15,6 @@
             <argument type="service" id="service_container" />
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
-        <service id="date.twig.extension" class="W4H\Bundle\CalendarBundle\Extension\DateTwigExtension">
-            <tag name="twig.extension" />
-            <argument type="service" id="router" />
-        </service>
     </services>
 
 </container>
