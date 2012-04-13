@@ -61,8 +61,10 @@ class TaskRepository extends EntityRepository
                     }
                     elseif($field == 'lucene_search')
                     {
-                        if(!empty($data))
+                        if($data != 'none')
                             $qb->andWhere($qb->expr()->in('task.id', $data));
+                        else
+                            return null;
                     }
                     elseif($field == 'schedule')
                     {
@@ -100,7 +102,8 @@ class TaskRepository extends EntityRepository
      */
     public function findAllFilteredQuery($filteredData = array())
     {
-        return $this->findAllFilteredQueryBuilder($filteredData)->getQuery();
+        $qb = $this->findAllFilteredQueryBuilder($filteredData);
+        return is_null($qb) ? $qb : $qb->getQuery();
     }
 
     /**
@@ -111,6 +114,7 @@ class TaskRepository extends EntityRepository
      */
     public function findAllFiltered($filteredData = array())
     {
-        return $this->findAllFilteredQuery($filteredData)->getResult();
+        $q = $this->findAllFilteredQuery($filteredData);
+        return is_null($q) ? array() : $q->getResult();
     }
 }

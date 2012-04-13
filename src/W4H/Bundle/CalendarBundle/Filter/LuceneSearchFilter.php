@@ -32,7 +32,7 @@ class LuceneSearchFilter extends AbstractFilter
                 $ids[] = $hit->key;
         }
 
-        return $ids;
+        return empty($ids) ? 'none' : $ids;
     }
 
     public function getDefaultFilteredData() { return array(); }

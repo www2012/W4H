@@ -143,18 +143,7 @@ class DefaultController extends Controller
     {
         $form_action = 'event_list_by_schedule';
 
-        $year = $request->query->get('year');
-        $month = $request->query->get('month');
-        $day = $request->query->get('day');
-        $hour = $request->query->get('hour');
-        $minute = $request->query->get('minute');
-        $schedule = new \DateTime();
-        if(!in_array(null, array($year, $month, $day, $hour, $minute)))
-            $schedule = new \DateTime(sprintf('%s-%s-%s %s:%s', $year, $month, $day, $hour, $minute));
-
-        $filterManager = new ScheduleTaskFilterManager($this->container, array(
-            'schedule' => $schedule
-        ));
+        $filterManager = new ScheduleTaskFilterManager($this->container);
 
         $form = $filterManager->createForm();
         $filteredData = array();
