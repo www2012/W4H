@@ -22,8 +22,15 @@
       {% for paperPresenter in task.paperPresenters %}
           <li>
             <span class="presenter">{{ paperPresenter.person.name }}</span>
-            <span class="paper_number">{{ paperPresenter.paper.paperNumber }}</span>
-            <span class="paper_title">{{ paperPresenter.paper.title }}</span>
+            <span class="paper_title">
+              {% if paperPresenter.paper.fileUrl is empty %}
+                {{ paperPresenter.paper.title }}
+              {% else %}
+                <a href="{{ paperPresenter.paper.fileUrl }}" alt="{{ paperPresenter.paper.paperNumber }}" title="{{ paperPresenter.paper.title }}">
+                  {{ paperPresenter.paper.title }}
+                </a>
+              {% endif %}
+            </span>
             <span class="paper_authors">{{ paperPresenter.paper.authors }}</span>
           </li>
       {% endfor %}

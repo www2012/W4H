@@ -23,17 +23,22 @@ class Paper
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=32)
+     * @ORM\Column(type="string", length=32, nullable=true)
      */
     protected $paper_number;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $file_url;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $authors;
 
@@ -73,6 +78,26 @@ class Paper
     public function getPaperNumber()
     {
         return $this->paper_number;
+    }
+
+    /**
+     * Set file_url
+     *
+     * @param string $fileUrl
+     */
+    public function setFileUrl($fileUrl)
+    {
+        $this->file_url = $fileUrl;
+    }
+
+    /**
+     * Get file_url
+     *
+     * @return string 
+     */
+    public function getFileUrl()
+    {
+        return $this->file_url;
     }
 
     /**

@@ -1,0 +1,86 @@
+{% for day in event_tasks %}
+  <h2>{{ day.display }}</h2>
+  <ul>
+    {% for hour in day.hours %}
+      <li class="hour">
+        <p class="time">{{ hour.display }}</p>
+        <ul>
+          {% for task in hour.tasks %}
+            <li class="{{ task.getClasses() }}">
+              {% if 'symbols' not in hidden_data %}
+                <div class="symbol"></div>
+              {% endif %}
+              {% if 'activity_name' not in hidden_data %}
+                <p class="name">{{ task.activity.name }}</p>
+              {% endif %}
+              {% if 'activity_description' not in hidden_data %}
+                {% autoescape false %}
+                <div class="description">{{ task.activity.description }}</div>
+                {% endautoescape %}
+              {% endif %}
+              {% if ('presentation' not in hidden_data) and (task.paperPresenters.count > 0) %}
+                <div class="presentation">
+                  <strong>Presentation(s):</strong>
+                  <ul>
+                    {% for paperPresenter in task.paperPresenters %}
+                      <li>
+                        <span class="presenter"><a href="mailto:{{ paperPresenter.person.email }}">{{ paperPresenter.person.name }}</a></span>
+                        <span class="paper_title">
+                          {% if paperPresenter.paper.fileUrl is empty %}
+                            {{ paperPresenter.paper.title }}
+                          {% else %}
+                            <a href="{{ paperPresenter.paper.fileUrl }}" alt="{{ paperPresenter.paper.paperNumber }}" title="{{ paperPresenter.paper.title }}">
+                              {{ paperPresenter.paper.title }}
+                            </a>
+                          {% endif %}
+                        </span>
+                        <span class="paper_authors">{{ paperPresenter.paper.authors }}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+              {% if ('owners' not in hidden_data) and (task.owners.count > 0) %}
+              <div class="owners">
+                <strong>With:</strong>
+                <ul>
+                {% for owner in task.owners %}
+                  <li>
+                    <span class="country flag-{{ owner.person.countryIsoCode|lower }}" title="{{ owner.person.countryIsoCode|country }}">
+                      {% if 'symbols' not in hidden_data %}<span class="symbol"></span>{% endif %}
+                      {{ owner.person.countryIsoCode|country }}
+                    </span>
+                    <span class="role {{ owner.role |slugify }}" title="{{ owner.role }}">
+                      {% if 'symbols' not in hidden_data %}<span class="symbol"></span>{% endif %}
+                      {{ owner.role }}
+                    </span>
+                    <span class="person {{ owner.role |slugify }}" title="{{ owner.person.name }}">
+                      {{ owner.person.displayContact|raw }}
+                    </span>
+                  </li>
+                {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              {% if 'location' not in hidden_data %}
+                <p class="location">{{ task.location.name }} ({{ task.location.building }} # {{ task.location.level }})</p>
+              {% endif %}
+              {% if 'ends_at' not in hidden_data %}
+                <p class="ends_at">Ends at: {{ task.endsAt|date("H:i") }}</p>
+              {% endif %}
+              {% if 'event' not in hidden_data %}
+                <p class="event">
+                  <a href="{{ task.event.websiteUrl }}" target="_blank" title="{{ task.event.name }}">{{ task.event.name }}</a>
+                </p>
+              {% endif %}
+              {% if 'activity_type' not in hidden_data %}
+                <p class="activity_type">{{ task.activity.activityType.name }}</p>
+              {% endif %}
+              <a class="vcal" href="{{ path('task_vcal', { 'task_id': task.id }) }}" title="Get vCal format">Get vCal</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}

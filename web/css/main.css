@@ -895,6 +895,12 @@ body > aside > form > .actions > .button
   overflow: hidden;
 }
 
+#main #calendar .presentation > ul > li > span
+{
+  line-height: 16px;
+  display: block;
+}
+
 #main #calendar .content .owners > ul > li > span.person,
 #main #calendar .content .owners > ul > li > span.role
 {
@@ -989,16 +995,20 @@ form.mailing .button
 {
   font-weight: bold;
   font-style: italic;
-}
-
-#main #calendar .presentation .paper_number
-{
-  color: #888;
+  margin-right: 10px;
 }
 
 #main #calendar .presentation .paper_title
 {
   font-weight: bold;
+}
+
+#main #calendar .presentation .paper_title > a
+{
+  padding-left: 18px;
+  background: url('/images/pdf.png') no-repeat left top;
+  display: block;
+  margin-right: 14px;
 }
 
 #main #calendar .presentation .paper_authors
