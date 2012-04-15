@@ -9,7 +9,16 @@ class BuildSearchTaskIndexCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
-        $this->setName('w4h:build-search-task-index');
+        $this->setName('w4h:build-search-task-index')
+             ->setDescription('Build lucene search index for task entities')
+             ->setHelp(<<<EOF
+The <info>w4h:build-search-task-index</info> command build the lucene index for task entities for a given environment:
+
+<info>php app/console w4h:build-search-task-index --env=dev [Default]</info>
+<info>php app/console w4h:build-search-task-index --env=prod</info>
+EOF
+            )
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
