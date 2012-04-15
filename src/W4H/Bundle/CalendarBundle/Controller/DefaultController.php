@@ -17,6 +17,7 @@ use W4H\Bundle\EventTaskBundle\Form\TaskType;
 use W4H\Bundle\CalendarBundle\Filter\Manager\PublicCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\PersonalCalendarTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\AdminCalendarTaskFilterManager;
+use W4H\Bundle\CalendarBundle\Filter\Manager\AdminEventListTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\EventListTaskFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\MailingFilterManager;
 use W4H\Bundle\CalendarBundle\Filter\Manager\ScheduleTaskFilterManager;
@@ -117,10 +118,20 @@ class DefaultController extends Controller
         $to_day   = $this->getScheduleDefaultDateTime();
         $to_day->modify('+5 day');
 
-        $filterManager = new EventListTaskFilterManager($this->container, array(
-            'from_day' => $from_day,
-            'to_day'   => $to_day
-        ));
+        if (true === $this->get('security.context')->isGranted('ROLE_ADMIN'))
+        {
+          $filterManager = new AdminEventListTaskFilterManager($this->container, array(
+              'from_day' => $from_day,
+              'to_day'   => $to_day
+          ));
+        }
+        else
+        {
+          $filterManager = new EventListTaskFilterManager($this->container, array(
+              'from_day' => $from_day,
+              'to_day'   => $to_day
+          ));
+        }
 
         $form = $filterManager->createForm();
         $filteredData = array();
