@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use W4H\Bundle\CalendarBundle\Tool\Utils;
 
@@ -21,7 +20,6 @@ class CSSController extends Controller
 {
     /**
      * @Route("/css/grid-{step}.css", name="css_render_grid")
-     * @Template("W4HCalendarBundle:CSS:grid.css.twig")
      */
     public function renderGridAction($step, $columns)
     {
@@ -30,26 +28,39 @@ class CSSController extends Controller
 
         $rows  = ($max - $min) * 60 / $step;
 
-        return array(
+        $response = $this->render('W4HCalendarBundle:CSS:grid.css.twig', array(
           'rows'            => $rows,
           'rowHeight'       => $this->container->getParameter('w4h_calendar.schedule_row_height'),
           'columns'         => $columns,
           'columnWidth'     => $this->container->getParameter('w4h_calendar.schedule_column_width'),
           'events'          => $this->getEventsBG(),
           'activity_types'  => $this->getActivityTypesBG()
-        );
+        ));
+
+        $response->setPublic();
+        $date = new \DateTime();
+        $date->modify('+7200 seconds');
+        $response->setExpires($date);
+
+        return $response;
     }
 
     /**
      * @Route("/css/symbol.css", name="css_render_symbol")
-     * @Template("W4HCalendarBundle:CSS:symbol.css.twig")
      */
     public function renderSymbolAction()
     {
-        return array(
+        $response = $this->render('W4HCalendarBundle:CSS:symbol.css.twig', array(
           'events'          => $this->getEventsBG(),
           'activity_types'  => $this->getActivityTypesBG()
-        );
+        ));
+
+        $response->setPublic();
+        $date = new \DateTime();
+        $date->modify('+7200 seconds');
+        $response->setExpires($date);
+
+        return $response;
     }
 
     public function getEventsBG()

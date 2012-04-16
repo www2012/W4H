@@ -313,7 +313,7 @@ class DefaultController extends Controller
         $calendar = $this->container->get('w4h_calendar.calendar');
         $step     = $this->container->getParameter('w4h_calendar.schedule_step');
 
-        return $this->render('W4HCalendarBundle:Default:calendar.html.twig', array(
+        $response = $this->render('W4HCalendarBundle:Default:calendar.html.twig', array(
             'day'         => $filteredData['day'],
             'step'        => $step,
             'schedules'   => $calendar->getSchedules(),
@@ -321,13 +321,20 @@ class DefaultController extends Controller
             'form'        => $form->createView(),
             'form_action' => $form_action,
         ));
+
+        $response->setPublic();
+        $date = new \DateTime();
+        $date->modify('+3600 seconds');
+        $response->setExpires($date);
+
+        return $response;
     }
 
     public function renderEventList($filteredData, $form, $form_action)
     {
         $calendar = $this->container->get('w4h_calendar.calendar');
 
-        return $this->render('W4HCalendarBundle:Default:eventList.html.twig', array(
+        $response = $this->render('W4HCalendarBundle:Default:eventList.html.twig', array(
             'from'        => $filteredData['from'],
             'to'          => $filteredData['to'],
             'event_tasks' => $calendar->getEventTasks($filteredData),
@@ -335,19 +342,33 @@ class DefaultController extends Controller
             'form_action' => $form_action,
             'hidden_data' => $filteredData['hide_data']
         ));
+
+        $response->setPublic();
+        $date = new \DateTime();
+        $date->modify('+3600 seconds');
+        $response->setExpires($date);
+
+        return $response;
     }
 
     public function renderEventListSchedule($filteredData, $form, $form_action)
     {
         $calendar = $this->container->get('w4h_calendar.calendar');
 
-        return $this->render('W4HCalendarBundle:Default:eventListSchedule.html.twig', array(
+        $response = $this->render('W4HCalendarBundle:Default:eventListSchedule.html.twig', array(
             'schedule'    => $filteredData['schedule'],
             'event_tasks' => $calendar->getEventTasks($filteredData),
             'form'        => $form->createView(),
             'form_action' => $form_action,
             'hidden_data' => $filteredData['hide_data']
         ));
+
+        $response->setPublic();
+        $date = new \DateTime();
+        $date->modify('+300 seconds');
+        $response->setExpires($date);
+
+        return $response;
     }
 
     public function renderMailing($filteredData, $form, $form_action)
