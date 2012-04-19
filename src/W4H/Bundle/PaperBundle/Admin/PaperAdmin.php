@@ -17,6 +17,7 @@ class PaperAdmin extends Admin
             ->add('paper_number')
             ->add('title')
             ->add('authors')
+            ->add('file_url')
         ;
     }
 
@@ -25,6 +26,7 @@ class PaperAdmin extends Admin
         $datagridMapper
             ->add('paper_number')
             ->add('authors')
+            ->add('file_url')
         ;
     }
 
@@ -33,6 +35,7 @@ class PaperAdmin extends Admin
         $listMapper
             ->addIdentifier('paper_number')
             ->add('authors')
+            ->add('file_url')
         ;
     }
 
